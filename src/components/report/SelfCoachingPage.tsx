@@ -106,7 +106,7 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
               <div className="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700">
                 <textarea
                   className="w-full h-24 p-3 text-sm text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                  style={{ focusRing: animal.color }}
+                  style={{ ["--tw-ring-color" as string]: animal.color } as React.CSSProperties}
                   placeholder="Space for reflection..."
                   value={reflections[i] || ""}
                   onChange={(e) => handleReflectionChange(i, e.target.value)}
