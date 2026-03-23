@@ -67,13 +67,12 @@ export function Header() {
           <ThemeToggle />
           <Link href="/dashboard/team" className="hidden sm:block">
             <Button
-              variant="outline"
-              className="text-sm border-2"
+              className="text-sm text-white"
               style={{
-                borderImage: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669) 1",
+                background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
               }}
             >
-              🦁🐧🐕🦫 Team Safari
+              Team Safari
             </Button>
           </Link>
           <Link href="/quiz" className="hidden sm:block">
@@ -135,14 +134,12 @@ export function Header() {
             <hr className="my-2" />
             <Link href="/dashboard/team">
               <Button
-                variant="outline"
-                className="w-full text-sm"
+                className="w-full text-sm text-white"
                 style={{
                   background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
-                  color: "white",
                 }}
               >
-                🦁🐧🐕🦫 Team Safari
+                Team Safari
               </Button>
             </Link>
             <Link href="/quiz">
