@@ -41,14 +41,14 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-300 dark:border-gray-700 bg-gray-200/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-200/80 dark:supports-[backdrop-filter]:bg-gray-900/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-2xl">🦁🐧🐕🦫</span>
           <span className="font-bold text-xl hidden sm:inline-block">Animal Selling</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
           <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600 transition-colors">
             Lion
           </Link>
