@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,14 +20,18 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    // Demo: Accept any email/password combination
-    // In production, this would authenticate with Supabase
     try {
-      // Simulate auth delay
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      const supabase = createClient();
 
-      // Store demo user in localStorage
-      localStorage.setItem("demo_user", JSON.stringify({ email }));
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) {
+        setError(signInError.message);
+        return;
+      }
 
       router.push("/dashboard");
     } catch {
@@ -90,11 +95,6 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-              <p className="text-xs text-blue-700 dark:text-blue-300 text-center">
-                <strong>Demo Mode:</strong> Enter any email and password to sign in.
-              </p>
-            </div>
           </CardContent>
         </Card>
       </div>

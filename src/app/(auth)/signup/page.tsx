@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -20,16 +21,35 @@ export default function SignupPage() {
     setError("");
     setLoading(true);
 
-    // Demo: Accept any signup
-    // In production, this would create account with Supabase
     try {
-      // Simulate auth delay
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      const supabase = createClient();
 
-      // Store demo user in localStorage
-      localStorage.setItem("demo_user", JSON.stringify({ email, name }));
+      // Sign up with Supabase
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            name,
+          },
+        },
+      });
 
-      router.push("/dashboard");
+      if (signUpError) {
+        setError(signUpError.message);
+        return;
+      }
+
+      if (data.user) {
+        // Create profile in profiles table
+        await supabase.from("profiles").insert({
+          id: data.user.id,
+          email,
+          name,
+        });
+
+        router.push("/dashboard");
+      }
     } catch {
       setError("Failed to create account. Please try again.");
     } finally {
@@ -105,11 +125,6 @@ export default function SignupPage() {
               </Link>
             </div>
 
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-              <p className="text-xs text-blue-700 text-center">
-                <strong>Demo Mode:</strong> Enter any details to create an account.
-              </p>
-            </div>
           </CardContent>
         </Card>
       </div>
