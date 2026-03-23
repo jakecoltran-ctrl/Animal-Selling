@@ -1,15 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
+import { generateQuizResult } from "@/lib/quiz-scoring";
+import { QuizAnswer, SalesContext } from "@/types";
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,6 +68,37 @@ export default function SignupPage() {
         }
 
         router.refresh();
+
+        // Check if coming from quiz
+        if (redirectTo === "quiz") {
+          const pendingQuizData = localStorage.getItem("pending_quiz_data");
+          if (pendingQuizData) {
+            try {
+              const { answers, salesContext } = JSON.parse(pendingQuizData) as {
+                answers: Record<string, 1 | 2 | 3 | 4 | 5>;
+                salesContext: SalesContext;
+              };
+
+              const formattedAnswers: QuizAnswer[] = Object.entries(answers).map(
+                ([questionId, value]) => ({
+                  questionId,
+                  value,
+                })
+              );
+
+              const result = generateQuizResult(formattedAnswers, salesContext, email);
+              localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
+              localStorage.removeItem("pending_quiz_data");
+
+              router.push(`/quiz/results/${result.id}`);
+              return;
+            } catch (err) {
+              console.error("Error processing quiz data:", err);
+              localStorage.removeItem("pending_quiz_data");
+            }
+          }
+        }
+
         router.push("/dashboard");
       }
     } catch (err) {
@@ -137,7 +172,7 @@ export default function SignupPage() {
 
             <div className="mt-6 text-center text-sm">
               <span className="text-muted-foreground">Already have an account? </span>
-              <Link href="/login" className="text-primary hover:underline">
+              <Link href={redirectTo ? `/login?redirect=${redirectTo}` : "/login"} className="text-primary hover:underline">
                 Sign in
               </Link>
             </div>
@@ -146,5 +181,17 @@ export default function SignupPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[80vh] flex items-center justify-center">
+        <div className="text-muted-foreground">Loading...</div>
+      </div>
+    }>
+      <SignupForm />
+    </Suspense>
   );
 }

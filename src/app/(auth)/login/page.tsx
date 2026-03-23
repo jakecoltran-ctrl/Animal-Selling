@@ -1,15 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
+import { generateQuizResult } from "@/lib/quiz-scoring";
+import { QuizAnswer, SalesContext } from "@/types";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -44,6 +48,37 @@ export default function LoginPage() {
       }
 
       router.refresh();
+
+      // Check if coming from quiz
+      if (redirectTo === "quiz") {
+        const pendingQuizData = localStorage.getItem("pending_quiz_data");
+        if (pendingQuizData) {
+          try {
+            const { answers, salesContext } = JSON.parse(pendingQuizData) as {
+              answers: Record<string, 1 | 2 | 3 | 4 | 5>;
+              salesContext: SalesContext;
+            };
+
+            const formattedAnswers: QuizAnswer[] = Object.entries(answers).map(
+              ([questionId, value]) => ({
+                questionId,
+                value,
+              })
+            );
+
+            const result = generateQuizResult(formattedAnswers, salesContext, email);
+            localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
+            localStorage.removeItem("pending_quiz_data");
+
+            router.push(`/quiz/results/${result.id}`);
+            return;
+          } catch (err) {
+            console.error("Error processing quiz data:", err);
+            localStorage.removeItem("pending_quiz_data");
+          }
+        }
+      }
+
       router.push("/dashboard");
     } catch {
       setError("Failed to sign in. Please try again.");
@@ -101,7 +136,7 @@ export default function LoginPage() {
 
             <div className="mt-6 text-center text-sm">
               <span className="text-muted-foreground">Don't have an account? </span>
-              <Link href="/signup" className="text-primary hover:underline">
+              <Link href={redirectTo ? `/signup?redirect=${redirectTo}` : "/signup"} className="text-primary hover:underline">
                 Sign up
               </Link>
             </div>
@@ -110,5 +145,17 @@ export default function LoginPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[80vh] flex items-center justify-center">
+        <div className="text-muted-foreground">Loading...</div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

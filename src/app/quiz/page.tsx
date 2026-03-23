@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { QuizQuestionCard } from "@/components/quiz/QuizQuestion";
 import { getShuffledQuestions, getQuestionText } from "@/lib/quiz-questions";
 import { generateQuizResult } from "@/lib/quiz-scoring";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
 import {
   QuizAnswer,
   QuizQuestion,
@@ -18,7 +20,7 @@ import {
   SalesChannel,
 } from "@/types";
 
-type QuizStage = "intro" | "setup" | "questions" | "email" | "calculating";
+type QuizStage = "intro" | "setup" | "questions" | "signup" | "calculating";
 
 interface ToggleButtonProps {
   options: { value: string; label: string; description: string }[];
@@ -55,8 +57,8 @@ export default function QuizPage() {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, 1 | 2 | 3 | 4 | 5>>({});
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   // Sales context state
   const [salesContext, setSalesContext] = useState<SalesContext>({
@@ -67,6 +69,13 @@ export default function QuizPage() {
 
   useEffect(() => {
     setQuestions(getShuffledQuestions());
+
+    // Check auth state
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+      setAuthLoading(false);
+    });
   }, []);
 
   const currentQuestion = questions[currentIndex];
@@ -82,19 +91,49 @@ export default function QuizPage() {
   const handleAnswer = (value: 1 | 2 | 3 | 4 | 5) => {
     if (!currentQuestion) return;
 
-    setAnswers((prev) => ({
-      ...prev,
+    const newAnswers = {
+      ...answers,
       [currentQuestion.id]: value,
-    }));
+    };
+    setAnswers(newAnswers);
 
     // Auto-advance after a short delay
     setTimeout(() => {
       if (isLastQuestion) {
-        setStage("email");
+        // Check if user is logged in
+        if (user) {
+          // User is logged in, process results directly
+          processResults(newAnswers);
+        } else {
+          // User needs to create account, store quiz data and show signup
+          localStorage.setItem(
+            "pending_quiz_data",
+            JSON.stringify({ answers: newAnswers, salesContext })
+          );
+          setStage("signup");
+        }
       } else {
         setCurrentIndex((prev) => prev + 1);
       }
     }, 300);
+  };
+
+  const processResults = (quizAnswers: Record<string, 1 | 2 | 3 | 4 | 5>) => {
+    setStage("calculating");
+
+    const formattedAnswers: QuizAnswer[] = Object.entries(quizAnswers).map(
+      ([questionId, value]) => ({
+        questionId,
+        value,
+      })
+    );
+
+    const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
+    localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
+
+    setTimeout(() => {
+      router.push(`/quiz/results/${result.id}`);
+    }, 1500);
   };
 
   const handlePrevious = () => {
@@ -103,69 +142,6 @@ export default function QuizPage() {
     }
   };
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!email) {
-      setEmailError("Please enter your email to see your results");
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setEmailError("Please enter a valid email address");
-      return;
-    }
-
-    setStage("calculating");
-
-    // Convert answers to the expected format
-    const formattedAnswers: QuizAnswer[] = Object.entries(answers).map(
-      ([questionId, value]) => ({
-        questionId,
-        value,
-      })
-    );
-
-    // Generate result with sales context
-    const result = generateQuizResult(formattedAnswers, salesContext, email);
-
-    // Store in localStorage
-    localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-
-    // Capture email
-    try {
-      await fetch("/api/email-capture", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "quiz" }),
-      });
-    } catch {
-      // Silent fail
-    }
-
-    // Navigate to results
-    setTimeout(() => {
-      router.push(`/quiz/results/${result.id}`);
-    }, 1500);
-  };
-
-  const handleSkipEmail = () => {
-    setStage("calculating");
-
-    const formattedAnswers: QuizAnswer[] = Object.entries(answers).map(
-      ([questionId, value]) => ({
-        questionId,
-        value,
-      })
-    );
-
-    const result = generateQuizResult(formattedAnswers, salesContext);
-    localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-
-    setTimeout(() => {
-      router.push(`/quiz/results/${result.id}`);
-    }, 1500);
-  };
 
   // Intro Stage
   if (stage === "intro") {
@@ -348,43 +324,35 @@ export default function QuizPage() {
     );
   }
 
-  // Email Capture Stage
-  if (stage === "email") {
+  // Signup Requirement Stage
+  if (stage === "signup") {
     return (
       <div className="min-h-[80vh] flex items-center justify-center py-12">
         <div className="container mx-auto px-4">
           <Card className="max-w-md mx-auto">
             <CardContent className="pt-8 pb-8 text-center">
-              <div className="text-5xl mb-4">📬</div>
-              <h2 className="text-2xl font-bold mb-2">Almost There!</h2>
+              <div className="text-5xl mb-4">🎉</div>
+              <h2 className="text-2xl font-bold mb-2">Quiz Complete!</h2>
               <p className="text-muted-foreground mb-6">
-                Enter your email to unlock your personalized results and get
-                sales tips tailored to your type and selling context.
+                Create a free account to unlock your personalized results and
+                discover your sales animal type.
               </p>
-              <form onSubmit={handleEmailSubmit} className="space-y-4">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setEmailError("");
-                  }}
-                  className={emailError ? "border-red-500" : ""}
-                />
-                {emailError && (
-                  <p className="text-red-500 text-sm text-left">{emailError}</p>
-                )}
-                <Button type="submit" className="w-full">
-                  See My Results
-                </Button>
-              </form>
-              <button
-                onClick={handleSkipEmail}
-                className="text-sm text-muted-foreground hover:underline mt-4 inline-block"
-              >
-                Skip for now
-              </button>
+              <div className="space-y-4">
+                <Link href="/signup?redirect=quiz">
+                  <Button className="w-full press-effect hover-glow">
+                    Create Free Account
+                  </Button>
+                </Link>
+                <p className="text-sm text-muted-foreground">
+                  Already have an account?{" "}
+                  <Link
+                    href="/login?redirect=quiz"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Sign In
+                  </Link>
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -448,7 +416,15 @@ export default function QuizPage() {
             <Button
               onClick={() => {
                 if (isLastQuestion) {
-                  setStage("email");
+                  if (user) {
+                    processResults(answers);
+                  } else {
+                    localStorage.setItem(
+                      "pending_quiz_data",
+                      JSON.stringify({ answers, salesContext })
+                    );
+                    setStage("signup");
+                  }
                 } else {
                   setCurrentIndex((prev) => prev + 1);
                 }
