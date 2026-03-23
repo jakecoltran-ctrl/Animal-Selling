@@ -57,6 +57,7 @@ export default function SignupPage() {
           // Continue anyway - user is created
         }
 
+        router.refresh();
         router.push("/dashboard");
       }
     } catch (err) {

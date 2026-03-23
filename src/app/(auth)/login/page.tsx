@@ -33,6 +33,7 @@ export default function LoginPage() {
         return;
       }
 
+      router.refresh();
       router.push("/dashboard");
     } catch {
       setError("Failed to sign in. Please try again.");
