@@ -331,11 +331,11 @@ export default function QuizPage() {
         <div className="container mx-auto px-4">
           <Card className="max-w-md mx-auto">
             <CardContent className="pt-8 pb-8 text-center">
-              <div className="text-5xl mb-4">🎉</div>
-              <h2 className="text-2xl font-bold mb-2">Quiz Complete!</h2>
+              <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
+              <h2 className="text-2xl font-bold mb-2">Your Animal is Ready!</h2>
               <p className="text-muted-foreground mb-6">
-                Create a free account to unlock your personalized results and
-                discover your sales animal type.
+                Sign up for free to discover your sales animal type and unlock
+                your personalized results.
               </p>
               <div className="space-y-4">
                 <Link href="/signup?redirect=quiz">
