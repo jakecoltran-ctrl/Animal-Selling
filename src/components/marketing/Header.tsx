@@ -67,7 +67,7 @@ export function Header() {
           <ThemeToggle />
           <Link href="/dashboard/team" className="hidden sm:block">
             <Button
-              className="text-sm text-white"
+              className="text-sm text-white press-effect hover-lift"
               style={{
                 background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
               }}
@@ -134,7 +134,7 @@ export function Header() {
             <hr className="my-2" />
             <Link href="/dashboard/team">
               <Button
-                className="w-full text-sm text-white"
+                className="w-full text-sm text-white press-effect"
                 style={{
                   background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
                 }}
