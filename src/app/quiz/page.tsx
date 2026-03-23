@@ -51,6 +51,124 @@ function ToggleButton({ options, value, onChange }: ToggleButtonProps) {
   );
 }
 
+const ANALYSIS_STEPS = [
+  { message: "Analyzing your responses...", duration: 1500 },
+  { message: "Identifying your patterns...", duration: 1500 },
+  { message: "Matching your sales style...", duration: 1500 },
+  { message: "Discovering your animal...", duration: 1500 },
+];
+
+const ANIMALS = [
+  { emoji: "🦁", name: "Lion", color: "rgb(220, 38, 38)" },
+  { emoji: "🐧", name: "Penguin", color: "rgb(8, 145, 178)" },
+  { emoji: "🐕", name: "Retriever", color: "rgb(217, 119, 6)" },
+  { emoji: "🦫", name: "Beaver", color: "rgb(5, 150, 105)" },
+];
+
+function CalculatingAnimation() {
+  const [progress, setProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [activeAnimal, setActiveAnimal] = useState(-1);
+
+  useEffect(() => {
+    // Progress bar animation
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 1.67; // Reaches 100 in ~6 seconds (100 / 1.67 ≈ 60 intervals at 100ms)
+      });
+    }, 100);
+
+    // Step messages
+    let stepTime = 0;
+    ANALYSIS_STEPS.forEach((step, index) => {
+      setTimeout(() => {
+        setCurrentStep(index);
+      }, stepTime);
+      stepTime += step.duration;
+    });
+
+    // Animal highlights - cycle through each animal
+    const animalTimings = [500, 2000, 3500, 5000];
+    animalTimings.forEach((time, index) => {
+      setTimeout(() => {
+        setActiveAnimal(index);
+      }, time);
+    });
+
+    return () => {
+      clearInterval(progressInterval);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center py-12">
+      <div className="container mx-auto px-4">
+        <Card className="max-w-md mx-auto">
+          <CardContent className="pt-8 pb-8 text-center">
+            {/* Animals Grid */}
+            <div className="flex justify-center gap-4 mb-8">
+              {ANIMALS.map((animal, index) => (
+                <div
+                  key={animal.name}
+                  className={`relative transition-all duration-500 ${
+                    activeAnimal === index
+                      ? "scale-125 opacity-100"
+                      : activeAnimal > index
+                      ? "scale-100 opacity-60"
+                      : "scale-100 opacity-30 grayscale"
+                  }`}
+                >
+                  <div
+                    className={`text-5xl ${
+                      activeAnimal === index ? "animate-bounce" : ""
+                    }`}
+                    style={{
+                      filter: activeAnimal === index ? `drop-shadow(0 0 10px ${animal.color})` : "none",
+                    }}
+                  >
+                    {animal.emoji}
+                  </div>
+                  {activeAnimal === index && (
+                    <div
+                      className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full animate-pulse"
+                      style={{ backgroundColor: animal.color }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Message */}
+            <h2 className="text-xl font-bold mb-2 transition-all duration-300">
+              {ANALYSIS_STEPS[currentStep]?.message || "Almost there..."}
+            </h2>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-4 overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-100 ease-out"
+                style={{
+                  width: `${progress}%`,
+                  background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
+                }}
+              />
+            </div>
+
+            {/* Percentage */}
+            <p className="text-sm text-muted-foreground">
+              {Math.min(Math.round(progress), 100)}% complete
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
 export default function QuizPage() {
   const router = useRouter();
   const [stage, setStage] = useState<QuizStage>("intro");
@@ -131,9 +249,10 @@ export default function QuizPage() {
     const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
     localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
 
+    // 6 second delay for the animation
     setTimeout(() => {
       router.push(`/quiz/results/${result.id}`);
-    }, 1500);
+    }, 6000);
   };
 
   const handlePrevious = () => {
@@ -311,17 +430,7 @@ export default function QuizPage() {
 
   // Calculating Stage
   if (stage === "calculating") {
-    return (
-      <div className="min-h-[80vh] flex items-center justify-center py-12">
-        <div className="container mx-auto px-4 text-center">
-          <div className="text-6xl mb-6">🎯</div>
-          <h2 className="text-2xl font-bold mb-4">Analyzing Your Results...</h2>
-          <p className="text-muted-foreground">
-            Discovering your sales animal...
-          </p>
-        </div>
-      </div>
-    );
+    return <CalculatingAnimation />;
   }
 
   // Signup Requirement Stage
