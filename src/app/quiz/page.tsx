@@ -218,40 +218,41 @@ export default function QuizPage() {
     // Auto-advance after a short delay
     setTimeout(() => {
       if (isLastQuestion) {
-        // Check if user is logged in
-        if (user) {
-          // User is logged in, process results directly
-          processResults(newAnswers);
-        } else {
-          // User needs to create account, store quiz data and show signup
-          localStorage.setItem(
-            "pending_quiz_data",
-            JSON.stringify({ answers: newAnswers, salesContext })
-          );
-          setStage("signup");
-        }
+        // Always show calculating animation first
+        startCalculating(newAnswers);
       } else {
         setCurrentIndex((prev) => prev + 1);
       }
     }, 300);
   };
 
-  const processResults = (quizAnswers: Record<string, 1 | 2 | 3 | 4 | 5>) => {
+  const startCalculating = (quizAnswers: Record<string, 1 | 2 | 3 | 4 | 5>) => {
     setStage("calculating");
 
-    const formattedAnswers: QuizAnswer[] = Object.entries(quizAnswers).map(
-      ([questionId, value]) => ({
-        questionId,
-        value,
-      })
+    // Store quiz data for later processing
+    localStorage.setItem(
+      "pending_quiz_data",
+      JSON.stringify({ answers: quizAnswers, salesContext })
     );
 
-    const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
-    localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-
-    // 6 second delay for the animation
+    // After 6 second animation, check if logged in
     setTimeout(() => {
-      router.push(`/quiz/results/${result.id}`);
+      if (user) {
+        // User is logged in, process results and go to results page
+        const formattedAnswers: QuizAnswer[] = Object.entries(quizAnswers).map(
+          ([questionId, value]) => ({
+            questionId,
+            value,
+          })
+        );
+        const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
+        localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
+        localStorage.removeItem("pending_quiz_data");
+        router.push(`/quiz/results/${result.id}`);
+      } else {
+        // User needs to create account
+        setStage("signup");
+      }
     }, 6000);
   };
 
@@ -525,15 +526,7 @@ export default function QuizPage() {
             <Button
               onClick={() => {
                 if (isLastQuestion) {
-                  if (user) {
-                    processResults(answers);
-                  } else {
-                    localStorage.setItem(
-                      "pending_quiz_data",
-                      JSON.stringify({ answers, salesContext })
-                    );
-                    setStage("signup");
-                  }
+                  startCalculating(answers);
                 } else {
                   setCurrentIndex((prev) => prev + 1);
                 }
