@@ -49,16 +49,16 @@ export function Header() {
 
         {/* Desktop Navigation - Centered */}
         <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
-          <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600 transition-colors">
+          <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600 transition-colors nav-underline">
             Lion
           </Link>
-          <Link href="/animals/penguin" className="text-sm font-medium text-muted-foreground hover:text-penguin-600 transition-colors">
+          <Link href="/animals/penguin" className="text-sm font-medium text-muted-foreground hover:text-penguin-600 transition-colors nav-underline">
             Penguin
           </Link>
-          <Link href="/animals/retriever" className="text-sm font-medium text-muted-foreground hover:text-retriever-600 transition-colors">
+          <Link href="/animals/retriever" className="text-sm font-medium text-muted-foreground hover:text-retriever-600 transition-colors nav-underline">
             Retriever
           </Link>
-          <Link href="/animals/beaver" className="text-sm font-medium text-muted-foreground hover:text-beaver-600 transition-colors">
+          <Link href="/animals/beaver" className="text-sm font-medium text-muted-foreground hover:text-beaver-600 transition-colors nav-underline">
             Beaver
           </Link>
         </nav>
@@ -67,7 +67,7 @@ export function Header() {
           <ThemeToggle />
           <Link href="/dashboard/team" className="hidden sm:block">
             <Button
-              className="text-sm text-white press-effect hover-lift"
+              className="text-sm text-white press-effect hover-glow"
               style={{
                 background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
               }}
@@ -76,16 +76,16 @@ export function Header() {
             </Button>
           </Link>
           <Link href="/quiz" className="hidden sm:block">
-            <Button>Take the Quiz</Button>
+            <Button className="press-effect hover-glow">Take the Quiz</Button>
           </Link>
           {!loading && (
             user ? (
               <Link href="/dashboard" className="hidden sm:block">
-                <Button variant="ghost">My Dashboard</Button>
+                <Button variant="ghost" className="press-effect hover-glow">My Dashboard</Button>
               </Link>
             ) : (
               <Link href="/login" className="hidden sm:block">
-                <Button variant="ghost">Sign In</Button>
+                <Button variant="ghost" className="press-effect hover-glow">Sign In</Button>
               </Link>
             )
           )}

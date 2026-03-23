@@ -240,6 +240,42 @@
   transform: scale(0.98);
 }
 
+/* Hover glow effect for buttons */
+.hover-glow {
+  transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hover-glow:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+}
+
+.dark .hover-glow:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Nav link underline animation */
+.nav-underline {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+
+.nav-underline:hover::after {
+  width: 100%;
+}
+
 /* Smooth transitions for interactive elements */
 .transition-smooth {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
