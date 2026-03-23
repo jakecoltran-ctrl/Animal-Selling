@@ -345,10 +345,28 @@ export default function TeamSafariPage() {
   const distribution = getTypeDistribution();
   const insights = getTeamInsights();
   const total = team.members.length;
+  const isDemo = team.id === "demo-team-1";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-200 to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12">
       <div className="container mx-auto px-4">
+        {/* Demo Notice */}
+        {isDemo && (
+          <div className="mb-6 p-4 bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 rounded-lg">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">👋</span>
+              <div>
+                <p className="font-semibold text-amber-800 dark:text-amber-200">
+                  This is a Demo Team
+                </p>
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  This example shows how Team Safari works. Create your own team to invite real members and see your actual team dynamics.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>

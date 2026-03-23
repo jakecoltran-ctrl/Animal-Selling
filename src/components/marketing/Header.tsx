@@ -65,6 +65,17 @@ export function Header() {
 
         <div className="flex items-center space-x-4">
           <ThemeToggle />
+          <Link href="/dashboard/team" className="hidden sm:block">
+            <Button
+              variant="outline"
+              className="text-sm border-2"
+              style={{
+                borderImage: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669) 1",
+              }}
+            >
+              🦁🐧🐕🦫 Team Safari
+            </Button>
+          </Link>
           <Link href="/quiz" className="hidden sm:block">
             <Button>Take the Quiz</Button>
           </Link>
@@ -122,6 +133,18 @@ export function Header() {
               Beaver - The Specialist
             </Link>
             <hr className="my-2" />
+            <Link href="/dashboard/team">
+              <Button
+                variant="outline"
+                className="w-full text-sm"
+                style={{
+                  background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
+                  color: "white",
+                }}
+              >
+                🦁🐧🐕🦫 Team Safari
+              </Button>
+            </Link>
             <Link href="/quiz">
               <Button className="w-full">Take the Quiz</Button>
             </Link>
