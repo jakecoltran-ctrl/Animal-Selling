@@ -42,16 +42,22 @@ export default function SignupPage() {
 
       if (data.user) {
         // Create profile in profiles table
-        await supabase.from("profiles").insert({
+        const { error: profileError } = await supabase.from("profiles").insert({
           id: data.user.id,
           email,
           name,
         });
 
+        if (profileError) {
+          console.error("Profile error:", profileError);
+          // Continue anyway - user is created
+        }
+
         router.push("/dashboard");
       }
-    } catch {
-      setError("Failed to create account. Please try again.");
+    } catch (err) {
+      console.error("Signup error:", err);
+      setError(err instanceof Error ? err.message : "Failed to create account. Please try again.");
     } finally {
       setLoading(false);
     }
