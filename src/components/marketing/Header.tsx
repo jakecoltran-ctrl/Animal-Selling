@@ -80,12 +80,9 @@ export function Header() {
           </Link>
           {!loading && (
             user ? (
-              <div className="hidden sm:flex items-center space-x-2">
-                <Link href="/dashboard">
-                  <Button variant="ghost">Dashboard</Button>
-                </Link>
-                <Button variant="outline" onClick={handleLogout}>Log Out</Button>
-              </div>
+              <Link href="/dashboard" className="hidden sm:block">
+                <Button variant="ghost">My Dashboard</Button>
+              </Link>
             ) : (
               <Link href="/login" className="hidden sm:block">
                 <Button variant="ghost">Sign In</Button>
@@ -147,12 +144,9 @@ export function Header() {
             </Link>
             {!loading && (
               user ? (
-                <>
-                  <Link href="/dashboard">
-                    <Button variant="outline" className="w-full">Dashboard</Button>
-                  </Link>
-                  <Button variant="ghost" className="w-full" onClick={handleLogout}>Log Out</Button>
-                </>
+                <Link href="/dashboard">
+                  <Button variant="outline" className="w-full">My Dashboard</Button>
+                </Link>
               ) : (
                 <Link href="/login">
                   <Button variant="outline" className="w-full">Sign In</Button>
