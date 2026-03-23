@@ -10,6 +10,7 @@ import { getAnimal } from "@/lib/animal-data";
 import { QuizResult, AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 // Tips content based on animal type
 const getRecommendedContent = (animalType: AnimalType) => ({
@@ -102,47 +103,62 @@ const getRecommendedContent = (animalType: AnimalType) => ({
   }
 });
 
-interface DemoUser {
+interface UserProfile {
+  name: string;
   email: string;
-  name?: string;
 }
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [user, setUser] = useState<DemoUser | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedTip, setExpandedTip] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check for demo user
-    const storedUser = localStorage.getItem("demo_user");
-    if (!storedUser) {
-      router.push("/login");
-      return;
-    }
-    setUser(JSON.parse(storedUser));
+    const loadUserData = async () => {
+      const supabase = createClient();
 
-    // Load quiz results from localStorage
-    const results: QuizResult[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith("quiz_result_")) {
-        const result = localStorage.getItem(key);
-        if (result) {
-          results.push(JSON.parse(result));
+      // Get authenticated user
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+
+      if (!authUser) {
+        router.push("/login");
+        return;
+      }
+
+      // Get user's name from metadata or profile
+      const userName = authUser.user_metadata?.name || "";
+      setUser({
+        name: userName,
+        email: authUser.email || "",
+      });
+
+      // Load quiz results from localStorage (for now)
+      const results: QuizResult[] = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key?.startsWith("quiz_result_")) {
+          const result = localStorage.getItem(key);
+          if (result) {
+            results.push(JSON.parse(result));
+          }
         }
       }
-    }
-    // Sort by date, newest first
-    results.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    setQuizResults(results);
-    setLoading(false);
+      // Sort by date, newest first
+      results.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setQuizResults(results);
+      setLoading(false);
+    };
+
+    loadUserData();
   }, [router]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("demo_user");
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
     router.push("/");
+    router.refresh();
   };
 
   if (loading) {
@@ -165,9 +181,9 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 animate-fade-in">
           <div>
-            <h1 className="text-3xl font-bold">Profile</h1>
+            <h1 className="text-3xl font-bold">Dashboard</h1>
             <p className="text-muted-foreground">
-              Welcome back, {user?.name || user?.email}
+              Welcome back, {user?.name || "there"}!
             </p>
           </div>
           <Button variant="outline" onClick={handleLogout} className="press-effect">
