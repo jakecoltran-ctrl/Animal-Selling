@@ -52,10 +52,10 @@ function ToggleButton({ options, value, onChange }: ToggleButtonProps) {
 }
 
 const ANALYSIS_STEPS = [
-  { message: "Analyzing your responses...", duration: 1500 },
-  { message: "Identifying your patterns...", duration: 1500 },
-  { message: "Matching your sales style...", duration: 1500 },
-  { message: "Discovering your animal...", duration: 1500 },
+  { message: "Analyzing your responses...", duration: 2500 },
+  { message: "Identifying your patterns...", duration: 2500 },
+  { message: "Matching your sales style...", duration: 2500 },
+  { message: "Discovering your animal...", duration: 2500 },
 ];
 
 const ANIMALS = [
@@ -71,14 +71,14 @@ function CalculatingAnimation() {
   const [activeAnimal, setActiveAnimal] = useState(-1);
 
   useEffect(() => {
-    // Progress bar animation
+    // Progress bar animation - reaches 100 in 10 seconds
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + 1.67; // Reaches 100 in ~6 seconds (100 / 1.67 ≈ 60 intervals at 100ms)
+        return prev + 1; // Reaches 100 in 10 seconds (100 intervals at 100ms)
       });
     }, 100);
 
@@ -91,8 +91,8 @@ function CalculatingAnimation() {
       stepTime += step.duration;
     });
 
-    // Animal highlights - cycle through each animal
-    const animalTimings = [500, 2000, 3500, 5000];
+    // Animal highlights - cycle through each animal over 10 seconds
+    const animalTimings = [1000, 3500, 6000, 8500];
     animalTimings.forEach((time, index) => {
       setTimeout(() => {
         setActiveAnimal(index);
@@ -235,7 +235,7 @@ export default function QuizPage() {
       JSON.stringify({ answers: quizAnswers, salesContext })
     );
 
-    // After 6 second animation, check if logged in
+    // After 10 second animation, check if logged in
     setTimeout(() => {
       if (user) {
         // User is logged in, process results and go to results page
@@ -253,7 +253,7 @@ export default function QuizPage() {
         // User needs to create account
         setStage("signup");
       }
-    }, 6000);
+    }, 10000);
   };
 
   const handlePrevious = () => {
