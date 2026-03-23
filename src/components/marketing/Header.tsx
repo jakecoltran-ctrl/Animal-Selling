@@ -1,12 +1,43 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
 
 export function Header() {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    // Get initial session
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setUser(null);
+    router.push("/");
+    router.refresh();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-300 dark:border-gray-700 bg-gray-200/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-200/80 dark:supports-[backdrop-filter]:bg-gray-900/60">
@@ -37,9 +68,20 @@ export function Header() {
           <Link href="/quiz" className="hidden sm:block">
             <Button>Take the Quiz</Button>
           </Link>
-          <Link href="/login" className="hidden sm:block">
-            <Button variant="ghost">Sign In</Button>
-          </Link>
+          {!loading && (
+            user ? (
+              <div className="hidden sm:flex items-center space-x-2">
+                <Link href="/dashboard">
+                  <Button variant="ghost">Dashboard</Button>
+                </Link>
+                <Button variant="outline" onClick={handleLogout}>Log Out</Button>
+              </div>
+            ) : (
+              <Link href="/login" className="hidden sm:block">
+                <Button variant="ghost">Sign In</Button>
+              </Link>
+            )
+          )}
 
           {/* Mobile menu button */}
           <button
@@ -83,9 +125,20 @@ export function Header() {
             <Link href="/quiz">
               <Button className="w-full">Take the Quiz</Button>
             </Link>
-            <Link href="/login">
-              <Button variant="outline" className="w-full">Sign In</Button>
-            </Link>
+            {!loading && (
+              user ? (
+                <>
+                  <Link href="/dashboard">
+                    <Button variant="outline" className="w-full">Dashboard</Button>
+                  </Link>
+                  <Button variant="ghost" className="w-full" onClick={handleLogout}>Log Out</Button>
+                </>
+              ) : (
+                <Link href="/login">
+                  <Button variant="outline" className="w-full">Sign In</Button>
+                </Link>
+              )
+            )}
           </nav>
         </div>
       )}
