@@ -22,6 +22,10 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
+      // Debug: Check env vars
+      console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+      console.log("Has anon key:", !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
       const supabase = createClient();
 
       // Sign up with Supabase
