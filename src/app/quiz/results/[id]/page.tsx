@@ -384,26 +384,13 @@ export default function ResultsPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {[1, 2, 3, 4].map((i) => (
+                  {primaryAnimal.blindSpots.slice(0, 4).map((blindSpot, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
-                      <span className="flex-1">
-                        <span className="block h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" style={{ width: `${90 - i * 12}%` }} />
-                      </span>
+                      <span className="text-gray-600 dark:text-gray-300">{blindSpot}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Discover your blind spots to avoid</p>
-                  <Link href={`/quiz/results/${result.id}/report`}>
-                    <Button size="sm" variant="outline" className="text-xs gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                      </svg>
-                      Unlock
-                    </Button>
-                  </Link>
-                </div>
               </CardContent>
             </Card>
           </div>
