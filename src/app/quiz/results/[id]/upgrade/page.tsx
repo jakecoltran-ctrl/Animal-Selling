@@ -6,6 +6,10 @@ import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAnimal, animals } from "@/lib/animal-data";
+import { getContextualBlendDescription } from "@/lib/quiz-scoring";
+import { ProfileSummary } from "@/components/report/ProfileSummary";
+import { SellingPlaybook } from "@/components/report/SellingPlaybook";
+import { GrowthPlanPage } from "@/components/report/GrowthPlanPage";
 import { QuizResult, AnimalType } from "@/types";
 
 export default function UpgradePage() {
@@ -57,6 +61,12 @@ export default function UpgradePage() {
     customerType: "b2b" as const,
     salesChannel: "outside" as const,
   };
+
+  const blendDescription = getContextualBlendDescription(
+    result.primaryType,
+    result.secondaryType,
+    salesContext
+  );
 
   const contextLabels = {
     sellType: salesContext.sellType === "product" ? "Products" : "Services",
@@ -247,74 +257,156 @@ export default function UpgradePage() {
           </div>
         </div>
 
-        {/* Section 3: Visual Report Preview */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+        {/* Section 3: Visual Report Preview - Actual Report Pages with Blur */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold text-center mb-3 text-gray-900 dark:text-white">
             Preview Your Report
           </h2>
+          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+            Real pages from your personalized report
+          </p>
 
-          <div className="flex justify-center gap-4 md:gap-6">
-            {/* Blurred Report Pages */}
-            {[
-              { title: "Profile Summary", subtitle: "Your unique sales DNA" },
-              { title: "Selling Playbook", subtitle: "Strategies for each type" },
-              { title: "Growth Plan", subtitle: "Your 30-day action items" },
-            ].map((page, index) => (
-              <div
-                key={index}
-                className="relative w-32 md:w-40 h-44 md:h-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105"
-                style={{
-                  border: `2px solid ${primaryAnimal.color}30`,
-                  transform: `rotate(${(index - 1) * 5}deg)`,
-                }}
-              >
-                {/* Header */}
-                <div
-                  className="p-2 md:p-3 border-b"
-                  style={{ borderColor: `${primaryAnimal.color}20` }}
-                >
-                  <p className="text-[10px] md:text-xs font-bold" style={{ color: primaryAnimal.color }}>
-                    {page.title}
-                  </p>
-                  <p className="text-[8px] md:text-[10px] text-gray-400">{page.subtitle}</p>
-                </div>
-                {/* Blurred Content */}
-                <div className="p-2 md:p-3 filter blur-[3px]">
-                  <div className="space-y-2">
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-4/5" />
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-2/3" />
+          <div className="space-y-8">
+            {/* Preview Page 1: Profile Summary */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border" style={{ borderColor: `${primaryAnimal.color}30` }}>
+              {/* Page Header - Visible */}
+              <div className="bg-white dark:bg-gray-800 px-6 py-4 border-b" style={{ borderColor: `${primaryAnimal.color}20` }}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: primaryAnimal.color }}>Page 3 of 15</p>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">Your Sales Profile Summary</h3>
                   </div>
-                </div>
-                {/* Lock Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-gray-900/50">
-                  <div
-                    className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: `${primaryAnimal.color}20` }}
-                  >
-                    <svg
-                      className="w-4 h-4 md:w-5 md:h-5"
-                      style={{ color: primaryAnimal.color }}
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                        clipRule="evenodd"
-                      />
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                     </svg>
+                    Locked
                   </div>
                 </div>
               </div>
-            ))}
+              {/* Page Content - Blurred */}
+              <div className="relative bg-white dark:bg-gray-900 overflow-hidden" style={{ maxHeight: "400px" }}>
+                <div className="filter blur-[5px] pointer-events-none transform scale-[0.85] origin-top p-6">
+                  <ProfileSummary
+                    primaryAnimal={primaryAnimal}
+                    secondaryAnimal={secondaryAnimal}
+                    percentages={result.percentages}
+                    blendDescription={blendDescription}
+                    salesContext={salesContext}
+                  />
+                </div>
+                {/* Gradient Fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                {/* Lock Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"
+                      style={{ backgroundColor: `${primaryAnimal.color}20` }}
+                    >
+                      <svg className="w-8 h-8" style={{ color: primaryAnimal.color }} fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Unlock to view full content</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Preview Page 2: Selling Playbook */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border" style={{ borderColor: `${primaryAnimal.color}30` }}>
+              {/* Page Header - Visible */}
+              <div className="bg-white dark:bg-gray-800 px-6 py-4 border-b" style={{ borderColor: `${primaryAnimal.color}20` }}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: primaryAnimal.color }}>Page 8 of 15</p>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">Your Adaptive Selling Playbook</h3>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    </svg>
+                    Locked
+                  </div>
+                </div>
+              </div>
+              {/* Page Content - Blurred */}
+              <div className="relative bg-white dark:bg-gray-900 overflow-hidden" style={{ maxHeight: "400px" }}>
+                <div className="filter blur-[5px] pointer-events-none transform scale-[0.85] origin-top p-6">
+                  <SellingPlaybook
+                    primaryType={result.primaryType}
+                    salesContext={salesContext}
+                  />
+                </div>
+                {/* Gradient Fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                {/* Lock Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"
+                      style={{ backgroundColor: `${primaryAnimal.color}20` }}
+                    >
+                      <svg className="w-8 h-8" style={{ color: primaryAnimal.color }} fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Unlock to view full content</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Preview Page 3: Growth Plan */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border" style={{ borderColor: `${primaryAnimal.color}30` }}>
+              {/* Page Header - Visible */}
+              <div className="bg-white dark:bg-gray-800 px-6 py-4 border-b" style={{ borderColor: `${primaryAnimal.color}20` }}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: primaryAnimal.color }}>Page 12 of 15</p>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">Your Growth Plan</h3>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    </svg>
+                    Locked
+                  </div>
+                </div>
+              </div>
+              {/* Page Content - Blurred */}
+              <div className="relative bg-white dark:bg-gray-900 overflow-hidden" style={{ maxHeight: "400px" }}>
+                <div className="filter blur-[5px] pointer-events-none transform scale-[0.85] origin-top p-6">
+                  <GrowthPlanPage
+                    primaryType={result.primaryType}
+                    scores={result.percentages}
+                    salesContext={salesContext}
+                    part={1}
+                  />
+                </div>
+                {/* Gradient Fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                {/* Lock Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"
+                      style={{ backgroundColor: `${primaryAnimal.color}20` }}
+                    >
+                      <svg className="w-8 h-8" style={{ color: primaryAnimal.color }} fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Unlock to view full content</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
-            15 pages of detailed, personalized content
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+            These are actual pages from your personalized 15-page report
           </p>
         </div>
 
