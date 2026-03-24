@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { RadarChart, ScoreBars } from "@/components/results/RadarChart";
-import { getAnimal, getAllAnimals, getContextualTips } from "@/lib/animal-data";
+import { RadarChart } from "@/components/results/RadarChart";
+import { getAnimal, getAllAnimals, getContextualTips, animals } from "@/lib/animal-data";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { QuizResult } from "@/types";
 
@@ -168,25 +168,123 @@ export default function ResultsPage() {
         {/* Score Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="shadow-md border-0">
+            {/* Style Blend - Blurred */}
+            <Card className="shadow-md border-0 overflow-hidden">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold text-center">Your Style Blend</CardTitle>
               </CardHeader>
-              <CardContent className="pt-0">
-                <RadarChart scores={result.percentages} />
+              <CardContent className="pt-0 relative">
+                <div className="filter blur-md pointer-events-none">
+                  <RadarChart scores={result.percentages} />
+                </div>
+                {/* Unlock Overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
+                  <div className="text-center p-6">
+                    <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mx-auto mb-4">
+                      <span className="text-3xl">🔒</span>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2">Unlock Your Style Blend</h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      See how your sales styles combine
+                    </p>
+                    <Link href={`/quiz/results/${result.id}/report`}>
+                      <Button size="sm" style={{ backgroundColor: primaryAnimal.color }} className="text-white">
+                        Get Full Report
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
+            {/* Score Breakdown - Primary visible, others blurred */}
             <Card className="shadow-md border-0">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold">Score Breakdown</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <ScoreBars scores={result.percentages} />
-                <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {blendDescription}
-                  </p>
+                <div className="space-y-4">
+                  {/* Primary Score - Fully Visible */}
+                  {(() => {
+                    const primary = animals[result.primaryType];
+                    const primaryScore = result.percentages[result.primaryType];
+                    return (
+                      <div className="space-y-1 animate-fade-in">
+                        <div className="flex justify-between text-sm">
+                          <span className="flex items-center gap-2">
+                            <span className="text-lg">{primary.emoji}</span>
+                            <span className="font-medium">{primary.name}</span>
+                            <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Primary</span>
+                          </span>
+                          <span className="font-semibold" style={{ color: primary.color }}>{primaryScore}%</span>
+                        </div>
+                        <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full"
+                            style={{
+                              width: `${primaryScore}%`,
+                              backgroundColor: primary.color,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Other Scores - Blurred */}
+                  <div className="relative">
+                    <div className="filter blur-md pointer-events-none space-y-4">
+                      {Object.entries(result.percentages)
+                        .filter(([key]) => key !== result.primaryType)
+                        .sort(([, a], [, b]) => b - a)
+                        .map(([key, score]) => {
+                          const animal = animals[key as keyof typeof animals];
+                          return (
+                            <div key={key} className="space-y-1">
+                              <div className="flex justify-between text-sm">
+                                <span className="flex items-center gap-2">
+                                  <span className="text-lg">{animal.emoji}</span>
+                                  <span className="font-medium">{animal.name}</span>
+                                </span>
+                                <span className="font-semibold" style={{ color: animal.color }}>{score}%</span>
+                              </div>
+                              <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div
+                                  className="h-full rounded-full"
+                                  style={{
+                                    width: `${score}%`,
+                                    backgroundColor: animal.color,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                    {/* Unlock Overlay for Other Scores */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <span className="text-2xl">🔒</span>
+                        <p className="text-xs text-muted-foreground mt-1">Unlock all scores</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Blend Description - Blurred */}
+                <div className="mt-6 relative">
+                  <div className="filter blur-md pointer-events-none p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {blendDescription}
+                    </p>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/40 dark:bg-gray-900/40 rounded-lg">
+                    <Link href={`/quiz/results/${result.id}/report`}>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        🔒 Unlock Full Analysis
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </CardContent>
             </Card>
