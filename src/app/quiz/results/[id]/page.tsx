@@ -454,26 +454,35 @@ export default function ResultsPage() {
 
         {/* General Growth Tips */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
-            Tips for Growth
-          </h2>
-          <Card className="shadow-md border-0">
-            <CardContent className="p-6 md:p-8">
-              <div className="grid sm:grid-cols-2 gap-6">
-                {primaryAnimal.tips.map((tip, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <span
-                      className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-sm font-semibold"
-                      style={{ backgroundColor: primaryAnimal.color }}
-                    >
-                      {i + 1}
-                    </span>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{tip}</p>
-                  </div>
-                ))}
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: `${primaryAnimal.color}20` }}
+            >
+              <span className="text-xl">🌱</span>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+              Tips for Growth
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {primaryAnimal.tips.map((tip, i) => (
+              <div
+                key={i}
+                className="group bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 dark:border-gray-700"
+              >
+                <div className="flex items-start gap-4">
+                  <span
+                    className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: primaryAnimal.color }}
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">{tip}</p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            ))}
+          </div>
         </div>
 
         {/* Full Report CTA */}
