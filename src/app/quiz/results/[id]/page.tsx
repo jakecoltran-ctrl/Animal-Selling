@@ -9,6 +9,8 @@ import { RadarChart } from "@/components/results/RadarChart";
 import { getAnimal, getAllAnimals, getContextualTips, animals } from "@/lib/animal-data";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { QuizResult, AnimalType } from "@/types";
+import { createClient } from "@/lib/supabase/client";
+import { checkPurchaseStatus } from "@/lib/purchases";
 
 // Report Preview Carousel Component
 function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: string; name: string; color: string } }) {
@@ -132,6 +134,7 @@ export default function ResultsPage() {
   const params = useParams();
   const [result, setResult] = useState<QuizResult | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isPurchased, setIsPurchased] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(`quiz_result_${params.id}`);
@@ -139,6 +142,19 @@ export default function ResultsPage() {
       setResult(JSON.parse(stored));
     }
     setLoading(false);
+
+    // Check purchase status if user is logged in
+    const checkPurchase = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (user && params.id) {
+        const purchased = await checkPurchaseStatus(user.id, params.id as string);
+        setIsPurchased(purchased);
+      }
+    };
+
+    checkPurchase();
   }, [params.id]);
 
   if (loading) {
@@ -282,79 +298,83 @@ export default function ResultsPage() {
         </div>
       </div>
 
-      {/* Premium Report Teaser Banner */}
-      <div className="container mx-auto px-4 py-4">
-        <Link href={`/quiz/results/${result.id}/upgrade`}>
-          <div
-            className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-5 py-3.5 rounded-xl transition-all hover:shadow-md cursor-pointer"
-            style={{
-              backgroundColor: `${primaryAnimal.color}08`,
-              border: `1px solid ${primaryAnimal.color}25`,
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: `${primaryAnimal.color}15` }}
-              >
-                <svg className="w-4 h-4" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
-                  Unlock your full 15-page report
-                </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
-                  <span className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                    <span
-                      className="block h-full rounded-full"
-                      style={{ width: '20%', backgroundColor: primaryAnimal.color }}
-                    />
-                  </span>
-                  20% unlocked
-                </span>
-              </div>
-            </div>
+      {/* Premium Report Teaser Banner - Only show if not purchased */}
+      {!isPurchased && (
+        <div className="container mx-auto px-4 py-4">
+          <Link href={`/quiz/results/${result.id}/upgrade`}>
             <div
-              className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+              className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-5 py-3.5 rounded-xl transition-all hover:shadow-md cursor-pointer"
               style={{
-                color: primaryAnimal.color,
-                backgroundColor: `${primaryAnimal.color}12`,
+                backgroundColor: `${primaryAnimal.color}08`,
+                border: `1px solid ${primaryAnimal.color}25`,
               }}
             >
-              Get Full Report
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${primaryAnimal.color}15` }}
+                >
+                  <svg className="w-4 h-4" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                    Unlock your full 15-page report
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
+                    <span className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <span
+                        className="block h-full rounded-full"
+                        style={{ width: '20%', backgroundColor: primaryAnimal.color }}
+                      />
+                    </span>
+                    20% unlocked
+                  </span>
+                </div>
+              </div>
+              <div
+                className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                style={{
+                  color: primaryAnimal.color,
+                  backgroundColor: `${primaryAnimal.color}12`,
+                }}
+              >
+                Get Full Report
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
-          </div>
-        </Link>
-      </div>
+          </Link>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 py-12">
         {/* Score Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Style Blend - Numbers hidden */}
+            {/* Style Blend - Show scores if purchased */}
             <Card className="shadow-md border-0">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold text-center">Your Style Blend</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <RadarChart scores={result.percentages} hideScores />
-                {/* Unlock banner below chart */}
-                <div className="flex flex-col items-center mt-4 gap-2">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">See exact percentages for all 4 types</p>
-                  <Link href={`/quiz/results/${result.id}/upgrade`}>
-                    <Button size="sm" variant="outline" className="text-xs gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                      </svg>
-                      Unlock
-                    </Button>
-                  </Link>
-                </div>
+                <RadarChart scores={result.percentages} hideScores={!isPurchased} />
+                {/* Unlock banner below chart - only show if not purchased */}
+                {!isPurchased && (
+                  <div className="flex flex-col items-center mt-4 gap-2">
+                    <p className="text-xs text-gray-500 dark:text-gray-400">See exact percentages for all 4 types</p>
+                    <Link href={`/quiz/results/${result.id}/upgrade`}>
+                      <Button size="sm" variant="outline" className="text-xs gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                        </svg>
+                        Unlock
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -392,52 +412,72 @@ export default function ResultsPage() {
                     );
                   })()}
 
-                  {/* Other Scores - Locked */}
+                  {/* Other Scores - Locked unless purchased */}
                   {Object.entries(result.percentages)
                     .filter(([key]) => key !== result.primaryType)
                     .sort(([, a], [, b]) => b - a)
-                    .map(([key]) => {
+                    .map(([key, score]) => {
                       const animal = animals[key as keyof typeof animals];
+                      const isSecondary = key === result.secondaryType;
                       return (
                         <div key={key} className="space-y-2">
                           <div className="flex justify-between items-center">
                             <span className="flex items-center gap-2">
                               <span className="text-2xl">{animal.emoji}</span>
                               <span className="font-medium text-base">{animal.name}</span>
+                              {isPurchased && isSecondary && (
+                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full">Secondary</span>
+                              )}
                             </span>
-                            <span className="text-gray-400">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                              </svg>
-                            </span>
+                            {isPurchased ? (
+                              <span className="font-bold text-lg" style={{ color: animal.color }}>{score}%</span>
+                            ) : (
+                              <span className="text-gray-400">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                                </svg>
+                              </span>
+                            )}
                           </div>
                           <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden relative">
-                            {/* Fake gradient bar that doesn't reveal actual score */}
-                            <div
-                              className="h-full rounded-full opacity-30"
-                              style={{
-                                width: "100%",
-                                background: `linear-gradient(to right, ${animal.color}, transparent)`,
-                              }}
-                            />
+                            {isPurchased ? (
+                              <div
+                                className="h-full rounded-full"
+                                style={{
+                                  width: `${score}%`,
+                                  backgroundColor: animal.color,
+                                }}
+                              />
+                            ) : (
+                              /* Fake gradient bar that doesn't reveal actual score */
+                              <div
+                                className="h-full rounded-full opacity-30"
+                                style={{
+                                  width: "100%",
+                                  background: `linear-gradient(to right, ${animal.color}, transparent)`,
+                                }}
+                              />
+                            )}
                           </div>
                         </div>
                       );
                     })}
                 </div>
 
-                {/* Unlock CTA */}
-                <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">View your complete score breakdown</p>
-                  <Link href={`/quiz/results/${result.id}/upgrade`}>
-                    <Button size="sm" variant="outline" className="text-xs gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                      </svg>
-                      Unlock
-                    </Button>
-                  </Link>
-                </div>
+                {/* Unlock CTA - only show if not purchased */}
+                {!isPurchased && (
+                  <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">View your complete score breakdown</p>
+                    <Link href={`/quiz/results/${result.id}/upgrade`}>
+                      <Button size="sm" variant="outline" className="text-xs gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                        </svg>
+                        Unlock
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -470,7 +510,7 @@ export default function ResultsPage() {
 
               <div className="space-y-4">
                 {contextualTips.map((tip, i) => {
-                  const isLocked = i >= 2; // Lock 3rd tip and beyond
+                  const isLocked = !isPurchased && i >= 2; // Lock 3rd tip and beyond unless purchased
 
                   if (isLocked) {
                     return (
@@ -551,27 +591,40 @@ export default function ResultsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
-                      <span className="flex-1">
-                        <span className="block h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" style={{ width: `${90 - i * 12}%` }} />
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Discover your blind spots to avoid</p>
-                  <Link href={`/quiz/results/${result.id}/upgrade`}>
-                    <Button size="sm" variant="outline" className="text-xs gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                      </svg>
-                      Unlock
-                    </Button>
-                  </Link>
-                </div>
+                {isPurchased ? (
+                  <ul className="space-y-3">
+                    {primaryAnimal.weaknesses.slice(0, 4).map((weakness, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
+                        <span className="text-gray-600 dark:text-gray-300">{weakness}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <>
+                    <ul className="space-y-3">
+                      {[1, 2, 3, 4].map((i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
+                          <span className="flex-1">
+                            <span className="block h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" style={{ width: `${90 - i * 12}%` }} />
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-center">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Discover your blind spots to avoid</p>
+                      <Link href={`/quiz/results/${result.id}/upgrade`}>
+                        <Button size="sm" variant="outline" className="text-xs gap-1.5">
+                          <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                          </svg>
+                          Unlock
+                        </Button>
+                      </Link>
+                    </div>
+                  </>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -637,7 +690,7 @@ export default function ResultsPage() {
           </div>
           <div className="flex flex-col gap-4">
             {primaryAnimal.tips.map((tip, i) => {
-              const isLocked = i >= 3; // Lock tips 4 and 5 (index 3+)
+              const isLocked = !isPurchased && i >= 3; // Lock tips 4 and 5 (index 3+) unless purchased
 
               if (isLocked) {
                 return (
@@ -687,108 +740,148 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        {/* Full Report CTA - Premium Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div
-            className="rounded-3xl p-8 md:p-10 overflow-hidden relative"
-            style={{
-              background: `linear-gradient(135deg, ${primaryAnimal.color}12 0%, ${primaryAnimal.color}05 50%, ${primaryAnimal.color}12 100%)`,
-              border: `2px solid ${primaryAnimal.color}30`,
-            }}
-          >
-            {/* Subtle animated glow */}
+        {/* Full Report CTA - Premium Section - Only show if not purchased */}
+        {!isPurchased && (
+          <div className="max-w-4xl mx-auto mb-16">
             <div
-              className="absolute inset-0 opacity-30"
+              className="rounded-3xl p-8 md:p-10 overflow-hidden relative"
               style={{
-                background: `radial-gradient(circle at 50% 0%, ${primaryAnimal.color}40 0%, transparent 50%)`,
+                background: `linear-gradient(135deg, ${primaryAnimal.color}12 0%, ${primaryAnimal.color}05 50%, ${primaryAnimal.color}12 100%)`,
+                border: `2px solid ${primaryAnimal.color}30`,
               }}
-            />
+            >
+              {/* Subtle animated glow */}
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  background: `radial-gradient(circle at 50% 0%, ${primaryAnimal.color}40 0%, transparent 50%)`,
+                }}
+              />
 
-            {/* Progress Indicator */}
-            <div className="relative mb-8 p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur rounded-xl">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                  <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                  </svg>
-                  You&apos;ve unlocked <span className="font-bold" style={{ color: primaryAnimal.color }}>20%</span> of your insights
-                </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400">80% remaining</span>
-              </div>
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                <div
-                  className="h-full rounded-full transition-all duration-500"
-                  style={{ width: '20%', backgroundColor: primaryAnimal.color }}
-                />
-              </div>
-            </div>
-
-            {/* Main Content Grid */}
-            <div className="relative grid md:grid-cols-2 gap-8 items-center">
-              {/* Report Mockup Carousel */}
-              <ReportPreviewCarousel primaryAnimal={primaryAnimal} />
-
-              {/* Content Side */}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                  Your Full Premium Report
-                </h2>
-                <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-                  15 pages of personalized insights for your {primaryAnimal.name} style
-                </p>
-
-                {/* What's Inside Checklist */}
-                <div className="space-y-3 mb-8">
-                  {[
-                    'Complete Score Breakdown',
-                    'Your Blind Spots Revealed',
-                    'Objection Handling Scripts',
-                    'Red Flag Moments to Avoid',
-                    '30-Day Action Plan',
-                    'Self-Coaching Questions',
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <span
-                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: `${primaryAnimal.color}20` }}
-                      >
-                        <svg className="w-3 h-3" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </span>
-                      <span className="text-gray-700 dark:text-gray-300 text-sm">{item}</span>
-                    </div>
-                  ))}
-                  <p className="text-xs text-gray-400 dark:text-gray-500 pl-8">+ 9 more sections...</p>
-                </div>
-
-                {/* Price + CTA */}
-                <div className="space-y-4">
-                  <Link href={`/quiz/results/${result.id}/upgrade`} className="block">
-                    <Button
-                      size="lg"
-                      className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl transition-all gap-2"
-                      style={{ backgroundColor: primaryAnimal.color }}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                      </svg>
-                      Unlock Full Report — $4.99
-                    </Button>
-                  </Link>
-
-                  {/* Guarantee */}
-                  <div className="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              {/* Progress Indicator */}
+              <div className="relative mb-8 p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur rounded-xl">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                     </svg>
-                    100% Satisfaction Guarantee
+                    You&apos;ve unlocked <span className="font-bold" style={{ color: primaryAnimal.color }}>20%</span> of your insights
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">80% remaining</span>
+                </div>
+                <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{ width: '20%', backgroundColor: primaryAnimal.color }}
+                  />
+                </div>
+              </div>
+
+              {/* Main Content Grid */}
+              <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                {/* Report Mockup Carousel */}
+                <ReportPreviewCarousel primaryAnimal={primaryAnimal} />
+
+                {/* Content Side */}
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                    Your Full Premium Report
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
+                    15 pages of personalized insights for your {primaryAnimal.name} style
+                  </p>
+
+                  {/* What's Inside Checklist */}
+                  <div className="space-y-3 mb-8">
+                    {[
+                      'Complete Score Breakdown',
+                      'Your Blind Spots Revealed',
+                      'Objection Handling Scripts',
+                      'Red Flag Moments to Avoid',
+                      '30-Day Action Plan',
+                      'Self-Coaching Questions',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <span
+                          className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ backgroundColor: `${primaryAnimal.color}20` }}
+                        >
+                          <svg className="w-3 h-3" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <span className="text-gray-700 dark:text-gray-300 text-sm">{item}</span>
+                      </div>
+                    ))}
+                    <p className="text-xs text-gray-400 dark:text-gray-500 pl-8">+ 9 more sections...</p>
+                  </div>
+
+                  {/* Price + CTA */}
+                  <div className="space-y-4">
+                    <Link href={`/quiz/results/${result.id}/upgrade`} className="block">
+                      <Button
+                        size="lg"
+                        className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl transition-all gap-2"
+                        style={{ backgroundColor: primaryAnimal.color }}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        </svg>
+                        Unlock Full Report — $4.99
+                      </Button>
+                    </Link>
+
+                    {/* Guarantee */}
+                    <div className="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      100% Satisfaction Guarantee
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
+
+        {/* View Full Report CTA - Only show if purchased */}
+        {isPurchased && (
+          <div className="max-w-4xl mx-auto mb-16">
+            <div
+              className="rounded-2xl p-6 md:p-8 text-center"
+              style={{
+                background: `linear-gradient(135deg, ${primaryAnimal.color}10 0%, ${primaryAnimal.color}05 100%)`,
+                border: `2px solid ${primaryAnimal.color}30`,
+              }}
+            >
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-green-600 dark:text-green-400 font-semibold">Report Unlocked</span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Your Full {primaryAnimal.name} Report is Ready
+              </h2>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
+                Access your complete 15-page personalized sales report
+              </p>
+              <Link href={`/quiz/results/${result.id}/report`}>
+                <Button
+                  size="lg"
+                  className="text-white text-lg font-semibold py-6 px-8 shadow-lg hover:shadow-xl transition-all gap-2"
+                  style={{ backgroundColor: primaryAnimal.color }}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  View Full Report
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="max-w-xl mx-auto text-center mb-16">

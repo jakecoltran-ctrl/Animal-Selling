@@ -2,12 +2,14 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { QuizResult, AnimalType } from "@/types";
 import { getAnimal } from "@/lib/animal-data";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { getBlendProfile } from "@/lib/report-data";
+import { createClient } from "@/lib/supabase/client";
+import { checkPurchaseStatus } from "@/lib/purchases";
 
 // Report Components
 import { ReportPage } from "@/components/report/ReportPage";
@@ -30,8 +32,10 @@ import { IndustryTipsPage } from "@/components/report/IndustryTipsPage";
 
 export default function ReportViewPage() {
   const params = useParams();
+  const router = useRouter();
   const [result, setResult] = useState<QuizResult | null>(null);
   const [loading, setLoading] = useState(true);
+  const [accessGranted, setAccessGranted] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const reportRef = useRef<HTMLDivElement>(null);
   const totalPages = 15;
@@ -41,10 +45,35 @@ export default function ReportViewPage() {
     if (stored) {
       setResult(JSON.parse(stored));
     }
-    setLoading(false);
-  }, [params.id]);
 
-  if (loading) {
+    // Check purchase status to gate access
+    const checkAccess = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        // Not logged in - redirect to upgrade page
+        router.push(`/quiz/results/${params.id}/upgrade`);
+        return;
+      }
+
+      if (params.id) {
+        const purchased = await checkPurchaseStatus(user.id, params.id as string);
+        if (!purchased) {
+          // Not purchased - redirect to upgrade page
+          router.push(`/quiz/results/${params.id}/upgrade`);
+          return;
+        }
+        setAccessGranted(true);
+      }
+
+      setLoading(false);
+    };
+
+    checkAccess();
+  }, [params.id, router]);
+
+  if (loading || !accessGranted) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">

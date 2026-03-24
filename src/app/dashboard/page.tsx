@@ -11,6 +11,7 @@ import { QuizResult, AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { getPurchasedResultIds } from "@/lib/purchases";
 
 // Tips content based on animal type
 const getRecommendedContent = (animalType: AnimalType) => ({
@@ -112,6 +113,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
+  const [purchasedIds, setPurchasedIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [expandedTip, setExpandedTip] = useState<string | null>(null);
 
@@ -148,6 +150,14 @@ export default function DashboardPage() {
       // Sort by date, newest first
       results.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setQuizResults(results);
+
+      // Check which results have been purchased
+      if (results.length > 0) {
+        const resultIds = results.map(r => r.id);
+        const purchased = await getPurchasedResultIds(authUser.id, resultIds);
+        setPurchasedIds(purchased);
+      }
+
       setLoading(false);
     };
 
@@ -254,14 +264,25 @@ export default function DashboardPage() {
                   </div>
                   <ScoreBars scores={latestResult.percentages} />
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <Link href={`/quiz/results/${latestResult.id}/upgrade`}>
-                      <Button
-                        style={{ backgroundColor: primaryAnimal.color }}
-                        className="text-white press-effect"
-                      >
-                        Unlock Full Report
-                      </Button>
-                    </Link>
+                    {purchasedIds.has(latestResult.id) ? (
+                      <Link href={`/quiz/results/${latestResult.id}/report`}>
+                        <Button
+                          style={{ backgroundColor: primaryAnimal.color }}
+                          className="text-white press-effect"
+                        >
+                          View Full Report
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link href={`/quiz/results/${latestResult.id}/upgrade`}>
+                        <Button
+                          style={{ backgroundColor: primaryAnimal.color }}
+                          className="text-white press-effect"
+                        >
+                          Unlock Full Report
+                        </Button>
+                      </Link>
+                    )}
                     <Link href={`/quiz/results/${latestResult.id}`}>
                       <Button variant="outline" className="press-effect">View Results Summary</Button>
                     </Link>
@@ -330,15 +351,27 @@ export default function DashboardPage() {
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Link href={`/quiz/results/${result.id}/upgrade`}>
-                              <Button
-                                size="sm"
-                                style={{ backgroundColor: animal.color }}
-                                className="text-white press-effect"
-                              >
-                                Unlock
-                              </Button>
-                            </Link>
+                            {purchasedIds.has(result.id) ? (
+                              <Link href={`/quiz/results/${result.id}/report`}>
+                                <Button
+                                  size="sm"
+                                  style={{ backgroundColor: animal.color }}
+                                  className="text-white press-effect"
+                                >
+                                  View
+                                </Button>
+                              </Link>
+                            ) : (
+                              <Link href={`/quiz/results/${result.id}/upgrade`}>
+                                <Button
+                                  size="sm"
+                                  style={{ backgroundColor: animal.color }}
+                                  className="text-white press-effect"
+                                >
+                                  Unlock
+                                </Button>
+                              </Link>
+                            )}
                             <Link href={`/quiz/results/${result.id}`}>
                               <Button size="sm" variant="outline" className="press-effect">
                                 Summary

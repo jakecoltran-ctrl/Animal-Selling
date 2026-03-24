@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAnimal, animals } from "@/lib/animal-data";
@@ -11,9 +11,12 @@ import { ProfileSummary } from "@/components/report/ProfileSummary";
 import { SellingPlaybookPage } from "@/components/report/SellingPlaybook";
 import { GrowthPlanPage } from "@/components/report/GrowthPlanPage";
 import { QuizResult, AnimalType } from "@/types";
+import { createClient } from "@/lib/supabase/client";
+import { checkPurchaseStatus } from "@/lib/purchases";
 
 export default function UpgradePage() {
   const params = useParams();
+  const router = useRouter();
   const [result, setResult] = useState<QuizResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -24,7 +27,22 @@ export default function UpgradePage() {
       setResult(JSON.parse(stored));
     }
     setLoading(false);
-  }, [params.id]);
+
+    // Check if already purchased and redirect to report
+    const checkPurchase = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (user && params.id) {
+        const purchased = await checkPurchaseStatus(user.id, params.id as string);
+        if (purchased) {
+          router.push(`/quiz/results/${params.id}/report`);
+        }
+      }
+    };
+
+    checkPurchase();
+  }, [params.id, router]);
 
   if (loading) {
     return (
