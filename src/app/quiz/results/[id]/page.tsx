@@ -8,7 +8,138 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadarChart } from "@/components/results/RadarChart";
 import { getAnimal, getAllAnimals, getContextualTips, animals } from "@/lib/animal-data";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
-import { QuizResult } from "@/types";
+import { QuizResult, AnimalType } from "@/types";
+
+// Report Preview Carousel Component
+function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: string; name: string; color: string } }) {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pages = [
+    {
+      title: "Cover",
+      content: (
+        <>
+          <div className="text-center pb-3 mb-3 border-b" style={{ borderColor: `${primaryAnimal.color}30` }}>
+            <span className="text-3xl">{primaryAnimal.emoji}</span>
+            <p className="text-xs font-bold mt-1" style={{ color: primaryAnimal.color }}>{primaryAnimal.name}</p>
+          </div>
+          <p className="text-[10px] text-center text-gray-500 mb-2">Premium Sales Report</p>
+          <div className="flex-1 space-y-2">
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-4/5" />
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+          </div>
+        </>
+      ),
+    },
+    {
+      title: "Score Breakdown",
+      content: (
+        <>
+          <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-2">Score Breakdown</p>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xs">🦁</span>
+              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
+                <div className="h-full bg-red-400 rounded" style={{ width: '75%' }} />
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs">🐧</span>
+              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
+                <div className="h-full bg-blue-400 rounded" style={{ width: '60%' }} />
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs">🐕</span>
+              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
+                <div className="h-full bg-yellow-400 rounded" style={{ width: '45%' }} />
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs">🦫</span>
+              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
+                <div className="h-full bg-green-400 rounded" style={{ width: '55%' }} />
+              </div>
+            </div>
+          </div>
+        </>
+      ),
+    },
+    {
+      title: "Action Plan",
+      content: (
+        <>
+          <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-2">30-Day Action Plan</p>
+          <div className="space-y-1.5">
+            {['Week 1: Foundation', 'Week 2: Practice', 'Week 3: Apply', 'Week 4: Master'].map((week, i) => (
+              <div key={i} className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded-full flex items-center justify-center text-[8px] text-white" style={{ backgroundColor: primaryAnimal.color }}>
+                  {i + 1}
+                </div>
+                <span className="text-[9px] text-gray-600 dark:text-gray-400">{week}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+          <div className="mt-1 h-2 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
+        </>
+      ),
+    },
+  ];
+
+  const nextPage = () => setCurrentPage((prev) => (prev + 1) % pages.length);
+
+  return (
+    <div className="flex flex-col items-center">
+      <div
+        className="relative w-48 h-64 cursor-pointer group"
+        onClick={nextPage}
+      >
+        {/* Stacked pages effect */}
+        <div
+          className="absolute inset-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg transform rotate-3 translate-x-2"
+          style={{ border: `1px solid ${primaryAnimal.color}20` }}
+        />
+        <div
+          className="absolute inset-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg transform -rotate-2 -translate-x-1"
+          style={{ border: `1px solid ${primaryAnimal.color}20` }}
+        />
+        {/* Main page */}
+        <div
+          className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 h-full flex flex-col transition-transform group-hover:scale-[1.02]"
+          style={{ border: `2px solid ${primaryAnimal.color}40` }}
+        >
+          {pages[currentPage].content}
+          <div className="mt-auto pt-2 text-center">
+            <span className="text-[10px] text-gray-400">Page {currentPage + 1} of 15</span>
+          </div>
+        </div>
+        {/* Click indicator */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="bg-black/50 text-white text-xs px-2 py-1 rounded-full">
+            Click to preview
+          </div>
+        </div>
+      </div>
+      {/* Page dots */}
+      <div className="flex gap-1.5 mt-4">
+        {pages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === currentPage
+                ? 'w-4'
+                : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+            }`}
+            style={i === currentPage ? { backgroundColor: primaryAnimal.color } : {}}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function ResultsPage() {
   const params = useParams();
@@ -557,46 +688,8 @@ export default function ResultsPage() {
 
             {/* Main Content Grid */}
             <div className="relative grid md:grid-cols-2 gap-8 items-center">
-              {/* Report Mockup */}
-              <div className="flex justify-center">
-                <div className="relative w-48 h-64">
-                  {/* Stacked pages effect */}
-                  <div
-                    className="absolute inset-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg transform rotate-3 translate-x-2"
-                    style={{ border: `1px solid ${primaryAnimal.color}20` }}
-                  />
-                  <div
-                    className="absolute inset-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg transform -rotate-2 -translate-x-1"
-                    style={{ border: `1px solid ${primaryAnimal.color}20` }}
-                  />
-                  {/* Main page */}
-                  <div
-                    className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 h-full flex flex-col"
-                    style={{ border: `2px solid ${primaryAnimal.color}40` }}
-                  >
-                    <div
-                      className="text-center pb-3 mb-3 border-b"
-                      style={{ borderColor: `${primaryAnimal.color}30` }}
-                    >
-                      <span className="text-3xl">{primaryAnimal.emoji}</span>
-                      <p className="text-xs font-bold mt-1" style={{ color: primaryAnimal.color }}>
-                        {primaryAnimal.name}
-                      </p>
-                    </div>
-                    <div className="flex-1 space-y-2">
-                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-4/5" />
-                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
-                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-2/3" />
-                    </div>
-                    <div className="mt-auto pt-3 text-center">
-                      <span className="text-xs font-semibold text-gray-400">15 pages</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Report Mockup Carousel */}
+              <ReportPreviewCarousel primaryAnimal={primaryAnimal} />
 
               {/* Content Side */}
               <div>
