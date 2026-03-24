@@ -233,25 +233,25 @@ export default function ResultsPage() {
                               <span className="text-lg">{animal.emoji}</span>
                               <span className="font-medium">{animal.name}</span>
                             </span>
-                            <span
-                              className="font-semibold"
-                              style={{
-                                color: animal.color,
-                                filter: "blur(8px)",
-                              }}
-                            >
-                              ??%
+                            <span className="filter blur-[6px] select-none">
+                              <span
+                                className="font-semibold"
+                                style={{ color: animal.color }}
+                              >
+                                {score}%
+                              </span>
                             </span>
                           </div>
-                          <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden relative">
-                            <div
-                              className="h-full rounded-full"
-                              style={{
-                                width: `${score}%`,
-                                backgroundColor: animal.color,
-                                filter: "blur(8px)",
-                              }}
-                            />
+                          <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div className="filter blur-[6px]">
+                              <div
+                                className="h-3 rounded-full"
+                                style={{
+                                  width: `${score}%`,
+                                  backgroundColor: animal.color,
+                                }}
+                              />
+                            </div>
                           </div>
                         </div>
                       );

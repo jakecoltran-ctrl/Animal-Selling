@@ -150,27 +150,29 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
             strokeWidth: 2,
           }}
         />
-        <Tooltip
-          content={({ payload }) => {
-            if (payload && payload[0]) {
-              const data = payload[0].payload;
-              const type = data.type.toLowerCase() as AnimalType;
-              const animal = animals[type];
-              return (
-                <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
-                  <div className="flex items-center gap-2">
-                    <span>{animal.emoji}</span>
-                    <span className="font-bold" style={{ color: animal.color }}>
-                      {animal.name}
-                    </span>
-                    <span className="text-gray-600">{data.score}%</span>
+        {!hideScores && (
+          <Tooltip
+            content={({ payload }) => {
+              if (payload && payload[0]) {
+                const data = payload[0].payload;
+                const type = data.type.toLowerCase() as AnimalType;
+                const animal = animals[type];
+                return (
+                  <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
+                    <div className="flex items-center gap-2">
+                      <span>{animal.emoji}</span>
+                      <span className="font-bold" style={{ color: animal.color }}>
+                        {animal.name}
+                      </span>
+                      <span className="text-gray-600">{data.score}%</span>
+                    </div>
                   </div>
-                </div>
-              );
-            }
-            return null;
-          }}
-        />
+                );
+              }
+              return null;
+            }}
+          />
+        )}
       </RechartsRadarChart>
     </ResponsiveContainer>
   );
