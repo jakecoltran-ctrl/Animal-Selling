@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllAnimals } from "@/lib/animal-data";
-import { EmailCapture } from "@/components/marketing/EmailCapture";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 
 export default function Home() {
@@ -181,16 +180,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Email Capture Section */}
+      {/* Sign Up Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Get Sales Tips for Your Type</h2>
+            <div className="text-5xl mb-6">🦁🐧🐕🦫</div>
+            <h2 className="text-3xl font-bold mb-4">Create Your Free Account</h2>
             <p className="text-muted-foreground mb-8">
-              Sign up for weekly selling tips tailored to your animal type, plus early access
-              to new training content.
+              Sign up to save your quiz results, track your progress, and get personalized
+              sales tips tailored to your animal type.
             </p>
-            <EmailCapture source="homepage" />
+            <Link href="/signup">
+              <Button size="xl" className="press-effect hover-glow">
+                Sign Up Now
+              </Button>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-4">
+              Already have an account?{" "}
+              <Link href="/login" className="text-primary hover:underline">
+                Sign in
+              </Link>
+            </p>
           </div>
         </div>
       </section>
