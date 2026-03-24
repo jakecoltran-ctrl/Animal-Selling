@@ -465,7 +465,7 @@ export default function ResultsPage() {
               Tips for Growth
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-4">
             {primaryAnimal.tips.map((tip, i) => (
               <div
                 key={i}
