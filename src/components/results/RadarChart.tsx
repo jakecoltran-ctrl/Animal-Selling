@@ -24,7 +24,7 @@ interface RadarChartProps {
 }
 
 // Custom label component that shows emoji and score
-function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores }: {
+function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores, primaryType }: {
   payload: { value: string };
   x: number;
   y: number;
@@ -32,14 +32,19 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores }: {
   cy: number;
   scores: Record<string, number>;
   hideScores?: boolean;
+  primaryType?: AnimalType;
 }) {
   const type = payload.value.toLowerCase() as AnimalType;
   const animal = animals[type];
   const score = scores[type];
+  const isPrimary = type === primaryType;
 
   // Calculate position offset based on angle from center
   const offsetX = x > cx ? 12 : x < cx ? -12 : 0;
   const offsetY = y > cy ? 16 : y < cy ? -8 : 0;
+
+  // Show score for primary, blur others when hideScores is true
+  const shouldBlur = hideScores && !isPrimary;
 
   return (
     <g transform={`translate(${x + offsetX}, ${y + offsetY})`}>
@@ -58,10 +63,10 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores }: {
           fontSize: "13px",
           fontWeight: 700,
           fill: animal.color,
-          filter: hideScores ? "blur(8px)" : "none",
+          filter: shouldBlur ? "blur(8px)" : "none",
         }}
       >
-        {hideScores ? "??" : score}%
+        {shouldBlur ? "??" : score}%
       </text>
     </g>
   );
@@ -122,7 +127,7 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
         />
         <PolarAngleAxis
           dataKey="type"
-          tick={(props) => <CustomAxisLabel {...props} scores={scores} hideScores={hideScores} />}
+          tick={(props) => <CustomAxisLabel {...props} scores={scores} hideScores={hideScores} primaryType={actualPrimaryType} />}
         />
         <PolarRadiusAxis
           angle={45}
@@ -150,13 +155,16 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
             strokeWidth: 2,
           }}
         />
-        {!hideScores && (
-          <Tooltip
-            content={({ payload }) => {
-              if (payload && payload[0]) {
-                const data = payload[0].payload;
-                const type = data.type.toLowerCase() as AnimalType;
-                const animal = animals[type];
+        <Tooltip
+          content={({ payload }) => {
+            if (payload && payload[0]) {
+              const data = payload[0].payload;
+              const type = data.type.toLowerCase() as AnimalType;
+              const animal = animals[type];
+              const isPrimary = type === actualPrimaryType;
+
+              // If hideScores and not primary, show locked message
+              if (hideScores && !isPrimary) {
                 return (
                   <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
                     <div className="flex items-center gap-2">
@@ -164,15 +172,27 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
                       <span className="font-bold" style={{ color: animal.color }}>
                         {animal.name}
                       </span>
-                      <span className="text-gray-600">{data.score}%</span>
+                      <span className="text-gray-400">🔒</span>
                     </div>
                   </div>
                 );
               }
-              return null;
-            }}
-          />
-        )}
+
+              return (
+                <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
+                  <div className="flex items-center gap-2">
+                    <span>{animal.emoji}</span>
+                    <span className="font-bold" style={{ color: animal.color }}>
+                      {animal.name}
+                    </span>
+                    <span className="text-gray-600">{data.score}%</span>
+                  </div>
+                </div>
+              );
+            }
+            return null;
+          }}
+        />
       </RechartsRadarChart>
     </ResponsiveContainer>
   );

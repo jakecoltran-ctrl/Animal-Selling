@@ -220,11 +220,11 @@ export default function ResultsPage() {
                     );
                   })()}
 
-                  {/* Other Scores - Only scores and bars blurred */}
+                  {/* Other Scores - Locked */}
                   {Object.entries(result.percentages)
                     .filter(([key]) => key !== result.primaryType)
                     .sort(([, a], [, b]) => b - a)
-                    .map(([key, score]) => {
+                    .map(([key]) => {
                       const animal = animals[key as keyof typeof animals];
                       return (
                         <div key={key} className="space-y-1">
@@ -233,25 +233,19 @@ export default function ResultsPage() {
                               <span className="text-lg">{animal.emoji}</span>
                               <span className="font-medium">{animal.name}</span>
                             </span>
-                            <span className="filter blur-[6px] select-none">
-                              <span
-                                className="font-semibold"
-                                style={{ color: animal.color }}
-                              >
-                                {score}%
-                              </span>
+                            <span className="text-gray-400 text-xs flex items-center gap-1">
+                              <span>🔒</span>
                             </span>
                           </div>
-                          <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                            <div className="filter blur-[6px]">
-                              <div
-                                className="h-3 rounded-full"
-                                style={{
-                                  width: `${score}%`,
-                                  backgroundColor: animal.color,
-                                }}
-                              />
-                            </div>
+                          <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden relative">
+                            {/* Fake gradient bar that doesn't reveal actual score */}
+                            <div
+                              className="h-full rounded-full opacity-30"
+                              style={{
+                                width: "100%",
+                                background: `linear-gradient(to right, ${animal.color}, transparent)`,
+                              }}
+                            />
                           </div>
                         </div>
                       );
