@@ -309,10 +309,10 @@ export default function ResultsPage() {
                   <span className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                     <span
                       className="block h-full rounded-full"
-                      style={{ width: '40%', backgroundColor: primaryAnimal.color }}
+                      style={{ width: '20%', backgroundColor: primaryAnimal.color }}
                     />
                   </span>
-                  40% unlocked
+                  20% unlocked
                 </span>
               </div>
             </div>
@@ -711,14 +711,14 @@ export default function ResultsPage() {
                   <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                   </svg>
-                  You&apos;ve unlocked <span className="font-bold" style={{ color: primaryAnimal.color }}>40%</span> of your insights
+                  You&apos;ve unlocked <span className="font-bold" style={{ color: primaryAnimal.color }}>20%</span> of your insights
                 </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400">60% remaining</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">80% remaining</span>
               </div>
               <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
-                  style={{ width: '40%', backgroundColor: primaryAnimal.color }}
+                  style={{ width: '20%', backgroundColor: primaryAnimal.color }}
                 />
               </div>
             </div>
