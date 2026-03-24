@@ -176,7 +176,8 @@ export default function ResultsPage() {
               <CardContent className="pt-0">
                 <RadarChart scores={result.percentages} hideScores />
                 {/* Unlock banner below chart */}
-                <div className="flex items-center justify-center mt-4">
+                <div className="flex flex-col items-center mt-4 gap-2">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">See exact percentages for all 4 types</p>
                   <Link href={`/quiz/results/${result.id}/report`}>
                     <Button size="sm" variant="outline" className="text-xs gap-1.5">
                       <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -259,6 +260,7 @@ export default function ResultsPage() {
 
                 {/* Unlock CTA */}
                 <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">View your complete score breakdown</p>
                   <Link href={`/quiz/results/${result.id}/report`}>
                     <Button size="sm" variant="outline" className="text-xs gap-1.5">
                       <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -315,6 +317,7 @@ export default function ResultsPage() {
                           <div className="flex-1 space-y-2">
                             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-full" />
                             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
+                            <p className="text-xs text-gray-400 dark:text-gray-500 pt-1">More personalized tips in full report</p>
                           </div>
                           <Link href={`/quiz/results/${result.id}/report`} className="ml-4 flex-shrink-0">
                             <Button size="sm" variant="outline" className="text-xs">
