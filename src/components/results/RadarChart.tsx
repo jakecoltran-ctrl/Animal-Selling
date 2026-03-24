@@ -40,8 +40,9 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores, primaryTyp
   const isPrimary = type === primaryType;
 
   // Calculate position offset based on angle from center
-  const offsetX = x > cx ? 18 : x < cx ? -18 : 0;
-  const offsetY = y > cy ? 20 : y < cy ? -20 : 0;
+  // Extra space on right (Retriever) and left (Penguin) for percentage text
+  const offsetX = x > cx ? 25 : x < cx ? -25 : 0;
+  const offsetY = y > cy ? 22 : y < cy ? -22 : 0;
 
   // Show score for primary, blur others when hideScores is true
   const shouldBlur = hideScores && !isPrimary;
