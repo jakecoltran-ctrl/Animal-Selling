@@ -113,8 +113,8 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
   ];
 
   return (
-    <ResponsiveContainer width="100%" height={380}>
-      <RechartsRadarChart data={data} cx="50%" cy="50%" outerRadius="75%">
+    <ResponsiveContainer width="100%" height={400}>
+      <RechartsRadarChart data={data} cx="50%" cy="50%" outerRadius="60%">
         <defs>
           <linearGradient id="radarGradient" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor={primaryColor} stopOpacity={0.6} />
