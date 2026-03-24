@@ -20,16 +20,18 @@ interface RadarChartProps {
     beaver: number;
   };
   primaryType?: AnimalType;
+  hideScores?: boolean;
 }
 
 // Custom label component that shows emoji and score
-function CustomAxisLabel({ payload, x, y, cx, cy, scores }: {
+function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores }: {
   payload: { value: string };
   x: number;
   y: number;
   cx: number;
   cy: number;
   scores: Record<string, number>;
+  hideScores?: boolean;
 }) {
   const type = payload.value.toLowerCase() as AnimalType;
   const animal = animals[type];
@@ -56,15 +58,16 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores }: {
           fontSize: "13px",
           fontWeight: 700,
           fill: animal.color,
+          filter: hideScores ? "blur(8px)" : "none",
         }}
       >
-        {score}%
+        {hideScores ? "??" : score}%
       </text>
     </g>
   );
 }
 
-export function RadarChart({ scores, primaryType }: RadarChartProps) {
+export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps) {
   // Find the primary type (highest score) if not provided
   const sortedTypes = Object.entries(scores).sort(([, a], [, b]) => b - a);
   const actualPrimaryType = primaryType || sortedTypes[0][0] as AnimalType;
@@ -119,7 +122,7 @@ export function RadarChart({ scores, primaryType }: RadarChartProps) {
         />
         <PolarAngleAxis
           dataKey="type"
-          tick={(props) => <CustomAxisLabel {...props} scores={scores} />}
+          tick={(props) => <CustomAxisLabel {...props} scores={scores} hideScores={hideScores} />}
         />
         <PolarRadiusAxis
           angle={45}
