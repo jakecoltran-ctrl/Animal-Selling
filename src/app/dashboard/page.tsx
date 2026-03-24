@@ -254,12 +254,12 @@ export default function DashboardPage() {
                   </div>
                   <ScoreBars scores={latestResult.percentages} />
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <Link href={`/quiz/results/${latestResult.id}/report`}>
+                    <Link href={`/quiz/results/${latestResult.id}/upgrade`}>
                       <Button
                         style={{ backgroundColor: primaryAnimal.color }}
                         className="text-white press-effect"
                       >
-                        View Full Report
+                        Unlock Full Report
                       </Button>
                     </Link>
                     <Link href={`/quiz/results/${latestResult.id}`}>
@@ -330,13 +330,13 @@ export default function DashboardPage() {
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Link href={`/quiz/results/${result.id}/report`}>
+                            <Link href={`/quiz/results/${result.id}/upgrade`}>
                               <Button
                                 size="sm"
                                 style={{ backgroundColor: animal.color }}
                                 className="text-white press-effect"
                               >
-                                Report
+                                Unlock
                               </Button>
                             </Link>
                             <Link href={`/quiz/results/${result.id}`}>
