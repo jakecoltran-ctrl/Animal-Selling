@@ -40,8 +40,8 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores, primaryTyp
   const isPrimary = type === primaryType;
 
   // Calculate position offset based on angle from center
-  const offsetX = x > cx ? 12 : x < cx ? -12 : 0;
-  const offsetY = y > cy ? 16 : y < cy ? -8 : 0;
+  const offsetX = x > cx ? 18 : x < cx ? -18 : 0;
+  const offsetY = y > cy ? 20 : y < cy ? -20 : 0;
 
   // Show score for primary, blur others when hideScores is true
   const shouldBlur = hideScores && !isPrimary;

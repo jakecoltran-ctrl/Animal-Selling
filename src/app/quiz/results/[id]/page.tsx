@@ -187,27 +187,27 @@ export default function ResultsPage() {
             </Card>
 
             {/* Score Breakdown - Primary visible, others have blurred scores */}
-            <Card className="shadow-md border-0">
+            <Card className="shadow-md border-0 flex flex-col">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold">Score Breakdown</CardTitle>
               </CardHeader>
-              <CardContent className="pt-0">
-                <div className="space-y-4">
+              <CardContent className="pt-0 flex-1 flex flex-col justify-between">
+                <div className="space-y-6">
                   {/* Primary Score - Fully Visible */}
                   {(() => {
                     const primary = animals[result.primaryType];
                     const primaryScore = result.percentages[result.primaryType];
                     return (
-                      <div className="space-y-1 animate-fade-in">
-                        <div className="flex justify-between text-sm">
+                      <div className="space-y-2 animate-fade-in">
+                        <div className="flex justify-between items-center">
                           <span className="flex items-center gap-2">
-                            <span className="text-lg">{primary.emoji}</span>
-                            <span className="font-medium">{primary.name}</span>
+                            <span className="text-2xl">{primary.emoji}</span>
+                            <span className="font-medium text-base">{primary.name}</span>
                             <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Primary</span>
                           </span>
-                          <span className="font-semibold" style={{ color: primary.color }}>{primaryScore}%</span>
+                          <span className="font-bold text-lg" style={{ color: primary.color }}>{primaryScore}%</span>
                         </div>
-                        <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full"
                             style={{
@@ -227,17 +227,17 @@ export default function ResultsPage() {
                     .map(([key]) => {
                       const animal = animals[key as keyof typeof animals];
                       return (
-                        <div key={key} className="space-y-1">
-                          <div className="flex justify-between text-sm">
+                        <div key={key} className="space-y-2">
+                          <div className="flex justify-between items-center">
                             <span className="flex items-center gap-2">
-                              <span className="text-lg">{animal.emoji}</span>
-                              <span className="font-medium">{animal.name}</span>
+                              <span className="text-2xl">{animal.emoji}</span>
+                              <span className="font-medium text-base">{animal.name}</span>
                             </span>
-                            <span className="text-gray-400 text-xs flex items-center gap-1">
+                            <span className="text-gray-400 flex items-center gap-1">
                               <span>🔒</span>
                             </span>
                           </div>
-                          <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden relative">
+                          <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden relative">
                             {/* Fake gradient bar that doesn't reveal actual score */}
                             <div
                               className="h-full rounded-full opacity-30"
@@ -253,9 +253,9 @@ export default function ResultsPage() {
                 </div>
 
                 {/* Unlock CTA */}
-                <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
+                <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
                   <Link href={`/quiz/results/${result.id}/report`}>
-                    <Button size="sm" variant="outline" className="text-xs gap-2">
+                    <Button size="sm" variant="outline" className="gap-2">
                       <span>🔒</span> Unlock All Scores
                     </Button>
                   </Link>
