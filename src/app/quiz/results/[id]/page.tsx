@@ -38,9 +38,9 @@ function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: stri
         <>
           <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-3">Score Breakdown</p>
           <div className="space-y-2.5">
-            {[1, 2, 3, 4].map((i) => (
+            {['🦁', '🐧', '🐕', '🦫'].map((emoji, i) => (
               <div key={i} className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-gray-200 dark:bg-gray-600 rounded-full" />
+                <span className="text-sm">{emoji}</span>
                 <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded" />
               </div>
             ))}
