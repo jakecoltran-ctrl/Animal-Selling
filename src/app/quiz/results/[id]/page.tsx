@@ -36,32 +36,18 @@ function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: stri
       title: "Score Breakdown",
       content: (
         <>
-          <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-2">Score Breakdown</p>
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-xs">🦁</span>
-              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
-                <div className="h-full bg-red-400 rounded" style={{ width: '75%' }} />
+          <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-3">Score Breakdown</p>
+          <div className="space-y-2.5">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gray-200 dark:bg-gray-600 rounded-full" />
+                <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded" />
               </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs">🐧</span>
-              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
-                <div className="h-full bg-blue-400 rounded" style={{ width: '60%' }} />
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs">🐕</span>
-              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
-                <div className="h-full bg-yellow-400 rounded" style={{ width: '45%' }} />
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs">🦫</span>
-              <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded overflow-hidden">
-                <div className="h-full bg-green-400 rounded" style={{ width: '55%' }} />
-              </div>
-            </div>
+            ))}
+          </div>
+          <div className="mt-3 space-y-1.5">
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-2/3" />
           </div>
         </>
       ),
@@ -70,19 +56,20 @@ function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: stri
       title: "Action Plan",
       content: (
         <>
-          <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-2">30-Day Action Plan</p>
-          <div className="space-y-1.5">
-            {['Week 1: Foundation', 'Week 2: Practice', 'Week 3: Apply', 'Week 4: Master'].map((week, i) => (
-              <div key={i} className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-full flex items-center justify-center text-[8px] text-white" style={{ backgroundColor: primaryAnimal.color }}>
-                  {i + 1}
-                </div>
-                <span className="text-[9px] text-gray-600 dark:text-gray-400">{week}</span>
+          <p className="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-3">30-Day Action Plan</p>
+          <div className="space-y-2">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-gray-300 dark:bg-gray-600 rounded-full" />
+                <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded" style={{ width: `${70 - i * 10}%` }} />
               </div>
             ))}
           </div>
-          <div className="mt-2 h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
-          <div className="mt-1 h-2 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
+          <div className="mt-3 space-y-1.5">
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-4/5" />
+            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
+          </div>
         </>
       ),
     },
