@@ -293,28 +293,40 @@ export default function ResultsPage() {
               <div className="space-y-4">
                 {contextualTips.map((tip, i) => {
                   const isLocked = i >= 2; // Lock 3rd tip and beyond
-                  return (
-                    <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm relative">
-                      <div
-                        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                        style={{ backgroundColor: isLocked ? '#9ca3af' : primaryAnimal.color }}
-                      >
-                        {isLocked ? '🔒' : i + 1}
-                      </div>
-                      {isLocked ? (
+
+                  if (isLocked) {
+                    return (
+                      <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+                          <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
                         <div className="flex-1 flex items-center justify-between">
-                          <p className="text-gray-400 dark:text-gray-500 leading-relaxed filter blur-[6px] select-none">
-                            {tip}
-                          </p>
+                          {/* Skeleton placeholder bars */}
+                          <div className="flex-1 space-y-2">
+                            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-full" />
+                            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
+                          </div>
                           <Link href={`/quiz/results/${result.id}/report`} className="ml-4 flex-shrink-0">
                             <Button size="sm" variant="outline" className="text-xs">
                               Unlock
                             </Button>
                           </Link>
                         </div>
-                      ) : (
-                        <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
-                      )}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                      <div
+                        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                        style={{ backgroundColor: primaryAnimal.color }}
+                      >
+                        {i + 1}
+                      </div>
+                      <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
                     </div>
                   );
                 })}
