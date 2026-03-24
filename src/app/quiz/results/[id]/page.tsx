@@ -282,6 +282,56 @@ export default function ResultsPage() {
         </div>
       </div>
 
+      {/* Premium Report Teaser Banner */}
+      <div className="container mx-auto px-4 py-4">
+        <Link href={`/quiz/results/${result.id}/report`}>
+          <div
+            className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-5 py-3.5 rounded-xl transition-all hover:shadow-md cursor-pointer"
+            style={{
+              backgroundColor: `${primaryAnimal.color}08`,
+              border: `1px solid ${primaryAnimal.color}25`,
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: `${primaryAnimal.color}15` }}
+              >
+                <svg className="w-4 h-4" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                  Unlock your full 15-page report
+                </span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
+                  <span className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <span
+                      className="block h-full rounded-full"
+                      style={{ width: '40%', backgroundColor: primaryAnimal.color }}
+                    />
+                  </span>
+                  40% unlocked
+                </span>
+              </div>
+            </div>
+            <div
+              className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+              style={{
+                color: primaryAnimal.color,
+                backgroundColor: `${primaryAnimal.color}12`,
+              }}
+            >
+              Get Full Report
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </Link>
+      </div>
+
       <div className="container mx-auto px-4 py-12">
         {/* Score Section */}
         <div className="max-w-4xl mx-auto mb-16">
