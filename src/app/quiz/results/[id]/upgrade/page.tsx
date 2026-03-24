@@ -165,26 +165,44 @@ export default function UpgradePage() {
               You&apos;re a <span className="font-semibold" style={{ color: primaryAnimal.color }}>{primaryAnimal.name}</span>-<span className="font-semibold" style={{ color: secondaryAnimal.color }}>{secondaryAnimal.name}</span> blend selling {contextLabels.sellType} in {contextLabels.customerType}. Your full report reveals exactly how this combination shapes your selling style — and what to do about it.
             </p>
 
-            {/* Score Bars */}
+            {/* Score Bars - Only primary visible, others locked */}
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md max-w-md mx-auto">
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Your Animal Blend</p>
               <div className="space-y-3">
-                {sortedScores.map(({ key, value, animal }) => (
-                  <div key={key} className="flex items-center gap-3">
-                    <span className="text-xl w-8">{animal.emoji}</span>
-                    <div className="flex-1">
-                      <div className="h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full transition-all"
-                          style={{ width: `${value}%`, backgroundColor: animal.color }}
-                        />
+                {sortedScores.map(({ key, value, animal }) => {
+                  const isPrimary = key === result.primaryType;
+                  return (
+                    <div key={key} className="flex items-center gap-3">
+                      <span className="text-xl w-8">{animal.emoji}</span>
+                      <div className="flex-1">
+                        <div className="h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                          {isPrimary ? (
+                            <div
+                              className="h-full rounded-full transition-all"
+                              style={{ width: `${value}%`, backgroundColor: animal.color }}
+                            />
+                          ) : (
+                            <div
+                              className="h-full rounded-full opacity-30"
+                              style={{ width: '100%', background: `linear-gradient(to right, ${animal.color}, transparent)` }}
+                            />
+                          )}
+                        </div>
                       </div>
+                      {isPrimary ? (
+                        <span className="text-sm font-medium w-10 text-right" style={{ color: animal.color }}>
+                          {value}%
+                        </span>
+                      ) : (
+                        <span className="w-10 flex justify-end">
+                          <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                          </svg>
+                        </span>
+                      )}
                     </div>
-                    <span className="text-sm font-medium w-10 text-right" style={{ color: animal.color }}>
-                      {value}%
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
