@@ -425,7 +425,7 @@ export default function ResultsPage() {
                             <span className="flex items-center gap-2">
                               <span className="text-2xl">{animal.emoji}</span>
                               <span className="font-medium text-base">{animal.name}</span>
-                              {isPurchased && isSecondary && (
+                              {isSecondary && (
                                 <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full">Secondary</span>
                               )}
                             </span>
