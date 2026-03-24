@@ -291,17 +291,33 @@ export default function ResultsPage() {
               </div>
 
               <div className="space-y-4">
-                {contextualTips.map((tip, i) => (
-                  <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
-                    <div
-                      className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                      style={{ backgroundColor: primaryAnimal.color }}
-                    >
-                      {i + 1}
+                {contextualTips.map((tip, i) => {
+                  const isLocked = i >= 2; // Lock 3rd tip and beyond
+                  return (
+                    <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm relative">
+                      <div
+                        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                        style={{ backgroundColor: isLocked ? '#9ca3af' : primaryAnimal.color }}
+                      >
+                        {isLocked ? '🔒' : i + 1}
+                      </div>
+                      {isLocked ? (
+                        <div className="flex-1 flex items-center justify-between">
+                          <p className="text-gray-400 dark:text-gray-500 leading-relaxed filter blur-[6px] select-none">
+                            {tip}
+                          </p>
+                          <Link href={`/quiz/results/${result.id}/report`} className="ml-4 flex-shrink-0">
+                            <Button size="sm" variant="outline" className="text-xs">
+                              Unlock
+                            </Button>
+                          </Link>
+                        </div>
+                      ) : (
+                        <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
+                      )}
                     </div>
-                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
