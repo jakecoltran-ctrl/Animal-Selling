@@ -383,16 +383,16 @@ export default function ResultsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <ul className="space-y-3">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="flex items-start gap-3">
+                    <li key={i} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" style={{ width: `${90 - i * 12}%` }} />
-                      </div>
-                    </div>
+                      <span className="flex-1">
+                        <span className="block h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" style={{ width: `${90 - i * 12}%` }} />
+                      </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
                 <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-center">
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Discover your blind spots to avoid</p>
                   <Link href={`/quiz/results/${result.id}/report`}>
