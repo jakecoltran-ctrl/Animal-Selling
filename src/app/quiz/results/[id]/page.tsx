@@ -284,7 +284,7 @@ export default function ResultsPage() {
 
       {/* Premium Report Teaser Banner */}
       <div className="container mx-auto px-4 py-4">
-        <Link href={`/quiz/results/${result.id}/report`}>
+        <Link href={`/quiz/results/${result.id}/upgrade`}>
           <div
             className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-5 py-3.5 rounded-xl transition-all hover:shadow-md cursor-pointer"
             style={{
@@ -346,7 +346,7 @@ export default function ResultsPage() {
                 {/* Unlock banner below chart */}
                 <div className="flex flex-col items-center mt-4 gap-2">
                   <p className="text-xs text-gray-500 dark:text-gray-400">See exact percentages for all 4 types</p>
-                  <Link href={`/quiz/results/${result.id}/report`}>
+                  <Link href={`/quiz/results/${result.id}/upgrade`}>
                     <Button size="sm" variant="outline" className="text-xs gap-1.5">
                       <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
@@ -429,7 +429,7 @@ export default function ResultsPage() {
                 {/* Unlock CTA */}
                 <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">View your complete score breakdown</p>
-                  <Link href={`/quiz/results/${result.id}/report`}>
+                  <Link href={`/quiz/results/${result.id}/upgrade`}>
                     <Button size="sm" variant="outline" className="text-xs gap-1.5">
                       <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
@@ -487,7 +487,7 @@ export default function ResultsPage() {
                             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
                             <p className="text-xs text-gray-400 dark:text-gray-500 pt-1">More personalized tips in full report</p>
                           </div>
-                          <Link href={`/quiz/results/${result.id}/report`} className="ml-4 flex-shrink-0">
+                          <Link href={`/quiz/results/${result.id}/upgrade`} className="ml-4 flex-shrink-0">
                             <Button size="sm" variant="outline" className="text-xs">
                               Unlock
                             </Button>
@@ -563,7 +563,7 @@ export default function ResultsPage() {
                 </ul>
                 <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-center">
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Discover your blind spots to avoid</p>
-                  <Link href={`/quiz/results/${result.id}/report`}>
+                  <Link href={`/quiz/results/${result.id}/upgrade`}>
                     <Button size="sm" variant="outline" className="text-xs gap-1.5">
                       <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
@@ -656,7 +656,7 @@ export default function ResultsPage() {
                           <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-full" />
                           <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
                         </div>
-                        <Link href={`/quiz/results/${result.id}/report`} className="ml-4 flex-shrink-0">
+                        <Link href={`/quiz/results/${result.id}/upgrade`} className="ml-4 flex-shrink-0">
                           <Button size="sm" variant="outline" className="text-xs">
                             Unlock
                           </Button>
@@ -764,7 +764,7 @@ export default function ResultsPage() {
 
                 {/* Price + CTA */}
                 <div className="space-y-4">
-                  <Link href={`/quiz/results/${result.id}/report`} className="block">
+                  <Link href={`/quiz/results/${result.id}/upgrade`} className="block">
                     <Button
                       size="lg"
                       className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl transition-all gap-2"
