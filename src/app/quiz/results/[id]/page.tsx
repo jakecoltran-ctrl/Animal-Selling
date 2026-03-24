@@ -593,10 +593,10 @@ export default function ResultsPage() {
               <CardContent>
                 {isPurchased ? (
                   <ul className="space-y-3">
-                    {primaryAnimal.weaknesses.slice(0, 4).map((weakness, i) => (
+                    {primaryAnimal.blindSpots.slice(0, 4).map((blindSpot, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
-                        <span className="text-gray-600 dark:text-gray-300">{weakness}</span>
+                        <span className="text-gray-600 dark:text-gray-300">{blindSpot}</span>
                       </li>
                     ))}
                   </ul>
