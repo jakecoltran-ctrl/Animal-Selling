@@ -519,36 +519,144 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        {/* Full Report CTA */}
+        {/* Full Report CTA - Premium Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <div
-            className="rounded-2xl p-8 text-center"
+            className="rounded-3xl p-8 md:p-10 overflow-hidden relative"
             style={{
-              background: `linear-gradient(135deg, ${primaryAnimal.color}15 0%, ${primaryAnimal.color}08 100%)`,
+              background: `linear-gradient(135deg, ${primaryAnimal.color}12 0%, ${primaryAnimal.color}05 50%, ${primaryAnimal.color}12 100%)`,
               border: `2px solid ${primaryAnimal.color}30`,
             }}
           >
-            <div className="text-4xl mb-4">📄</div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Get Your Full 15-Page Premium Report
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-lg mx-auto">
-              Deep dive into your sales animal with a comprehensive report including
-              objection handling, red flag moments, a 30-day action plan, self-coaching
-              questions, and much more.
-            </p>
-            <Link href={`/quiz/results/${result.id}/report`}>
-              <Button
-                size="lg"
-                className="text-white gap-2"
-                style={{ backgroundColor: primaryAnimal.color }}
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                View Full Report
-              </Button>
-            </Link>
+            {/* Subtle animated glow */}
+            <div
+              className="absolute inset-0 opacity-30"
+              style={{
+                background: `radial-gradient(circle at 50% 0%, ${primaryAnimal.color}40 0%, transparent 50%)`,
+              }}
+            />
+
+            {/* Progress Indicator */}
+            <div className="relative mb-8 p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                  </svg>
+                  You&apos;ve unlocked <span className="font-bold" style={{ color: primaryAnimal.color }}>40%</span> of your insights
+                </span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">60% remaining</span>
+              </div>
+              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{ width: '40%', backgroundColor: primaryAnimal.color }}
+                />
+              </div>
+            </div>
+
+            {/* Main Content Grid */}
+            <div className="relative grid md:grid-cols-2 gap-8 items-center">
+              {/* Report Mockup */}
+              <div className="flex justify-center">
+                <div className="relative w-48 h-64">
+                  {/* Stacked pages effect */}
+                  <div
+                    className="absolute inset-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg transform rotate-3 translate-x-2"
+                    style={{ border: `1px solid ${primaryAnimal.color}20` }}
+                  />
+                  <div
+                    className="absolute inset-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg transform -rotate-2 -translate-x-1"
+                    style={{ border: `1px solid ${primaryAnimal.color}20` }}
+                  />
+                  {/* Main page */}
+                  <div
+                    className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 h-full flex flex-col"
+                    style={{ border: `2px solid ${primaryAnimal.color}40` }}
+                  >
+                    <div
+                      className="text-center pb-3 mb-3 border-b"
+                      style={{ borderColor: `${primaryAnimal.color}30` }}
+                    >
+                      <span className="text-3xl">{primaryAnimal.emoji}</span>
+                      <p className="text-xs font-bold mt-1" style={{ color: primaryAnimal.color }}>
+                        {primaryAnimal.name}
+                      </p>
+                    </div>
+                    <div className="flex-1 space-y-2">
+                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-4/5" />
+                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
+                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-full" />
+                      <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-2/3" />
+                    </div>
+                    <div className="mt-auto pt-3 text-center">
+                      <span className="text-xs font-semibold text-gray-400">15 pages</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Side */}
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  Your Full Premium Report
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
+                  15 pages of personalized insights for your {primaryAnimal.name} style
+                </p>
+
+                {/* What's Inside Checklist */}
+                <div className="space-y-3 mb-8">
+                  {[
+                    'Complete Score Breakdown',
+                    'Your Blind Spots Revealed',
+                    'Objection Handling Scripts',
+                    'Red Flag Moments to Avoid',
+                    '30-Day Action Plan',
+                    'Self-Coaching Questions',
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <span
+                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${primaryAnimal.color}20` }}
+                      >
+                        <svg className="w-3 h-3" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span className="text-gray-700 dark:text-gray-300 text-sm">{item}</span>
+                    </div>
+                  ))}
+                  <p className="text-xs text-gray-400 dark:text-gray-500 pl-8">+ 9 more sections...</p>
+                </div>
+
+                {/* Price + CTA */}
+                <div className="space-y-4">
+                  <Link href={`/quiz/results/${result.id}/report`} className="block">
+                    <Button
+                      size="lg"
+                      className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl transition-all gap-2"
+                      style={{ backgroundColor: primaryAnimal.color }}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                      </svg>
+                      Unlock Full Report — $4.99
+                    </Button>
+                  </Link>
+
+                  {/* Guarantee */}
+                  <div className="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    100% Satisfaction Guarantee
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
