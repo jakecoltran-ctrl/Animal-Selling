@@ -81,28 +81,56 @@ export default function UpgradePage() {
 
   const reportSections = [
     {
-      title: "Your Sales Profile Deep Dive",
+      title: "Complete Score Breakdown",
+      description: "See your exact percentages across all 4 animal types with visual charts showing your unique style balance.",
+    },
+    {
+      title: `${primaryAnimal.name} Deep Dive`,
       description: `Go beyond the basics. Learn exactly how your ${primaryAnimal.name} style shows up in real sales conversations — from prospecting to closing.`,
     },
     {
       title: `Your Power Combo: ${primaryAnimal.name} + ${secondaryAnimal.name}`,
-      description: `Your specific blend of ${primaryAnimal.name} and ${secondaryAnimal.name} creates a unique selling superpower. Find out what it is and how to use it.`,
+      description: `Your specific blend creates a unique selling superpower. Discover how your secondary ${secondaryAnimal.name} traits enhance your approach.`,
     },
     {
-      title: "How You Compare to All 4 Types",
-      description: "See where you stand against Lions, Penguins, Golden Retrievers, and Beavers — with a side-by-side breakdown of strengths, pace, and decision style.",
+      title: "Objection Handling Scripts",
+      description: `Pre-written responses tailored to your ${primaryAnimal.name} style for handling the most common sales objections.`,
     },
     {
-      title: "Your Adaptive Selling Playbook",
-      description: "Get personalized strategies for selling to customers who are each of the 4 animal types — based on YOUR style, not generic advice.",
+      title: "Buyer Identification Guide",
+      description: "Learn to quickly identify which animal type your prospect is so you can adapt your approach in real-time.",
     },
     {
-      title: "Your Growth Plan",
-      description: "Discover your biggest blind spot and get a concrete action plan to become a more versatile seller this week.",
+      title: "Adaptive Selling Playbook",
+      description: "Get personalized strategies for selling to customers who are each of the 4 animal types — based on YOUR style.",
     },
     {
-      title: "Team Dynamics Preview",
-      description: "See which animal types you work best with, where friction might show up, and your ideal role on a sales team.",
+      title: "Types Comparison",
+      description: "See how you stack up against Lions, Penguins, Retrievers, and Beavers with a side-by-side breakdown.",
+    },
+    {
+      title: "Red Flags & Warning Signs",
+      description: `Know when your ${primaryAnimal.name} tendencies might be working against you and how to course-correct.`,
+    },
+    {
+      title: "Self-Coaching Questions",
+      description: "Reflection prompts to help you continuously improve and stay aware of your selling patterns.",
+    },
+    {
+      title: "Industry-Specific Tips",
+      description: `Tailored advice for applying your ${primaryAnimal.name} style in different sales environments.`,
+    },
+    {
+      title: "Growth Plan",
+      description: "Discover your biggest blind spots and get a concrete plan to become a more versatile seller.",
+    },
+    {
+      title: "30-Day Action Plan",
+      description: "Week-by-week activities to immediately start improving your sales performance.",
+    },
+    {
+      title: "Team Dynamics",
+      description: "See which animal types you work best with, where friction might show up, and your ideal team role.",
     },
   ];
 
