@@ -554,42 +554,96 @@ export default function UpgradePage() {
 
         {/* Section 6: FAQ */}
         <div className="max-w-2xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-            Frequently Asked Questions
-          </h2>
+          <div className="text-center mb-8">
+            <div
+              className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4"
+              style={{ backgroundColor: `${primaryAnimal.color}15` }}
+            >
+              <svg
+                className="w-6 h-6"
+                style={{ color: primaryAnimal.color }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+              Frequently Asked Questions
+            </h2>
+          </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
+                className={`rounded-xl overflow-hidden transition-all ${
+                  openFaq === index
+                    ? "shadow-lg"
+                    : "shadow-sm hover:shadow-md"
+                }`}
+                style={{
+                  border: openFaq === index
+                    ? `2px solid ${primaryAnimal.color}40`
+                    : "2px solid transparent",
+                  backgroundColor: openFaq === index
+                    ? `${primaryAnimal.color}05`
+                    : undefined,
+                }}
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-center justify-between p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
+                  className="w-full flex items-center gap-4 p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
                 >
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{
+                      backgroundColor: openFaq === index ? primaryAnimal.color : `${primaryAnimal.color}15`,
+                    }}
+                  >
+                    <span
+                      className="font-bold text-sm"
+                      style={{ color: openFaq === index ? "white" : primaryAnimal.color }}
+                    >
+                      ?
+                    </span>
+                  </div>
+                  <span className="flex-1 font-semibold text-gray-900 dark:text-white">
                     {faq.question}
                   </span>
-                  <svg
-                    className={`w-5 h-5 text-gray-500 transition-transform ${
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${
                       openFaq === index ? "rotate-180" : ""
                     }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                    style={{ backgroundColor: `${primaryAnimal.color}10` }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+                    <svg
+                      className="w-4 h-4"
+                      style={{ color: primaryAnimal.color }}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
                 </button>
                 {openFaq === index && (
-                  <div className="px-4 pb-4 bg-white dark:bg-gray-800">
-                    <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
+                  <div className="px-5 pb-5 pt-0 bg-white dark:bg-gray-800">
+                    <div className="pl-12">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+                    </div>
                   </div>
                 )}
               </div>
