@@ -178,8 +178,11 @@ export default function ResultsPage() {
                 {/* Unlock banner below chart */}
                 <div className="flex items-center justify-center mt-4">
                   <Link href={`/quiz/results/${result.id}/report`}>
-                    <Button size="sm" variant="outline" className="text-xs gap-2">
-                      <span>🔒</span> Unlock Score Details
+                    <Button size="sm" variant="outline" className="text-xs gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                      Unlock
                     </Button>
                   </Link>
                 </div>
@@ -233,8 +236,10 @@ export default function ResultsPage() {
                               <span className="text-2xl">{animal.emoji}</span>
                               <span className="font-medium text-base">{animal.name}</span>
                             </span>
-                            <span className="text-gray-400 flex items-center gap-1">
-                              <span>🔒</span>
+                            <span className="text-gray-400">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                              </svg>
                             </span>
                           </div>
                           <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden relative">
@@ -255,8 +260,11 @@ export default function ResultsPage() {
                 {/* Unlock CTA */}
                 <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
                   <Link href={`/quiz/results/${result.id}/report`}>
-                    <Button size="sm" variant="outline" className="gap-2">
-                      <span>🔒</span> Unlock All Scores
+                    <Button size="sm" variant="outline" className="text-xs gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                      Unlock
                     </Button>
                   </Link>
                 </div>
