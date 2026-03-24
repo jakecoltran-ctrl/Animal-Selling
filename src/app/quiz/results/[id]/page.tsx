@@ -169,14 +169,14 @@ export default function ResultsPage() {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Style Blend - Numbers hidden */}
-            <Card className="shadow-md border-0 overflow-hidden">
+            <Card className="shadow-md border-0">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold text-center">Your Style Blend</CardTitle>
               </CardHeader>
-              <CardContent className="pt-0 relative">
+              <CardContent className="pt-0">
                 <RadarChart scores={result.percentages} hideScores />
-                {/* Unlock banner at bottom */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center">
+                {/* Unlock banner below chart */}
+                <div className="flex items-center justify-center mt-4">
                   <Link href={`/quiz/results/${result.id}/report`}>
                     <Button size="sm" variant="outline" className="text-xs gap-2">
                       <span>🔒</span> Unlock Score Details
