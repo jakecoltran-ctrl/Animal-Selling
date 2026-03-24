@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getAnimal, animals } from "@/lib/animal-data";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { ProfileSummary } from "@/components/report/ProfileSummary";
-import { SellingPlaybook } from "@/components/report/SellingPlaybook";
+import { SellingPlaybookPage } from "@/components/report/SellingPlaybook";
 import { GrowthPlanPage } from "@/components/report/GrowthPlanPage";
 import { QuizResult, AnimalType } from "@/types";
 
@@ -334,7 +334,7 @@ export default function UpgradePage() {
               {/* Page Content - Blurred */}
               <div className="relative bg-white dark:bg-gray-900 overflow-hidden" style={{ maxHeight: "400px" }}>
                 <div className="filter blur-[5px] pointer-events-none transform scale-[0.85] origin-top p-6">
-                  <SellingPlaybook
+                  <SellingPlaybookPage
                     primaryType={result.primaryType}
                     salesContext={salesContext}
                   />
