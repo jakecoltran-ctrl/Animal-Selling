@@ -468,22 +468,54 @@ export default function ResultsPage() {
             </h2>
           </div>
           <div className="flex flex-col gap-4">
-            {primaryAnimal.tips.map((tip, i) => (
-              <div
-                key={i}
-                className="group bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 dark:border-gray-700"
-              >
-                <div className="flex items-start gap-4">
-                  <span
-                    className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform"
-                    style={{ backgroundColor: primaryAnimal.color }}
+            {primaryAnimal.tips.map((tip, i) => {
+              const isLocked = i >= 3; // Lock tips 4 and 5 (index 3+)
+
+              if (isLocked) {
+                return (
+                  <div
+                    key={i}
+                    className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm border border-gray-100 dark:border-gray-700"
                   >
-                    {i + 1}
-                  </span>
-                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
+                    <div className="flex items-start gap-4">
+                      <span className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+                        <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                      <div className="flex-1 flex items-center justify-between">
+                        <div className="flex-1 space-y-2">
+                          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-full" />
+                          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
+                        </div>
+                        <Link href={`/quiz/results/${result.id}/report`} className="ml-4 flex-shrink-0">
+                          <Button size="sm" variant="outline" className="text-xs">
+                            Unlock
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  key={i}
+                  className="group bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 dark:border-gray-700"
+                >
+                  <div className="flex items-start gap-4">
+                    <span
+                      className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform"
+                      style={{ backgroundColor: primaryAnimal.color }}
+                    >
+                      {i + 1}
+                    </span>
+                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
