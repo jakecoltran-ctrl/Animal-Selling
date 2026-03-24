@@ -23,14 +23,14 @@ const themeScript = `
   (function() {
     try {
       const stored = localStorage.getItem('theme');
-      if (stored === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
+      if (stored === 'light') {
         document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
       }
     } catch (e) {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('dark');
     }
   })();
 `;

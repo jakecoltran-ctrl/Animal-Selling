@@ -4,21 +4,21 @@ import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check initial theme from localStorage (default to light)
+    // Check initial theme from localStorage (default to dark)
     const stored = localStorage.getItem("theme");
-    if (stored === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      // Explicitly set light mode
+    if (stored === "light") {
       setIsDark(false);
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+    } else {
+      // Explicitly set dark mode
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     }
   }, []);
 
@@ -38,10 +38,10 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="relative w-14 h-8 rounded-full bg-white border border-gray-300 transition-colors"
+        className="relative w-14 h-8 rounded-full bg-gray-700 border border-gray-600 transition-colors"
         aria-label="Toggle theme"
       >
-        <div className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-100" />
+        <div className="absolute top-1 left-7 w-6 h-6 rounded-full bg-white shadow-md" />
       </button>
     );
   }
