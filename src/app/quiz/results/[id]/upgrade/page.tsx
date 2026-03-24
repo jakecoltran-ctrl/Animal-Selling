@@ -193,45 +193,41 @@ export default function UpgradePage() {
               You&apos;re a <span className="font-semibold" style={{ color: primaryAnimal.color }}>{primaryAnimal.name}</span>-<span className="font-semibold" style={{ color: secondaryAnimal.color }}>{secondaryAnimal.name}</span> blend selling {contextLabels.sellType} in {contextLabels.customerType}. Your full report reveals exactly how this combination shapes your selling style — and what to do about it.
             </p>
 
-            {/* Score Bars - Only primary visible, others locked */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md max-w-md mx-auto">
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Your Animal Blend</p>
-              <div className="space-y-3">
-                {sortedScores.map(({ key, value, animal }) => {
-                  const isPrimary = key === result.primaryType;
-                  return (
-                    <div key={key} className="flex items-center gap-3">
-                      <span className="text-xl w-8">{animal.emoji}</span>
-                      <div className="flex-1">
-                        <div className="h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                          {isPrimary ? (
-                            <div
-                              className="h-full rounded-full transition-all"
-                              style={{ width: `${value}%`, backgroundColor: animal.color }}
-                            />
-                          ) : (
-                            <div
-                              className="h-full rounded-full opacity-30"
-                              style={{ width: '100%', background: `linear-gradient(to right, ${animal.color}, transparent)` }}
-                            />
-                          )}
-                        </div>
-                      </div>
-                      {isPrimary ? (
-                        <span className="text-sm font-medium w-10 text-right" style={{ color: animal.color }}>
-                          {value}%
-                        </span>
-                      ) : (
-                        <span className="w-10 flex justify-end">
-                          <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                          </svg>
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
+            {/* Purchase CTA - Top */}
+            <div
+              className="rounded-2xl p-6 text-center max-w-md mx-auto"
+              style={{
+                background: "rgba(255,255,255,0.9)",
+                border: `2px solid ${primaryAnimal.color}30`,
+              }}
+            >
+              <div className="mb-4">
+                <span className="text-3xl font-bold" style={{ color: primaryAnimal.color }}>
+                  $4.99
+                </span>
+                <span className="text-gray-500 dark:text-gray-400 ml-2">one-time</span>
               </div>
+
+              <Button
+                onClick={handlePurchase}
+                size="lg"
+                className="w-full text-white text-lg font-semibold py-5 shadow-lg hover:shadow-xl transition-all gap-2 mb-3"
+                style={{ backgroundColor: primaryAnimal.color }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                  />
+                </svg>
+                Unlock Full Report — $4.99
+              </Button>
+
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Instant access • PDF download • 15 pages
+              </p>
             </div>
           </div>
         </div>
