@@ -459,7 +459,9 @@ export default function ResultsPage() {
               className="w-10 h-10 rounded-full flex items-center justify-center"
               style={{ backgroundColor: `${primaryAnimal.color}20` }}
             >
-              <span className="text-xl">🌱</span>
+              <svg className="w-5 h-5" style={{ color: primaryAnimal.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               Tips for Growth
@@ -478,7 +480,7 @@ export default function ResultsPage() {
                   >
                     {i + 1}
                   </span>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">{tip}</p>
+                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{tip}</p>
                 </div>
               </div>
             ))}
