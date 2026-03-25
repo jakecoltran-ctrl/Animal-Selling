@@ -467,81 +467,81 @@ export default function DashboardPage() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Team Safari Card */}
+            {/* Your Teams - only show if user has teams */}
+            {userTeams.length > 0 && (
+              <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-gray-900 animate-fade-in delay-300 hover-lift">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-gray-900 dark:text-white text-lg">Your Teams</CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-400">
+                    {userTeams.length} team{userTeams.length !== 1 ? "s" : ""}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {userTeams.map((team) => (
+                      <Link key={team.id} href={`/dashboard/team/${team.id}`}>
+                        <div className="p-3 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer press-effect">
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="font-medium text-gray-900 dark:text-white text-sm">{team.name}</p>
+                            {team.isOwner && (
+                              <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
+                                Leader
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
+                              const count = team.members.filter(m => m.animalType === type).length;
+                              if (count === 0) return null;
+                              const animal = animals[type];
+                              return (
+                                <div
+                                  key={type}
+                                  className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs"
+                                  style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
+                                >
+                                  <span>{animal.emoji}</span>
+                                  <span className="font-medium">{count}</span>
+                                </div>
+                              );
+                            })}
+                            <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+                              {team.memberCount} member{team.memberCount !== 1 ? "s" : ""}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Team Safari - Create or Join */}
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 animate-fade-in delay-300 hover-lift">
               <CardHeader className="pb-2">
                 <TeamSafariBubble />
                 <CardDescription className="text-gray-600 dark:text-gray-300 text-center mt-2">
-                  {userTeams.length > 0 ? `${userTeams.length} team${userTeams.length !== 1 ? "s" : ""}` : "Analyze your team's selling styles"}
+                  {userTeams.length > 0 ? "Create or join another team" : "Analyze your team's selling styles"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {userTeams.length > 0 ? (
-                  <>
-                    {/* List of teams */}
-                    <div className="space-y-3 mb-4">
-                      {userTeams.map((team) => (
-                        <Link key={team.id} href={`/dashboard/team/${team.id}`}>
-                          <div className="p-3 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer">
-                            <div className="flex items-center justify-between mb-2">
-                              <p className="font-medium text-gray-900 dark:text-white text-sm">{team.name}</p>
-                              {team.isOwner && (
-                                <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
-                                  Leader
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
-                                const count = team.members.filter(m => m.animalType === type).length;
-                                if (count === 0) return null;
-                                const animal = animals[type];
-                                return (
-                                  <div
-                                    key={type}
-                                    className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs"
-                                    style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
-                                  >
-                                    <span>{animal.emoji}</span>
-                                    <span className="font-medium">{count}</span>
-                                  </div>
-                                );
-                              })}
-                              <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
-                                {team.memberCount} member{team.memberCount !== 1 ? "s" : ""}
-                              </span>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                    <Link href="/dashboard/team">
-                      <Button
-                        variant="outline"
-                        className="w-full press-effect"
-                      >
-                        Create or Join Team
-                      </Button>
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                      Create a team and invite members to see how your styles
-                      complement each other.
-                    </p>
-                    <Link href="/dashboard/team">
-                      <Button
-                        className="w-full text-white press-effect"
-                        style={{
-                          background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
-                        }}
-                      >
-                        Explore Team Safari
-                      </Button>
-                    </Link>
-                  </>
-                )}
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">
+                  {userTeams.length > 0
+                    ? "Want to add another team? Create a new one or join with an invite code."
+                    : "Create a team and invite members to see how your styles complement each other."
+                  }
+                </p>
+                <Link href="/dashboard/team">
+                  <Button
+                    className="w-full text-white press-effect"
+                    style={{
+                      background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
+                    }}
+                  >
+                    {userTeams.length > 0 ? "Create or Join Team" : "Explore Team Safari"}
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
