@@ -468,7 +468,22 @@ export default function DashboardPage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Team Safari Card */}
-            <Card className="border-2 border-gray-200 dark:border-white/20 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 animate-fade-in delay-300 hover-lift">
+            <Card
+              className="animate-fade-in delay-300 hover-lift overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(220,38,38,0.05) 0%, rgba(217,119,6,0.05) 25%, rgba(8,145,178,0.05) 50%, rgba(5,150,105,0.05) 100%)",
+                border: "2px solid transparent",
+                backgroundClip: "padding-box",
+                position: "relative",
+              }}
+            >
+              <div
+                className="absolute inset-0 -z-10 rounded-xl"
+                style={{
+                  background: "linear-gradient(135deg, #dc2626, #d97706, #0891b2, #059669)",
+                  margin: "-2px",
+                }}
+              />
               <CardHeader className="pb-2">
                 <TeamSafariBubble />
                 <CardDescription className="text-gray-600 dark:text-gray-300 text-center mt-2">
@@ -480,59 +495,70 @@ export default function DashboardPage() {
                   <>
                     {/* List of teams */}
                     <div className="space-y-3 mb-4">
-                      {userTeams.map((team) => (
-                        <Link key={team.id} href={`/dashboard/team/${team.id}`}>
-                          <div className="p-3 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer">
-                            <div className="flex items-center justify-between mb-2">
-                              <p className="font-medium text-gray-900 dark:text-white text-sm">{team.name}</p>
-                              {team.isOwner && (
-                                <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
-                                  Leader
+                      {userTeams.map((team, index) => {
+                        const colors = ["#dc2626", "#d97706", "#0891b2", "#059669"];
+                        const borderColor = colors[index % colors.length];
+                        return (
+                          <Link key={team.id} href={`/dashboard/team/${team.id}`}>
+                            <div
+                              className="p-3 rounded-xl bg-white dark:bg-gray-800 hover:shadow-md transition-all cursor-pointer press-effect"
+                              style={{
+                                border: `2px solid ${borderColor}30`,
+                              }}
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <p className="font-bold text-gray-900 dark:text-white text-sm">{team.name}</p>
+                                {team.isOwner && (
+                                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-medium">
+                                    Leader
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex items-center gap-1 flex-wrap">
+                                {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
+                                  const count = team.members.filter(m => m.animalType === type).length;
+                                  if (count === 0) return null;
+                                  const animal = animals[type];
+                                  return (
+                                    <div
+                                      key={type}
+                                      className="flex items-center gap-0.5 px-2 py-1 rounded-full text-xs font-medium"
+                                      style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
+                                    >
+                                      <span>{animal.emoji}</span>
+                                      <span>{count}</span>
+                                    </div>
+                                  );
+                                })}
+                                <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto font-medium">
+                                  {team.memberCount} member{team.memberCount !== 1 ? "s" : ""}
                                 </span>
-                              )}
+                              </div>
                             </div>
-                            <div className="flex items-center gap-1">
-                              {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
-                                const count = team.members.filter(m => m.animalType === type).length;
-                                if (count === 0) return null;
-                                const animal = animals[type];
-                                return (
-                                  <div
-                                    key={type}
-                                    className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs"
-                                    style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
-                                  >
-                                    <span>{animal.emoji}</span>
-                                    <span className="font-medium">{count}</span>
-                                  </div>
-                                );
-                              })}
-                              <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
-                                {team.memberCount} member{team.memberCount !== 1 ? "s" : ""}
-                              </span>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
+                          </Link>
+                        );
+                      })}
                     </div>
                     <Link href="/dashboard/team">
                       <Button
-                        variant="outline"
-                        className="w-full press-effect"
+                        className="w-full text-white press-effect hover-glow"
+                        style={{
+                          background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
+                        }}
                       >
-                        Create or Join Team
+                        + Create or Join Team
                       </Button>
                     </Link>
                   </>
                 ) : (
                   <>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">
                       Create a team and invite members to see how your styles
                       complement each other.
                     </p>
                     <Link href="/dashboard/team">
                       <Button
-                        className="w-full text-white press-effect"
+                        className="w-full text-white press-effect hover-glow"
                         style={{
                           background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
                         }}
