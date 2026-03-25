@@ -114,6 +114,7 @@ interface UserTeam {
   name: string;
   memberCount: number;
   members: TeamMember[];
+  isOwner: boolean;
 }
 
 export default function DashboardPage() {
@@ -121,7 +122,7 @@ export default function DashboardPage() {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
   const [purchasedIds, setPurchasedIds] = useState<Set<string>>(new Set());
-  const [userTeam, setUserTeam] = useState<UserTeam | null>(null);
+  const [userTeams, setUserTeams] = useState<UserTeam[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedTip, setExpandedTip] = useState<string | null>(null);
 
@@ -166,59 +167,69 @@ export default function DashboardPage() {
         setPurchasedIds(purchased);
       }
 
-      // Load user's team (as owner or member)
+      // Load all user's teams (as owner or member)
+      const allTeams: UserTeam[] = [];
+
+      // Get teams user owns
       const { data: ownedTeams } = await supabase
         .from("teams")
         .select("*, team_members(*)")
-        .eq("owner_id", authUser.id)
-        .limit(1);
+        .eq("owner_id", authUser.id);
 
-      if (ownedTeams && ownedTeams.length > 0) {
-        const teamData = ownedTeams[0];
-        setUserTeam({
-          id: teamData.id,
-          name: teamData.name,
-          memberCount: teamData.team_members?.length || 0,
-          members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
-            id: m.id,
-            name: m.name,
-            email: m.email,
-            animalType: m.animal_type,
-            joinedAt: m.joined_at,
-          })),
-        });
-      } else {
-        // Check if user is a member of any team
-        const { data: memberRecord } = await supabase
-          .from("team_members")
-          .select("team_id")
-          .eq("user_id", authUser.id)
-          .limit(1)
-          .single();
+      if (ownedTeams) {
+        for (const teamData of ownedTeams) {
+          allTeams.push({
+            id: teamData.id,
+            name: teamData.name,
+            memberCount: teamData.team_members?.length || 0,
+            members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+              id: m.id,
+              name: m.name,
+              email: m.email,
+              animalType: m.animal_type,
+              joinedAt: m.joined_at,
+            })),
+            isOwner: true,
+          });
+        }
+      }
 
-        if (memberRecord) {
-          const { data: teamData } = await supabase
-            .from("teams")
-            .select("*, team_members(*)")
-            .eq("id", memberRecord.team_id)
-            .single();
+      // Get teams user is a member of (but not owner)
+      const { data: memberRecords } = await supabase
+        .from("team_members")
+        .select("team_id")
+        .eq("user_id", authUser.id);
 
-          if (teamData) {
-            setUserTeam({
-              id: teamData.id,
-              name: teamData.name,
-              memberCount: teamData.team_members?.length || 0,
-              members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
-                id: m.id,
-                name: m.name,
-                email: m.email,
-                animalType: m.animal_type,
-                joinedAt: m.joined_at,
-              })),
-            });
+      if (memberRecords) {
+        const ownedTeamIds = new Set(allTeams.map(t => t.id));
+        for (const record of memberRecords) {
+          if (!ownedTeamIds.has(record.team_id)) {
+            const { data: teamData } = await supabase
+              .from("teams")
+              .select("*, team_members(*)")
+              .eq("id", record.team_id)
+              .single();
+
+            if (teamData) {
+              allTeams.push({
+                id: teamData.id,
+                name: teamData.name,
+                memberCount: teamData.team_members?.length || 0,
+                members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+                  id: m.id,
+                  name: m.name,
+                  email: m.email,
+                  animalType: m.animal_type,
+                  joinedAt: m.joined_at,
+                })),
+                isOwner: false,
+              });
+            }
           }
         }
       }
+
+      setUserTeams(allTeams);
 
       setLoading(false);
     };
@@ -461,41 +472,55 @@ export default function DashboardPage() {
               <CardHeader className="pb-2">
                 <TeamSafariBubble />
                 <CardDescription className="text-gray-600 dark:text-gray-300 text-center mt-2">
-                  {userTeam ? userTeam.name : "Analyze your team's selling styles"}
+                  {userTeams.length > 0 ? `${userTeams.length} team${userTeams.length !== 1 ? "s" : ""}` : "Analyze your team's selling styles"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {userTeam ? (
+                {userTeams.length > 0 ? (
                   <>
-                    {/* Team member distribution */}
-                    <div className="flex justify-center gap-1 mb-4">
-                      {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
-                        const count = userTeam.members.filter(m => m.animalType === type).length;
-                        if (count === 0) return null;
-                        const animal = animals[type];
-                        return (
-                          <div
-                            key={type}
-                            className="flex items-center gap-1 px-2 py-1 rounded-full text-xs"
-                            style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
-                          >
-                            <span>{animal.emoji}</span>
-                            <span className="font-medium">{count}</span>
+                    {/* List of teams */}
+                    <div className="space-y-3 mb-4">
+                      {userTeams.map((team) => (
+                        <Link key={team.id} href={`/dashboard/team/${team.id}`}>
+                          <div className="p-3 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer">
+                            <div className="flex items-center justify-between mb-2">
+                              <p className="font-medium text-gray-900 dark:text-white text-sm">{team.name}</p>
+                              {team.isOwner && (
+                                <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
+                                  Leader
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1">
+                              {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
+                                const count = team.members.filter(m => m.animalType === type).length;
+                                if (count === 0) return null;
+                                const animal = animals[type];
+                                return (
+                                  <div
+                                    key={type}
+                                    className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs"
+                                    style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
+                                  >
+                                    <span>{animal.emoji}</span>
+                                    <span className="font-medium">{count}</span>
+                                  </div>
+                                );
+                              })}
+                              <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+                                {team.memberCount} member{team.memberCount !== 1 ? "s" : ""}
+                              </span>
+                            </div>
                           </div>
-                        );
-                      })}
+                        </Link>
+                      ))}
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">
-                      {userTeam.memberCount} team member{userTeam.memberCount !== 1 ? "s" : ""}
-                    </p>
                     <Link href="/dashboard/team">
                       <Button
-                        className="w-full text-white press-effect"
-                        style={{
-                          background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
-                        }}
+                        variant="outline"
+                        className="w-full press-effect"
                       >
-                        View Team
+                        Create or Join Team
                       </Button>
                     </Link>
                   </>
