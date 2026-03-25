@@ -471,7 +471,7 @@ export default function DashboardPage() {
             {userTeams.length > 0 && (
               <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-gray-900 animate-fade-in delay-300 hover-lift">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-gray-900 dark:text-white text-lg">Your Teams</CardTitle>
+                  <CardTitle className="text-gray-900 dark:text-white text-lg">Your Team Safaris</CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
                     {userTeams.length} team{userTeams.length !== 1 ? "s" : ""}
                   </CardDescription>
