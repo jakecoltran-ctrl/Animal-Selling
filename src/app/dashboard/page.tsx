@@ -189,26 +189,34 @@ export default function DashboardPage() {
         });
       } else {
         // Check if user is a member of any team
-        const { data: memberTeams } = await supabase
+        const { data: memberRecord } = await supabase
           .from("team_members")
-          .select("team_id, teams(id, name, team_members(*))")
+          .select("team_id")
           .eq("user_id", authUser.id)
-          .limit(1);
+          .limit(1)
+          .single();
 
-        if (memberTeams && memberTeams.length > 0 && memberTeams[0].teams) {
-          const teamData = memberTeams[0].teams as { id: string; name: string; team_members: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }[] };
-          setUserTeam({
-            id: teamData.id,
-            name: teamData.name,
-            memberCount: teamData.team_members?.length || 0,
-            members: (teamData.team_members || []).map((m) => ({
-              id: m.id,
-              name: m.name,
-              email: m.email,
-              animalType: m.animal_type,
-              joinedAt: m.joined_at,
-            })),
-          });
+        if (memberRecord) {
+          const { data: teamData } = await supabase
+            .from("teams")
+            .select("*, team_members(*)")
+            .eq("id", memberRecord.team_id)
+            .single();
+
+          if (teamData) {
+            setUserTeam({
+              id: teamData.id,
+              name: teamData.name,
+              memberCount: teamData.team_members?.length || 0,
+              members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+                id: m.id,
+                name: m.name,
+                email: m.email,
+                animalType: m.animal_type,
+                joinedAt: m.joined_at,
+              })),
+            });
+          }
         }
       }
 
