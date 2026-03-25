@@ -52,7 +52,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {/* Lowest Area */}
             <div
-              className="rounded-2xl p-5 border-2 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+              className="rounded-2xl p-5 border-2"
               style={{ borderColor: lowestAnimal.color, backgroundColor: `${lowestAnimal.color}08` }}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -84,7 +84,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
 
             {/* Second Lowest Area */}
             <div
-              className="rounded-2xl p-5 border-2 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+              className="rounded-2xl p-5 border-2"
               style={{ borderColor: secondLowestAnimal.color, backgroundColor: `${secondLowestAnimal.color}08` }}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -171,7 +171,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
               {growthPlan.actionSteps.map((step, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                  className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700"
                 >
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"

@@ -64,7 +64,7 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
         {questions.map((item, i) => (
           <div
             key={i}
-            className="rounded-xl border-2 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+            className="rounded-xl border-2 overflow-hidden"
             style={{ borderColor: `${animal.color}30` }}
           >
             {/* Category Header */}

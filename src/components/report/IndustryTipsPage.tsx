@@ -38,7 +38,7 @@ export function IndustryTipsPage({ primaryType }: IndustryTipsPageProps) {
           return (
             <div
               key={industry.id}
-              className="rounded-xl border-2 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+              className="rounded-xl border-2 overflow-hidden"
               style={{ borderColor: industry.color }}
             >
               {/* Card Header */}

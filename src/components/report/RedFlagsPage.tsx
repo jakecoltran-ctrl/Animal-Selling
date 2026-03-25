@@ -40,7 +40,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
         {scenarios.map((scenario, i) => (
           <div
             key={i}
-            className="rounded-xl border overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+            className="rounded-xl border overflow-hidden shadow-sm"
           >
             {/* Trigger */}
             <div className="bg-gray-100 dark:bg-gray-700 px-5 py-4">

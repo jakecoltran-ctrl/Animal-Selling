@@ -66,7 +66,7 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
       {/* Weekly Plans */}
       <div className="space-y-6">
         {plan.weeks.map((week, i) => (
-          <div key={i} className="rounded-xl border overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+          <div key={i} className="rounded-xl border overflow-hidden">
             {/* Week Header */}
             <div
               className="px-4 py-3 text-white"
