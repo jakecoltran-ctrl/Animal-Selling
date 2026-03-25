@@ -480,8 +480,8 @@ export default function DashboardPage() {
                   <div className="space-y-3">
                     {userTeams.map((team) => (
                       <Link key={team.id} href={`/dashboard/team/${team.id}`}>
-                        <div className="p-3 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer press-effect">
-                          <div className="flex items-center justify-between mb-2">
+                        <div className="p-4 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer press-effect text-center">
+                          <div className="flex items-center justify-center gap-2 mb-2">
                             <p className="font-bold text-gray-900 dark:text-white text-lg">{team.name}</p>
                             {team.isOwner && (
                               <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
@@ -489,7 +489,7 @@ export default function DashboardPage() {
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center justify-center gap-1 flex-wrap">
                             {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
                               const count = team.members.filter(m => m.animalType === type).length;
                               if (count === 0) return null;
@@ -505,7 +505,7 @@ export default function DashboardPage() {
                                 </div>
                               );
                             })}
-                            <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">
                               {team.memberCount} member{team.memberCount !== 1 ? "s" : ""}
                             </span>
                           </div>
