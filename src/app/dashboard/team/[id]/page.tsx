@@ -227,24 +227,20 @@ export default function TeamDetailPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-200 to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12">
       <div className="container mx-auto px-4">
-        {/* Team Safari Header */}
-        <div className="text-center mb-8">
-          <Link
-            href="/dashboard"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:underline mb-4 inline-block"
-          >
-            ← Back to Dashboard
-          </Link>
-          <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Team Safari</p>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{team.name}</h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            {team.members.length} team member{team.members.length !== 1 ? "s" : ""}
-          </p>
-        </div>
-
-        {/* Action Bar */}
-        <div className="flex justify-center mb-8">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <Link
+              href="/dashboard/team"
+              className="text-sm text-gray-600 dark:text-gray-400 hover:underline mb-2 inline-block"
+            >
+              ← Back to Teams
+            </Link>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{team.name}</h1>
+            <p className="text-gray-600 dark:text-gray-300">
+              {team.members.length} team member{team.members.length !== 1 ? "s" : ""}
+            </p>
+          </div>
           <Button
             onClick={handleCopyInvite}
             className="text-white"
