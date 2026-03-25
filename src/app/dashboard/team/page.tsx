@@ -12,6 +12,7 @@ import { AnimalType } from "@/types";
 
 interface TeamMember {
   id: string;
+  userId: string;
   name: string;
   email: string;
   animalType: AnimalType;
@@ -32,11 +33,12 @@ const demoTeam: Team = {
   id: "demo-team-1",
   name: "Sales Dream Team",
   inviteCode: "SAFARI2024",
-  ownerId: "demo",
+  ownerId: "demo-user-1",
   createdAt: new Date().toISOString(),
   members: [
     {
       id: "1",
+      userId: "demo-user-1",
       name: "Sarah K.",
       email: "sarah@example.com",
       animalType: "lion",
@@ -44,6 +46,7 @@ const demoTeam: Team = {
     },
     {
       id: "2",
+      userId: "demo-user-2",
       name: "Marcus T.",
       email: "marcus@example.com",
       animalType: "penguin",
@@ -51,6 +54,7 @@ const demoTeam: Team = {
     },
     {
       id: "3",
+      userId: "demo-user-3",
       name: "Jennifer L.",
       email: "jennifer@example.com",
       animalType: "retriever",
@@ -58,6 +62,7 @@ const demoTeam: Team = {
     },
     {
       id: "4",
+      userId: "demo-user-4",
       name: "David C.",
       email: "david@example.com",
       animalType: "beaver",
@@ -65,6 +70,7 @@ const demoTeam: Team = {
     },
     {
       id: "5",
+      userId: "demo-user-5",
       name: "Emily R.",
       email: "emily@example.com",
       animalType: "penguin",
@@ -109,8 +115,9 @@ export default function TeamSafariPage() {
           inviteCode: teamData.invite_code,
           ownerId: teamData.owner_id,
           createdAt: teamData.created_at,
-          members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+          members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
             id: m.id,
+            userId: m.user_id,
             name: m.name,
             email: m.email,
             animalType: m.animal_type,
@@ -200,6 +207,7 @@ export default function TeamSafariPage() {
       ownerId: data.owner_id,
       members: memberData ? [{
         id: memberData.id,
+        userId: memberData.user_id,
         name: memberData.name,
         email: memberData.email,
         animalType: memberData.animal_type,
@@ -594,6 +602,7 @@ export default function TeamSafariPage() {
                 <div className="space-y-3">
                   {team.members.map((member) => {
                     const animal = animals[member.animalType];
+                    const isLeader = member.userId === team.ownerId;
                     return (
                       <div
                         key={member.id}
@@ -602,7 +611,14 @@ export default function TeamSafariPage() {
                         <div className="flex items-center gap-4">
                           <span className="text-2xl">{animal.emoji}</span>
                           <div>
-                            <p className="font-medium">{member.name}</p>
+                            <div className="flex items-center gap-2">
+                              <p className="font-medium">{member.name}</p>
+                              {isLeader && (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-medium">
+                                  Leader
+                                </span>
+                              )}
+                            </div>
                             <p className="text-sm text-muted-foreground">
                               {member.email}
                             </p>
