@@ -227,29 +227,52 @@ export default function TeamDetailPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-200 to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-          <div>
-            <Link
-              href="/dashboard/team"
-              className="text-sm text-gray-600 dark:text-gray-400 hover:underline mb-2 inline-block"
-            >
-              ← Back to Teams
-            </Link>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{team.name}</h1>
-            <p className="text-gray-600 dark:text-gray-300">
-              {team.members.length} team member{team.members.length !== 1 ? "s" : ""}
-            </p>
-          </div>
-          <Button
-            onClick={handleCopyInvite}
-            className="text-white"
-            style={{
-              background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
-            }}
+        {/* Back Link */}
+        <div className="mb-4">
+          <Link
+            href="/dashboard"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:underline"
           >
-            {inviteCopied ? "Copied!" : "Copy Invite Link"}
-          </Button>
+            ← Back to Dashboard
+          </Link>
+        </div>
+
+        {/* Hero Banner */}
+        <div
+          className="relative overflow-hidden rounded-2xl mb-8"
+          style={{
+            background: "linear-gradient(135deg, #dc2626, #d97706, #0891b2, #059669)",
+          }}
+        >
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute -right-8 -top-8 text-[200px] opacity-30">
+              🦁
+            </div>
+          </div>
+          <div className="relative z-10 px-8 py-10 flex flex-col md:flex-row items-center gap-6">
+            <div
+              className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-5xl shadow-xl"
+            >
+              🦁🐧🐕🦫
+            </div>
+            <div className="text-center md:text-left flex-1">
+              <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
+                Team Safari
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-2">
+                {team.name}
+              </h2>
+              <p className="text-white/90 text-xl">
+                {team.members.length} team member{team.members.length !== 1 ? "s" : ""}
+              </p>
+            </div>
+            <Button
+              onClick={handleCopyInvite}
+              className="bg-white/20 hover:bg-white/30 text-white border-white/30 border"
+            >
+              {inviteCopied ? "Copied!" : "Copy Invite Link"}
+            </Button>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
