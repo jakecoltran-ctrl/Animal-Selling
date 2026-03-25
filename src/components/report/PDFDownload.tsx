@@ -86,7 +86,7 @@ export function PDFDownload({
       onClick={handleDownload}
       disabled={isGenerating}
       size="lg"
-      className="gap-2 text-white"
+      className="gap-2 text-white press-effect hover-glow"
       style={{ backgroundColor: primaryColor }}
     >
       {isGenerating ? (

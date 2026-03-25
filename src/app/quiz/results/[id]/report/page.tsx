@@ -160,6 +160,7 @@ export default function ReportViewPage() {
                 size="sm"
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
+                className="press-effect hover-glow"
               >
                 Previous
               </Button>
@@ -171,6 +172,7 @@ export default function ReportViewPage() {
                 size="sm"
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
+                className="press-effect hover-glow"
               >
                 Next
               </Button>
@@ -446,10 +448,10 @@ export default function ReportViewPage() {
             <button
               key={page}
               onClick={() => goToPage(page)}
-              className={`w-2 h-2 rounded-full transition-all ${
+              className={`w-2 h-2 rounded-full transition-all press-effect ${
                 currentPage === page
                   ? "w-5"
-                  : "hover:bg-gray-400"
+                  : "hover:bg-gray-400 hover:scale-125"
               }`}
               style={{
                 backgroundColor:
