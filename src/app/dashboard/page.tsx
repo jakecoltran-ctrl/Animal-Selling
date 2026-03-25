@@ -482,7 +482,7 @@ export default function DashboardPage() {
                       <Link key={team.id} href={`/dashboard/team/${team.id}`}>
                         <div className="p-3 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer press-effect">
                           <div className="flex items-center justify-between mb-2">
-                            <p className="font-medium text-gray-900 dark:text-white text-sm">{team.name}</p>
+                            <p className="font-bold text-gray-900 dark:text-white text-base">{team.name}</p>
                             {team.isOwner && (
                               <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
                                 Leader
