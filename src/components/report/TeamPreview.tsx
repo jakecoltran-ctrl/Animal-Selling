@@ -28,7 +28,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* Team Benefits Grid */}
       <div className="grid md:grid-cols-2 gap-6 mb-10">
-        <div className="p-6 bg-slate-100 dark:bg-gray-800 rounded-xl">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-red-200 dark:border-red-500/30 hover:shadow-md transition-shadow">
           <div className="text-3xl mb-3">📊</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Composition</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -37,7 +37,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-slate-100 dark:bg-gray-800 rounded-xl">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-amber-200 dark:border-amber-500/30 hover:shadow-md transition-shadow">
           <div className="text-3xl mb-3">🤝</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Optimal Pairings</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -46,7 +46,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-slate-100 dark:bg-gray-800 rounded-xl">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-cyan-200 dark:border-cyan-500/30 hover:shadow-md transition-shadow">
           <div className="text-3xl mb-3">🎯</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Account Assignment</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -55,7 +55,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-slate-100 dark:bg-gray-800 rounded-xl">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-emerald-200 dark:border-emerald-500/30 hover:shadow-md transition-shadow">
           <div className="text-3xl mb-3">📈</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Development</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -67,10 +67,10 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* Main CTA - Start or Join Team */}
       <div
-        className="rounded-2xl p-10 text-center border-4 mb-6"
+        className="rounded-2xl p-10 text-center border-4 mb-6 relative overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, ${primaryAnimal.color}15 0%, ${primaryAnimal.color}05 100%)`,
-          borderColor: primaryAnimal.color,
+          background: "linear-gradient(135deg, rgba(220,38,38,0.1) 0%, rgba(217,119,6,0.1) 25%, rgba(8,145,178,0.1) 50%, rgba(5,150,105,0.1) 100%)",
+          borderImage: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669) 1",
         }}
       >
         <div className="text-6xl mb-4">🦁🐧🐕🦫</div>
@@ -84,8 +84,8 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
         <Link href="/dashboard/team">
           <Button
             size="lg"
-            className="text-white text-lg px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-shadow"
-            style={{ backgroundColor: primaryAnimal.color }}
+            className="text-white text-lg px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-all press-effect hover-glow"
+            style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}
           >
             Create Your Team Safari
           </Button>
@@ -93,7 +93,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       </div>
 
       {/* Secondary CTA - Join Existing Team */}
-      <div className="rounded-xl p-6 text-center bg-slate-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-600">
+      <div className="rounded-xl p-6 text-center bg-white dark:bg-white/10 border-2 border-dashed border-gray-300 dark:border-gray-500">
         <p className="text-gray-700 dark:text-gray-300 mb-4">
           <span className="font-semibold">Already have a team?</span> If your manager or teammate sent you an invite link, use it to join your team.
         </p>
@@ -103,9 +103,20 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       </div>
 
       {/* How Your Type Fits */}
-      <div className="mt-8 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700">
+      <div
+        className="mt-8 p-6 rounded-xl border-2"
+        style={{
+          backgroundColor: `${primaryAnimal.color}08`,
+          borderColor: `${primaryAnimal.color}40`,
+        }}
+      >
         <div className="flex items-center gap-3 mb-3">
-          <span className="text-3xl">{primaryAnimal.emoji}</span>
+          <div
+            className="w-12 h-12 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: `${primaryAnimal.color}20` }}
+          >
+            <span className="text-2xl">{primaryAnimal.emoji}</span>
+          </div>
           <h3 className="font-bold text-gray-900 dark:text-white">
             How {primaryAnimal.name}s Contribute to Teams
           </h3>
