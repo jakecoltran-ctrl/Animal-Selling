@@ -130,8 +130,36 @@ export default function TeamSafariPage() {
     if (!userId) return;
 
     const supabase = createClient();
+
+    // Get user info
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const userName = user.user_metadata?.name || user.email?.split("@")[0] || "Team Member";
+    const userEmail = user.email || "";
+
+    // Get user's latest quiz result for their animal type
+    let userAnimalType: AnimalType = "lion"; // fallback
+    const quizResults: { createdAt: string; primaryType: AnimalType }[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith("quiz_result_")) {
+        const result = localStorage.getItem(key);
+        if (result) {
+          const parsed = JSON.parse(result);
+          quizResults.push({ createdAt: parsed.createdAt, primaryType: parsed.primaryType });
+        }
+      }
+    }
+    // Sort by date and get most recent
+    if (quizResults.length > 0) {
+      quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      userAnimalType = quizResults[0].primaryType;
+    }
+
     const inviteCode = Math.random().toString(36).substring(2, 10).toUpperCase();
 
+    // Create team
     const { data, error } = await supabase
       .from("teams")
       .insert({
@@ -147,12 +175,36 @@ export default function TeamSafariPage() {
       return;
     }
 
+    // Add creator as team member
+    const { data: memberData, error: memberError } = await supabase
+      .from("team_members")
+      .insert({
+        team_id: data.id,
+        user_id: userId,
+        name: userName,
+        email: userEmail,
+        animal_type: userAnimalType,
+      })
+      .select()
+      .single();
+
+    if (memberError) {
+      console.error("Failed to add creator as member:", memberError);
+    }
+
+    // Set team state with creator as first member
     setTeam({
       id: data.id,
       name: data.name,
       inviteCode: data.invite_code,
       ownerId: data.owner_id,
-      members: [],
+      members: memberData ? [{
+        id: memberData.id,
+        name: memberData.name,
+        email: memberData.email,
+        animalType: memberData.animal_type,
+        joinedAt: memberData.joined_at,
+      }] : [],
       createdAt: data.created_at,
     });
     setShowCreateForm(false);
