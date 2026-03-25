@@ -275,6 +275,37 @@ export default function TeamDetailPage() {
           </div>
         </div>
 
+        {/* Current User Info */}
+        {(() => {
+          const currentMember = team.members.find(m => m.userId === userId);
+          if (!currentMember) return null;
+          const userAnimal = animals[currentMember.animalType];
+          return (
+            <div
+              className="mb-8 p-4 rounded-xl border-2 flex items-center gap-4"
+              style={{
+                backgroundColor: `${userAnimal.color}10`,
+                borderColor: `${userAnimal.color}40`,
+              }}
+            >
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-2xl"
+                style={{ backgroundColor: `${userAnimal.color}20` }}
+              >
+                {userAnimal.emoji}
+              </div>
+              <div>
+                <p className="text-sm text-gray-500 dark:text-gray-400">You</p>
+                <p className="font-bold text-gray-900 dark:text-white">{currentMember.name}</p>
+              </div>
+              <div className="ml-auto text-right">
+                <p className="font-medium" style={{ color: userAnimal.color }}>{userAnimal.name}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{userAnimal.title}</p>
+              </div>
+            </div>
+          );
+        })()}
+
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Distribution */}
           <Card className="lg:col-span-2 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
