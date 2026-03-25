@@ -307,7 +307,7 @@ export default function TeamSafariPage() {
           {/* Existing Teams */}
           {teams.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Your Team Safaris</h2>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Your Teams</h2>
               <div className="space-y-3">
                 {teams.map((team) => (
                   <Link key={team.id} href={`/dashboard/team/${team.id}`}>
