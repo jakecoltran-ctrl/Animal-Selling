@@ -156,38 +156,43 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
 
       {/* Type Selector - hidden for PDF */}
       {!hideSelector && (
-        <div className="flex justify-center gap-3 mb-6">
-          {allTypes.map((type) => {
-            const animal = animalData[type];
-            const isSelected = selectedType === type;
-            const isYou = type === primaryType;
+        <>
+          <div className="flex justify-center gap-3 mb-3">
+            {allTypes.map((type) => {
+              const animal = animalData[type];
+              const isSelected = selectedType === type;
+              const isYou = type === primaryType;
 
-            return (
-              <button
-                key={type}
-                onClick={() => setSelectedType(type)}
-                className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all ${
-                  isSelected ? "shadow-lg scale-105" : "hover:shadow-md opacity-70"
-                } ${!isSelected ? "bg-white dark:bg-gray-800" : ""}`}
-                style={{
-                  borderColor: animal.color,
-                  backgroundColor: isSelected ? `${animal.color}15` : undefined,
-                }}
-              >
-                <span className="text-3xl mb-1">{animal.emoji}</span>
-                <span
-                  className="text-sm font-bold"
-                  style={{ color: animal.color }}
+              return (
+                <button
+                  key={type}
+                  onClick={() => setSelectedType(type)}
+                  className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all ${
+                    isSelected ? "shadow-lg scale-105" : "hover:shadow-md opacity-70"
+                  } ${!isSelected ? "bg-white dark:bg-gray-800" : ""}`}
+                  style={{
+                    borderColor: animal.color,
+                    backgroundColor: isSelected ? `${animal.color}15` : undefined,
+                  }}
                 >
-                  {animal.name}
-                </span>
-                {isYou && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400">(You)</span>
-                )}
-              </button>
-            );
-          })}
-        </div>
+                  <span className="text-3xl mb-1">{animal.emoji}</span>
+                  <span
+                    className="text-sm font-bold"
+                    style={{ color: animal.color }}
+                  >
+                    {animal.name}
+                  </span>
+                  {isYou && (
+                    <span className="text-xs text-gray-500 dark:text-gray-400">(You)</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-6">
+            👆 Click on any animal above to see how to sell to that buyer type
+          </p>
+        </>
       )}
 
       {/* Selected Type Details */}
