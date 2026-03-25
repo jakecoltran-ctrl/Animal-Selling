@@ -224,6 +224,51 @@ export default function TeamSafariPage() {
     setTimeout(() => setInviteCopied(false), 2000);
   };
 
+  const handleLeaveTeam = async () => {
+    if (!team || !userId) return;
+
+    const isOwner = team.ownerId === userId;
+
+    // Confirm action
+    const confirmMessage = isOwner
+      ? "You are the team owner. Leaving will delete the entire team. Are you sure?"
+      : "Are you sure you want to leave this team?";
+
+    if (!confirm(confirmMessage)) return;
+
+    const supabase = createClient();
+
+    if (isOwner) {
+      // Delete the entire team (cascade will delete team_members)
+      const { error } = await supabase
+        .from("teams")
+        .delete()
+        .eq("id", team.id);
+
+      if (error) {
+        console.error("Failed to delete team:", error);
+        alert("Failed to delete team. Please try again.");
+        return;
+      }
+    } else {
+      // Just remove this user from team_members
+      const { error } = await supabase
+        .from("team_members")
+        .delete()
+        .eq("team_id", team.id)
+        .eq("user_id", userId);
+
+      if (error) {
+        console.error("Failed to leave team:", error);
+        alert("Failed to leave team. Please try again.");
+        return;
+      }
+    }
+
+    // Clear team state
+    setTeam(null);
+  };
+
   const getTypeDistribution = (): Record<AnimalType, number> => {
     const distribution: Record<AnimalType, number> = {
       lion: 0,
@@ -667,6 +712,19 @@ export default function TeamSafariPage() {
             </Button>
           </CardContent>
         </Card>
+
+        {/* Leave Team */}
+        {!isDemo && (
+          <div className="mt-8 max-w-md mx-auto text-center">
+            <Button
+              variant="ghost"
+              onClick={handleLeaveTeam}
+              className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
+            >
+              {team.ownerId === userId ? "Delete Team" : "Leave Team"}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
