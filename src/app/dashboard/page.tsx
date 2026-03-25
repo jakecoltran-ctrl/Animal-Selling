@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScoreBars } from "@/components/results/RadarChart";
-import { getAnimal } from "@/lib/animal-data";
-import { QuizResult, AnimalType } from "@/types";
+import { getAnimal, animals } from "@/lib/animal-data";
+import { QuizResult, AnimalType, TeamMember } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -109,11 +109,19 @@ interface UserProfile {
   email: string;
 }
 
+interface UserTeam {
+  id: string;
+  name: string;
+  memberCount: number;
+  members: TeamMember[];
+}
+
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
   const [purchasedIds, setPurchasedIds] = useState<Set<string>>(new Set());
+  const [userTeam, setUserTeam] = useState<UserTeam | null>(null);
   const [loading, setLoading] = useState(true);
   const [expandedTip, setExpandedTip] = useState<string | null>(null);
 
@@ -156,6 +164,52 @@ export default function DashboardPage() {
         const resultIds = results.map(r => r.id);
         const purchased = await getPurchasedResultIds(authUser.id, resultIds);
         setPurchasedIds(purchased);
+      }
+
+      // Load user's team (as owner or member)
+      const { data: ownedTeams } = await supabase
+        .from("teams")
+        .select("*, team_members(*)")
+        .eq("owner_id", authUser.id)
+        .limit(1);
+
+      if (ownedTeams && ownedTeams.length > 0) {
+        const teamData = ownedTeams[0];
+        setUserTeam({
+          id: teamData.id,
+          name: teamData.name,
+          memberCount: teamData.team_members?.length || 0,
+          members: (teamData.team_members || []).map((m: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+            id: m.id,
+            name: m.name,
+            email: m.email,
+            animalType: m.animal_type,
+            joinedAt: m.joined_at,
+          })),
+        });
+      } else {
+        // Check if user is a member of any team
+        const { data: memberTeams } = await supabase
+          .from("team_members")
+          .select("team_id, teams(id, name, team_members(*))")
+          .eq("user_id", authUser.id)
+          .limit(1);
+
+        if (memberTeams && memberTeams.length > 0 && memberTeams[0].teams) {
+          const teamData = memberTeams[0].teams as { id: string; name: string; team_members: { id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }[] };
+          setUserTeam({
+            id: teamData.id,
+            name: teamData.name,
+            memberCount: teamData.team_members?.length || 0,
+            members: (teamData.team_members || []).map((m) => ({
+              id: m.id,
+              name: m.name,
+              email: m.email,
+              animalType: m.animal_type,
+              joinedAt: m.joined_at,
+            })),
+          });
+        }
       }
 
       setLoading(false);
@@ -399,24 +453,62 @@ export default function DashboardPage() {
               <CardHeader className="pb-2">
                 <TeamSafariBubble />
                 <CardDescription className="text-gray-600 dark:text-gray-300 text-center mt-2">
-                  Analyze your team's selling styles
+                  {userTeam ? userTeam.name : "Analyze your team's selling styles"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                  Create a team and invite members to see how your styles
-                  complement each other.
-                </p>
-                <Link href="/dashboard/team">
-                  <Button
-                    className="w-full text-white press-effect"
-                    style={{
-                      background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
-                    }}
-                  >
-                    Explore Team Safari
-                  </Button>
-                </Link>
+                {userTeam ? (
+                  <>
+                    {/* Team member distribution */}
+                    <div className="flex justify-center gap-1 mb-4">
+                      {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
+                        const count = userTeam.members.filter(m => m.animalType === type).length;
+                        if (count === 0) return null;
+                        const animal = animals[type];
+                        return (
+                          <div
+                            key={type}
+                            className="flex items-center gap-1 px-2 py-1 rounded-full text-xs"
+                            style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
+                          >
+                            <span>{animal.emoji}</span>
+                            <span className="font-medium">{count}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">
+                      {userTeam.memberCount} team member{userTeam.memberCount !== 1 ? "s" : ""}
+                    </p>
+                    <Link href="/dashboard/team">
+                      <Button
+                        className="w-full text-white press-effect"
+                        style={{
+                          background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
+                        }}
+                      >
+                        View Team
+                      </Button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      Create a team and invite members to see how your styles
+                      complement each other.
+                    </p>
+                    <Link href="/dashboard/team">
+                      <Button
+                        className="w-full text-white press-effect"
+                        style={{
+                          background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
+                        }}
+                      >
+                        Explore Team Safari
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </CardContent>
             </Card>
 
