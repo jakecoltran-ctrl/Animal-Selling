@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { animals } from "@/lib/animal-data";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
+import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 
 interface TeamMember {
   id: string;
@@ -297,8 +298,7 @@ export default function TeamSafariPage() {
             >
               ← Back to Dashboard
             </Link>
-            <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
-            <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Team Safari</h1>
+            <TeamSafariBubble className="mb-4" />
             <p className="text-gray-600 dark:text-gray-300">
               Analyze your sales team&apos;s style distribution
             </p>
