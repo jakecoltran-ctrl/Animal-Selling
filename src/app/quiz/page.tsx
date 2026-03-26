@@ -19,6 +19,7 @@ import {
   CustomerType,
   SalesChannel,
 } from "@/types";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 type QuizStage = "intro" | "setup" | "questions" | "signup" | "calculating";
 
@@ -472,8 +473,9 @@ export default function QuizPage() {
 
   // Questions Stage
   return (
-    <div className="min-h-[80vh] py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-[80vh] py-12 relative overflow-hidden">
+      <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
           {/* Context Badge */}
           <div className="flex flex-wrap justify-center gap-2 mb-6">

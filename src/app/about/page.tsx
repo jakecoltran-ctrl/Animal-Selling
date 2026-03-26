@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export default function AboutPage() {
   const faqs = [
@@ -24,17 +25,10 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-gray-950 overflow-hidden">
       {/* Hero Section */}
       <section className="py-24 relative">
-        <div className="absolute inset-0 opacity-15">
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(ellipse at 50% 0%, #d9770640 0%, transparent 60%)`
-            }}
-          />
-        </div>
+        <AnimatedBackground opacity={0.2} emojiOpacity={0.15} />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">

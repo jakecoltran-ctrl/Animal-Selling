@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { animals } from "@/lib/animal-data";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 interface SalesContext {
   sellType: "product" | "service";
@@ -238,8 +239,9 @@ export default function TeamDetailPage() {
   const total = team.members.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-200 to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-950 py-12 relative overflow-hidden">
+      <AnimatedBackground opacity={0.2} emojiOpacity={0.15} />
+      <div className="container mx-auto px-4 relative z-10">
         {/* Back Link */}
         <div className="mb-4">
           <Link
