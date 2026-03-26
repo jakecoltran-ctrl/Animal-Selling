@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,7 @@ interface Team {
   isOwner: boolean;
 }
 
-export default function TeamSafariPage() {
+function TeamSafariPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [teams, setTeams] = useState<Team[]>([]);
@@ -469,5 +469,20 @@ export default function TeamSafariPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function TeamSafariPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[80vh] flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <p className="text-muted-foreground">Loading teams...</p>
+        </div>
+      </div>
+    }>
+      <TeamSafariPageContent />
+    </Suspense>
   );
 }
