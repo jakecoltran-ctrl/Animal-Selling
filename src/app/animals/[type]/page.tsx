@@ -51,7 +51,7 @@ export default function AnimalTypePage({ params }: Props) {
             {animal.description}
           </p>
           <Link href="/quiz">
-            <Button size="lg" style={{ backgroundColor: animal.color }}>
+            <Button size="lg" className="hover:scale-[1.02] hover:shadow-lg transition-all duration-300" style={{ backgroundColor: animal.color }}>
               Take the Quiz to Find Your Type
             </Button>
           </Link>
