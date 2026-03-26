@@ -322,7 +322,7 @@ export default function UpgradePage() {
             {reportSections.map((section, index) => (
               <Card
                 key={index}
-                className="border-0 shadow-md hover:shadow-lg transition-shadow"
+                className="border-0 shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
               >
                 <CardContent className="p-5">
                   <div className="flex items-start gap-3">
@@ -385,7 +385,7 @@ export default function UpgradePage() {
 
           <div className="space-y-8">
             {/* Preview Page 1: Profile Summary */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border" style={{ borderColor: `${primaryAnimal.color}30` }}>
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]" style={{ borderColor: `${primaryAnimal.color}30` }}>
               {/* Page Header - Visible */}
               <div className="bg-white dark:bg-gray-800 px-6 py-4 border-b" style={{ borderColor: `${primaryAnimal.color}20` }}>
                 <div className="flex items-center justify-between">
@@ -432,7 +432,7 @@ export default function UpgradePage() {
             </div>
 
             {/* Preview Page 2: Selling Playbook */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border" style={{ borderColor: `${primaryAnimal.color}30` }}>
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]" style={{ borderColor: `${primaryAnimal.color}30` }}>
               {/* Page Header - Visible */}
               <div className="bg-white dark:bg-gray-800 px-6 py-4 border-b" style={{ borderColor: `${primaryAnimal.color}20` }}>
                 <div className="flex items-center justify-between">
@@ -476,7 +476,7 @@ export default function UpgradePage() {
             </div>
 
             {/* Preview Page 3: Growth Plan */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border" style={{ borderColor: `${primaryAnimal.color}30` }}>
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]" style={{ borderColor: `${primaryAnimal.color}30` }}>
               {/* Page Header - Visible */}
               <div className="bg-white dark:bg-gray-800 px-6 py-4 border-b" style={{ borderColor: `${primaryAnimal.color}20` }}>
                 <div className="flex items-center justify-between">
@@ -540,7 +540,7 @@ export default function UpgradePage() {
               "Actionable strategies you can use in your next sales call",
               "Based on proven behavioral psychology, designed specifically for modern sellers",
             ].map((item, index) => (
-              <div key={index} className="flex items-start gap-3">
+              <div key={index} className="flex items-start gap-3 p-3 -mx-3 rounded-lg transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:scale-[1.01]">
                 <span
                   className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                   style={{ backgroundColor: `${primaryAnimal.color}20` }}
@@ -683,7 +683,7 @@ export default function UpgradePage() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-center gap-4 p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
+                  className="w-full flex items-center gap-4 p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 hover:scale-[1.01] transition-all duration-300"
                 >
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
