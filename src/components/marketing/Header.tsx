@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
@@ -64,7 +63,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <ThemeToggle />
           <Link href="/dashboard/team" className="hidden sm:block">
             <Button
               className="text-sm text-white press-effect hover-glow"
