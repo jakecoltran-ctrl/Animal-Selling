@@ -11,12 +11,19 @@ import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 
+interface SalesContext {
+  sellType: "product" | "service";
+  customerType: "b2b" | "b2c";
+  salesChannel: "inside" | "outside";
+}
+
 interface TeamMember {
   id: string;
   userId: string;
   name: string;
   email: string;
   animalType: AnimalType;
+  salesContext?: SalesContext;
   joinedAt: string;
 }
 
@@ -72,12 +79,17 @@ export default function TeamSafariPage() {
           ownerId: teamData.owner_id,
           createdAt: teamData.created_at,
           isOwner: true,
-          members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+          members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; sell_type?: string; customer_type?: string; sales_channel?: string; joined_at: string }) => ({
             id: m.id,
             userId: m.user_id,
             name: m.name,
             email: m.email,
             animalType: m.animal_type,
+            salesContext: m.sell_type ? {
+              sellType: m.sell_type as "product" | "service",
+              customerType: m.customer_type as "b2b" | "b2c",
+              salesChannel: m.sales_channel as "inside" | "outside",
+            } : undefined,
             joinedAt: m.joined_at,
           })),
         });
@@ -108,12 +120,17 @@ export default function TeamSafariPage() {
               ownerId: teamData.owner_id,
               createdAt: teamData.created_at,
               isOwner: false,
-              members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+              members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; sell_type?: string; customer_type?: string; sales_channel?: string; joined_at: string }) => ({
                 id: m.id,
                 userId: m.user_id,
                 name: m.name,
                 email: m.email,
                 animalType: m.animal_type,
+                salesContext: m.sell_type ? {
+                  sellType: m.sell_type as "product" | "service",
+                  customerType: m.customer_type as "b2b" | "b2c",
+                  salesChannel: m.sales_channel as "inside" | "outside",
+                } : undefined,
                 joinedAt: m.joined_at,
               })),
             });
@@ -139,22 +156,24 @@ export default function TeamSafariPage() {
     const userName = user.user_metadata?.name || user.email?.split("@")[0] || "Team Member";
     const userEmail = user.email || "";
 
-    // Get user's latest quiz result for their animal type
+    // Get user's latest quiz result for their animal type and sales context
     let userAnimalType: AnimalType = "lion";
-    const quizResults: { createdAt: string; primaryType: AnimalType }[] = [];
+    let userSalesContext: SalesContext | null = null;
+    const quizResults: { createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key?.startsWith("quiz_result_")) {
         const result = localStorage.getItem(key);
         if (result) {
           const parsed = JSON.parse(result);
-          quizResults.push({ createdAt: parsed.createdAt, primaryType: parsed.primaryType });
+          quizResults.push({ createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
         }
       }
     }
     if (quizResults.length > 0) {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       userAnimalType = quizResults[0].primaryType;
+      userSalesContext = quizResults[0].salesContext || null;
     }
 
     const newInviteCode = Math.random().toString(36).substring(2, 10).toUpperCase();
@@ -184,6 +203,9 @@ export default function TeamSafariPage() {
         name: userName,
         email: userEmail,
         animal_type: userAnimalType,
+        sell_type: userSalesContext?.sellType || null,
+        customer_type: userSalesContext?.customerType || null,
+        sales_channel: userSalesContext?.salesChannel || null,
       });
 
     setShowCreateForm(false);
@@ -238,18 +260,24 @@ export default function TeamSafariPage() {
     const userName = user.user_metadata?.name || user.email?.split("@")[0] || "Team Member";
     const userEmail = user.email || "";
 
-    // Get user's animal type
+    // Get user's animal type and sales context
     let userAnimalType: AnimalType = "lion";
+    let userSalesContext: SalesContext | null = null;
+    const quizResults: { createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key?.startsWith("quiz_result_")) {
         const result = localStorage.getItem(key);
         if (result) {
           const parsed = JSON.parse(result);
-          userAnimalType = parsed.primaryType;
-          break;
+          quizResults.push({ createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
         }
       }
+    }
+    if (quizResults.length > 0) {
+      quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      userAnimalType = quizResults[0].primaryType;
+      userSalesContext = quizResults[0].salesContext || null;
     }
 
     // Join team
@@ -261,6 +289,9 @@ export default function TeamSafariPage() {
         name: userName,
         email: userEmail,
         animal_type: userAnimalType,
+        sell_type: userSalesContext?.sellType || null,
+        customer_type: userSalesContext?.customerType || null,
+        sales_channel: userSalesContext?.salesChannel || null,
       });
 
     if (joinError) {

@@ -9,12 +9,19 @@ import { animals } from "@/lib/animal-data";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 
+interface SalesContext {
+  sellType: "product" | "service";
+  customerType: "b2b" | "b2c";
+  salesChannel: "inside" | "outside";
+}
+
 interface TeamMember {
   id: string;
   userId: string;
   name: string;
   email: string;
   animalType: AnimalType;
+  salesContext?: SalesContext;
   joinedAt: string;
 }
 
@@ -76,12 +83,17 @@ export default function TeamDetailPage() {
         inviteCode: teamData.invite_code,
         ownerId: teamData.owner_id,
         createdAt: teamData.created_at,
-        members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; joined_at: string }) => ({
+        members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; sell_type?: string; customer_type?: string; sales_channel?: string; joined_at: string }) => ({
           id: m.id,
           userId: m.user_id,
           name: m.name,
           email: m.email,
           animalType: m.animal_type,
+          salesContext: m.sell_type ? {
+            sellType: m.sell_type as "product" | "service",
+            customerType: m.customer_type as "b2b" | "b2c",
+            salesChannel: m.sales_channel as "inside" | "outside",
+          } : undefined,
           joinedAt: m.joined_at,
         })),
       });
@@ -297,6 +309,11 @@ export default function TeamDetailPage() {
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">You</p>
                 <p className="font-bold text-gray-900 dark:text-white">{currentMember.name}</p>
+                {currentMember.salesContext && (
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                    {currentMember.salesContext.sellType === "product" ? "Product" : "Service"} · {currentMember.salesContext.customerType.toUpperCase()} · {currentMember.salesContext.salesChannel === "inside" ? "Inside" : "Outside"}
+                  </p>
+                )}
               </div>
               <div className="ml-auto text-right">
                 <p className="font-medium" style={{ color: userAnimal.color }}>{userAnimal.name}</p>
@@ -421,6 +438,11 @@ export default function TeamDetailPage() {
                               )}
                             </div>
                             <p className="text-sm text-muted-foreground">{member.email}</p>
+                            {member.salesContext && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {member.salesContext.sellType === "product" ? "Product" : "Service"} · {member.salesContext.customerType.toUpperCase()} · {member.salesContext.salesChannel === "inside" ? "Inside" : "Outside"}
+                              </p>
+                            )}
                           </div>
                         </div>
                         <div className="text-right">
