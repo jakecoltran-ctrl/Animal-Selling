@@ -9,6 +9,7 @@ import { ScoreBars } from "@/components/results/RadarChart";
 import { getAnimal, animals } from "@/lib/animal-data";
 import { QuizResult, AnimalType, TeamMember } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getPurchasedResultIds } from "@/lib/purchases";
@@ -259,8 +260,9 @@ export default function DashboardPage() {
   const primaryAnimal = latestResult ? getAnimal(latestResult.primaryType) : null;
 
   return (
-    <div className="py-12">
-      <div className="container mx-auto px-4">
+    <div className="py-12 relative overflow-hidden min-h-screen">
+      <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 animate-fade-in">
           <div>

@@ -106,8 +106,9 @@ function CalculatingAnimation() {
   }, []);
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-[80vh] flex items-center justify-center py-12 relative overflow-hidden">
+      <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
+      <div className="container mx-auto px-4 relative z-10">
         <Card className="max-w-md mx-auto">
           <CardContent className="pt-8 pb-8 text-center">
             {/* Animals Grid */}
@@ -267,8 +268,9 @@ export default function QuizPage() {
   // Intro Stage
   if (stage === "intro") {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center py-12">
-        <div className="container mx-auto px-4">
+      <div className="min-h-[80vh] flex items-center justify-center py-12 relative overflow-hidden">
+        <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
+        <div className="container mx-auto px-4 relative z-10">
           <Card className="max-w-2xl mx-auto">
             <CardContent className="pt-8 pb-8 text-center">
               <div className="text-5xl mb-6">
@@ -310,8 +312,9 @@ export default function QuizPage() {
   // Setup Stage - Sales Context Selection
   if (stage === "setup") {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center py-12">
-        <div className="container mx-auto px-4">
+      <div className="min-h-[80vh] flex items-center justify-center py-12 relative overflow-hidden">
+        <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
+        <div className="container mx-auto px-4 relative z-10">
           <Card className="max-w-2xl mx-auto">
             <CardContent className="pt-8 pb-8">
               <div className="text-center mb-8">
@@ -438,8 +441,9 @@ export default function QuizPage() {
   // Signup Requirement Stage
   if (stage === "signup") {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center py-12">
-        <div className="container mx-auto px-4">
+      <div className="min-h-[80vh] flex items-center justify-center py-12 relative overflow-hidden">
+        <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
+        <div className="container mx-auto px-4 relative z-10">
           <Card className="max-w-md mx-auto">
             <CardContent className="pt-8 pb-8 text-center">
               <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
