@@ -252,13 +252,13 @@ export default function ResultsPage() {
           <div className="max-w-3xl mx-auto text-center">
             {/* Context Pills */}
             <div className="flex flex-wrap justify-center gap-2 mb-8">
-              <span className="px-3 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+              <span className="px-3 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110 hover:shadow-md cursor-default">
                 {contextLabels.sellType}
               </span>
-              <span className="px-3 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+              <span className="px-3 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110 hover:shadow-md cursor-default">
                 {contextLabels.customerType}
               </span>
-              <span className="px-3 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+              <span className="px-3 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110 hover:shadow-md cursor-default">
                 {contextLabels.salesChannel} Sales
               </span>
             </div>
@@ -288,7 +288,7 @@ export default function ResultsPage() {
             </p>
 
             {/* Secondary Type */}
-            <div className="inline-flex items-center gap-3 bg-white dark:bg-gray-800 rounded-full px-5 py-2.5 shadow-md">
+            <div className="inline-flex items-center gap-3 bg-white dark:bg-gray-800 rounded-full px-5 py-2.5 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
               <span className="text-sm text-gray-500 dark:text-gray-400">Secondary:</span>
               <span className="text-2xl">{secondaryAnimal.emoji}</span>
               <span className="font-semibold" style={{ color: secondaryAnimal.color }}>
@@ -304,7 +304,7 @@ export default function ResultsPage() {
         <div className="container mx-auto px-4 py-4">
           <Link href={`/quiz/results/${result.id}/upgrade`}>
             <div
-              className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-5 py-3.5 rounded-xl transition-all hover:shadow-md cursor-pointer"
+              className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 px-5 py-3.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.01] cursor-pointer"
               style={{
                 backgroundColor: `${primaryAnimal.color}08`,
                 border: `1px solid ${primaryAnimal.color}25`,
@@ -356,7 +356,7 @@ export default function ResultsPage() {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Style Blend - Show scores if purchased */}
-            <Card className="shadow-md border-0">
+            <Card className="shadow-md border-0 transition-all duration-300 hover:shadow-lg">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold text-center">Your Style Blend</CardTitle>
               </CardHeader>
@@ -380,7 +380,7 @@ export default function ResultsPage() {
             </Card>
 
             {/* Score Breakdown - Primary visible, others have blurred scores */}
-            <Card className="shadow-md border-0 flex flex-col">
+            <Card className="shadow-md border-0 flex flex-col transition-all duration-300 hover:shadow-lg">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold">Score Breakdown</CardTitle>
               </CardHeader>
@@ -539,7 +539,7 @@ export default function ResultsPage() {
                   }
 
                   return (
-                    <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                    <div key={i} className="flex gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
                       <div
                         className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
                         style={{ backgroundColor: primaryAnimal.color }}
@@ -802,7 +802,7 @@ export default function ResultsPage() {
                       '30-Day Action Plan',
                       'Self-Coaching Questions',
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3">
+                      <div key={i} className="flex items-center gap-3 p-2 -mx-2 rounded-lg transition-all duration-300 hover:bg-white/50 dark:hover:bg-gray-800/50 hover:scale-[1.02]">
                         <span
                           className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                           style={{ backgroundColor: `${primaryAnimal.color}20` }}
@@ -904,7 +904,7 @@ export default function ResultsPage() {
             </Link>
           </div>
 
-          <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
+          <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Want to see how your team&apos;s styles complement each other?
             </p>
