@@ -346,6 +346,62 @@ function TeamSafariPageContent() {
             </p>
           </div>
 
+          {/* What is Team Safari - Explainer Section */}
+          <div className="mb-10 bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <span>🌍</span> What is Team Safari?
+            </h2>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Team Safari helps you understand your sales team&apos;s collective personality.
+              By mapping each member&apos;s animal type, you can see how your team&apos;s strengths
+              complement each other and identify potential gaps.
+            </p>
+
+            <div className="grid sm:grid-cols-3 gap-4 mb-6">
+              <div className="bg-white/5 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
+                <div className="text-2xl mb-2">📊</div>
+                <h3 className="font-semibold text-white text-sm mb-1">Team Composition</h3>
+                <p className="text-gray-400 text-xs">
+                  See the distribution of Lions, Penguins, Retrievers, and Beavers on your team.
+                </p>
+              </div>
+              <div className="bg-white/5 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
+                <div className="text-2xl mb-2">🤝</div>
+                <h3 className="font-semibold text-white text-sm mb-1">Better Collaboration</h3>
+                <p className="text-gray-400 text-xs">
+                  Understand how different styles work together and where friction might occur.
+                </p>
+              </div>
+              <div className="bg-white/5 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
+                <div className="text-2xl mb-2">🎯</div>
+                <h3 className="font-semibold text-white text-sm mb-1">Strategic Pairing</h3>
+                <p className="text-gray-400 text-xs">
+                  Get recommendations on which team members pair well for different sales scenarios.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4">
+              <h3 className="font-semibold text-white text-sm mb-3 flex items-center gap-2">
+                <span>⚡</span> How it works
+              </h3>
+              <ol className="space-y-2 text-sm text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white">1</span>
+                  <span><strong className="text-white">Create a team</strong> and get a unique invite code</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white">2</span>
+                  <span><strong className="text-white">Share the code</strong> with your team members</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white">3</span>
+                  <span><strong className="text-white">View insights</strong> about your team&apos;s style distribution and dynamics</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+
           {/* Existing Teams */}
           {teams.length > 0 && (
             <div className="mb-8">
