@@ -328,7 +328,7 @@ export default function TeamDetailPage() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Distribution */}
-          <Card className="lg:col-span-2 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+          <Card className="lg:col-span-2 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-gray-900 dark:text-white">Team Style Distribution</CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-400">
@@ -388,7 +388,7 @@ export default function TeamDetailPage() {
           </Card>
 
           {/* Insights */}
-          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-gray-900 dark:text-white">Team Insights</CardTitle>
             </CardHeader>
@@ -414,7 +414,7 @@ export default function TeamDetailPage() {
           </Card>
 
           {/* Team Members */}
-          <Card className="lg:col-span-2 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+          <Card className="lg:col-span-2 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-gray-900 dark:text-white">Team Members</CardTitle>
             </CardHeader>
@@ -427,7 +427,7 @@ export default function TeamDetailPage() {
                     return (
                       <div
                         key={member.id}
-                        className="flex items-center justify-between p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5"
+                        className="flex items-center justify-between p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]"
                       >
                         <div className="flex items-center gap-4">
                           <span className="text-2xl">{animal.emoji}</span>
@@ -468,13 +468,13 @@ export default function TeamDetailPage() {
           </Card>
 
           {/* Pairing Recommendations */}
-          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-gray-900 dark:text-white">Recommended Pairings</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5">
+                <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
                     <span>🦁</span>
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
@@ -487,7 +487,7 @@ export default function TeamDetailPage() {
                     Lion drives, Beaver proves
                   </p>
                 </div>
-                <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5">
+                <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
                     <span>🐧</span>
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
@@ -500,7 +500,7 @@ export default function TeamDetailPage() {
                     Penguin opens, Retriever nurtures
                   </p>
                 </div>
-                <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5">
+                <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
                     <span>🦁</span>
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
@@ -519,7 +519,7 @@ export default function TeamDetailPage() {
         </div>
 
         {/* Invite Code */}
-        <Card className="mt-8 max-w-md mx-auto border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+        <Card className="mt-8 max-w-md mx-auto border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
           <CardHeader className="text-center">
             <CardTitle className="text-gray-900 dark:text-white">Invite Code</CardTitle>
             <CardDescription className="text-gray-600 dark:text-gray-400">

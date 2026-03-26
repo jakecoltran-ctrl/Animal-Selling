@@ -187,15 +187,15 @@ export default function Home() {
       <section ref={statsSection.ref} className="py-20 border-y border-white/10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
-            <div className={`transition-all duration-700 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`transition-all duration-700 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat1}</div>
               <div className="text-gray-400 text-lg">Distinct Selling Styles</div>
             </div>
-            <div className={`transition-all duration-700 delay-200 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`transition-all duration-700 delay-200 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat2}%</div>
               <div className="text-gray-400 text-lg">Of salespeople have a dominant type</div>
             </div>
-            <div className={`transition-all duration-700 delay-400 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`transition-all duration-700 delay-400 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat3}</div>
               <div className="text-gray-400 text-lg">Questions in our assessment</div>
             </div>
@@ -343,7 +343,7 @@ export default function Home() {
                     <div className="hidden md:block absolute top-8 left-[60%] w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
                   )}
 
-                  <div className="text-center">
+                  <div className="text-center p-4 rounded-xl transition-all duration-300 hover:bg-white/5 hover:scale-[1.03]">
                     <div
                       className="inline-flex items-center justify-center w-16 h-16 rounded-2xl text-2xl font-black mb-4 text-white"
                       style={{
@@ -379,7 +379,7 @@ export default function Home() {
             {animals.map((animal) => (
               <div
                 key={animal.type}
-                className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">{animal.emoji}</span>

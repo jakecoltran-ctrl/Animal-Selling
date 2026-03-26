@@ -59,7 +59,7 @@ export default function AnimalTypePage({ params }: Props) {
 
         {/* Strengths & Blind Spots */}
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 mb-16">
-          <Card>
+          <Card className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <span className="text-green-500">✓</span> Sales Strengths
@@ -77,7 +77,7 @@ export default function AnimalTypePage({ params }: Props) {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <span className="text-amber-500">!</span> Common Blind Spots
@@ -98,7 +98,7 @@ export default function AnimalTypePage({ params }: Props) {
 
         {/* Selling Style */}
         <div className="max-w-4xl mx-auto mb-16">
-          <Card className="border-2" style={{ borderColor: animal.color }}>
+          <Card className="border-2 transition-all duration-300 hover:shadow-lg" style={{ borderColor: animal.color }}>
             <CardHeader>
               <CardTitle>Your Selling Style</CardTitle>
             </CardHeader>
@@ -115,7 +115,7 @@ export default function AnimalTypePage({ params }: Props) {
             {animal.idealRoles.map((role, i) => (
               <span
                 key={i}
-                className="px-4 py-2 rounded-full text-sm font-medium"
+                className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-110 cursor-default"
                 style={{ backgroundColor: `${animal.color}15`, color: animal.color }}
               >
                 {role}
@@ -129,7 +129,7 @@ export default function AnimalTypePage({ params }: Props) {
           <h2 className="text-2xl font-bold text-center mb-6">Tips for Growth</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {animal.tips.map((tip, i) => (
-              <Card key={i} className="p-4">
+              <Card key={i} className="p-4 transition-all duration-300 hover:shadow-md hover:scale-[1.03]">
                 <CardContent className="pt-0">
                   <div className="flex items-start gap-3">
                     <span
@@ -158,6 +158,7 @@ export default function AnimalTypePage({ params }: Props) {
             {getAllAnimals().map((other) => (
               <Card
                 key={other.id}
+                className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
                 style={other.id === animal.id ? { borderLeft: `4px solid ${other.color}` } : {}}
               >
                 <CardHeader className="pb-2">
@@ -187,7 +188,7 @@ export default function AnimalTypePage({ params }: Props) {
           <div className="grid grid-cols-3 gap-4">
             {otherAnimals.map((other) => (
               <Link key={other.id} href={`/animals/${other.id}`}>
-                <Card className="text-center p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                <Card className="text-center p-4 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
                   <div className="text-3xl mb-2">{other.emoji}</div>
                   <p className="font-medium" style={{ color: other.color }}>
                     {other.name}

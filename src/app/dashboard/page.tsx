@@ -506,7 +506,7 @@ export default function DashboardPage() {
                   <div className="space-y-3">
                     {userTeams.map((team) => (
                       <Link key={team.id} href={`/dashboard/team/${team.id}`}>
-                        <div className="p-4 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer press-effect text-center">
+                        <div className="p-4 rounded-lg border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 hover:scale-[1.02] transition-all duration-300 cursor-pointer press-effect text-center">
                           <div className="flex items-center justify-center gap-2 mb-2">
                             <p className="font-bold text-gray-900 dark:text-white text-lg">{team.name}</p>
                             {team.isOwner && (
@@ -593,7 +593,7 @@ export default function DashboardPage() {
                       >
                         <button
                           onClick={() => setExpandedTip(expandedTip === item.key ? null : item.key)}
-                          className="w-full p-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
+                          className="w-full p-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-left"
                         >
                           <div>
                             <h4 className="font-medium text-sm text-gray-900 dark:text-white">{item.title}</h4>
@@ -647,7 +647,7 @@ export default function DashboardPage() {
                   ].map((animal, index) => (
                     <Link key={animal.name} href={animal.href}>
                       <div
-                        className="p-3 border rounded-lg text-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors hover-scale animate-fade-in"
+                        className="p-3 border rounded-lg text-center hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-105 transition-all duration-300 animate-fade-in"
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
                         <span className="text-2xl">{animal.emoji}</span>

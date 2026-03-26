@@ -353,7 +353,7 @@ function TeamSafariPageContent() {
               <div className="space-y-3">
                 {teams.map((team) => (
                   <Link key={team.id} href={`/dashboard/team/${team.id}`}>
-                    <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 hover:border-gray-300 dark:hover:border-white/30 transition-colors cursor-pointer">
+                    <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 hover:border-gray-300 dark:hover:border-white/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
                           <div>
@@ -397,7 +397,7 @@ function TeamSafariPageContent() {
 
           {/* Create Team Form */}
           {showCreateForm ? (
-            <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+            <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Create a New Team</CardTitle>
               </CardHeader>
@@ -428,7 +428,7 @@ function TeamSafariPageContent() {
               </CardContent>
             </Card>
           ) : (
-            <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+            <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
               <CardContent className="p-6 text-center">
                 <div className="text-4xl mb-4">➕</div>
                 <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">Create a New Team</h3>
@@ -447,7 +447,7 @@ function TeamSafariPageContent() {
           )}
 
           {/* Join Team */}
-          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md">
             <CardHeader>
               <CardTitle className="text-gray-900 dark:text-white">Join an Existing Team</CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-400">

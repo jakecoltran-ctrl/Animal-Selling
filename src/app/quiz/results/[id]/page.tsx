@@ -561,7 +561,7 @@ export default function ResultsPage() {
             Know Your Strengths & Blind Spots
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="shadow-md border-0 border-t-4" style={{ borderTopColor: '#22c55e' }}>
+            <Card className="shadow-md border-0 border-t-4 transition-all duration-300 hover:shadow-lg" style={{ borderTopColor: '#22c55e' }}>
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <span className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
@@ -582,7 +582,7 @@ export default function ResultsPage() {
               </CardContent>
             </Card>
 
-            <Card className="shadow-md border-0 border-t-4" style={{ borderTopColor: '#f59e0b' }}>
+            <Card className="shadow-md border-0 border-t-4 transition-all duration-300 hover:shadow-lg" style={{ borderTopColor: '#f59e0b' }}>
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <span className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center">
@@ -643,7 +643,7 @@ export default function ResultsPage() {
             {getAllAnimals().map((animal) => (
                 <Card
                   key={animal.id}
-                  className="shadow-md border-0"
+                  className="shadow-md border-0 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
                   style={animal.id === result.primaryType ? { borderLeft: `4px solid ${animal.color}` } : {}}
                 >
                   <CardHeader className="pb-2">
@@ -925,7 +925,7 @@ export default function ResultsPage() {
             {getAllAnimals().map((animal) => (
               <Link key={animal.id} href={`/animals/${animal.id}`}>
                 <Card
-                  className={`text-center p-5 hover:shadow-lg transition-all cursor-pointer border-2 ${
+                  className={`text-center p-5 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer border-2 ${
                     animal.id === result.primaryType
                       ? "shadow-md"
                       : "border-transparent hover:border-gray-200"
