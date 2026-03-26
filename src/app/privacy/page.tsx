@@ -174,8 +174,8 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <p className="text-gray-300 mt-4">
                   <strong className="text-white">Email:</strong>{" "}
-                  <a href="mailto:privacy@animalselling.com" className="text-cyan-400 hover:underline">
-                    privacy@animalselling.com
+                  <a href="mailto:info@animalselling.com" className="text-cyan-400 hover:underline">
+                    info@animalselling.com
                   </a>
                 </p>
               </section>
