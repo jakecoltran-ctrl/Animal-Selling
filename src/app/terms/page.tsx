@@ -229,7 +229,7 @@ export default function TermsOfServicePage() {
           <div className="mt-12 text-center">
             <Link
               href="/"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-400 hover:text-white hover:scale-105 transition-all duration-300 inline-block"
             >
               ← Back to Home
             </Link>

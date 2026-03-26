@@ -80,7 +80,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-black text-white mb-8 text-center">The Science Behind It</h2>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                 <div className="text-2xl mb-3">🧠</div>
                 <h3 className="text-xl font-bold text-white mb-3">Behavioral Psychology</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
@@ -89,7 +89,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                 <div className="text-2xl mb-3">📊</div>
                 <h3 className="text-xl font-bold text-white mb-3">Two Key Dimensions</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                 <div className="text-2xl mb-3">🎯</div>
                 <h3 className="text-xl font-bold text-white mb-3">Sales-Specific Design</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                 <div className="text-2xl mb-3">🔄</div>
                 <h3 className="text-xl font-bold text-white mb-3">Adaptive Selling</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
             <div className="space-y-6">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-white/5 border border-white/10 rounded-xl p-6">
+                <div key={index} className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                   <h3 className="text-lg font-bold text-white mb-2">{faq.q}</h3>
                   <p className="text-gray-400">{faq.a}</p>
                 </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
             <Link href="/quiz">
               <Button
                 size="lg"
-                className="text-lg px-8 py-6 text-white font-bold"
+                className="text-lg px-8 py-6 text-white font-bold hover:scale-[1.02] hover:shadow-lg transition-all duration-300"
                 style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
               >
                 Take the Quiz
