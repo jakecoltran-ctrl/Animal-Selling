@@ -88,9 +88,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
+        <div className="border-t mt-8 pt-8 text-center text-xs text-muted-foreground max-w-4xl mx-auto">
           <p>
-            Based on public domain behavioral research. Animal Selling is an original framework.
+            Animal Selling is an independent sales training platform inspired by the public domain DISC behavioral model originally published by William Moulton Marston in 1928. Animal Selling is not affiliated with, endorsed by, or associated with John Wiley &amp; Sons, Inc., Everything DiSC®, DiSC®, Take Flight Learning, PeopleKeys, TTI Success Insights, Thomas International, or any other DISC assessment provider. All content, quiz questions, and report materials are original works of C2 Unlimited LLC.
           </p>
         </div>
       </div>
