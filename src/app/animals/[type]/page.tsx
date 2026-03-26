@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAnimal, getAllAnimals, animalTypes } from "@/lib/animal-data";
 import { AnimalType } from "@/types";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 interface Props {
   params: { type: string };
@@ -32,8 +33,13 @@ export default function AnimalTypePage({ params }: Props) {
   const otherAnimals = getAllAnimals().filter((a) => a.id !== animal.id);
 
   return (
-    <div className="py-12">
-      <div className="container mx-auto px-4">
+    <div className="py-12 relative overflow-hidden min-h-screen">
+      <AnimatedBackground
+        opacity={0.2}
+        emojiOpacity={0.15}
+        singleAnimal={{ emoji: animal.emoji, color: animal.color }}
+      />
+      <div className="container mx-auto px-4 relative z-10">
         {/* Hero */}
         <div className="max-w-4xl mx-auto text-center mb-16">
           <div className="text-7xl mb-4">{animal.emoji}</div>
