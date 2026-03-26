@@ -89,8 +89,7 @@ export function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Animal Selling. All rights reserved.</p>
-          <p className="mt-2">
+          <p>
             Based on public domain behavioral research. Animal Selling is an original framework.
           </p>
         </div>
