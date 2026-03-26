@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef } from "react";
+import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 
 // Animated counter hook
 function useCounter(end: number, duration: number = 2000, start: boolean = false) {
@@ -294,73 +295,25 @@ export default function Home() {
       </section>
 
       {/* Team Safari Section */}
-      <section ref={quadrantSection.ref} className="py-24 bg-gray-900/50 overflow-hidden">
+      <section ref={quadrantSection.ref} className="py-24 bg-gray-900/50">
         <div className="container mx-auto px-4">
-          <div className={`max-w-5xl mx-auto transition-all duration-1000 ${quadrantSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <div className="relative rounded-3xl p-8 md:p-12 overflow-hidden"
-                 style={{
-                   background: "linear-gradient(135deg, #dc262615 0%, #d9770615 25%, #0891b215 50%, #05966915 100%)",
-                   border: "2px solid rgba(255,255,255,0.1)"
-                 }}>
-              {/* Background decorative elements */}
-              <div className="absolute top-4 right-4 text-6xl opacity-20 animate-float" style={{ animationDelay: '0s' }}>🦁</div>
-              <div className="absolute top-1/2 right-12 text-5xl opacity-20 animate-float" style={{ animationDelay: '1.5s' }}>🐧</div>
-              <div className="absolute bottom-4 right-20 text-6xl opacity-20 animate-float" style={{ animationDelay: '0.5s' }}>🐕</div>
-              <div className="absolute bottom-12 right-4 text-5xl opacity-20 animate-float" style={{ animationDelay: '2s' }}>🦫</div>
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${quadrantSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <TeamSafariBubble className="mb-8" />
 
-              <div className="relative z-10 max-w-2xl">
-                <div
-                  className="inline-block text-sm font-bold px-4 py-2 rounded-full mb-6 text-white"
-                  style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
-                >
-                  Team Safari
-                </div>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+              The best sales teams have a mix of all four animal types. Create your team,
+              invite your colleagues, and discover your team's unique composition.
+            </p>
 
-                <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-                  Build a balanced{" "}
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{ backgroundImage: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
-                  >
-                    dream team
-                  </span>
-                </h2>
-
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  The best sales teams have a mix of all four animal types. Create your team,
-                  invite your colleagues, and discover your team's unique composition.
-                </p>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-                    <span className="text-3xl block mb-2">🦁</span>
-                    <div className="text-sm text-gray-400">Closers</div>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-                    <span className="text-3xl block mb-2">🐧</span>
-                    <div className="text-sm text-gray-400">Connectors</div>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-                    <span className="text-3xl block mb-2">🐕</span>
-                    <div className="text-sm text-gray-400">Advisors</div>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-                    <span className="text-3xl block mb-2">🦫</span>
-                    <div className="text-sm text-gray-400">Specialists</div>
-                  </div>
-                </div>
-
-                <Link href="/dashboard/team">
-                  <Button
-                    size="lg"
-                    className="text-lg px-8 py-6 text-white font-bold hover:scale-105 transition-transform"
-                    style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
-                  >
-                    Start Your Safari
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            <Link href="/dashboard/team">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 text-white font-bold hover:scale-105 transition-transform"
+                style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
+              >
+                Start Your Safari
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
