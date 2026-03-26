@@ -51,7 +51,7 @@ export default function Home() {
 
   const stat1 = useCounter(4, 1500, statsSection.inView);
   const stat2 = useCounter(92, 2000, statsSection.inView);
-  const stat3 = useCounter(30, 1800, statsSection.inView);
+  const stat3 = useCounter(24, 1800, statsSection.inView);
 
   const animals = [
     {
@@ -196,7 +196,7 @@ export default function Home() {
               <div className="text-gray-400 text-lg">Of salespeople have a dominant type</div>
             </div>
             <div className={`transition-all duration-700 delay-400 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat3}+</div>
+              <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat3}</div>
               <div className="text-gray-400 text-lg">Questions in our assessment</div>
             </div>
           </div>

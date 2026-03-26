@@ -8,7 +8,7 @@ export default function AboutPage() {
   const faqs = [
     {
       q: "How long does the quiz take?",
-      a: "The assessment takes about 5 minutes. It's 30 questions designed to identify your natural selling tendencies."
+      a: "The assessment takes about 5 minutes. It's 24 questions designed to identify your natural selling tendencies."
     },
     {
       q: "Can my type change over time?",
