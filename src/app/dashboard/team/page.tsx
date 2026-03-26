@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,6 +39,7 @@ interface Team {
 
 export default function TeamSafariPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [teams, setTeams] = useState<Team[]>([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [teamName, setTeamName] = useState("");
@@ -46,6 +47,14 @@ export default function TeamSafariPage() {
   const [loading, setLoading] = useState(true);
   const [joining, setJoining] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+
+  // Auto-fill invite code from URL parameter
+  useEffect(() => {
+    const codeFromUrl = searchParams.get("code");
+    if (codeFromUrl) {
+      setInviteCode(codeFromUrl);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     loadTeams();

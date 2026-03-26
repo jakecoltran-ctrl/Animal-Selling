@@ -106,8 +106,9 @@ export default function TeamDetailPage() {
 
   const handleCopyInvite = async () => {
     if (!team) return;
+    const inviteUrl = `${window.location.origin}/dashboard/team?code=${team.inviteCode}`;
     await navigator.clipboard.writeText(
-      `Join my Animal Selling team! Use code: ${team.inviteCode}`
+      `Join my Animal Selling team "${team.name}"! Click here to join: ${inviteUrl}`
     );
     setInviteCopied(true);
     setTimeout(() => setInviteCopied(false), 2000);
