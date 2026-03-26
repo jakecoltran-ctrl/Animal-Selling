@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
           <div className="prose prose-invert prose-gray max-w-none">
             <div className="space-y-8">
               {/* Introduction */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Introduction</h2>
                 <p className="text-gray-300 leading-relaxed">
                   Animal Selling ("we," "our," or "us") respects your privacy and is committed
@@ -41,7 +41,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Information We Collect */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Information We Collect</h2>
 
                 <h3 className="text-lg font-semibold text-white mt-4 mb-2">Information You Provide</h3>
@@ -61,7 +61,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* How We Use Your Information */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">How We Use Your Information</h2>
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
                   <li>To provide and maintain our services</li>
@@ -75,7 +75,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Data Storage and Security */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Data Storage and Security</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   We use industry-standard security measures to protect your information. Your
@@ -90,7 +90,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Third-Party Services */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Third-Party Services</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   We use the following third-party services to operate our platform:
@@ -106,7 +106,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Your Rights */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Your Rights</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   Depending on your location, you may have the following rights:
@@ -124,7 +124,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Cookies */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Cookies and Local Storage</h2>
                 <p className="text-gray-300 leading-relaxed">
                   We use essential cookies and local storage to provide core functionality,
@@ -134,7 +134,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Data Retention */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Data Retention</h2>
                 <p className="text-gray-300 leading-relaxed">
                   We retain your personal information for as long as your account is active
@@ -144,7 +144,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Children's Privacy */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Children's Privacy</h2>
                 <p className="text-gray-300 leading-relaxed">
                   Our services are not intended for children under 13 years of age. We do not
@@ -155,7 +155,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Changes to Policy */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Changes to This Policy</h2>
                 <p className="text-gray-300 leading-relaxed">
                   We may update this Privacy Policy from time to time. We will notify you of
@@ -166,7 +166,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               {/* Contact */}
-              <section className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Contact Us</h2>
                 <p className="text-gray-300 leading-relaxed">
                   If you have any questions about this Privacy Policy or our data practices,
