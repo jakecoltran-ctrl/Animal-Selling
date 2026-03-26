@@ -19,21 +19,6 @@ export const metadata: Metadata = {
   ],
 };
 
-const themeScript = `
-  (function() {
-    try {
-      const stored = localStorage.getItem('theme');
-      if (stored === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    } catch (e) {
-      document.documentElement.classList.add('dark');
-    }
-  })();
-`;
 
 export default function RootLayout({
   children,
@@ -41,12 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
+    <html lang="en" className="dark">
       <body className={inter.className}>
-        <div className="flex min-h-screen flex-col bg-white dark:bg-gray-950">
+        <div className="flex min-h-screen flex-col bg-gray-950">
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
