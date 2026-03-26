@@ -321,7 +321,7 @@ export default function DashboardPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-6 mb-6">
+                  <div className="flex items-center gap-6 mb-4">
                     <div className="text-6xl">{primaryAnimal.emoji}</div>
                     <div>
                       <h2
@@ -335,6 +335,20 @@ export default function DashboardPage() {
                       </p>
                     </div>
                   </div>
+                  {/* Sales Context Pills */}
+                  {latestResult.salesContext && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                        {latestResult.salesContext.sellType === "product" ? "Product" : "Service"}
+                      </span>
+                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                        {latestResult.salesContext.customerType.toUpperCase()}
+                      </span>
+                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                        {latestResult.salesContext.salesChannel === "inside" ? "Inside Sales" : "Outside Sales"}
+                      </span>
+                    </div>
+                  )}
                   <ScoreBars scores={latestResult.percentages} />
                   <div className="mt-6 flex flex-wrap gap-3">
                     {purchasedIds.has(latestResult.id) ? (
@@ -418,9 +432,19 @@ export default function DashboardPage() {
                               >
                                 {animal.name}
                               </p>
-                              <p className="text-sm text-muted-foreground">
-                                {new Date(result.createdAt).toLocaleDateString()}
-                              </p>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <p className="text-sm text-muted-foreground">
+                                  {new Date(result.createdAt).toLocaleDateString()}
+                                </p>
+                                {result.salesContext && (
+                                  <>
+                                    <span className="text-muted-foreground">·</span>
+                                    <span className="text-xs text-muted-foreground">
+                                      {result.salesContext.sellType === "product" ? "Product" : "Service"} · {result.salesContext.customerType.toUpperCase()} · {result.salesContext.salesChannel === "inside" ? "Inside" : "Outside"}
+                                    </span>
+                                  </>
+                                )}
+                              </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
