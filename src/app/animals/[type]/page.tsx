@@ -100,7 +100,7 @@ export default function AnimalTypePage({ params }: Props) {
         <div className="max-w-4xl mx-auto mb-16">
           <Card className="border-2 transition-all duration-300 hover:shadow-lg" style={{ borderColor: animal.color }}>
             <CardHeader>
-              <CardTitle>{animal.name}&apos;s Selling Type</CardTitle>
+              <CardTitle>{animal.name}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-lg text-muted-foreground">{animal.sellingStyle}</p>
