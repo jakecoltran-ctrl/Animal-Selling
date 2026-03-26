@@ -138,11 +138,6 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm">
-            <span className="text-sm">🦁🐧🐕🦫</span>
-            <span className="text-sm text-gray-400">The Animal Selling Framework</span>
-          </div>
-
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
             <span className="text-white">Sell the way</span>
             <br />
