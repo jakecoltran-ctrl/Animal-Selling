@@ -193,7 +193,7 @@ export default function Home() {
             </div>
             <div className={`transition-all duration-700 delay-200 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat2}%</div>
-              <div className="text-gray-400 text-lg">Of salespeople have a dominant type</div>
+              <div className="text-gray-400 text-lg">Of salespeople have a dominant animal type</div>
             </div>
             <div className={`transition-all duration-700 delay-400 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat3}</div>
