@@ -18,7 +18,6 @@ export function Footer() {
 
           {/* Animal Types */}
           <div>
-            <h3 className="font-semibold mb-4">Animal Types</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/animals/lion" className="hover:text-lion-600 transition-colors">
@@ -45,7 +44,6 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/quiz" className="hover:text-primary transition-colors">
@@ -67,7 +65,6 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/contact" className="hover:text-primary transition-colors">
