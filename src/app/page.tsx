@@ -293,78 +293,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Quadrant Visual */}
-      <section ref={quadrantSection.ref} className="py-24 bg-gray-900/50">
+      {/* Team Safari Section */}
+      <section ref={quadrantSection.ref} className="py-24 bg-gray-900/50 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              The Framework
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Two axes define your selling style: Task vs. People focus, and Fast vs. Methodical pace.
-            </p>
-          </div>
+          <div className={`max-w-5xl mx-auto transition-all duration-1000 ${quadrantSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="relative rounded-3xl p-8 md:p-12 overflow-hidden"
+                 style={{
+                   background: "linear-gradient(135deg, #dc262615 0%, #d9770615 25%, #0891b215 50%, #05966915 100%)",
+                   border: "2px solid rgba(255,255,255,0.1)"
+                 }}>
+              {/* Background decorative elements */}
+              <div className="absolute top-4 right-4 text-6xl opacity-20 animate-float" style={{ animationDelay: '0s' }}>🦁</div>
+              <div className="absolute top-1/2 right-12 text-5xl opacity-20 animate-float" style={{ animationDelay: '1.5s' }}>🐧</div>
+              <div className="absolute bottom-4 right-20 text-6xl opacity-20 animate-float" style={{ animationDelay: '0.5s' }}>🐕</div>
+              <div className="absolute bottom-12 right-4 text-5xl opacity-20 animate-float" style={{ animationDelay: '2s' }}>🦫</div>
 
-          <div className={`max-w-4xl mx-auto transition-all duration-1000 ${quadrantSection.inView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            <div className="relative aspect-square max-w-2xl mx-auto">
-              {/* Axes */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Vertical axis */}
-                <div className="absolute top-0 bottom-0 left-1/2 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
-                {/* Horizontal axis */}
-                <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </div>
-
-              {/* Axis Labels */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 text-sm text-gray-400 font-medium uppercase tracking-wider">
-                Fast-Paced
-              </div>
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm text-gray-400 font-medium uppercase tracking-wider">
-                Methodical
-              </div>
-              <div className="absolute left-2 top-1/2 -translate-y-1/2 text-sm text-gray-400 font-medium uppercase tracking-wider -rotate-90 origin-center">
-                Task-Focused
-              </div>
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400 font-medium uppercase tracking-wider rotate-90 origin-center">
-                People-Focused
-              </div>
-
-              {/* Quadrants */}
-              <Link href="/animals/lion">
-                <div className="absolute top-[5%] left-[5%] w-[42%] h-[42%] rounded-2xl p-4 flex flex-col items-center justify-center text-center transition-transform hover:scale-105 cursor-pointer"
-                     style={{ backgroundColor: '#dc262620', border: '2px solid #dc262650' }}>
-                  <span className="text-5xl mb-2">🦁</span>
-                  <div className="font-bold text-white text-lg">Lion</div>
-                  <div className="text-sm" style={{ color: '#dc2626' }}>The Closer</div>
+              <div className="relative z-10 max-w-2xl">
+                <div
+                  className="inline-block text-sm font-bold px-4 py-2 rounded-full mb-6 text-white"
+                  style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
+                >
+                  Team Safari
                 </div>
-              </Link>
 
-              <Link href="/animals/penguin">
-                <div className="absolute top-[5%] right-[5%] w-[42%] h-[42%] rounded-2xl p-4 flex flex-col items-center justify-center text-center transition-transform hover:scale-105 cursor-pointer"
-                     style={{ backgroundColor: '#0891b220', border: '2px solid #0891b250' }}>
-                  <span className="text-5xl mb-2">🐧</span>
-                  <div className="font-bold text-white text-lg">Penguin</div>
-                  <div className="text-sm" style={{ color: '#0891b2' }}>The Connector</div>
-                </div>
-              </Link>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+                  Build a balanced{" "}
+                  <span
+                    className="bg-clip-text text-transparent"
+                    style={{ backgroundImage: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
+                  >
+                    dream team
+                  </span>
+                </h2>
 
-              <Link href="/animals/beaver">
-                <div className="absolute bottom-[5%] left-[5%] w-[42%] h-[42%] rounded-2xl p-4 flex flex-col items-center justify-center text-center transition-transform hover:scale-105 cursor-pointer"
-                     style={{ backgroundColor: '#05966920', border: '2px solid #05966950' }}>
-                  <span className="text-5xl mb-2">🦫</span>
-                  <div className="font-bold text-white text-lg">Beaver</div>
-                  <div className="text-sm" style={{ color: '#059669' }}>The Specialist</div>
-                </div>
-              </Link>
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                  The best sales teams have a mix of all four animal types. Create your team,
+                  invite your colleagues, and discover your team's unique composition.
+                </p>
 
-              <Link href="/animals/retriever">
-                <div className="absolute bottom-[5%] right-[5%] w-[42%] h-[42%] rounded-2xl p-4 flex flex-col items-center justify-center text-center transition-transform hover:scale-105 cursor-pointer"
-                     style={{ backgroundColor: '#d9770620', border: '2px solid #d9770650' }}>
-                  <span className="text-5xl mb-2">🐕</span>
-                  <div className="font-bold text-white text-lg">Retriever</div>
-                  <div className="text-sm" style={{ color: '#d97706' }}>The Trusted Advisor</div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+                    <span className="text-3xl block mb-2">🦁</span>
+                    <div className="text-sm text-gray-400">Closers</div>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+                    <span className="text-3xl block mb-2">🐧</span>
+                    <div className="text-sm text-gray-400">Connectors</div>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+                    <span className="text-3xl block mb-2">🐕</span>
+                    <div className="text-sm text-gray-400">Advisors</div>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+                    <span className="text-3xl block mb-2">🦫</span>
+                    <div className="text-sm text-gray-400">Specialists</div>
+                  </div>
                 </div>
-              </Link>
+
+                <Link href="/dashboard/team">
+                  <Button
+                    size="lg"
+                    className="text-lg px-8 py-6 text-white font-bold hover:scale-105 transition-transform"
+                    style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
+                  >
+                    Start Your Safari
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
