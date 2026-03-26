@@ -261,7 +261,7 @@ export default function UpgradePage() {
                   onClick={handlePurchase}
                   disabled={purchasing}
                   size="lg"
-                  className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl transition-all gap-2 mb-4 disabled:opacity-70"
+                  className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 gap-2 mb-4 disabled:opacity-70"
                   style={{ backgroundColor: primaryAnimal.color }}
                 >
                   {purchasing ? (
@@ -592,7 +592,7 @@ export default function UpgradePage() {
               onClick={handlePurchase}
               disabled={purchasing}
               size="lg"
-              className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl transition-all gap-2 mb-4 disabled:opacity-70"
+              className="w-full text-white text-lg font-semibold py-6 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 gap-2 mb-4 disabled:opacity-70"
               style={{ backgroundColor: primaryAnimal.color }}
             >
               {purchasing ? (
