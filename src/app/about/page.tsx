@@ -84,9 +84,8 @@ export default function AboutPage() {
                 <div className="text-2xl mb-3">🧠</div>
                 <h3 className="text-xl font-bold text-white mb-3">Behavioral Psychology</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Our framework is rooted in established personality research, including the
-                  DISC model and Myers-Briggs typology. We've distilled complex theories into
-                  practical, memorable categories.
+                  Our framework is rooted in established personality research and behavioral
+                  psychology. We've distilled complex theories into practical, memorable categories.
                 </p>
               </div>
 

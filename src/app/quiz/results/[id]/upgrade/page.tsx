@@ -538,7 +538,7 @@ export default function UpgradePage() {
               `Personalized to YOUR specific ${primaryAnimal.name}-${secondaryAnimal.name} blend — not a generic type description`,
               `Tailored to your sales context: ${contextLabels.sellType}, ${contextLabels.customerType}, ${contextLabels.salesChannel} Sales`,
               "Actionable strategies you can use in your next sales call",
-              "Based on the proven DISC behavioral model, reimagined for modern sellers",
+              "Based on proven behavioral psychology, designed specifically for modern sellers",
             ].map((item, index) => (
               <div key={index} className="flex items-start gap-3">
                 <span
