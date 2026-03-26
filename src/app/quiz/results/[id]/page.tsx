@@ -169,16 +169,16 @@ export default function ResultsPage() {
   }
 
   if (!result) {
+    // Redirect to animals page - this happens when someone visits a shared link
+    // without having the quiz data in their localStorage
+    if (typeof window !== "undefined") {
+      window.location.href = "/#animals";
+    }
     return (
       <div className="min-h-[80vh] flex items-center justify-center py-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-2xl font-bold mb-4">Results Not Found</h1>
-          <p className="text-muted-foreground mb-8">
-            We couldn&apos;t find your quiz results. They may have expired or been cleared.
-          </p>
-          <Link href="/quiz">
-            <Button>Take the Quiz Again</Button>
-          </Link>
+          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <p className="text-muted-foreground">Redirecting...</p>
         </div>
       </div>
     );
