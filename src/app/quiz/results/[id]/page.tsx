@@ -209,7 +209,8 @@ export default function ResultsPage() {
 
   const handleShare = async () => {
     const shareText = `I just discovered I'm a ${primaryAnimal.emoji} ${primaryAnimal.name} (${primaryAnimal.title}) with Animal Selling! Take the quiz to find your sales animal.`;
-    const shareUrl = window.location.href;
+    // Share link to the animal page, not personal results
+    const shareUrl = `${window.location.origin}/animals/${result.primaryType}`;
 
     if (navigator.share) {
       try {
