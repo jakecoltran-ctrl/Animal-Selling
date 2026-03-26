@@ -395,59 +395,8 @@ function TeamSafariPageContent() {
             </div>
           )}
 
-          {/* Create Team Form */}
-          {showCreateForm ? (
-            <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md">
-              <CardHeader>
-                <CardTitle className="text-gray-900 dark:text-white">Create a New Team</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleCreateTeam} className="space-y-4">
-                  <div className="space-y-2">
-                    <label htmlFor="teamName" className="text-sm font-medium text-gray-900 dark:text-white">
-                      Team Name
-                    </label>
-                    <Input
-                      id="teamName"
-                      placeholder="e.g., East Coast Sales Team"
-                      value={teamName}
-                      onChange={(e) => setTeamName(e.target.value)}
-                      required
-                      className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600"
-                    />
-                  </div>
-                  <div className="flex gap-4">
-                    <Button type="submit" className="text-white" style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}>
-                      Create Team
-                    </Button>
-                    <Button type="button" variant="outline" onClick={() => setShowCreateForm(false)}>
-                      Cancel
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
-          ) : (
-            <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl mb-4">➕</div>
-                <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">Create a New Team</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                  Start a new team and invite members to see how your selling styles complement each other.
-                </p>
-                <Button
-                  onClick={() => setShowCreateForm(true)}
-                  className="text-white"
-                  style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}
-                >
-                  Create a Team
-                </Button>
-              </CardContent>
-            </Card>
-          )}
-
           {/* Join Team */}
-          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01] overflow-hidden relative">
+          <Card className="mb-6 border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01] overflow-hidden relative">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-amber-500 to-emerald-500" />
             <CardContent className="p-6">
               <div className="text-center mb-4">
@@ -485,6 +434,57 @@ function TeamSafariPageContent() {
               </form>
             </CardContent>
           </Card>
+
+          {/* Create Team Form */}
+          {showCreateForm ? (
+            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md">
+              <CardHeader>
+                <CardTitle className="text-gray-900 dark:text-white">Create a New Team</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleCreateTeam} className="space-y-4">
+                  <div className="space-y-2">
+                    <label htmlFor="teamName" className="text-sm font-medium text-gray-900 dark:text-white">
+                      Team Name
+                    </label>
+                    <Input
+                      id="teamName"
+                      placeholder="e.g., East Coast Sales Team"
+                      value={teamName}
+                      onChange={(e) => setTeamName(e.target.value)}
+                      required
+                      className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600"
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <Button type="submit" className="text-white" style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}>
+                      Create Team
+                    </Button>
+                    <Button type="button" variant="outline" onClick={() => setShowCreateForm(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
+              <CardContent className="p-6 text-center">
+                <div className="text-4xl mb-4">➕</div>
+                <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">Create a New Team</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                  Start a new team and invite members to see how your selling styles complement each other.
+                </p>
+                <Button
+                  onClick={() => setShowCreateForm(true)}
+                  className="text-white"
+                  style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}
+                >
+                  Create a Team
+                </Button>
+              </CardContent>
+            </Card>
+          )}
 
           {/* What is Team Safari - Explainer Section */}
           <div className="mt-10 bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-6 md:p-8">
