@@ -105,7 +105,7 @@ export default function TeamDetailPage() {
       // Get quiz result IDs of all team members to check purchase status
       const memberQuizResultIds = (teamData.team_members || [])
         .map((m: { quiz_result_id?: string }) => m.quiz_result_id)
-        .filter((id): id is string => !!id);
+        .filter((id: string | undefined): id is string => !!id);
 
       // Fetch purchase status for team members' specific quiz results
       let purchasedQuizResultIds = new Set<string>();
