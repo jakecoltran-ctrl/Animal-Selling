@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { getAnimal, animals } from "@/lib/animal-data";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { ProfileSummary } from "@/components/report/ProfileSummary";
@@ -21,6 +22,9 @@ export default function UpgradePage() {
   const [loading, setLoading] = useState(true);
   const [purchasing, setPurchasing] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [giftCode, setGiftCode] = useState("");
+  const [redeeming, setRedeeming] = useState(false);
+  const [codeError, setCodeError] = useState("");
 
   useEffect(() => {
     const stored = localStorage.getItem(`quiz_result_${params.id}`);
@@ -118,6 +122,40 @@ export default function UpgradePage() {
       console.error("Purchase error:", error);
       alert("Something went wrong. Please try again.");
       setPurchasing(false);
+    }
+  };
+
+  const handleRedeemCode = async () => {
+    if (!giftCode.trim()) {
+      setCodeError("Please enter a code");
+      return;
+    }
+
+    setRedeeming(true);
+    setCodeError("");
+
+    try {
+      const response = await fetch("/api/redeem-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: giftCode.trim().toUpperCase(),
+          quizResultId: params.id,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        router.push(`/quiz/results/${params.id}/report`);
+      } else {
+        setCodeError(data.error || "Invalid code. Please check and try again.");
+        setRedeeming(false);
+      }
+    } catch (error) {
+      console.error("Redeem error:", error);
+      setCodeError("Something went wrong. Please try again.");
+      setRedeeming(false);
     }
   };
 
@@ -301,6 +339,35 @@ export default function UpgradePage() {
                     />
                   </svg>
                   Secure payment via Stripe
+                </div>
+
+                {/* Gift Code Section */}
+                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    Have a gift code?
+                  </p>
+                  <div className="flex gap-2">
+                    <Input
+                      placeholder="Enter code"
+                      value={giftCode}
+                      onChange={(e) => {
+                        setGiftCode(e.target.value.toUpperCase());
+                        setCodeError("");
+                      }}
+                      className="text-center tracking-widest uppercase"
+                    />
+                    <Button
+                      onClick={handleRedeemCode}
+                      disabled={redeeming}
+                      variant="outline"
+                      className="flex-shrink-0"
+                    >
+                      {redeeming ? "..." : "Redeem"}
+                    </Button>
+                  </div>
+                  {codeError && (
+                    <p className="text-sm text-red-500 mt-2">{codeError}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -632,6 +699,35 @@ export default function UpgradePage() {
                 />
               </svg>
               Secure payment via Stripe
+            </div>
+
+            {/* Gift Code Section */}
+            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                Have a gift code?
+              </p>
+              <div className="flex gap-2">
+                <Input
+                  placeholder="Enter code"
+                  value={giftCode}
+                  onChange={(e) => {
+                    setGiftCode(e.target.value.toUpperCase());
+                    setCodeError("");
+                  }}
+                  className="text-center tracking-widest uppercase"
+                />
+                <Button
+                  onClick={handleRedeemCode}
+                  disabled={redeeming}
+                  variant="outline"
+                  className="flex-shrink-0"
+                >
+                  {redeeming ? "..." : "Redeem"}
+                </Button>
+              </div>
+              {codeError && (
+                <p className="text-sm text-red-500 mt-2">{codeError}</p>
+              )}
             </div>
           </div>
         </div>
