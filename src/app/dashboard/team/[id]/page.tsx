@@ -25,6 +25,7 @@ interface TeamMember {
   animalType: AnimalType;
   salesContext?: SalesContext;
   joinedAt: string;
+  hasPurchasedReport?: boolean;
 }
 
 interface Team {
@@ -100,6 +101,18 @@ export default function TeamDetailPage() {
         return;
       }
 
+      // Get user IDs of all team members to check purchase status
+      const memberUserIds = (teamData.team_members || []).map((m: { user_id: string }) => m.user_id);
+
+      // Fetch purchase status for all team members
+      const { data: purchases } = await supabase
+        .from("purchases")
+        .select("user_id")
+        .in("user_id", memberUserIds)
+        .eq("status", "completed");
+
+      const usersWithPurchases = new Set(purchases?.map(p => p.user_id) || []);
+
       setTeam({
         id: teamData.id,
         name: teamData.name,
@@ -119,6 +132,7 @@ export default function TeamDetailPage() {
             salesChannel: m.sales_channel as "inside" | "outside",
           } : undefined,
           joinedAt: m.joined_at,
+          hasPurchasedReport: usersWithPurchases.has(m.user_id),
         })),
       });
 
@@ -581,6 +595,15 @@ export default function TeamDetailPage() {
                               {isMemberCoLeader && (
                                 <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 font-medium">
                                   Co-Leader
+                                </span>
+                              )}
+                              {member.hasPurchasedReport ? (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 font-medium" title="Has full report access">
+                                  ✓ Report
+                                </span>
+                              ) : (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-medium" title="Has not purchased full report">
+                                  No Report
                                 </span>
                               )}
                             </div>
