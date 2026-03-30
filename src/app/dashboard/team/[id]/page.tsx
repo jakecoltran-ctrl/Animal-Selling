@@ -689,19 +689,47 @@ export default function TeamDetailPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Invite Code & Onboard Your Team */}
+        <div className={`mt-8 max-w-3xl mx-auto grid ${isLeader ? "md:grid-cols-2" : "grid-cols-1 max-w-md"} gap-6`}>
+          <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
+            <CardHeader className="text-center">
+              <CardTitle className="text-gray-900 dark:text-white">Invite Code</CardTitle>
+              <CardDescription className="text-gray-600 dark:text-gray-400">
+                Share this code with team members
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-4 border border-gray-200 dark:border-white/20">
+                <code className="text-2xl font-mono font-bold text-gray-900 dark:text-white">
+                  {team.inviteCode}
+                </code>
+              </div>
+              <Button
+                onClick={handleCopyInvite}
+                className="w-full text-white"
+                style={{
+                  background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
+                }}
+              >
+                {inviteCopied ? "Copied!" : "Copy Invite Link"}
+              </Button>
+            </CardContent>
+          </Card>
 
           {/* Gift Codes Info - Leaders Only */}
           {isLeader && (
-            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
+            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
+              <CardHeader className="text-center">
+                <CardTitle className="text-gray-900 dark:text-white flex items-center justify-center gap-2">
                   <span>🎁</span> Onboard Your Team
                 </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-400">
+                  Give your team free report access
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                  Give your team members free access to their full Animal Selling reports with gift codes.
-                </p>
                 <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                   <li className="flex items-start gap-2">
                     <span className="mt-0.5">💡</span>
@@ -720,32 +748,6 @@ export default function TeamDetailPage() {
             </Card>
           )}
         </div>
-
-        {/* Invite Code */}
-        <Card className="mt-8 max-w-md mx-auto border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
-          <CardHeader className="text-center">
-            <CardTitle className="text-gray-900 dark:text-white">Invite Code</CardTitle>
-            <CardDescription className="text-gray-600 dark:text-gray-400">
-              Share this code with team members
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-center">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-4 border border-gray-200 dark:border-white/20">
-              <code className="text-2xl font-mono font-bold text-gray-900 dark:text-white">
-                {team.inviteCode}
-              </code>
-            </div>
-            <Button
-              onClick={handleCopyInvite}
-              className="w-full text-white"
-              style={{
-                background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
-              }}
-            >
-              {inviteCopied ? "Copied!" : "Copy Invite Link"}
-            </Button>
-          </CardContent>
-        </Card>
 
         {/* Gift Codes Section - Only visible to team leader or co-leader */}
         {isLeader && (
