@@ -31,10 +31,10 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Check if user is the team owner
+    // Check if user is the team owner or co-leader
     const { data: team, error: teamError } = await supabase
       .from("teams")
-      .select("owner_id")
+      .select("owner_id, co_leader_id")
       .eq("id", teamId)
       .single();
 
@@ -42,7 +42,8 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Team not found" }, { status: 404 });
     }
 
-    if (team.owner_id !== user.id) {
+    const isLeader = team.owner_id === user.id || team.co_leader_id === user.id;
+    if (!isLeader) {
       return NextResponse.json({ error: "Only team leaders can view gift codes" }, { status: 403 });
     }
 
@@ -98,10 +99,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid quantity" }, { status: 400 });
     }
 
-    // Check if user is the team owner
+    // Check if user is the team owner or co-leader
     const { data: team, error: teamError } = await supabase
       .from("teams")
-      .select("owner_id")
+      .select("owner_id, co_leader_id")
       .eq("id", teamId)
       .single();
 
@@ -109,7 +110,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Team not found" }, { status: 404 });
     }
 
-    if (team.owner_id !== user.id) {
+    const isLeader = team.owner_id === user.id || team.co_leader_id === user.id;
+    if (!isLeader) {
       return NextResponse.json({ error: "Only team leaders can purchase gift codes" }, { status: 403 });
     }
 

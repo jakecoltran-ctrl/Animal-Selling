@@ -32,6 +32,7 @@ interface Team {
   name: string;
   inviteCode: string;
   ownerId: string;
+  coLeaderId: string | null;
   members: TeamMember[];
   createdAt: string;
 }
@@ -104,6 +105,7 @@ export default function TeamDetailPage() {
         name: teamData.name,
         inviteCode: teamData.invite_code,
         ownerId: teamData.owner_id,
+        coLeaderId: teamData.co_leader_id || null,
         createdAt: teamData.created_at,
         members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; sell_type?: string; customer_type?: string; sales_channel?: string; joined_at: string }) => ({
           id: m.id,
@@ -122,14 +124,17 @@ export default function TeamDetailPage() {
 
       setLoading(false);
 
-      // Load gift codes if user is owner
-      if (teamData.owner_id === user.id) {
+      // Load gift codes if user is owner or co-leader
+      if (teamData.owner_id === user.id || teamData.co_leader_id === user.id) {
         loadGiftCodes();
       }
     };
 
     loadData();
   }, [params.id, router]);
+
+  const isLeader = team?.ownerId === userId || team?.coLeaderId === userId;
+  const isOwner = team?.ownerId === userId;
 
   const loadGiftCodes = async () => {
     setLoadingCodes(true);
@@ -175,6 +180,63 @@ export default function TeamDetailPage() {
     await navigator.clipboard.writeText(code);
     setCopiedCodeId(codeId);
     setTimeout(() => setCopiedCodeId(null), 2000);
+  };
+
+  const handleKickMember = async (memberId: string, memberName: string) => {
+    if (!team || !isLeader) return;
+
+    if (!confirm(`Are you sure you want to remove ${memberName} from the team?`)) return;
+
+    const supabase = createClient();
+
+    const { error } = await supabase
+      .from("team_members")
+      .delete()
+      .eq("id", memberId);
+
+    if (error) {
+      console.error("Failed to remove member:", error);
+      alert("Failed to remove member. Please try again.");
+      return;
+    }
+
+    // Update local state
+    setTeam({
+      ...team,
+      members: team.members.filter((m) => m.id !== memberId),
+    });
+  };
+
+  const handlePromoteToCoLeader = async (memberUserId: string, memberName: string) => {
+    if (!team || !isOwner) return;
+
+    const action = team.coLeaderId === memberUserId ? "remove" : "promote";
+    const confirmMessage = action === "promote"
+      ? `Promote ${memberName} to Co-Leader? They will be able to manage team members and view gift codes.`
+      : `Remove ${memberName} as Co-Leader?`;
+
+    if (!confirm(confirmMessage)) return;
+
+    const supabase = createClient();
+
+    const newCoLeaderId = action === "promote" ? memberUserId : null;
+
+    const { error } = await supabase
+      .from("teams")
+      .update({ co_leader_id: newCoLeaderId })
+      .eq("id", team.id);
+
+    if (error) {
+      console.error("Failed to update co-leader:", error);
+      alert("Failed to update co-leader. Please try again.");
+      return;
+    }
+
+    // Update local state
+    setTeam({
+      ...team,
+      coLeaderId: newCoLeaderId,
+    });
   };
 
   const handleCopyInvite = async () => {
@@ -495,7 +557,12 @@ export default function TeamDetailPage() {
                 <div className="space-y-3">
                   {team.members.map((member) => {
                     const animal = animals[member.animalType];
-                    const isLeader = member.userId === team.ownerId;
+                    const isMemberOwner = member.userId === team.ownerId;
+                    const isMemberCoLeader = member.userId === team.coLeaderId;
+                    const isCurrentUser = member.userId === userId;
+                    const canManage = isLeader && !isMemberOwner && !isCurrentUser;
+                    const canPromote = isOwner && !isMemberOwner && !isCurrentUser;
+
                     return (
                       <div
                         key={member.id}
@@ -504,11 +571,16 @@ export default function TeamDetailPage() {
                         <div className="flex items-center gap-4">
                           <span className="text-2xl">{animal.emoji}</span>
                           <div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
                               <p className="font-medium">{member.name}</p>
-                              {isLeader && (
+                              {isMemberOwner && (
                                 <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-medium">
                                   Leader
+                                </span>
+                              )}
+                              {isMemberCoLeader && (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 font-medium">
+                                  Co-Leader
                                 </span>
                               )}
                             </div>
@@ -520,11 +592,40 @@ export default function TeamDetailPage() {
                             )}
                           </div>
                         </div>
-                        <div className="text-right">
-                          <p className="font-medium" style={{ color: animal.color }}>
-                            {animal.name}
-                          </p>
-                          <p className="text-xs text-muted-foreground">{animal.title}</p>
+                        <div className="flex items-center gap-3">
+                          <div className="text-right">
+                            <p className="font-medium" style={{ color: animal.color }}>
+                              {animal.name}
+                            </p>
+                            <p className="text-xs text-muted-foreground">{animal.title}</p>
+                          </div>
+                          {/* Management buttons */}
+                          {(canManage || canPromote) && (
+                            <div className="flex items-center gap-1 ml-2">
+                              {canPromote && (
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handlePromoteToCoLeader(member.userId, member.name)}
+                                  className={`text-xs px-2 ${isMemberCoLeader ? "text-cyan-600 hover:text-cyan-700" : "text-gray-500 hover:text-cyan-600"}`}
+                                  title={isMemberCoLeader ? "Remove Co-Leader" : "Promote to Co-Leader"}
+                                >
+                                  {isMemberCoLeader ? "👑" : "⬆️"}
+                                </Button>
+                              )}
+                              {canManage && (
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleKickMember(member.id, member.name)}
+                                  className="text-xs px-2 text-gray-500 hover:text-red-600"
+                                  title="Remove from team"
+                                >
+                                  ✕
+                                </Button>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
                     );
@@ -616,8 +717,8 @@ export default function TeamDetailPage() {
           </CardContent>
         </Card>
 
-        {/* Gift Codes Section - Only visible to team leader */}
-        {team.ownerId === userId && (
+        {/* Gift Codes Section - Only visible to team leader or co-leader */}
+        {isLeader && (
           <div className="mt-8 max-w-4xl mx-auto">
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
               <CardHeader>
