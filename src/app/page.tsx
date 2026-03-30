@@ -45,6 +45,7 @@ function useInView(threshold = 0.1) {
 
 export default function Home() {
   const statsSection = useInView(0.3);
+  const notAboutYouSection = useInView(0.3);
   const typesSection = useInView(0.2);
   const howItWorksSection = useInView(0.2);
   const quadrantSection = useInView(0.3);
@@ -204,7 +205,7 @@ export default function Home() {
       </section>
 
       {/* It's Not About You Section */}
-      <section className="py-24 relative">
+      <section ref={notAboutYouSection.ref} className="py-24 relative">
         {/* Subtle gradient background */}
         <div className="absolute inset-0 opacity-20">
           <div
@@ -219,7 +220,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight">
+          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight transition-all duration-700 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="text-white">It's Not About You,</span>
             <br />
             <span
@@ -232,7 +233,7 @@ export default function Home() {
             </span>
           </h2>
 
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Most salespeople focus on what matters to them—but customers buy based on what matters to <span className="text-white">them</span>.
             That's why understanding your animal and recognizing your customer's is key to building
             <span className="text-white"> trust</span>, <span className="text-white">connection</span>, and <span className="text-white">closing more sales</span>.
