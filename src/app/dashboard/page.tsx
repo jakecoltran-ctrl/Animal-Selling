@@ -139,6 +139,12 @@ export default function DashboardPage() {
         return;
       }
 
+      // Check if email is confirmed
+      if (!authUser.email_confirmed_at) {
+        router.push("/check-email");
+        return;
+      }
+
       // Get user's name from metadata or profile
       const userName = authUser.user_metadata?.name || "";
       setUser({

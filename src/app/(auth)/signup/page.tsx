@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
-import { generateQuizResult } from "@/lib/quiz-scoring";
-import { QuizAnswer, SalesContext } from "@/types";
 
 function SignupForm() {
   const router = useRouter();
@@ -67,39 +65,17 @@ function SignupForm() {
           // Continue anyway - user is created
         }
 
-        router.refresh();
-
-        // Check if coming from quiz
+        // Store pending quiz data to process after email confirmation
         if (redirectTo === "quiz") {
           const pendingQuizData = localStorage.getItem("pending_quiz_data");
           if (pendingQuizData) {
-            try {
-              const { answers, salesContext } = JSON.parse(pendingQuizData) as {
-                answers: Record<string, 1 | 2 | 3 | 4 | 5>;
-                salesContext: SalesContext;
-              };
-
-              const formattedAnswers: QuizAnswer[] = Object.entries(answers).map(
-                ([questionId, value]) => ({
-                  questionId,
-                  value,
-                })
-              );
-
-              const result = generateQuizResult(formattedAnswers, salesContext, email);
-              localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-              localStorage.removeItem("pending_quiz_data");
-
-              router.push(`/quiz/results/${result.id}`);
-              return;
-            } catch (err) {
-              console.error("Error processing quiz data:", err);
-              localStorage.removeItem("pending_quiz_data");
-            }
+            // Keep the pending quiz data - it will be processed after email confirmation
+            localStorage.setItem("pending_quiz_redirect", "true");
           }
         }
 
-        router.push("/dashboard");
+        // Redirect to check email page - user must confirm before accessing app
+        router.push("/check-email");
       }
     } catch (err) {
       console.error("Signup error:", err);
