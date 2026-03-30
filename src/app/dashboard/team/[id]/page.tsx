@@ -689,6 +689,36 @@ export default function TeamDetailPage() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Gift Codes Info - Leaders Only */}
+          {isLeader && (
+            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
+                  <span>🎁</span> Onboard Your Team
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  Give your team members free access to their full Animal Selling reports with gift codes.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">💡</span>
+                    <span>Bulk discounts up to 50% off</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">💡</span>
+                    <span>Codes never expire until used</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">💡</span>
+                    <span>Purchase options below</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          )}
         </div>
 
         {/* Invite Code */}
