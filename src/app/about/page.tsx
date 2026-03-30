@@ -51,22 +51,57 @@ export default function AboutPage() {
 
             <div className="space-y-6 text-gray-300 leading-relaxed">
               <p>
-                Every salesperson has experienced it: a pitch that works perfectly with one
-                customer falls completely flat with another. Why? Because people are different—they
-                process information differently, make decisions differently, and respond to
-                communication differently.
+                Animal Selling was developed by Chris Coltran, co-founder of C2 Unlimited, LLC.,
+                a coaching and training company, and a multi-book author and professional sales
+                trainer with over 25 years of experience across retail, wholesale, manufacturing,
+                and distribution. Through decades of working directly with thousands of salespeople
+                and leaders, C2 recognized a common challenge of salespeople naturally communicating
+                and selling based on their own preferences rather than adapting to the customer.
               </p>
 
               <p>
-                Animal Selling was created to solve this problem. By mapping selling styles to
-                four memorable animal archetypes, we've made it easy for anyone to understand
-                their natural approach and recognize the preferences of others.
+                Building on his earlier work, including the Grandmother Philosophy, Animal Selling
+                was created as a simple, relatable framework to help sales professionals quickly
+                identify behavioral styles of their own and their customer's, and adjust their
+                approach to better connect, build trust, and close more sales. These concepts have
+                been implemented at scale, including training initiatives with The Home Depot, one
+                of the largest retailers in the world, where the Animal Selling framework has helped
+                associates better understand customers and improve the overall buying experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Influences */}
+      <section className="py-20 border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-black text-white mb-8">The Influences</h2>
+
+            <div className="space-y-6 text-gray-300 leading-relaxed">
+              <p>
+                Animal Selling is influenced by both DISC and The Five Love Languages, bringing
+                together the power of understanding how people communicate and how they prefer to
+                be treated. Most people naturally interact with others the way they want to be
+                treated—communicating in their own style, emphasizing what matters to them, and
+                moving at a pace that feels comfortable.
               </p>
 
               <p>
-                The framework draws on established behavioral models while making them accessible
-                and immediately practical. No jargon, no complex charts—just four animals that
-                stick in your mind and change how you sell.
+                But just like The Five Love Languages teaches us to give love in the way the other
+                person wants to receive it, Animal Selling reinforces that customers need to be
+                communicated with in a way that fits them. While DISC helps us understand general
+                communication tendencies, your sales animal is not the same as your DISC profile—they
+                are different. DISC reflects broader behavioral traits, while your sales animal
+                represents how you naturally show up in a sales conversation and how you tend to sell.
+              </p>
+
+              <p>
+                Animal Selling simplifies these concepts into an easy-to-use framework that helps
+                salespeople slow down, get to know the customer, build genuine rapport, and adjust
+                their approach to match how that customer thinks, feels, and makes decisions—before
+                ever trying to make the sale.
               </p>
             </div>
           </div>
