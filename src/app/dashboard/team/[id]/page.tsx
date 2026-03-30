@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { animals } from "@/lib/animal-data";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
@@ -35,6 +36,21 @@ interface Team {
   createdAt: string;
 }
 
+interface GiftCode {
+  id: string;
+  code: string;
+  createdAt: string;
+  usedAt: string | null;
+  usedBy: string | null;
+}
+
+const CODE_PACKAGES = [
+  { quantity: 10, price: 39.99, savings: "20%" },
+  { quantity: 25, price: 89.99, savings: "28%" },
+  { quantity: 50, price: 149.99, savings: "40%" },
+  { quantity: 100, price: 249.99, savings: "50%" },
+];
+
 export default function TeamDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -42,6 +58,11 @@ export default function TeamDetailPage() {
   const [loading, setLoading] = useState(true);
   const [inviteCopied, setInviteCopied] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [giftCodes, setGiftCodes] = useState<GiftCode[]>([]);
+  const [loadingCodes, setLoadingCodes] = useState(false);
+  const [purchasingCodes, setPurchasingCodes] = useState(false);
+  const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
+  const [showAllCodes, setShowAllCodes] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -100,10 +121,61 @@ export default function TeamDetailPage() {
       });
 
       setLoading(false);
+
+      // Load gift codes if user is owner
+      if (teamData.owner_id === user.id) {
+        loadGiftCodes();
+      }
     };
 
     loadData();
   }, [params.id, router]);
+
+  const loadGiftCodes = async () => {
+    setLoadingCodes(true);
+    try {
+      const response = await fetch(`/api/team-gift-codes?teamId=${params.id}`);
+      if (response.ok) {
+        const data = await response.json();
+        setGiftCodes(data.codes || []);
+      }
+    } catch (error) {
+      console.error("Failed to load gift codes:", error);
+    }
+    setLoadingCodes(false);
+  };
+
+  const handlePurchaseCodes = async (quantity: number, price: number) => {
+    setPurchasingCodes(true);
+    try {
+      const response = await fetch("/api/team-gift-codes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          teamId: params.id,
+          quantity,
+          // TODO: Add Stripe payment integration
+        }),
+      });
+
+      if (response.ok) {
+        await loadGiftCodes();
+      } else {
+        const data = await response.json();
+        alert(data.error || "Failed to purchase codes");
+      }
+    } catch (error) {
+      console.error("Failed to purchase codes:", error);
+      alert("Something went wrong. Please try again.");
+    }
+    setPurchasingCodes(false);
+  };
+
+  const handleCopyCode = async (code: string, codeId: string) => {
+    await navigator.clipboard.writeText(code);
+    setCopiedCodeId(codeId);
+    setTimeout(() => setCopiedCodeId(null), 2000);
+  };
 
   const handleCopyInvite = async () => {
     if (!team) return;
@@ -543,6 +615,126 @@ export default function TeamDetailPage() {
             </Button>
           </CardContent>
         </Card>
+
+        {/* Gift Codes Section - Only visible to team leader */}
+        {team.ownerId === userId && (
+          <div className="mt-8 max-w-4xl mx-auto">
+            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
+              <CardHeader>
+                <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
+                  <span>🎁</span> Report Gift Codes
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-400">
+                  Purchase gift codes to give your team members free access to their full reports
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {/* Purchase Packages */}
+                <div className="mb-8">
+                  <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">
+                    Purchase Code Packages
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {CODE_PACKAGES.map((pkg) => (
+                      <div
+                        key={pkg.quantity}
+                        className="border border-gray-200 dark:border-white/20 rounded-xl p-4 text-center hover:border-cyan-500 hover:bg-cyan-500/5 transition-all duration-300 cursor-pointer"
+                        onClick={() => !purchasingCodes && handlePurchaseCodes(pkg.quantity, pkg.price)}
+                      >
+                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                          {pkg.quantity}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">codes</div>
+                        <div className="text-lg font-bold text-cyan-600 dark:text-cyan-400">
+                          ${pkg.price}
+                        </div>
+                        <div className="text-xs text-green-600 dark:text-green-400 font-medium">
+                          Save {pkg.savings}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {purchasingCodes && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
+                      Processing purchase...
+                    </p>
+                  )}
+                </div>
+
+                {/* Existing Codes */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      Your Codes ({giftCodes.filter(c => !c.usedAt).length} available, {giftCodes.filter(c => c.usedAt).length} used)
+                    </h3>
+                    {giftCodes.length > 5 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowAllCodes(!showAllCodes)}
+                        className="text-xs"
+                      >
+                        {showAllCodes ? "Show Less" : `Show All (${giftCodes.length})`}
+                      </Button>
+                    )}
+                  </div>
+
+                  {loadingCodes ? (
+                    <div className="text-center py-8">
+                      <div className="text-2xl animate-spin mb-2">🎁</div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Loading codes...</p>
+                    </div>
+                  ) : giftCodes.length === 0 ? (
+                    <div className="text-center py-8 border border-dashed border-gray-300 dark:border-white/20 rounded-xl">
+                      <div className="text-3xl mb-2">🎟️</div>
+                      <p className="text-gray-500 dark:text-gray-400 text-sm">
+                        No gift codes yet. Purchase a package above to get started.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {(showAllCodes ? giftCodes : giftCodes.slice(0, 5)).map((code) => (
+                        <div
+                          key={code.id}
+                          className={`flex items-center justify-between p-3 rounded-lg border ${
+                            code.usedAt
+                              ? "bg-gray-100 dark:bg-gray-800/50 border-gray-200 dark:border-white/10 opacity-60"
+                              : "bg-white dark:bg-white/5 border-gray-200 dark:border-white/20"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className={code.usedAt ? "text-gray-400" : "text-green-500"}>
+                              {code.usedAt ? "✓" : "🎁"}
+                            </span>
+                            <code className={`font-mono font-bold ${code.usedAt ? "text-gray-400 line-through" : "text-gray-900 dark:text-white"}`}>
+                              {code.code}
+                            </code>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {code.usedAt ? (
+                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                                Used {new Date(code.usedAt).toLocaleDateString()}
+                              </span>
+                            ) : (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleCopyCode(code.code, code.id)}
+                                className="text-xs"
+                              >
+                                {copiedCodeId === code.id ? "Copied!" : "Copy"}
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Leave Team */}
         <div className="mt-8 max-w-md mx-auto text-center">
