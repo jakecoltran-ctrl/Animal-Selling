@@ -584,7 +584,7 @@ export default function TeamDetailPage() {
                                 </span>
                               )}
                             </div>
-                            <p className="text-sm text-muted-foreground">{member.email}</p>
+                            {isLeader && <p className="text-sm text-muted-foreground">{member.email}</p>}
                             {member.salesContext && (
                               <p className="text-xs text-muted-foreground mt-1">
                                 {member.salesContext.sellType === "product" ? "Product" : "Service"} · {member.salesContext.customerType.toUpperCase()} · {member.salesContext.salesChannel === "inside" ? "Inside" : "Outside"}
