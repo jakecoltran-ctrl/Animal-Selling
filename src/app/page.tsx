@@ -203,6 +203,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* It's Not About You Section */}
+      <section className="py-24 relative">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `
+                radial-gradient(ellipse at 30% 50%, #dc262630 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, #05966930 0%, transparent 50%)
+              `
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight">
+            <span className="text-white">It's Not About You,</span>
+            <br />
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)",
+              }}
+            >
+              It's About Them
+            </span>
+          </h2>
+
+          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Most salespeople focus on what matters to them—but customers buy based on what matters to <span className="text-white">them</span>.
+            That's why understanding your animal and recognizing your customer's is key to building
+            <span className="text-white"> trust</span>, <span className="text-white">connection</span>, and <span className="text-white">closing more sales</span>.
+          </p>
+        </div>
+      </section>
+
       {/* The Four Types - Infographic Grid */}
       <section ref={typesSection.ref} className="py-24" id="types">
         <div className="container mx-auto px-4">
