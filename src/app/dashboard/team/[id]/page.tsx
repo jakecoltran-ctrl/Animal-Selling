@@ -25,6 +25,7 @@ interface TeamMember {
   animalType: AnimalType;
   salesContext?: SalesContext;
   joinedAt: string;
+  quizResultId?: string;
   hasPurchasedReport?: boolean;
 }
 
@@ -101,17 +102,22 @@ export default function TeamDetailPage() {
         return;
       }
 
-      // Get user IDs of all team members to check purchase status
-      const memberUserIds = (teamData.team_members || []).map((m: { user_id: string }) => m.user_id);
+      // Get quiz result IDs of all team members to check purchase status
+      const memberQuizResultIds = (teamData.team_members || [])
+        .map((m: { quiz_result_id?: string }) => m.quiz_result_id)
+        .filter((id): id is string => !!id);
 
-      // Fetch purchase status for all team members
-      const { data: purchases } = await supabase
-        .from("purchases")
-        .select("user_id")
-        .in("user_id", memberUserIds)
-        .eq("status", "completed");
+      // Fetch purchase status for team members' specific quiz results
+      let purchasedQuizResultIds = new Set<string>();
+      if (memberQuizResultIds.length > 0) {
+        const { data: purchases } = await supabase
+          .from("purchases")
+          .select("quiz_result_id")
+          .in("quiz_result_id", memberQuizResultIds)
+          .eq("status", "completed");
 
-      const usersWithPurchases = new Set(purchases?.map(p => p.user_id) || []);
+        purchasedQuizResultIds = new Set(purchases?.map(p => p.quiz_result_id).filter((id): id is string => !!id) || []);
+      }
 
       setTeam({
         id: teamData.id,
@@ -120,7 +126,7 @@ export default function TeamDetailPage() {
         ownerId: teamData.owner_id,
         coLeaderId: teamData.co_leader_id || null,
         createdAt: teamData.created_at,
-        members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; sell_type?: string; customer_type?: string; sales_channel?: string; joined_at: string }) => ({
+        members: (teamData.team_members || []).map((m: { id: string; user_id: string; name: string; email: string; animal_type: AnimalType; sell_type?: string; customer_type?: string; sales_channel?: string; joined_at: string; quiz_result_id?: string }) => ({
           id: m.id,
           userId: m.user_id,
           name: m.name,
@@ -132,7 +138,8 @@ export default function TeamDetailPage() {
             salesChannel: m.sales_channel as "inside" | "outside",
           } : undefined,
           joinedAt: m.joined_at,
-          hasPurchasedReport: usersWithPurchases.has(m.user_id),
+          quizResultId: m.quiz_result_id,
+          hasPurchasedReport: m.quiz_result_id ? purchasedQuizResultIds.has(m.quiz_result_id) : false,
         })),
       });
 

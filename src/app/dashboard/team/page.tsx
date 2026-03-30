@@ -169,14 +169,15 @@ function TeamSafariPageContent() {
     // Get user's latest quiz result for their animal type and sales context
     let userAnimalType: AnimalType = "lion";
     let userSalesContext: SalesContext | null = null;
-    const quizResults: { createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
+    let userQuizResultId: string | null = null;
+    const quizResults: { id: string; createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key?.startsWith("quiz_result_")) {
         const result = localStorage.getItem(key);
         if (result) {
           const parsed = JSON.parse(result);
-          quizResults.push({ createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
+          quizResults.push({ id: parsed.id, createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
         }
       }
     }
@@ -184,6 +185,7 @@ function TeamSafariPageContent() {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       userAnimalType = quizResults[0].primaryType;
       userSalesContext = quizResults[0].salesContext || null;
+      userQuizResultId = quizResults[0].id;
     }
 
     const newInviteCode = Math.random().toString(36).substring(2, 10).toUpperCase();
@@ -216,6 +218,7 @@ function TeamSafariPageContent() {
         sell_type: userSalesContext?.sellType || null,
         customer_type: userSalesContext?.customerType || null,
         sales_channel: userSalesContext?.salesChannel || null,
+        quiz_result_id: userQuizResultId,
       });
 
     setShowCreateForm(false);
@@ -273,14 +276,15 @@ function TeamSafariPageContent() {
     // Get user's animal type and sales context
     let userAnimalType: AnimalType = "lion";
     let userSalesContext: SalesContext | null = null;
-    const quizResults: { createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
+    let userQuizResultId: string | null = null;
+    const quizResults: { id: string; createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key?.startsWith("quiz_result_")) {
         const result = localStorage.getItem(key);
         if (result) {
           const parsed = JSON.parse(result);
-          quizResults.push({ createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
+          quizResults.push({ id: parsed.id, createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
         }
       }
     }
@@ -288,6 +292,7 @@ function TeamSafariPageContent() {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       userAnimalType = quizResults[0].primaryType;
       userSalesContext = quizResults[0].salesContext || null;
+      userQuizResultId = quizResults[0].id;
     }
 
     // Join team
@@ -302,6 +307,7 @@ function TeamSafariPageContent() {
         sell_type: userSalesContext?.sellType || null,
         customer_type: userSalesContext?.customerType || null,
         sales_channel: userSalesContext?.salesChannel || null,
+        quiz_result_id: userQuizResultId,
       });
 
     if (joinError) {
