@@ -723,7 +723,7 @@ export default function TeamDetailPage() {
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
-                  <span>🎁</span> Report Gift Codes
+                  <span>🎁</span> Get Full Report Gift Codes
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-400">
                   Purchase gift codes to give your team members free access to their full reports
