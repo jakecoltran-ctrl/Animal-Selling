@@ -541,6 +541,61 @@ function TeamSafariPageContent() {
               </ol>
             </div>
           </div>
+
+          {/* Sales Leader Info - Gift Codes */}
+          <div className="mt-6 bg-gradient-to-br from-amber-500/10 to-cyan-500/10 border border-amber-500/20 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
+              <span>🎁</span> Sales Leaders: Onboard Your Entire Team
+            </h2>
+            <p className="text-gray-300 mb-4 leading-relaxed">
+              Want to bring your whole sales team to Animal Selling? Purchase gift code packages to give
+              your team members <strong className="text-white">free access to their full personality reports</strong>.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+              <div className="bg-white/5 rounded-lg p-3 text-center border border-white/10">
+                <div className="text-2xl font-bold text-white">10</div>
+                <div className="text-xs text-gray-400">codes</div>
+                <div className="text-sm font-semibold text-cyan-400 mt-1">$39.99</div>
+              </div>
+              <div className="bg-white/5 rounded-lg p-3 text-center border border-white/10">
+                <div className="text-2xl font-bold text-white">25</div>
+                <div className="text-xs text-gray-400">codes</div>
+                <div className="text-sm font-semibold text-cyan-400 mt-1">$89.99</div>
+              </div>
+              <div className="bg-white/5 rounded-lg p-3 text-center border border-white/10">
+                <div className="text-2xl font-bold text-white">50</div>
+                <div className="text-xs text-gray-400">codes</div>
+                <div className="text-sm font-semibold text-cyan-400 mt-1">$149.99</div>
+              </div>
+              <div className="bg-white/5 rounded-lg p-3 text-center border border-white/10 relative">
+                <div className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">BEST VALUE</div>
+                <div className="text-2xl font-bold text-white">100</div>
+                <div className="text-xs text-gray-400">codes</div>
+                <div className="text-sm font-semibold text-cyan-400 mt-1">$249.99</div>
+              </div>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <h3 className="font-semibold text-white text-sm mb-2 flex items-center gap-2">
+                <span>💡</span> How Gift Codes Work
+              </h3>
+              <ul className="space-y-1.5 text-sm text-gray-300">
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-400">•</span>
+                  <span>Create a team and navigate to your team dashboard</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-400">•</span>
+                  <span>Purchase a code package in the &quot;Get Full Report Gift Codes&quot; section</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-400">•</span>
+                  <span>Share codes with team members to unlock their full reports for free</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
