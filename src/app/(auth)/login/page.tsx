@@ -19,12 +19,14 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Redirect if already logged in
+  // Redirect if already logged in AND email confirmed
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
+      if (user && user.email_confirmed_at) {
         router.push("/dashboard");
+      } else if (user && !user.email_confirmed_at) {
+        router.push("/check-email");
       }
     });
   }, [router]);
@@ -44,6 +46,13 @@ function LoginForm() {
 
       if (signInError) {
         setError(signInError.message);
+        return;
+      }
+
+      // Check if email is confirmed
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user && !user.email_confirmed_at) {
+        router.push("/check-email");
         return;
       }
 

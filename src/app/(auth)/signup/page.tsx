@@ -18,11 +18,11 @@ function SignupForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Redirect if already logged in
+  // Redirect if already logged in AND email confirmed
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
+      if (user && user.email_confirmed_at) {
         router.push("/dashboard");
       }
     });
@@ -74,8 +74,14 @@ function SignupForm() {
           }
         }
 
-        // Redirect to check email page - user must confirm before accessing app
-        router.push("/check-email");
+        // Check if email confirmation is required (no session means confirmation needed)
+        // If session exists, user was auto-confirmed - still send to check-email as fallback
+        if (!data.session || !data.user.email_confirmed_at) {
+          router.push("/check-email");
+        } else {
+          // Email was auto-confirmed (Supabase setting disabled), go to dashboard
+          router.push("/dashboard");
+        }
       }
     } catch (err) {
       console.error("Signup error:", err);
