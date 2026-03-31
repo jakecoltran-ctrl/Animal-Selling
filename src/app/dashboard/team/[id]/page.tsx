@@ -48,10 +48,10 @@ interface GiftCode {
 }
 
 const CODE_PACKAGES = [
-  { quantity: 10, price: 39.99, savings: "20%" },
-  { quantity: 25, price: 89.99, savings: "28%" },
-  { quantity: 50, price: 149.99, savings: "40%" },
-  { quantity: 100, price: 249.99, savings: "50%" },
+  { quantity: 10, price: 39.99 },
+  { quantity: 25, price: 89.99 },
+  { quantity: 50, price: 149.99 },
+  { quantity: 100, price: 249.99 },
 ];
 
 export default function TeamDetailPage() {
@@ -766,7 +766,7 @@ export default function TeamDetailPage() {
                 <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                   <li className="flex items-start gap-2">
                     <span className="mt-0.5">💡</span>
-                    <span>Bulk discounts up to 50% off</span>
+                    <span>Buy in bulk to share with your team</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-0.5">💡</span>
@@ -813,9 +813,6 @@ export default function TeamDetailPage() {
                         <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">codes</div>
                         <div className="text-lg font-bold text-cyan-600 dark:text-cyan-400">
                           ${pkg.price}
-                        </div>
-                        <div className="text-xs text-green-600 dark:text-green-400 font-medium">
-                          Save {pkg.savings}
                         </div>
                       </div>
                     ))}
