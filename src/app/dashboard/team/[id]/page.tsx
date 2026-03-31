@@ -590,51 +590,51 @@ export default function TeamDetailPage() {
                     return (
                       <div
                         key={member.id}
-                        className="flex items-center justify-between p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]"
+                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01] gap-3 sm:gap-0"
                       >
-                        <div className="flex items-center gap-4">
-                          <span className="text-2xl">{animal.emoji}</span>
-                          <div>
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <p className="font-medium">{member.name}</p>
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <span className="text-xl sm:text-2xl">{animal.emoji}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                              <p className="font-medium text-sm sm:text-base">{member.name}</p>
                               {isMemberOwner && (
-                                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-medium">
+                                <span className="text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-medium">
                                   Leader
                                 </span>
                               )}
                               {isMemberCoLeader && (
-                                <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 font-medium">
+                                <span className="text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 font-medium">
                                   Co-Leader
                                 </span>
                               )}
                               {member.hasPurchasedReport ? (
-                                <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 font-medium" title="Has full report access">
+                                <span className="text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 font-medium" title="Has full report access">
                                   ✓ Report
                                 </span>
                               ) : (
-                                <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-medium" title="Has not purchased full report">
+                                <span className="text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-medium" title="Has not purchased full report">
                                   No Report
                                 </span>
                               )}
                             </div>
-                            {isLeader && <p className="text-sm text-muted-foreground">{member.email}</p>}
+                            {isLeader && <p className="text-xs sm:text-sm text-muted-foreground truncate">{member.email}</p>}
                             {member.salesContext && (
-                              <p className="text-xs text-muted-foreground mt-1">
+                              <p className="text-xs text-muted-foreground mt-0.5 sm:mt-1">
                                 {member.salesContext.sellType === "product" ? "Product" : "Service"} · {member.salesContext.customerType.toUpperCase()} · {member.salesContext.salesChannel === "inside" ? "Inside" : "Outside"}
                               </p>
                             )}
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <div className="text-right">
-                            <p className="font-medium" style={{ color: animal.color }}>
+                        <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 pl-8 sm:pl-0">
+                          <div className="text-left sm:text-right">
+                            <p className="font-medium text-sm sm:text-base" style={{ color: animal.color }}>
                               {animal.name}
                             </p>
                             <p className="text-xs text-muted-foreground">{animal.title}</p>
                           </div>
                           {/* Management buttons */}
                           {(canManage || canPromote) && (
-                            <div className="flex items-center gap-1 ml-2">
+                            <div className="flex items-center gap-1 ml-auto sm:ml-2">
                               {canPromote && (
                                 <Button
                                   variant="ghost"

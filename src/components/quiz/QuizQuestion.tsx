@@ -32,7 +32,7 @@ export function QuizQuestionCard({
             key={option.value}
             onClick={() => onChange(option.value)}
             className={cn(
-              "flex flex-col items-center p-3 sm:p-4 rounded-lg border-2 min-w-[100px]",
+              "flex flex-col items-center p-3 sm:p-4 rounded-lg border-2 min-w-[60px] sm:min-w-[100px]",
               "transition-all duration-200 hover-scale press-effect animate-fade-in",
               value === option.value
                 ? "border-primary bg-primary/10 text-primary shadow-md scale-105"

@@ -130,12 +130,12 @@ export default function ReportViewPage() {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
       {/* Sticky Navigation */}
       <div className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b dark:border-gray-700 shadow-sm no-print">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            {/* Back Link */}
+        <div className="container mx-auto px-4 py-2 sm:py-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
+            {/* Back Link - Hidden on mobile, shown on desktop */}
             <Link
               href={`/quiz/results/${params.id}`}
-              className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center gap-1"
+              className="hidden sm:flex text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 items-center gap-1"
             >
               <svg
                 className="w-4 h-4"
@@ -153,6 +153,34 @@ export default function ReportViewPage() {
               Back to Results
             </Link>
 
+            {/* Mobile: Back + PDF in one row */}
+            <div className="flex sm:hidden w-full items-center justify-between">
+              <Link
+                href={`/quiz/results/${params.id}`}
+                className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center gap-1"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                Back
+              </Link>
+              <PDFDownload
+                reportRef={reportRef}
+                fileName={`animal-selling-${result.primaryType}-report`}
+                primaryColor={primaryAnimal.color}
+              />
+            </div>
+
             {/* Page Navigation */}
             <div className="flex items-center gap-2">
               <Button
@@ -160,30 +188,34 @@ export default function ReportViewPage() {
                 size="sm"
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="press-effect hover-glow"
+                className="press-effect hover-glow px-2 sm:px-3"
               >
-                Previous
+                <span className="hidden sm:inline">Previous</span>
+                <span className="sm:hidden">←</span>
               </Button>
-              <span className="text-sm text-gray-600 min-w-[80px] text-center">
-                Page {currentPage} / {totalPages}
+              <span className="text-sm text-gray-600 min-w-[60px] sm:min-w-[80px] text-center">
+                {currentPage} / {totalPages}
               </span>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="press-effect hover-glow"
+                className="press-effect hover-glow px-2 sm:px-3"
               >
-                Next
+                <span className="hidden sm:inline">Next</span>
+                <span className="sm:hidden">→</span>
               </Button>
             </div>
 
-            {/* Download PDF */}
-            <PDFDownload
-              reportRef={reportRef}
-              fileName={`animal-selling-${result.primaryType}-report`}
-              primaryColor={primaryAnimal.color}
-            />
+            {/* Download PDF - Desktop only */}
+            <div className="hidden sm:block">
+              <PDFDownload
+                reportRef={reportRef}
+                fileName={`animal-selling-${result.primaryType}-report`}
+                primaryColor={primaryAnimal.color}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -442,15 +474,15 @@ export default function ReportViewPage() {
       </div>
 
       {/* Page Dots Navigation */}
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 no-print">
-        <div className="flex items-center gap-1.5 bg-white dark:bg-gray-800 rounded-full px-4 py-2 shadow-lg border dark:border-gray-700">
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-50 no-print">
+        <div className="flex items-center gap-1 sm:gap-1.5 bg-white dark:bg-gray-800 rounded-full px-2 sm:px-4 py-1.5 sm:py-2 shadow-lg border dark:border-gray-700">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
               onClick={() => goToPage(page)}
-              className={`w-2 h-2 rounded-full transition-all press-effect ${
+              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all press-effect ${
                 currentPage === page
-                  ? "w-5"
+                  ? "w-3 sm:w-5"
                   : "hover:bg-gray-400 hover:scale-125"
               }`}
               style={{

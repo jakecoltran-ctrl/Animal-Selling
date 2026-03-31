@@ -82,7 +82,7 @@ function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: stri
   return (
     <div className="flex flex-col items-center">
       <div
-        className="relative w-48 h-64 cursor-pointer group"
+        className="relative w-36 h-48 sm:w-48 sm:h-64 cursor-pointer group"
         onClick={nextPage}
       >
         {/* Stacked pages effect */}
@@ -921,7 +921,7 @@ export default function ResultsPage() {
           <h2 className="text-xl font-bold text-center text-gray-900 dark:text-white mb-6">
             Explore All Types
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
             {getAllAnimals().map((animal) => (
               <Link key={animal.id} href={`/animals/${animal.id}`}>
                 <Card

@@ -185,7 +185,7 @@ export default function AnimalTypePage({ params }: Props) {
         {/* Explore Other Types */}
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-center mb-6">Explore Other Types</h2>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {otherAnimals.map((other) => (
               <Link key={other.id} href={`/animals/${other.id}`}>
                 <Card className="text-center p-4 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">

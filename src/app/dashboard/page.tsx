@@ -455,13 +455,13 @@ export default function DashboardPage() {
                               </div>
                             </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2 sm:mt-0">
                             {purchasedIds.has(result.id) ? (
                               <Link href={`/quiz/results/${result.id}/report`}>
                                 <Button
                                   size="sm"
                                   style={{ backgroundColor: animal.color }}
-                                  className="text-white press-effect"
+                                  className="text-white press-effect w-full sm:w-auto"
                                 >
                                   View
                                 </Button>
@@ -471,14 +471,14 @@ export default function DashboardPage() {
                                 <Button
                                   size="sm"
                                   style={{ backgroundColor: animal.color }}
-                                  className="text-white press-effect"
+                                  className="text-white press-effect w-full sm:w-auto"
                                 >
                                   Unlock
                                 </Button>
                               </Link>
                             )}
                             <Link href={`/quiz/results/${result.id}`}>
-                              <Button size="sm" variant="outline" className="press-effect">
+                              <Button size="sm" variant="outline" className="press-effect w-full sm:w-auto">
                                 Summary
                               </Button>
                             </Link>

@@ -131,12 +131,12 @@ export default function Home() {
           />
         </div>
 
-        {/* Floating emojis */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <span className="absolute text-8xl opacity-20 animate-float" style={{ top: '10%', left: '5%', animationDelay: '0s' }}>🦁</span>
-          <span className="absolute text-7xl opacity-20 animate-float" style={{ top: '15%', right: '10%', animationDelay: '1s' }}>🐧</span>
-          <span className="absolute text-8xl opacity-20 animate-float" style={{ bottom: '20%', left: '8%', animationDelay: '2s' }}>🐕</span>
-          <span className="absolute text-7xl opacity-20 animate-float" style={{ bottom: '15%', right: '5%', animationDelay: '0.5s' }}>🦫</span>
+        {/* Floating emojis - hidden on mobile, visible on larger screens */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
+          <span className="absolute text-5xl md:text-7xl lg:text-8xl opacity-20 animate-float" style={{ top: '10%', left: '5%', animationDelay: '0s' }}>🦁</span>
+          <span className="absolute text-4xl md:text-6xl lg:text-7xl opacity-20 animate-float" style={{ top: '15%', right: '10%', animationDelay: '1s' }}>🐧</span>
+          <span className="absolute text-5xl md:text-7xl lg:text-8xl opacity-20 animate-float" style={{ bottom: '20%', left: '8%', animationDelay: '2s' }}>🐕</span>
+          <span className="absolute text-4xl md:text-6xl lg:text-7xl opacity-20 animate-float" style={{ bottom: '15%', right: '5%', animationDelay: '0.5s' }}>🦫</span>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
@@ -189,16 +189,16 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
             <div className={`transition-all duration-700 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat1}</div>
-              <div className="text-gray-400 text-lg">Distinct Selling Styles</div>
+              <div className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-2">{stat1}</div>
+              <div className="text-gray-400 text-base sm:text-lg">Distinct Selling Styles</div>
             </div>
             <div className={`transition-all duration-700 delay-200 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat2}%</div>
-              <div className="text-gray-400 text-lg">Of salespeople have a dominant animal type</div>
+              <div className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-2">{stat2}%</div>
+              <div className="text-gray-400 text-base sm:text-lg">Of salespeople have a dominant animal type</div>
             </div>
             <div className={`transition-all duration-700 delay-400 cursor-default hover:scale-105 ${statsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="text-6xl md:text-7xl font-black text-white mb-2">{stat3}</div>
-              <div className="text-gray-400 text-lg">Questions in our assessment</div>
+              <div className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-2">{stat3}</div>
+              <div className="text-gray-400 text-base sm:text-lg">Questions in our assessment</div>
             </div>
           </div>
         </div>
@@ -474,7 +474,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="text-6xl mb-6">🦁🐧🐕🦫</div>
+            <div className="text-4xl sm:text-5xl md:text-6xl mb-6">🦁🐧🐕🦫</div>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
               Ready to discover your animal?
             </h2>

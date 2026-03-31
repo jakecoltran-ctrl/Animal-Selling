@@ -361,7 +361,7 @@ function TeamSafariPageContent() {
                   <Link key={team.id} href={`/dashboard/team/${team.id}`}>
                     <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 hover:border-gray-300 dark:hover:border-white/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                       <CardContent className="p-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
                           <div>
                             <div className="flex items-center gap-2 mb-1">
                               <p className="font-bold text-gray-900 dark:text-white">{team.name}</p>
@@ -375,7 +375,7 @@ function TeamSafariPageContent() {
                               {team.members.length} member{team.members.length !== 1 ? "s" : ""}
                             </p>
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-1 flex-wrap">
                             {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => {
                               const count = team.members.filter(m => m.animalType === type).length;
                               if (count === 0) return null;

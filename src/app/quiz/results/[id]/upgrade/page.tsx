@@ -796,7 +796,7 @@ export default function UpgradePage() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-center gap-4 p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 hover:scale-[1.01] transition-all duration-300"
+                  className="w-full flex items-center gap-3 sm:gap-4 p-3 sm:p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 hover:scale-[1.01] transition-all duration-300"
                 >
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
@@ -852,7 +852,7 @@ export default function UpgradePage() {
         <div className="text-center">
           <Link
             href={`/quiz/results/${params.id}`}
-            className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="inline-block text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 py-3 px-4"
           >
             ← Back to your results
           </Link>
