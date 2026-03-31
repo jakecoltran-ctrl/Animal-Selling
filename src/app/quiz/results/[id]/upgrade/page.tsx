@@ -222,11 +222,11 @@ export default function UpgradePage() {
     },
     {
       question: "Is this a subscription?",
-      answer: "No. It's a one-time payment of $19. You get permanent access to your report.",
+      answer: "No. It's a one-time payment of $10.99. You get permanent access to your report.",
     },
     {
       question: "Can I retake the quiz later?",
-      answer: "Yes. You can retake the quiz anytime. If you want a new full report based on updated results, it's another $19.",
+      answer: "Yes. You can retake the quiz anytime. If you want a new full report based on updated results, it's another $10.99.",
     },
     {
       question: "Is my payment secure?",
@@ -292,14 +292,14 @@ export default function UpgradePage() {
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-3">
-                    <span className="text-3xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">$40</span>
+                    <span className="text-3xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">$25</span>
                     <span className="text-5xl font-black" style={{ color: primaryAnimal.color }}>
-                      $19
+                      $10.99
                     </span>
                   </div>
                   <div className="mt-2">
                     <span className="text-sm font-semibold text-green-500 bg-green-500/10 px-3 py-1 rounded-full">
-                      Save 52% — Limited Time Offer
+                      Save 56% — Limited Time Offer
                     </span>
                   </div>
                 </div>
@@ -329,7 +329,7 @@ export default function UpgradePage() {
                           d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
                         />
                       </svg>
-                      Get My Full Report — $19
+                      Get My Full Report — $10.99
                     </>
                   )}
                 </Button>
@@ -697,7 +697,7 @@ export default function UpgradePage() {
                       d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
                     />
                   </svg>
-                  Get My Full Report — $19
+                  Get My Full Report — $10.99
                 </>
               )}
             </Button>
