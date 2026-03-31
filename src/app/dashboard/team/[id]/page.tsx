@@ -48,10 +48,10 @@ interface GiftCode {
 }
 
 const CODE_PACKAGES = [
-  { quantity: 10, price: 39.99 },
-  { quantity: 25, price: 89.99 },
-  { quantity: 50, price: 149.99 },
-  { quantity: 100, price: 249.99 },
+  { quantity: 5, price: 50 },
+  { quantity: 10, price: 100 },
+  { quantity: 20, price: 200 },
+  { quantity: 40, price: 400 },
 ];
 
 export default function TeamDetailPage() {

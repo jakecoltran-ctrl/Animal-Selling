@@ -7,10 +7,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 // Price configuration (in cents)
 const PRICES = {
   full_report: 1099, // $10.99
-  gift_codes_10: 3999, // $39.99
-  gift_codes_25: 8999, // $89.99
-  gift_codes_50: 14999, // $149.99
-  gift_codes_100: 24999, // $249.99
+  gift_codes_5: 5000, // $50
+  gift_codes_10: 10000, // $100
+  gift_codes_20: 20000, // $200
+  gift_codes_40: 40000, // $400
 };
 
 export async function POST(request: NextRequest) {
