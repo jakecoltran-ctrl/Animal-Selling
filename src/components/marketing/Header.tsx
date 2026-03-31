@@ -41,13 +41,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-300 dark:border-gray-700 bg-gray-200/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-200/80 dark:supports-[backdrop-filter]:bg-gray-900/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
           <span className="text-2xl">🦁🐧🐕🦫</span>
-          <span className="font-bold text-xl hidden sm:inline-block">Animal Selling</span>
+          <span className="font-bold text-xl hidden md:inline-block whitespace-nowrap">Animal Selling</span>
         </Link>
 
         {/* Desktop Navigation - Centered */}
-        <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
+        <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2 whitespace-nowrap">
           <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600 transition-colors nav-underline">
             Lion
           </Link>
@@ -62,10 +62,10 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex items-center space-x-4">
-          <Link href="/dashboard/team" className="hidden sm:block">
+        <div className="flex items-center space-x-4 flex-shrink-0">
+          <Link href="/dashboard/team" className="hidden md:block">
             <Button
-              className="text-sm text-white press-effect hover-glow"
+              className="text-sm text-white press-effect hover-glow whitespace-nowrap"
               style={{
                 background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
               }}
@@ -73,24 +73,24 @@ export function Header() {
               Team Safari
             </Button>
           </Link>
-          <Link href="/quiz" className="hidden sm:block">
-            <Button className="press-effect hover-glow">Take the Quiz</Button>
+          <Link href="/quiz" className="hidden md:block">
+            <Button className="press-effect hover-glow whitespace-nowrap">Take the Quiz</Button>
           </Link>
           {!loading && (
             user ? (
-              <Link href="/dashboard" className="hidden sm:block">
-                <Button variant="ghost" className="press-effect hover-glow">My Dashboard</Button>
+              <Link href="/dashboard" className="hidden md:block">
+                <Button variant="ghost" className="press-effect hover-glow whitespace-nowrap">My Dashboard</Button>
               </Link>
             ) : (
-              <Link href="/login" className="hidden sm:block">
-                <Button variant="ghost" className="press-effect hover-glow">Sign In</Button>
+              <Link href="/login" className="hidden md:block">
+                <Button variant="ghost" className="press-effect hover-glow whitespace-nowrap">Sign In</Button>
               </Link>
             )
           )}
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 flex-shrink-0"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
