@@ -71,6 +71,22 @@ function SignupForm() {
           if (pendingQuizData) {
             // Keep the pending quiz data - it will be processed after email confirmation
             localStorage.setItem("pending_quiz_redirect", "true");
+
+            // Also save to database for cross-device access
+            try {
+              const { answers, salesContext } = JSON.parse(pendingQuizData);
+              await fetch("/api/pending-quiz", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  email,
+                  quizAnswers: answers,
+                  salesContext,
+                }),
+              });
+            } catch (err) {
+              console.error("Error saving pending quiz to DB:", err);
+            }
           }
         }
 
