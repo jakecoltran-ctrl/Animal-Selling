@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
+import { saveQuizResultsToDB, syncQuizResults } from "@/lib/quiz-sync";
 
 function LoginForm() {
   const router = useRouter();
@@ -79,6 +80,9 @@ function LoginForm() {
             localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
             localStorage.removeItem("pending_quiz_data");
 
+            // Save to database for cross-device sync
+            await saveQuizResultsToDB([result]);
+
             router.push(`/quiz/results/${result.id}`);
             return;
           } catch (err) {
@@ -87,6 +91,9 @@ function LoginForm() {
           }
         }
       }
+
+      // Sync any localStorage results to database before going to dashboard
+      await syncQuizResults();
 
       router.push("/dashboard");
     } catch {

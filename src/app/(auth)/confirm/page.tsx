@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
+import { saveQuizResultsToDB, syncQuizResults } from "@/lib/quiz-sync";
 
 function ConfirmContent() {
   const router = useRouter();
@@ -57,6 +58,9 @@ function ConfirmContent() {
               localStorage.removeItem("pending_quiz_data");
               localStorage.removeItem("pending_quiz_redirect");
 
+              // Save to database for cross-device sync
+              await saveQuizResultsToDB([result]);
+
               // Redirect to quiz results
               setTimeout(() => {
                 router.push(`/quiz/results/${result.id}`);
@@ -68,6 +72,9 @@ function ConfirmContent() {
               localStorage.removeItem("pending_quiz_redirect");
             }
           }
+
+          // Sync any localStorage results to database
+          await syncQuizResults();
 
           // Redirect to dashboard after 3 seconds
           setTimeout(() => {

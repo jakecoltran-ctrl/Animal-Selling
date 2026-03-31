@@ -13,6 +13,7 @@ import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getPurchasedResultIds } from "@/lib/purchases";
+import { syncQuizResults } from "@/lib/quiz-sync";
 
 // Tips content based on animal type
 const getRecommendedContent = (animalType: AnimalType) => ({
@@ -152,19 +153,8 @@ export default function DashboardPage() {
         email: authUser.email || "",
       });
 
-      // Load quiz results from localStorage (for now)
-      const results: QuizResult[] = [];
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key?.startsWith("quiz_result_")) {
-          const result = localStorage.getItem(key);
-          if (result) {
-            results.push(JSON.parse(result));
-          }
-        }
-      }
-      // Sort by date, newest first
-      results.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      // Load and sync quiz results from database and localStorage
+      const results = await syncQuizResults();
       setQuizResults(results);
 
       // Check which results have been purchased

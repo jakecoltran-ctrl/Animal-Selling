@@ -20,6 +20,7 @@ import {
   SalesChannel,
 } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { saveQuizResultsToDB } from "@/lib/quiz-sync";
 
 type QuizStage = "intro" | "setup" | "questions" | "signup" | "calculating";
 
@@ -238,7 +239,7 @@ export default function QuizPage() {
     );
 
     // After 10 second animation, check if logged in
-    setTimeout(() => {
+    setTimeout(async () => {
       if (user) {
         // User is logged in, process results and go to results page
         const formattedAnswers: QuizAnswer[] = Object.entries(quizAnswers).map(
@@ -250,6 +251,10 @@ export default function QuizPage() {
         const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
         localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
         localStorage.removeItem("pending_quiz_data");
+
+        // Save to database for cross-device sync
+        await saveQuizResultsToDB([result]);
+
         router.push(`/quiz/results/${result.id}`);
       } else {
         // User needs to create account
