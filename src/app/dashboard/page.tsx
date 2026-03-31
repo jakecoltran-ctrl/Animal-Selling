@@ -556,7 +556,7 @@ export default function DashboardPage() {
                 </p>
                 <Link href="/dashboard/team">
                   <Button
-                    className="w-full text-white press-effect"
+                    className="w-full text-white press-effect whitespace-nowrap"
                     style={{
                       background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
                     }}

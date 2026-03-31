@@ -117,7 +117,7 @@ export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
       {/* Bubble Letters */}
       <div className="flex flex-col items-center">
         <span
-          className="text-5xl md:text-6xl font-black tracking-tight"
+          className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight whitespace-nowrap"
           style={{
             background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
             WebkitBackgroundClip: "text",
@@ -138,7 +138,7 @@ export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
 export function TeamSafariText({ className = "" }: TeamSafariBubbleProps) {
   return (
     <span
-      className={`font-black tracking-tight ${className}`}
+      className={`font-black tracking-tight whitespace-nowrap ${className}`}
       style={{
         background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
         WebkitBackgroundClip: "text",
@@ -174,7 +174,7 @@ export function TeamSafariWithJeep({ className = "" }: TeamSafariBubbleProps) {
         <circle cx="52" cy="35" r="5" fill="#4b5563" />
       </svg>
       <span
-        className="text-xl font-black tracking-tight"
+        className="text-xl font-black tracking-tight whitespace-nowrap"
         style={{
           background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
           WebkitBackgroundClip: "text",
