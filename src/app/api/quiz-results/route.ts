@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { QuizResult } from "@/types";
 
-// GET - Fetch user's quiz results from database
-export async function GET() {
+// GET - Fetch user's quiz results from database (all or by ID)
+export async function GET(request: Request) {
   try {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -12,6 +12,37 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { searchParams } = new URL(request.url);
+    const resultId = searchParams.get("id");
+
+    // If ID provided, fetch single result
+    if (resultId) {
+      const { data: result, error } = await supabase
+        .from("quiz_results")
+        .select("*")
+        .eq("id", resultId)
+        .eq("user_id", user.id)
+        .single();
+
+      if (error || !result) {
+        return NextResponse.json({ result: null });
+      }
+
+      const transformedResult: QuizResult = {
+        id: result.id,
+        salesContext: result.sales_context,
+        scores: result.scores,
+        percentages: result.percentages,
+        primaryType: result.primary_type,
+        secondaryType: result.secondary_type,
+        answers: result.answers,
+        createdAt: result.created_at,
+      };
+
+      return NextResponse.json({ result: transformedResult });
+    }
+
+    // Otherwise fetch all results
     const { data: results, error } = await supabase
       .from("quiz_results")
       .select("*")

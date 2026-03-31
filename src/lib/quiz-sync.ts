@@ -1,5 +1,50 @@
 import { QuizResult } from "@/types";
 
+// Fetch a single quiz result by ID from the database
+export async function fetchQuizResultById(resultId: string): Promise<QuizResult | null> {
+  try {
+    const response = await fetch(`/api/quiz-results?id=${resultId}`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json();
+    return data.result || null;
+  } catch (error) {
+    console.error("Error fetching quiz result by ID:", error);
+    return null;
+  }
+}
+
+// Get a quiz result - checks localStorage first, then database
+export async function getQuizResult(resultId: string): Promise<QuizResult | null> {
+  // Try localStorage first
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem(`quiz_result_${resultId}`);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        console.error("Error parsing localStorage result:", e);
+      }
+    }
+  }
+
+  // If not in localStorage, try database
+  const dbResult = await fetchQuizResultById(resultId);
+
+  // If found in database, save to localStorage for future use
+  if (dbResult && typeof window !== "undefined") {
+    localStorage.setItem(`quiz_result_${resultId}`, JSON.stringify(dbResult));
+  }
+
+  return dbResult;
+}
+
 // Fetch quiz results from the database
 export async function fetchQuizResultsFromDB(): Promise<QuizResult[]> {
   try {

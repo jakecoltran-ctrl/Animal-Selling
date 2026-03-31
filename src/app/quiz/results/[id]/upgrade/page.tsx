@@ -14,6 +14,7 @@ import { GrowthPlanPage } from "@/components/report/GrowthPlanPage";
 import { QuizResult, AnimalType } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import { checkPurchaseStatus } from "@/lib/purchases";
+import { getQuizResult } from "@/lib/quiz-sync";
 
 export default function UpgradePage() {
   const params = useParams();
@@ -27,11 +28,18 @@ export default function UpgradePage() {
   const [codeError, setCodeError] = useState("");
 
   useEffect(() => {
-    const stored = localStorage.getItem(`quiz_result_${params.id}`);
-    if (stored) {
-      setResult(JSON.parse(stored));
-    }
-    setLoading(false);
+    const loadResult = async () => {
+      // Load quiz result from localStorage or database
+      if (params.id) {
+        const quizResult = await getQuizResult(params.id as string);
+        if (quizResult) {
+          setResult(quizResult);
+        }
+      }
+      setLoading(false);
+    };
+
+    loadResult();
 
     // Check if already purchased and redirect to report
     const checkPurchase = async () => {

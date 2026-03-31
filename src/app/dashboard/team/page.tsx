@@ -11,6 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { getLocalStorageResults, fetchQuizResultsFromDB } from "@/lib/quiz-sync";
 
 interface SalesContext {
   sellType: "product" | "service";
@@ -167,20 +168,19 @@ function TeamSafariPageContent() {
     const userEmail = user.email || "";
 
     // Get user's latest quiz result for their animal type and sales context
+    // Try localStorage first, then database
     let userAnimalType: AnimalType = "lion";
     let userSalesContext: SalesContext | null = null;
     let userQuizResultId: string | null = null;
-    const quizResults: { id: string; createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith("quiz_result_")) {
-        const result = localStorage.getItem(key);
-        if (result) {
-          const parsed = JSON.parse(result);
-          quizResults.push({ id: parsed.id, createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
-        }
-      }
+
+    // Get from localStorage
+    let quizResults = getLocalStorageResults();
+
+    // If no results in localStorage, try database
+    if (quizResults.length === 0) {
+      quizResults = await fetchQuizResultsFromDB();
     }
+
     if (quizResults.length > 0) {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       userAnimalType = quizResults[0].primaryType;
@@ -274,20 +274,19 @@ function TeamSafariPageContent() {
     const userEmail = user.email || "";
 
     // Get user's animal type and sales context
+    // Try localStorage first, then database
     let userAnimalType: AnimalType = "lion";
     let userSalesContext: SalesContext | null = null;
     let userQuizResultId: string | null = null;
-    const quizResults: { id: string; createdAt: string; primaryType: AnimalType; salesContext?: SalesContext }[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith("quiz_result_")) {
-        const result = localStorage.getItem(key);
-        if (result) {
-          const parsed = JSON.parse(result);
-          quizResults.push({ id: parsed.id, createdAt: parsed.createdAt, primaryType: parsed.primaryType, salesContext: parsed.salesContext });
-        }
-      }
+
+    // Get from localStorage
+    let quizResults = getLocalStorageResults();
+
+    // If no results in localStorage, try database
+    if (quizResults.length === 0) {
+      quizResults = await fetchQuizResultsFromDB();
     }
+
     if (quizResults.length > 0) {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       userAnimalType = quizResults[0].primaryType;

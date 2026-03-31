@@ -11,6 +11,7 @@ import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { QuizResult, AnimalType } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import { checkPurchaseStatus } from "@/lib/purchases";
+import { getQuizResult } from "@/lib/quiz-sync";
 
 // Report Preview Carousel Component
 function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { emoji: string; name: string; color: string } }) {
@@ -137,14 +138,20 @@ export default function ResultsPage() {
   const [isPurchased, setIsPurchased] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(`quiz_result_${params.id}`);
-    if (stored) {
-      setResult(JSON.parse(stored));
-    }
-    setLoading(false);
+    const loadResult = async () => {
+      if (!params.id) {
+        setLoading(false);
+        return;
+      }
 
-    // Check purchase status if user is logged in
-    const checkPurchase = async () => {
+      // Try localStorage first, then database
+      const quizResult = await getQuizResult(params.id as string);
+      if (quizResult) {
+        setResult(quizResult);
+      }
+      setLoading(false);
+
+      // Check purchase status if user is logged in
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
 
@@ -154,7 +161,7 @@ export default function ResultsPage() {
       }
     };
 
-    checkPurchase();
+    loadResult();
   }, [params.id]);
 
   if (loading) {

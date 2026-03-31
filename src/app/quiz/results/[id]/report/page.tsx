@@ -10,6 +10,7 @@ import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { getBlendProfile } from "@/lib/report-data";
 import { createClient } from "@/lib/supabase/client";
 import { checkPurchaseStatus } from "@/lib/purchases";
+import { getQuizResult } from "@/lib/quiz-sync";
 
 // Report Components
 import { ReportPage } from "@/components/report/ReportPage";
@@ -41,13 +42,16 @@ export default function ReportViewPage() {
   const totalPages = 15;
 
   useEffect(() => {
-    const stored = localStorage.getItem(`quiz_result_${params.id}`);
-    if (stored) {
-      setResult(JSON.parse(stored));
-    }
-
     // Check purchase status to gate access
     const checkAccess = async () => {
+      // Load quiz result from localStorage or database
+      if (params.id) {
+        const quizResult = await getQuizResult(params.id as string);
+        if (quizResult) {
+          setResult(quizResult);
+        }
+      }
+
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
 
