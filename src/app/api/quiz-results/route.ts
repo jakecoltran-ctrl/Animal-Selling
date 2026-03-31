@@ -79,7 +79,7 @@ export async function POST(request: Request) {
       // Upsert to handle both new and existing results
       const { error } = await supabase
         .from("quiz_results")
-        .upsert(dbRecord, { onConflict: "id" });
+        .upsert(dbRecord, { onConflict: "id,user_id", ignoreDuplicates: false });
 
       if (error) {
         console.error(`Error saving result ${result.id}:`, error);
