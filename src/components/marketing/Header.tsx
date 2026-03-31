@@ -114,20 +114,20 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 px-4 py-4">
           <nav className="flex flex-col space-y-4">
-            <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600">
+            <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600" onClick={() => setMobileMenuOpen(false)}>
               Lion - The Closer
             </Link>
-            <Link href="/animals/penguin" className="text-sm font-medium text-muted-foreground hover:text-penguin-600">
+            <Link href="/animals/penguin" className="text-sm font-medium text-muted-foreground hover:text-penguin-600" onClick={() => setMobileMenuOpen(false)}>
               Penguin - The Connector
             </Link>
-            <Link href="/animals/retriever" className="text-sm font-medium text-muted-foreground hover:text-retriever-600">
+            <Link href="/animals/retriever" className="text-sm font-medium text-muted-foreground hover:text-retriever-600" onClick={() => setMobileMenuOpen(false)}>
               Retriever - The Trusted Advisor
             </Link>
-            <Link href="/animals/beaver" className="text-sm font-medium text-muted-foreground hover:text-beaver-600">
+            <Link href="/animals/beaver" className="text-sm font-medium text-muted-foreground hover:text-beaver-600" onClick={() => setMobileMenuOpen(false)}>
               Beaver - The Specialist
             </Link>
             <hr className="my-2" />
-            <Link href="/dashboard/team">
+            <Link href="/dashboard/team" onClick={() => setMobileMenuOpen(false)}>
               <Button
                 className="w-full text-sm text-white press-effect"
                 style={{
@@ -137,16 +137,16 @@ export function Header() {
                 Team Safari
               </Button>
             </Link>
-            <Link href="/quiz">
+            <Link href="/quiz" onClick={() => setMobileMenuOpen(false)}>
               <Button className="w-full">Take the Quiz</Button>
             </Link>
             {!loading && (
               user ? (
-                <Link href="/dashboard">
+                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="outline" className="w-full">My Dashboard</Button>
                 </Link>
               ) : (
-                <Link href="/login">
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="outline" className="w-full">Sign In</Button>
                 </Link>
               )
