@@ -101,25 +101,26 @@ export default function UpgradePage() {
     setPurchasing(true);
 
     try {
-      const response = await fetch("/api/purchases", {
+      const response = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          productType: "full_report",
           quizResultId: params.id,
-          // TODO: Add stripePaymentId when Stripe is integrated
         }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        router.push(`/quiz/results/${params.id}/report`);
+      if (response.ok && data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
       } else {
-        alert(data.error || "Purchase failed. Please try again.");
+        alert(data.error || "Failed to start checkout. Please try again.");
         setPurchasing(false);
       }
     } catch (error) {
-      console.error("Purchase error:", error);
+      console.error("Checkout error:", error);
       alert("Something went wrong. Please try again.");
       setPurchasing(false);
     }

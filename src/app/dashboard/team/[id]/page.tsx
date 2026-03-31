@@ -174,27 +174,30 @@ export default function TeamDetailPage() {
   const handlePurchaseCodes = async (quantity: number, price: number) => {
     setPurchasingCodes(true);
     try {
-      const response = await fetch("/api/team-gift-codes", {
+      const response = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          productType: "gift_codes",
           teamId: params.id,
           quantity,
-          // TODO: Add Stripe payment integration
         }),
       });
 
-      if (response.ok) {
-        await loadGiftCodes();
+      const data = await response.json();
+
+      if (response.ok && data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
       } else {
-        const data = await response.json();
-        alert(data.error || "Failed to purchase codes");
+        alert(data.error || "Failed to start checkout. Please try again.");
+        setPurchasingCodes(false);
       }
     } catch (error) {
-      console.error("Failed to purchase codes:", error);
+      console.error("Failed to start checkout:", error);
       alert("Something went wrong. Please try again.");
+      setPurchasingCodes(false);
     }
-    setPurchasingCodes(false);
   };
 
   const handleCopyCode = async (code: string, codeId: string) => {
