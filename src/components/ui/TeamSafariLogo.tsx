@@ -6,15 +6,13 @@ interface TeamSafariBubbleProps {
 
 export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
   return (
-    <div className={`flex flex-col items-center ${className}`}>
+    <div className={`flex flex-col items-center w-full max-w-xs mx-auto ${className}`}>
       {/* Safari Scene - Jeep and Tree */}
       <svg
-        width="240"
-        height="90"
         viewBox="0 0 160 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="mb-3"
+        className="mb-3 w-full h-auto max-w-[240px]"
       >
         {/* Acacia Tree on the left */}
         {/* Tree trunk - tapered */}
@@ -115,9 +113,9 @@ export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
       </svg>
 
       {/* Bubble Letters */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full">
         <span
-          className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight whitespace-nowrap"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight whitespace-nowrap"
           style={{
             background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
             WebkitBackgroundClip: "text",
