@@ -221,11 +221,11 @@ export default function UpgradePage() {
     },
     {
       question: "Is this a subscription?",
-      answer: "No. It's a one-time payment of $4.99. You get permanent access to your report.",
+      answer: "No. It's a one-time payment of $19. You get permanent access to your report.",
     },
     {
       question: "Can I retake the quiz later?",
-      answer: "Yes. You can retake the quiz anytime. If you want a new full report based on updated results, it's another $4.99.",
+      answer: "Yes. You can retake the quiz anytime. If you want a new full report based on updated results, it's another $19.",
     },
     {
       question: "Is my payment secure?",
@@ -290,8 +290,12 @@ export default function UpgradePage() {
                 </p>
 
                 <div className="mb-6">
+                  <span className="text-xl text-gray-400 line-through mr-2">$40</span>
                   <span className="text-4xl font-bold" style={{ color: primaryAnimal.color }}>
-                    $4.99
+                    $19
+                  </span>
+                  <span className="ml-2 text-sm font-semibold text-green-500 bg-green-500/10 px-2 py-1 rounded-full">
+                    Save 52%
                   </span>
                 </div>
 
@@ -320,7 +324,7 @@ export default function UpgradePage() {
                           d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
                         />
                       </svg>
-                      Get My Full Report — $4.99
+                      Get My Full Report — $19
                     </>
                   )}
                 </Button>
@@ -650,8 +654,12 @@ export default function UpgradePage() {
             </p>
 
             <div className="mb-6">
+              <span className="text-xl text-gray-400 line-through mr-2">$40</span>
               <span className="text-4xl font-bold" style={{ color: primaryAnimal.color }}>
-                $4.99
+                $19
+              </span>
+              <span className="ml-2 text-sm font-semibold text-green-500 bg-green-500/10 px-2 py-1 rounded-full">
+                Save 52%
               </span>
             </div>
 
@@ -680,7 +688,7 @@ export default function UpgradePage() {
                       d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
                     />
                   </svg>
-                  Get My Full Report — $4.99
+                  Get My Full Report — $19
                 </>
               )}
             </Button>
