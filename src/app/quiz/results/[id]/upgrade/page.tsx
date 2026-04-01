@@ -357,35 +357,41 @@ export default function UpgradePage() {
                   </svg>
                   Secure payment via Stripe
                 </div>
+              </div>
 
-                {/* Gift Code Section */}
-                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                    Have a gift code?
-                  </p>
-                  <div className="flex gap-2">
-                    <Input
-                      placeholder="Enter code"
-                      value={giftCode}
-                      onChange={(e) => {
-                        setGiftCode(e.target.value.toUpperCase());
-                        setCodeError("");
-                      }}
-                      className="text-center tracking-widest uppercase"
-                    />
-                    <Button
-                      onClick={handleRedeemCode}
-                      disabled={redeeming}
-                      variant="outline"
-                      className="flex-shrink-0"
-                    >
-                      {redeeming ? "..." : "Redeem"}
-                    </Button>
-                  </div>
-                  {codeError && (
-                    <p className="text-sm text-red-500 mt-2">{codeError}</p>
-                  )}
+              {/* Gift Code Section - Separate Box */}
+              <div className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-2 mb-3">
+                  <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                  </svg>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">Redeem a Team Gift Code</h3>
                 </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  If your team leader gave you a code, enter it below to unlock your full report for free.
+                </p>
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Enter your 8-character code"
+                    value={giftCode}
+                    onChange={(e) => {
+                      setGiftCode(e.target.value.toUpperCase());
+                      setCodeError("");
+                    }}
+                    className="text-center tracking-widest uppercase"
+                  />
+                  <Button
+                    onClick={handleRedeemCode}
+                    disabled={redeeming}
+                    variant="outline"
+                    className="flex-shrink-0"
+                  >
+                    {redeeming ? "..." : "Redeem"}
+                  </Button>
+                </div>
+                {codeError && (
+                  <p className="text-sm text-red-500 mt-2">{codeError}</p>
+                )}
               </div>
             </div>
           </div>
@@ -725,35 +731,41 @@ export default function UpgradePage() {
               </svg>
               Secure payment via Stripe
             </div>
+          </div>
 
-            {/* Gift Code Section */}
-            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                Have a gift code?
-              </p>
-              <div className="flex gap-2">
-                <Input
-                  placeholder="Enter code"
-                  value={giftCode}
-                  onChange={(e) => {
-                    setGiftCode(e.target.value.toUpperCase());
-                    setCodeError("");
-                  }}
-                  className="text-center tracking-widest uppercase"
-                />
-                <Button
-                  onClick={handleRedeemCode}
-                  disabled={redeeming}
-                  variant="outline"
-                  className="flex-shrink-0"
-                >
-                  {redeeming ? "..." : "Redeem"}
-                </Button>
-              </div>
-              {codeError && (
-                <p className="text-sm text-red-500 mt-2">{codeError}</p>
-              )}
+          {/* Gift Code Section - Separate Box */}
+          <div className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-2 mb-3">
+              <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Redeem a Team Gift Code</h3>
             </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+              If your team leader gave you a code, enter it below to unlock your full report for free.
+            </p>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Enter your 8-character code"
+                value={giftCode}
+                onChange={(e) => {
+                  setGiftCode(e.target.value.toUpperCase());
+                  setCodeError("");
+                }}
+                className="text-center tracking-widest uppercase"
+              />
+              <Button
+                onClick={handleRedeemCode}
+                disabled={redeeming}
+                variant="outline"
+                className="flex-shrink-0"
+              >
+                {redeeming ? "..." : "Redeem"}
+              </Button>
+            </div>
+            {codeError && (
+              <p className="text-sm text-red-500 mt-2">{codeError}</p>
+            )}
           </div>
         </div>
 
