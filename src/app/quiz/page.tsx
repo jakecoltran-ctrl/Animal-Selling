@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import {
 } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { saveQuizResultsToDB } from "@/lib/quiz-sync";
+import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 type QuizStage = "intro" | "setup" | "questions" | "signup" | "calculating";
 
@@ -187,6 +188,10 @@ export default function QuizPage() {
     customerType: "b2b",
     salesChannel: "inside",
   });
+
+  const questionCardRef = useRef<HTMLDivElement>(null);
+  const setupFormRef = useRef<HTMLDivElement>(null);
+  const { scrollIntoViewOnMobile } = useScrollIntoView();
 
   useEffect(() => {
     setQuestions(getShuffledQuestions());
@@ -502,7 +507,7 @@ export default function QuizPage() {
           </div>
 
           {/* Question Card */}
-          <Card className="mb-8">
+          <Card ref={questionCardRef} className="mb-8">
             <CardContent className="pt-8 pb-8">
               {currentQuestion && (
                 <QuizQuestionCard
@@ -519,7 +524,10 @@ export default function QuizPage() {
           <div className="flex justify-between">
             <Button
               variant="outline"
-              onClick={handlePrevious}
+              onClick={() => {
+                handlePrevious();
+                scrollIntoViewOnMobile(questionCardRef.current);
+              }}
               disabled={currentIndex === 0}
             >
               ← Previous
@@ -530,6 +538,7 @@ export default function QuizPage() {
                   startCalculating(answers);
                 } else {
                   setCurrentIndex((prev) => prev + 1);
+                  scrollIntoViewOnMobile(questionCardRef.current);
                 }
               }}
               disabled={!currentQuestion || !answers[currentQuestion?.id]}
