@@ -40,64 +40,33 @@ export function AnimatedBackground({
         />
       </div>
 
-      {/* Floating emojis */}
+      {/* Floating emojis - always show all 4 animals */}
       {showEmojis && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {singleAnimal ? (
-            <>
-              <span
-                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
-                style={{ top: "10%", left: "5%", animationDelay: "0s", opacity: emojiOpacity }}
-              >
-                {singleAnimal.emoji}
-              </span>
-              <span
-                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
-                style={{ top: "15%", right: "10%", animationDelay: "1s", opacity: emojiOpacity }}
-              >
-                {singleAnimal.emoji}
-              </span>
-              <span
-                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
-                style={{ bottom: "20%", left: "8%", animationDelay: "2s", opacity: emojiOpacity }}
-              >
-                {singleAnimal.emoji}
-              </span>
-              <span
-                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
-                style={{ bottom: "15%", right: "5%", animationDelay: "0.5s", opacity: emojiOpacity }}
-              >
-                {singleAnimal.emoji}
-              </span>
-            </>
-          ) : (
-            <>
-              <span
-                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
-                style={{ top: "10%", left: "5%", animationDelay: "0s", opacity: emojiOpacity }}
-              >
-                🦁
-              </span>
-              <span
-                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
-                style={{ top: "15%", right: "10%", animationDelay: "1s", opacity: emojiOpacity }}
-              >
-                🐧
-              </span>
-              <span
-                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
-                style={{ bottom: "20%", left: "8%", animationDelay: "2s", opacity: emojiOpacity }}
-              >
-                🐕
-              </span>
-              <span
-                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
-                style={{ bottom: "15%", right: "5%", animationDelay: "0.5s", opacity: emojiOpacity }}
-              >
-                🦫
-              </span>
-            </>
-          )}
+          <span
+            className="absolute text-3xl sm:text-5xl md:text-7xl lg:text-8xl animate-float"
+            style={{ top: "10%", left: "3%", animationDelay: "0s", opacity: emojiOpacity }}
+          >
+            🦁
+          </span>
+          <span
+            className="absolute text-2xl sm:text-4xl md:text-6xl lg:text-7xl animate-float"
+            style={{ top: "12%", right: "3%", animationDelay: "1s", opacity: emojiOpacity }}
+          >
+            🐧
+          </span>
+          <span
+            className="absolute text-3xl sm:text-5xl md:text-7xl lg:text-8xl animate-float"
+            style={{ bottom: "18%", left: "5%", animationDelay: "2s", opacity: emojiOpacity }}
+          >
+            🐕
+          </span>
+          <span
+            className="absolute text-2xl sm:text-4xl md:text-6xl lg:text-7xl animate-float"
+            style={{ bottom: "12%", right: "2%", animationDelay: "0.5s", opacity: emojiOpacity }}
+          >
+            🦫
+          </span>
         </div>
       )}
     </>
