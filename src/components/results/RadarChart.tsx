@@ -245,10 +245,10 @@ function ScoreBar({ label, emoji, score, color, delay = 0, locked = false }: Sco
 }
 
 interface ScoreBarsProps extends RadarChartProps {
-  locked?: boolean;
+  lockSecondary?: boolean;
 }
 
-export function ScoreBars({ scores, locked = false }: ScoreBarsProps) {
+export function ScoreBars({ scores, lockSecondary = false }: ScoreBarsProps) {
   // Sort by score to show highest first
   const sortedScores = [
     { key: 'lion', score: scores.lion, animal: animals.lion },
@@ -267,7 +267,7 @@ export function ScoreBars({ scores, locked = false }: ScoreBarsProps) {
           score={item.score}
           color={item.animal.color}
           delay={index * 150}
-          locked={locked}
+          locked={lockSecondary && index > 0}
         />
       ))}
     </div>
