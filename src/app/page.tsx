@@ -335,23 +335,78 @@ export default function Home() {
       {/* Team Safari Section */}
       <section ref={quadrantSection.ref} className="py-24 bg-gray-900/50">
         <div className="container mx-auto px-4">
-          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${quadrantSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <TeamSafariBubble className="mb-8" />
+          <div className={`max-w-5xl mx-auto transition-all duration-1000 ${quadrantSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="text-center mb-12">
+              <TeamSafariBubble className="mb-6" />
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Unlock your team's full potential by understanding how your selling styles work together.
+              </p>
+            </div>
 
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-              The best sales teams have a mix of all four animal types. Create your team,
-              invite your colleagues, and discover your team's unique composition.
-            </p>
+            {/* What is Team Safari */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 hover:scale-[1.02] transition-all duration-300">
+                <div className="text-4xl mb-4">📊</div>
+                <h3 className="text-lg font-bold text-white mb-2">Team Composition</h3>
+                <p className="text-gray-400 text-sm">
+                  See the distribution of Lions, Penguins, Retrievers, and Beavers across your sales team at a glance.
+                </p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 hover:scale-[1.02] transition-all duration-300">
+                <div className="text-4xl mb-4">🤝</div>
+                <h3 className="text-lg font-bold text-white mb-2">Better Collaboration</h3>
+                <p className="text-gray-400 text-sm">
+                  Understand how different styles complement each other and where friction might occur in deals.
+                </p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 hover:scale-[1.02] transition-all duration-300">
+                <div className="text-4xl mb-4">🎯</div>
+                <h3 className="text-lg font-bold text-white mb-2">Strategic Pairing</h3>
+                <p className="text-gray-400 text-sm">
+                  Pair team members strategically for different sales scenarios based on their animal strengths.
+                </p>
+              </div>
+            </div>
 
-            <Link href="/dashboard/team">
-              <Button
-                size="lg"
-                className="text-lg px-8 py-6 text-white font-bold hover:scale-105 transition-transform"
-                style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
-              >
-                Start Your Safari
-              </Button>
-            </Link>
+            {/* How it works */}
+            <div className="bg-white/5 border border-white/10 rounded-xl p-8 mb-10">
+              <h3 className="text-xl font-bold text-white mb-6 text-center">How Team Safari Works</h3>
+              <div className="grid sm:grid-cols-3 gap-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-amber-500 flex items-center justify-center text-white font-bold">1</div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Create a Team</h4>
+                    <p className="text-gray-400 text-sm">Set up your team and get a unique invite code to share.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-cyan-500 flex items-center justify-center text-white font-bold">2</div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Invite Members</h4>
+                    <p className="text-gray-400 text-sm">Share the code with colleagues who've taken the quiz.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-green-500 flex items-center justify-center text-white font-bold">3</div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">View Insights</h4>
+                    <p className="text-gray-400 text-sm">See your team's animal mix and collaboration dynamics.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Link href="/dashboard/team">
+                <Button
+                  size="lg"
+                  className="text-lg px-8 py-6 text-white font-bold hover:scale-105 transition-transform"
+                  style={{ background: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)" }}
+                >
+                  Start Your Safari
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
