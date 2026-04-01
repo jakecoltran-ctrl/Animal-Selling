@@ -211,34 +211,43 @@ interface ScoreBarProps {
 function ScoreBar({ label, emoji, score, color, delay = 0, locked = false }: ScoreBarProps) {
   return (
     <div
-      className="space-y-1 animate-fade-in"
+      className="space-y-2 animate-fade-in"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="flex justify-between text-sm">
+      <div className="flex justify-between items-center">
         <span className="flex items-center gap-2">
-          <span className="text-lg">{emoji}</span>
-          <span className="font-medium">{label}</span>
+          <span className="text-2xl">{emoji}</span>
+          <span className="font-medium text-base">{label}</span>
         </span>
         {locked ? (
-          <span className="font-semibold text-gray-400 flex items-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+          <span className="text-gray-400">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
             </svg>
-            <span className="blur-sm select-none">??%</span>
           </span>
         ) : (
-          <span className="font-semibold" style={{ color }}>{score}%</span>
+          <span className="font-bold text-lg" style={{ color }}>{score}%</span>
         )}
       </div>
-      <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all ease-out"
-          style={{
-            width: locked ? '25%' : `${score}%`,
-            backgroundColor: locked ? '#9ca3af' : color,
-            animation: locked ? undefined : `progressFill 1s ease-out ${delay + 200}ms forwards`,
-          }}
-        />
+      <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+        {locked ? (
+          <div
+            className="h-full rounded-full opacity-30"
+            style={{
+              width: "100%",
+              background: `linear-gradient(to right, ${color}, transparent)`,
+            }}
+          />
+        ) : (
+          <div
+            className="h-full rounded-full transition-all ease-out"
+            style={{
+              width: `${score}%`,
+              backgroundColor: color,
+              animation: `progressFill 1s ease-out ${delay + 200}ms forwards`,
+            }}
+          />
+        )}
       </div>
     </div>
   );
