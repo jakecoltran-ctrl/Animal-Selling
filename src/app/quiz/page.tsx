@@ -193,6 +193,13 @@ export default function QuizPage() {
   const setupFormRef = useRef<HTMLDivElement>(null);
   const { scrollIntoViewOnMobile } = useScrollIntoView();
 
+  // Scroll to top of page on mobile
+  const scrollToTopOnMobile = () => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     setQuestions(getShuffledQuestions());
 
@@ -476,12 +483,12 @@ export default function QuizPage() {
 
   // Questions Stage
   return (
-    <div className="min-h-[80vh] py-12 relative overflow-hidden">
+    <div className="min-h-[80vh] py-6 md:py-12 relative overflow-hidden">
       <AnimatedBackground opacity={0.15} emojiOpacity={0.1} />
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
-          {/* Context Badge */}
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
+          {/* Context Badge - Hidden on mobile for compactness */}
+          <div className="hidden sm:flex flex-wrap justify-center gap-2 mb-6">
             <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground">
               {salesContext.sellType === "product" ? "📦 Product" : "🛎️ Service"}
             </span>
@@ -496,19 +503,19 @@ export default function QuizPage() {
           </div>
 
           {/* Progress */}
-          <div className="mb-8">
-            <div className="flex justify-between text-sm text-muted-foreground mb-2">
+          <div className="mb-4 md:mb-8">
+            <div className="flex justify-between text-xs md:text-sm text-muted-foreground mb-2">
               <span>
                 Question {currentIndex + 1} of {questions.length}
               </span>
-              <span>{Math.round(progress)}% complete</span>
+              <span>{Math.round(progress)}%</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
 
           {/* Question Card */}
-          <Card ref={questionCardRef} className="mb-8">
-            <CardContent className="pt-8 pb-8">
+          <Card ref={questionCardRef} className="mb-4 md:mb-8">
+            <CardContent className="pt-4 pb-4 md:pt-8 md:pb-8">
               {currentQuestion && (
                 <QuizQuestionCard
                   key={currentQuestion.id}
@@ -526,7 +533,7 @@ export default function QuizPage() {
               variant="outline"
               onClick={() => {
                 handlePrevious();
-                scrollIntoViewOnMobile(questionCardRef.current);
+                scrollToTopOnMobile();
               }}
               disabled={currentIndex === 0}
             >
@@ -538,7 +545,7 @@ export default function QuizPage() {
                   startCalculating(answers);
                 } else {
                   setCurrentIndex((prev) => prev + 1);
-                  scrollIntoViewOnMobile(questionCardRef.current);
+                  scrollToTopOnMobile();
                 }
               }}
               disabled={!currentQuestion || !answers[currentQuestion?.id]}

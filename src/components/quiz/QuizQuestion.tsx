@@ -31,18 +31,18 @@ export function QuizQuestionCard({
   };
 
   return (
-    <div className="space-y-6">
-      <p className="text-lg md:text-xl font-medium text-center">
+    <div className="space-y-4 md:space-y-6">
+      <p className="text-base md:text-xl font-medium text-center leading-snug">
         {questionText}
       </p>
-      <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4">
+      <div className="flex flex-row justify-center gap-1.5 sm:gap-4">
         {likertOptions.map((option, index) => (
           <button
             key={option.value}
             ref={(el) => { buttonRefs.current[index] = el; }}
             onClick={() => handleClick(option.value, index)}
             className={cn(
-              "flex flex-col items-center p-3 sm:p-4 rounded-lg border-2 min-w-[60px] sm:min-w-[100px]",
+              "flex flex-col items-center p-2 sm:p-4 rounded-lg border-2 min-w-[50px] sm:min-w-[100px]",
               "transition-colors duration-150 focus:outline-none active:scale-95",
               "select-none touch-manipulation",
               value === option.value
@@ -50,16 +50,16 @@ export function QuizQuestionCard({
                 : "border-gray-200 dark:border-gray-700 bg-transparent"
             )}
           >
-            <span className="text-2xl font-bold mb-1">{option.value}</span>
-            <span className="text-xs text-center text-muted-foreground">
+            <span className="text-xl sm:text-2xl font-bold">{option.value}</span>
+            <span className="text-[10px] sm:text-xs text-center text-muted-foreground hidden sm:block">
               {option.label}
             </span>
           </button>
         ))}
       </div>
-      <div className="flex justify-between text-sm text-muted-foreground px-4">
-        <span>Strongly Disagree</span>
-        <span>Strongly Agree</span>
+      <div className="flex justify-between text-xs md:text-sm text-muted-foreground px-2 md:px-4">
+        <span>Disagree</span>
+        <span>Agree</span>
       </div>
     </div>
   );
