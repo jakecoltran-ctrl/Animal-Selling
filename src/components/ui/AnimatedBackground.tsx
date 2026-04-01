@@ -46,25 +46,25 @@ export function AnimatedBackground({
           {singleAnimal ? (
             <>
               <span
-                className="absolute text-8xl animate-float"
+                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
                 style={{ top: "10%", left: "5%", animationDelay: "0s", opacity: emojiOpacity }}
               >
                 {singleAnimal.emoji}
               </span>
               <span
-                className="absolute text-7xl animate-float"
+                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
                 style={{ top: "15%", right: "10%", animationDelay: "1s", opacity: emojiOpacity }}
               >
                 {singleAnimal.emoji}
               </span>
               <span
-                className="absolute text-8xl animate-float"
+                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
                 style={{ bottom: "20%", left: "8%", animationDelay: "2s", opacity: emojiOpacity }}
               >
                 {singleAnimal.emoji}
               </span>
               <span
-                className="absolute text-7xl animate-float"
+                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
                 style={{ bottom: "15%", right: "5%", animationDelay: "0.5s", opacity: emojiOpacity }}
               >
                 {singleAnimal.emoji}
@@ -73,25 +73,25 @@ export function AnimatedBackground({
           ) : (
             <>
               <span
-                className="absolute text-8xl animate-float"
+                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
                 style={{ top: "10%", left: "5%", animationDelay: "0s", opacity: emojiOpacity }}
               >
                 🦁
               </span>
               <span
-                className="absolute text-7xl animate-float"
+                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
                 style={{ top: "15%", right: "10%", animationDelay: "1s", opacity: emojiOpacity }}
               >
                 🐧
               </span>
               <span
-                className="absolute text-8xl animate-float"
+                className="absolute text-4xl sm:text-6xl md:text-8xl animate-float"
                 style={{ bottom: "20%", left: "8%", animationDelay: "2s", opacity: emojiOpacity }}
               >
                 🐕
               </span>
               <span
-                className="absolute text-7xl animate-float"
+                className="absolute text-3xl sm:text-5xl md:text-7xl animate-float"
                 style={{ bottom: "15%", right: "5%", animationDelay: "0.5s", opacity: emojiOpacity }}
               >
                 🦫

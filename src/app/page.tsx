@@ -131,12 +131,12 @@ export default function Home() {
           />
         </div>
 
-        {/* Floating emojis - hidden on mobile, visible on larger screens */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
-          <span className="absolute text-5xl md:text-7xl lg:text-8xl opacity-20 animate-float" style={{ top: '10%', left: '5%', animationDelay: '0s' }}>🦁</span>
-          <span className="absolute text-4xl md:text-6xl lg:text-7xl opacity-20 animate-float" style={{ top: '15%', right: '10%', animationDelay: '1s' }}>🐧</span>
-          <span className="absolute text-5xl md:text-7xl lg:text-8xl opacity-20 animate-float" style={{ bottom: '20%', left: '8%', animationDelay: '2s' }}>🐕</span>
-          <span className="absolute text-4xl md:text-6xl lg:text-7xl opacity-20 animate-float" style={{ bottom: '15%', right: '5%', animationDelay: '0.5s' }}>🦫</span>
+        {/* Floating emojis */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <span className="absolute text-3xl sm:text-5xl md:text-7xl lg:text-8xl opacity-15 sm:opacity-20 animate-float" style={{ top: '10%', left: '5%', animationDelay: '0s' }}>🦁</span>
+          <span className="absolute text-2xl sm:text-4xl md:text-6xl lg:text-7xl opacity-15 sm:opacity-20 animate-float" style={{ top: '15%', right: '10%', animationDelay: '1s' }}>🐧</span>
+          <span className="absolute text-3xl sm:text-5xl md:text-7xl lg:text-8xl opacity-15 sm:opacity-20 animate-float" style={{ bottom: '20%', left: '8%', animationDelay: '2s' }}>🐕</span>
+          <span className="absolute text-2xl sm:text-4xl md:text-6xl lg:text-7xl opacity-15 sm:opacity-20 animate-float" style={{ bottom: '15%', right: '5%', animationDelay: '0.5s' }}>🦫</span>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
