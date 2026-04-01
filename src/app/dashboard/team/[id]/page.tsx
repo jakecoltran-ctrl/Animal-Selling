@@ -725,7 +725,7 @@ export default function TeamDetailPage() {
         </div>
 
         {/* Invite Code & Onboard Your Team */}
-        <div className={`mt-8 max-w-3xl mx-auto grid ${isLeader ? "md:grid-cols-2" : "grid-cols-1 max-w-md"} gap-6`}>
+        <div className={`mt-8 max-w-4xl mx-auto grid ${isLeader ? "md:grid-cols-3" : "grid-cols-1 max-w-md"} gap-6`}>
           <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
             <CardHeader className="text-center">
               <CardTitle className="text-gray-900 dark:text-white">Invite Code</CardTitle>
@@ -750,6 +750,44 @@ export default function TeamDetailPage() {
               </Button>
             </CardContent>
           </Card>
+
+          {/* Leader Privileges - Leaders Only */}
+          {isLeader && (
+            <Card className="border-2 border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
+              <CardHeader className="text-center">
+                <CardTitle className="text-gray-900 dark:text-white flex items-center justify-center gap-2">
+                  <span>👑</span> Leader Privileges
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-400">
+                  What you can do as a team leader
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">✓</span>
+                    <span>View member email addresses</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">✓</span>
+                    <span>Remove members from the team</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">✓</span>
+                    <span>Promote members to Co-Leader</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">✓</span>
+                    <span>Purchase & manage gift codes</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500">✓</span>
+                    <span>See report purchase status</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Gift Codes Info - Leaders Only */}
           {isLeader && (
