@@ -780,10 +780,6 @@ export default function TeamDetailPage() {
                     <span className="text-amber-500">✓</span>
                     <span>Purchase & manage gift codes</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500">✓</span>
-                    <span>See report purchase status</span>
-                  </li>
                 </ul>
               </CardContent>
             </Card>
