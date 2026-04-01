@@ -517,6 +517,7 @@ export default function QuizPage() {
             <CardContent className="pt-8 pb-8">
               {currentQuestion && (
                 <QuizQuestionCard
+                  key={currentQuestion.id}
                   questionText={currentQuestionText}
                   value={answers[currentQuestion.id] ?? null}
                   onChange={handleAnswer}
