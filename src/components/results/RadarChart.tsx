@@ -274,13 +274,22 @@ interface ScoreBarsProps {
 }
 
 export function ScoreBars({ scores, lockSecondary = false, primaryType, secondaryType }: ScoreBarsProps) {
-  // Sort by score to show highest first
-  const sortedScores = [
-    { key: 'lion', score: scores.lion, animal: animals.lion },
-    { key: 'penguin', score: scores.penguin, animal: animals.penguin },
-    { key: 'retriever', score: scores.retriever, animal: animals.retriever },
-    { key: 'beaver', score: scores.beaver, animal: animals.beaver },
-  ].sort((a, b) => b.score - a.score);
+  // Build the list and sort: primary first, secondary second, then remaining by score
+  const allScores = [
+    { key: 'lion' as AnimalType, score: scores.lion, animal: animals.lion },
+    { key: 'penguin' as AnimalType, score: scores.penguin, animal: animals.penguin },
+    { key: 'retriever' as AnimalType, score: scores.retriever, animal: animals.retriever },
+    { key: 'beaver' as AnimalType, score: scores.beaver, animal: animals.beaver },
+  ];
+
+  // Sort: primary first, secondary second, then remaining sorted by score
+  const sortedScores = allScores.sort((a, b) => {
+    if (a.key === primaryType) return -1;
+    if (b.key === primaryType) return 1;
+    if (a.key === secondaryType) return -1;
+    if (b.key === secondaryType) return 1;
+    return b.score - a.score;
+  });
 
   return (
     <div className="space-y-4">
