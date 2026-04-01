@@ -373,7 +373,7 @@ export default function UpgradePage() {
                   <h3 className="font-semibold text-gray-900 dark:text-white">Redeem a Team Gift Code</h3>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  If your team leader gave you a code, enter it below to unlock your full report for free.
+                  If your team leader gave you a code, enter it below to unlock your full report.
                 </p>
                 <div className="flex gap-2">
                   <Input
@@ -748,7 +748,7 @@ export default function UpgradePage() {
               <h3 className="font-semibold text-gray-900 dark:text-white">Redeem a Team Gift Code</h3>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              If your team leader gave you a code, enter it below to unlock your full report for free.
+              If your team leader gave you a code, enter it below to unlock your full report.
             </p>
             <div className="flex gap-2">
               <Input
