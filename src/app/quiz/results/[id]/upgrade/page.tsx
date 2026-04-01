@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,20 @@ export default function UpgradePage() {
   const [giftCode, setGiftCode] = useState("");
   const [redeeming, setRedeeming] = useState(false);
   const [codeError, setCodeError] = useState("");
+  const faqRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const giftCodeRef1 = useRef<HTMLDivElement>(null);
+  const giftCodeRef2 = useRef<HTMLDivElement>(null);
+
+  // Scroll element into view on mobile when clicked
+  const scrollIntoViewOnMobile = useCallback((element: HTMLElement | null) => {
+    if (!element) return;
+    // Only auto-scroll on mobile (< 768px)
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }, []);
 
   useEffect(() => {
     const loadResult = async () => {
@@ -360,7 +374,7 @@ export default function UpgradePage() {
               </div>
 
               {/* Gift Code Section - Separate Box */}
-              <div className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+              <div ref={giftCodeRef1} className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2 mb-3">
                   <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -378,6 +392,7 @@ export default function UpgradePage() {
                       setGiftCode(e.target.value.toUpperCase());
                       setCodeError("");
                     }}
+                    onFocus={() => scrollIntoViewOnMobile(giftCodeRef1.current)}
                     className="text-center tracking-widest uppercase"
                   />
                   <Button
@@ -734,7 +749,7 @@ export default function UpgradePage() {
           </div>
 
           {/* Gift Code Section - Separate Box */}
-          <div className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <div ref={giftCodeRef2} className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-2 mb-3">
               <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -752,6 +767,7 @@ export default function UpgradePage() {
                   setGiftCode(e.target.value.toUpperCase());
                   setCodeError("");
                 }}
+                onFocus={() => scrollIntoViewOnMobile(giftCodeRef2.current)}
                 className="text-center tracking-widest uppercase"
               />
               <Button
@@ -800,6 +816,7 @@ export default function UpgradePage() {
             {faqs.map((faq, index) => (
               <div
                 key={index}
+                ref={(el) => { faqRefs.current[index] = el; }}
                 className={`rounded-xl overflow-hidden transition-all ${
                   openFaq === index
                     ? "shadow-lg"
@@ -815,7 +832,13 @@ export default function UpgradePage() {
                 }}
               >
                 <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  onClick={() => {
+                    const isOpening = openFaq !== index;
+                    setOpenFaq(isOpening ? index : null);
+                    if (isOpening) {
+                      scrollIntoViewOnMobile(faqRefs.current[index]);
+                    }
+                  }}
                   className="w-full flex items-center gap-3 sm:gap-4 p-3 sm:p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 hover:scale-[1.01] transition-all duration-300"
                 >
                   <div
