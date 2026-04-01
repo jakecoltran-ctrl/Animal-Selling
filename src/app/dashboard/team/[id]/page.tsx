@@ -725,7 +725,7 @@ export default function TeamDetailPage() {
         </div>
 
         {/* Invite Code & Onboard Your Team */}
-        <div className={`mt-8 max-w-4xl mx-auto grid ${isLeader ? "md:grid-cols-3" : "grid-cols-1 max-w-md"} gap-6`}>
+        <div className={`mt-8 max-w-6xl mx-auto grid ${isLeader ? "md:grid-cols-3" : "grid-cols-1 max-w-md"} gap-6`}>
           <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
             <CardHeader className="text-center">
               <CardTitle className="text-gray-900 dark:text-white">Invite Code</CardTitle>
