@@ -206,6 +206,25 @@ export default function TeamDetailPage() {
     setTimeout(() => setCopiedCodeId(null), 2000);
   };
 
+  const handleDeleteCode = async (codeId: string) => {
+    if (!confirm("Remove this used code from your list?")) return;
+
+    try {
+      const response = await fetch(`/api/team-gift-codes?codeId=${codeId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setGiftCodes(giftCodes.filter(c => c.id !== codeId));
+      } else {
+        alert("Failed to delete code. Please try again.");
+      }
+    } catch (error) {
+      console.error("Failed to delete code:", error);
+      alert("Failed to delete code. Please try again.");
+    }
+  };
+
   const handleKickMember = async (memberId: string, memberName: string) => {
     if (!team || !isLeader) return;
 
@@ -827,7 +846,7 @@ export default function TeamDetailPage() {
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
-                  <span>🎁</span> Get Full Report Gift Codes
+                  <span>🎁</span> Get Full Report Team Gift Codes
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-400">
                   Purchase gift codes to give your team members free access to their full reports
@@ -914,9 +933,20 @@ export default function TeamDetailPage() {
                           </div>
                           <div className="flex items-center gap-2">
                             {code.usedAt ? (
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
-                                Used {new Date(code.usedAt).toLocaleDateString()}
-                              </span>
+                              <>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                  Used {new Date(code.usedAt).toLocaleDateString()}
+                                </span>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleDeleteCode(code.id)}
+                                  className="text-xs px-2 text-gray-400 hover:text-red-500"
+                                  title="Remove from list"
+                                >
+                                  ✕
+                                </Button>
+                              </>
                             ) : (
                               <Button
                                 variant="ghost"

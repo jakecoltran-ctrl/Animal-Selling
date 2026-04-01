@@ -154,3 +154,73 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
+
+// DELETE - Remove a used gift code from the list
+export async function DELETE(request: Request) {
+  try {
+    const supabase = createClient();
+    const { searchParams } = new URL(request.url);
+    const codeId = searchParams.get("codeId");
+
+    if (!codeId) {
+      return NextResponse.json({ error: "Code ID is required" }, { status: 400 });
+    }
+
+    // Get authenticated user
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Get the code to verify ownership and that it's used
+    const { data: code, error: codeError } = await supabase
+      .from("gift_codes")
+      .select("id, team_id, used_at")
+      .eq("id", codeId)
+      .single();
+
+    if (codeError || !code) {
+      return NextResponse.json({ error: "Code not found" }, { status: 404 });
+    }
+
+    // Check if user is the team owner or co-leader
+    const { data: team, error: teamError } = await supabase
+      .from("teams")
+      .select("owner_id, co_leader_id")
+      .eq("id", code.team_id)
+      .single();
+
+    if (teamError || !team) {
+      return NextResponse.json({ error: "Team not found" }, { status: 404 });
+    }
+
+    const isLeader = team.owner_id === user.id || team.co_leader_id === user.id;
+    if (!isLeader) {
+      return NextResponse.json({ error: "Only team leaders can delete gift codes" }, { status: 403 });
+    }
+
+    // Only allow deleting used codes
+    if (!code.used_at) {
+      return NextResponse.json({ error: "Can only delete used codes" }, { status: 400 });
+    }
+
+    // Delete the code
+    const { error: deleteError } = await supabase
+      .from("gift_codes")
+      .delete()
+      .eq("id", codeId);
+
+    if (deleteError) {
+      console.error("Error deleting gift code:", deleteError);
+      return NextResponse.json({ error: "Failed to delete code" }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error("Team gift codes DELETE error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
