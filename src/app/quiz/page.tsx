@@ -212,21 +212,10 @@ export default function QuizPage() {
   const handleAnswer = (value: 1 | 2 | 3 | 4 | 5) => {
     if (!currentQuestion) return;
 
-    const newAnswers = {
+    setAnswers({
       ...answers,
       [currentQuestion.id]: value,
-    };
-    setAnswers(newAnswers);
-
-    // Auto-advance after a short delay
-    setTimeout(() => {
-      if (isLastQuestion) {
-        // Always show calculating animation first
-        startCalculating(newAnswers);
-      } else {
-        setCurrentIndex((prev) => prev + 1);
-      }
-    }, 300);
+    });
   };
 
   const startCalculating = (quizAnswers: Record<string, 1 | 2 | 3 | 4 | 5>) => {
