@@ -305,7 +305,10 @@ export default function QuizPage() {
                   </div>
                 ))}
               </div>
-              <Button size="lg" onClick={() => setStage("setup")}>
+              <Button size="lg" onClick={() => {
+                setStage("setup");
+                scrollToTopOnMobile();
+              }}>
                 Get Started
               </Button>
             </CardContent>
@@ -425,10 +428,16 @@ export default function QuizPage() {
               </div>
 
               <div className="mt-8 flex justify-between">
-                <Button variant="outline" onClick={() => setStage("intro")}>
+                <Button variant="outline" onClick={() => {
+                  setStage("intro");
+                  scrollToTopOnMobile();
+                }}>
                   ← Back
                 </Button>
-                <Button onClick={() => setStage("questions")}>
+                <Button onClick={() => {
+                  setStage("questions");
+                  scrollToTopOnMobile();
+                }}>
                   Start the Quiz →
                 </Button>
               </div>
