@@ -347,7 +347,7 @@ export default function DashboardPage() {
                       </span>
                     </div>
                   )}
-                  <ScoreBars scores={latestResult.percentages} />
+                  <ScoreBars scores={latestResult.percentages} locked={!purchasedIds.has(latestResult.id)} />
                   <div className="mt-6 flex flex-wrap gap-3">
                     {purchasedIds.has(latestResult.id) ? (
                       <Link href={`/quiz/results/${latestResult.id}/report`}>

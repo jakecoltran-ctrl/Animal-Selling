@@ -205,9 +205,10 @@ interface ScoreBarProps {
   score: number;
   color: string;
   delay?: number;
+  locked?: boolean;
 }
 
-function ScoreBar({ label, emoji, score, color, delay = 0 }: ScoreBarProps) {
+function ScoreBar({ label, emoji, score, color, delay = 0, locked = false }: ScoreBarProps) {
   return (
     <div
       className="space-y-1 animate-fade-in"
@@ -218,15 +219,24 @@ function ScoreBar({ label, emoji, score, color, delay = 0 }: ScoreBarProps) {
           <span className="text-lg">{emoji}</span>
           <span className="font-medium">{label}</span>
         </span>
-        <span className="font-semibold" style={{ color }}>{score}%</span>
+        {locked ? (
+          <span className="font-semibold text-gray-400 flex items-center gap-1">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+            </svg>
+            <span className="blur-sm select-none">??%</span>
+          </span>
+        ) : (
+          <span className="font-semibold" style={{ color }}>{score}%</span>
+        )}
       </div>
       <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all ease-out"
           style={{
-            width: `${score}%`,
-            backgroundColor: color,
-            animation: `progressFill 1s ease-out ${delay + 200}ms forwards`,
+            width: locked ? '25%' : `${score}%`,
+            backgroundColor: locked ? '#9ca3af' : color,
+            animation: locked ? undefined : `progressFill 1s ease-out ${delay + 200}ms forwards`,
           }}
         />
       </div>
@@ -234,7 +244,11 @@ function ScoreBar({ label, emoji, score, color, delay = 0 }: ScoreBarProps) {
   );
 }
 
-export function ScoreBars({ scores }: RadarChartProps) {
+interface ScoreBarsProps extends RadarChartProps {
+  locked?: boolean;
+}
+
+export function ScoreBars({ scores, locked = false }: ScoreBarsProps) {
   // Sort by score to show highest first
   const sortedScores = [
     { key: 'lion', score: scores.lion, animal: animals.lion },
@@ -253,6 +267,7 @@ export function ScoreBars({ scores }: RadarChartProps) {
           score={item.score}
           color={item.animal.color}
           delay={index * 150}
+          locked={locked}
         />
       ))}
     </div>
