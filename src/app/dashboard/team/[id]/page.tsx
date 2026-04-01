@@ -785,6 +785,11 @@ export default function TeamDetailPage() {
         {/* Gift Codes Section - Only visible to team leader or co-leader */}
         {isLeader && (
           <div className="mt-8 max-w-4xl mx-auto">
+            {/* Leader-only notice */}
+            <div className="mb-4 flex items-center justify-center gap-2 text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg px-4 py-2">
+              <span>👑</span>
+              <span>Only team leaders can view and purchase gift codes for team members</span>
+            </div>
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
