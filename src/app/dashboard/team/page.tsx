@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import { AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { getLocalStorageResults, fetchQuizResultsFromDB } from "@/lib/quiz-sync";
+import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 interface SalesContext {
   sellType: "product" | "service";
@@ -49,6 +50,8 @@ function TeamSafariPageContent() {
   const [loading, setLoading] = useState(true);
   const [joining, setJoining] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const createFormRef = useRef<HTMLDivElement>(null);
+  const { scrollIntoViewOnMobile } = useScrollIntoView();
 
   // Auto-fill invite code from URL parameter
   useEffect(() => {
@@ -442,7 +445,7 @@ function TeamSafariPageContent() {
 
           {/* Create Team Form */}
           {showCreateForm ? (
-            <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md">
+            <Card ref={createFormRef} className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Create a New Team</CardTitle>
               </CardHeader>
@@ -481,7 +484,10 @@ function TeamSafariPageContent() {
                   Start a new team and invite members to see how your selling styles complement each other.
                 </p>
                 <Button
-                  onClick={() => setShowCreateForm(true)}
+                  onClick={() => {
+                    setShowCreateForm(true);
+                    setTimeout(() => scrollIntoViewOnMobile(createFormRef.current), 50);
+                  }}
                   className="text-white"
                   style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}
                 >

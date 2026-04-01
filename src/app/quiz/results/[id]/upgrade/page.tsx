@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import { QuizResult, AnimalType } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import { checkPurchaseStatus } from "@/lib/purchases";
 import { getQuizResult } from "@/lib/quiz-sync";
+import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 export default function UpgradePage() {
   const params = useParams();
@@ -29,17 +30,7 @@ export default function UpgradePage() {
   const faqRefs = useRef<(HTMLDivElement | null)[]>([]);
   const giftCodeRef1 = useRef<HTMLDivElement>(null);
   const giftCodeRef2 = useRef<HTMLDivElement>(null);
-
-  // Scroll element into view on mobile when clicked
-  const scrollIntoViewOnMobile = useCallback((element: HTMLElement | null) => {
-    if (!element) return;
-    // Only auto-scroll on mobile (< 768px)
-    if (window.innerWidth < 768) {
-      setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
-    }
-  }, []);
+  const { scrollIntoViewOnMobile } = useScrollIntoView();
 
   useEffect(() => {
     const loadResult = async () => {

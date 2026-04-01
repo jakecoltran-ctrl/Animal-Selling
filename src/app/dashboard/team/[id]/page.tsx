@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { animals } from "@/lib/animal-data";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 interface SalesContext {
   sellType: "product" | "service";
@@ -66,6 +67,8 @@ export default function TeamDetailPage() {
   const [purchasingCodes, setPurchasingCodes] = useState(false);
   const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
   const [showAllCodes, setShowAllCodes] = useState(false);
+  const giftCodesRef = useRef<HTMLDivElement>(null);
+  const { scrollIntoViewOnMobile } = useScrollIntoView();
 
   useEffect(() => {
     const loadData = async () => {
@@ -901,7 +904,7 @@ export default function TeamDetailPage() {
                 </div>
 
                 {/* Existing Codes */}
-                <div>
+                <div ref={giftCodesRef}>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                       Your Codes ({giftCodes.filter(c => !c.usedAt).length} available, {giftCodes.filter(c => c.usedAt).length} used)
@@ -910,7 +913,13 @@ export default function TeamDetailPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => setShowAllCodes(!showAllCodes)}
+                        onClick={() => {
+                          const isExpanding = !showAllCodes;
+                          setShowAllCodes(isExpanding);
+                          if (isExpanding) {
+                            scrollIntoViewOnMobile(giftCodesRef.current);
+                          }
+                        }}
                         className="text-xs"
                       >
                         {showAllCodes ? "Show Less" : `Show All (${giftCodes.length})`}

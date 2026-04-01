@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getPurchasedResultIds } from "@/lib/purchases";
 import { syncQuizResults } from "@/lib/quiz-sync";
+import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 // Tips content based on animal type
 const getRecommendedContent = (animalType: AnimalType) => ({
@@ -127,6 +128,8 @@ export default function DashboardPage() {
   const [userTeams, setUserTeams] = useState<UserTeam[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedTip, setExpandedTip] = useState<string | null>(null);
+  const tipRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const { scrollIntoViewOnMobile } = useScrollIntoView();
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -589,11 +592,18 @@ export default function DashboardPage() {
                     return items.map((item, i) => (
                       <div
                         key={item.key}
+                        ref={(el) => { tipRefs.current[item.key] = el; }}
                         className="border border-gray-200 dark:border-white/20 rounded-lg overflow-hidden animate-fade-in"
                         style={{ animationDelay: `${i * 100}ms` }}
                       >
                         <button
-                          onClick={() => setExpandedTip(expandedTip === item.key ? null : item.key)}
+                          onClick={() => {
+                            const isOpening = expandedTip !== item.key;
+                            setExpandedTip(isOpening ? item.key : null);
+                            if (isOpening) {
+                              scrollIntoViewOnMobile(tipRefs.current[item.key]);
+                            }
+                          }}
                           className="w-full p-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-left"
                         >
                           <div>
