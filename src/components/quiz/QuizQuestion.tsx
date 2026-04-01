@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useRef } from "react";
 
 interface QuizQuestionCardProps {
   questionText: string;
@@ -21,8 +22,16 @@ export function QuizQuestionCard({
   value,
   onChange,
 }: QuizQuestionCardProps) {
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const handleClick = (optionValue: 1 | 2 | 3 | 4 | 5, index: number) => {
+    // Blur the button to remove focus/active state on mobile
+    buttonRefs.current[index]?.blur();
+    onChange(optionValue);
+  };
+
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6">
       <p className="text-lg md:text-xl font-medium text-center">
         {questionText}
       </p>
@@ -30,15 +39,16 @@ export function QuizQuestionCard({
         {likertOptions.map((option, index) => (
           <button
             key={option.value}
-            onClick={() => onChange(option.value)}
+            ref={(el) => { buttonRefs.current[index] = el; }}
+            onClick={() => handleClick(option.value, index)}
             className={cn(
               "flex flex-col items-center p-3 sm:p-4 rounded-lg border-2 min-w-[60px] sm:min-w-[100px]",
-              "transition-all duration-200 hover-scale press-effect animate-fade-in",
+              "transition-colors duration-150 focus:outline-none active:scale-95",
+              "select-none touch-manipulation",
               value === option.value
-                ? "border-primary bg-primary/10 text-primary shadow-md scale-105"
-                : "border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:shadow-sm"
+                ? "border-primary bg-primary/10 text-primary shadow-md"
+                : "border-gray-200 dark:border-gray-700 bg-transparent"
             )}
-            style={{ animationDelay: `${index * 50}ms` }}
           >
             <span className="text-2xl font-bold mb-1">{option.value}</span>
             <span className="text-xs text-center text-muted-foreground">
@@ -47,7 +57,7 @@ export function QuizQuestionCard({
           </button>
         ))}
       </div>
-      <div className="flex justify-between text-sm text-muted-foreground px-4 animate-fade-in delay-300">
+      <div className="flex justify-between text-sm text-muted-foreground px-4">
         <span>Strongly Disagree</span>
         <span>Strongly Agree</span>
       </div>
