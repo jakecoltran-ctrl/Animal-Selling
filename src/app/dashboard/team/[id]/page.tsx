@@ -849,7 +849,7 @@ export default function TeamDetailPage() {
                   <span>🎁</span> Unlock Full Report Codes for Your Team
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-400">
-                  Purchase gift codes to give your team members free access to their full reports
+                  As a team leader, purchase report codes in bulk and distribute them to your team members so they can unlock their full personalized reports at no cost to them.
                 </CardDescription>
               </CardHeader>
               <CardContent>
