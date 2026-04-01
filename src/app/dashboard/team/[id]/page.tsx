@@ -848,15 +848,33 @@ export default function TeamDetailPage() {
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                   <span>🎁</span> Unlock Full Report Codes for Your Team
                 </CardTitle>
-                <CardDescription className="text-gray-600 dark:text-gray-400">
-                  As a team leader, purchase report codes in bulk and distribute them to your team members so they can unlock their full personalized reports at no cost to them.
-                </CardDescription>
               </CardHeader>
               <CardContent>
+                {/* Value Proposition */}
+                <div className="mb-8 p-5 rounded-xl bg-gradient-to-r from-cyan-500/10 to-green-500/10 border border-cyan-500/20">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                    <span>💼</span> Invest in Your Team's Success
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Purchase report codes in bulk and distribute them to your team members — they unlock their full personalized reports at no cost to them.
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-3 text-sm">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                      <span className="text-green-500">✓</span> Save with bulk pricing
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                      <span className="text-green-500">✓</span> Codes never expire
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                      <span className="text-green-500">✓</span> Easy to distribute
+                    </div>
+                  </div>
+                </div>
+
                 {/* Purchase Packages */}
                 <div className="mb-8">
                   <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">
-                    Purchase Code Packages
+                    Select a Package
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {CODE_PACKAGES.map((pkg) => (
