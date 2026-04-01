@@ -115,6 +115,7 @@ export function Header() {
         <div className="md:hidden border-t border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 px-4 py-4">
           <nav className="flex flex-col space-y-3">
             {/* Animal Type Buttons */}
+            <p className="text-xs text-center text-muted-foreground">Discover the Sales Animals</p>
             <div className="grid grid-cols-2 gap-3">
               <Link href="/animals/lion" onClick={() => setMobileMenuOpen(false)}>
                 <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#dc2626" }}>
