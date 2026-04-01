@@ -206,9 +206,11 @@ interface ScoreBarProps {
   color: string;
   delay?: number;
   locked?: boolean;
+  isPrimary?: boolean;
+  isSecondary?: boolean;
 }
 
-function ScoreBar({ label, emoji, score, color, delay = 0, locked = false }: ScoreBarProps) {
+function ScoreBar({ label, emoji, score, color, delay = 0, locked = false, isPrimary = false, isSecondary = false }: ScoreBarProps) {
   return (
     <div
       className="space-y-2 animate-fade-in"
@@ -218,6 +220,12 @@ function ScoreBar({ label, emoji, score, color, delay = 0, locked = false }: Sco
         <span className="flex items-center gap-2">
           <span className="text-2xl">{emoji}</span>
           <span className="font-medium text-base">{label}</span>
+          {isPrimary && (
+            <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Primary</span>
+          )}
+          {isSecondary && (
+            <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full">Secondary</span>
+          )}
         </span>
         {locked ? (
           <span className="text-gray-400">
@@ -253,11 +261,19 @@ function ScoreBar({ label, emoji, score, color, delay = 0, locked = false }: Sco
   );
 }
 
-interface ScoreBarsProps extends RadarChartProps {
+interface ScoreBarsProps {
+  scores: {
+    lion: number;
+    penguin: number;
+    retriever: number;
+    beaver: number;
+  };
   lockSecondary?: boolean;
+  primaryType?: AnimalType;
+  secondaryType?: AnimalType;
 }
 
-export function ScoreBars({ scores, lockSecondary = false }: ScoreBarsProps) {
+export function ScoreBars({ scores, lockSecondary = false, primaryType, secondaryType }: ScoreBarsProps) {
   // Sort by score to show highest first
   const sortedScores = [
     { key: 'lion', score: scores.lion, animal: animals.lion },
@@ -277,6 +293,8 @@ export function ScoreBars({ scores, lockSecondary = false }: ScoreBarsProps) {
           color={item.animal.color}
           delay={index * 150}
           locked={lockSecondary && index > 0}
+          isPrimary={item.key === primaryType}
+          isSecondary={item.key === secondaryType}
         />
       ))}
     </div>
