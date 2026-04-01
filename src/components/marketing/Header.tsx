@@ -113,23 +113,34 @@ export function Header() {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 px-4 py-4">
-          <nav className="flex flex-col space-y-4">
-            <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600" onClick={() => setMobileMenuOpen(false)}>
-              Lion - The Closer
-            </Link>
-            <Link href="/animals/penguin" className="text-sm font-medium text-muted-foreground hover:text-penguin-600" onClick={() => setMobileMenuOpen(false)}>
-              Penguin - The Connector
-            </Link>
-            <Link href="/animals/retriever" className="text-sm font-medium text-muted-foreground hover:text-retriever-600" onClick={() => setMobileMenuOpen(false)}>
-              Retriever - The Trusted Advisor
-            </Link>
-            <Link href="/animals/beaver" className="text-sm font-medium text-muted-foreground hover:text-beaver-600" onClick={() => setMobileMenuOpen(false)}>
-              Beaver - The Specialist
-            </Link>
-            <hr className="my-2" />
+          <nav className="flex flex-col space-y-3">
+            {/* Animal Type Buttons */}
+            <div className="grid grid-cols-2 gap-3">
+              <Link href="/animals/lion" onClick={() => setMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#dc2626" }}>
+                  <span>🦁</span> Lion
+                </div>
+              </Link>
+              <Link href="/animals/penguin" onClick={() => setMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#0891b2" }}>
+                  <span>🐧</span> Penguin
+                </div>
+              </Link>
+              <Link href="/animals/retriever" onClick={() => setMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#d97706" }}>
+                  <span>🐕</span> Retriever
+                </div>
+              </Link>
+              <Link href="/animals/beaver" onClick={() => setMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#059669" }}>
+                  <span>🦫</span> Beaver
+                </div>
+              </Link>
+            </div>
+            <hr className="my-1 border-gray-300 dark:border-gray-700" />
             <Link href="/dashboard/team" onClick={() => setMobileMenuOpen(false)}>
               <Button
-                className="w-full text-sm text-white press-effect"
+                className="w-full text-sm text-white"
                 style={{
                   background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
                 }}
