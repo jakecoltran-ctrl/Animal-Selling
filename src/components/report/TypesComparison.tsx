@@ -34,7 +34,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
         <div className="min-w-[500px]">
           {/* Animal Headers */}
           <div className="grid grid-cols-5 gap-2 mb-4">
-            <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Dimension</div>
+            <div className="text-sm font-medium text-gray-500 dark:text-gray-400 py-2 flex items-center">Dimension</div>
             {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map(
               (type) => (
                 <div
