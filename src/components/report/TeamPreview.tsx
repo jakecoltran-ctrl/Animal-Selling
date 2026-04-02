@@ -28,7 +28,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* Team Benefits Grid */}
       <div className="grid md:grid-cols-2 gap-6 mb-10">
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-red-200 dark:border-red-500/30 hover:shadow-md transition-shadow">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-red-200 dark:border-red-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
           <div className="text-3xl mb-3">📊</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Composition</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -37,7 +37,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-amber-200 dark:border-amber-500/30 hover:shadow-md transition-shadow">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-amber-200 dark:border-amber-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
           <div className="text-3xl mb-3">🤝</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Optimal Pairings</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -46,7 +46,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-cyan-200 dark:border-cyan-500/30 hover:shadow-md transition-shadow">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-cyan-200 dark:border-cyan-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
           <div className="text-3xl mb-3">🎯</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Account Assignment</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -55,7 +55,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-emerald-200 dark:border-emerald-500/30 hover:shadow-md transition-shadow">
+        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-emerald-200 dark:border-emerald-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
           <div className="text-3xl mb-3">📈</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Development</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
