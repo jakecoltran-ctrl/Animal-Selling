@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
             price_data: {
               currency: "usd",
               product_data: {
-                name: "Animal Selling Full Report",
+                name: "Animal Selling™ Full Report",
                 description: "15-page personalized sales profile report",
               },
               unit_amount: PRICES.full_report,
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
             price_data: {
               currency: "usd",
               product_data: {
-                name: `Animal Selling Gift Codes - ${quantity} Pack`,
+                name: `Animal Selling™ Gift Codes - ${quantity} Pack`,
                 description: `${quantity} gift codes for your team members`,
               },
               unit_amount: price,

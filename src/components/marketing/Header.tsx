@@ -43,7 +43,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
           <span className="text-2xl">🦁🐧🐕🦫</span>
-          <span className="font-bold text-xl hidden md:inline-block whitespace-nowrap">Animal Selling</span>
+          <span className="font-bold text-xl hidden md:inline-block whitespace-nowrap">Animal Selling™</span>
         </Link>
 
         {/* Desktop Navigation - Centered */}
@@ -70,7 +70,7 @@ export function Header() {
                 background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
               }}
             >
-              Team Safari
+              Team Safari™
             </Button>
           </Link>
           <Link href="/quiz" className="hidden md:block">
@@ -146,7 +146,7 @@ export function Header() {
                   background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)",
                 }}
               >
-                Team Safari
+                Team Safari™
               </Button>
             </Link>
             <Link href="/quiz" onClick={() => setMobileMenuOpen(false)}>

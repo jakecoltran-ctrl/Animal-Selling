@@ -3,12 +3,12 @@ import Link from "next/link";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export const metadata: Metadata = {
-  title: "Disclaimer | Animal Selling",
-  description: "Important disclaimers and limitations regarding the Animal Selling platform and assessment.",
+  title: "Disclaimer | Animal Selling™",
+  description: "Important disclaimers and limitations regarding the Animal Selling™ platform and assessment.",
 };
 
 export default function DisclaimerPage() {
-  const lastUpdated = "March 26, 2025";
+  const lastUpdated = "April 2, 2025";
 
   return (
     <div className="min-h-screen bg-gray-950 py-16 relative overflow-hidden">
@@ -33,7 +33,7 @@ export default function DisclaimerPage() {
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">General Disclaimer</h2>
                 <p className="text-gray-300 leading-relaxed">
-                  The information provided on Animal Selling is for general informational and
+                  The information provided on Animal Selling™ is for general informational and
                   educational purposes only. While we strive to provide accurate and up-to-date
                   information, we make no representations or warranties of any kind, express or
                   implied, about the completeness, accuracy, reliability, suitability, or
@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Assessment Disclaimer</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  The Animal Selling personality assessment is designed as a professional
+                  The Animal Selling™ personality assessment is designed as a professional
                   development and educational tool. Please understand that:
                 </p>
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
@@ -55,7 +55,9 @@ export default function DisclaimerPage() {
                   <li>The assessment is not intended to diagnose any psychological conditions</li>
                   <li>Results should be used as a guide for self-reflection, not as absolute truth</li>
                   <li>Individual sales performance depends on many factors beyond personality type</li>
-                  <li>The four animal archetypes are original to Animal Selling and are used for illustrative purposes</li>
+                  <li>The four animal archetypes are original to Animal Selling™ and are used for illustrative purposes</li>
+                  <li>Industry-specific tips are general guidance, not specific business advice for your situation</li>
+                  <li>30-day action plans are suggestions, not guaranteed strategies for success</li>
                 </ul>
               </section>
 
@@ -69,6 +71,36 @@ export default function DisclaimerPage() {
                   decisions based on information provided on this website. Any reliance you place
                   on such information is strictly at your own risk.
                 </p>
+              </section>
+
+              {/* Industry Tips Disclaimer */}
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
+                <h2 className="text-xl font-bold text-white mb-4">Industry Tips Disclaimer</h2>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  Our industry-specific selling tips and recommendations are provided for general
+                  informational purposes. Please understand that:
+                </p>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                  <li>Industry advice is generalized and may not apply to all businesses or situations within that industry</li>
+                  <li>Market conditions, regulations, and best practices vary by region and change over time</li>
+                  <li>You should adapt all recommendations to your specific business context and customer base</li>
+                  <li>Industry tips do not constitute specialized consulting or strategic business advice</li>
+                </ul>
+              </section>
+
+              {/* Action Plans Disclaimer */}
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
+                <h2 className="text-xl font-bold text-white mb-4">Action Plans Disclaimer</h2>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  The 30-day action plans provided are suggested frameworks for professional development.
+                  Please note:
+                </p>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                  <li>Action plans are suggestions, not prescriptions for guaranteed success</li>
+                  <li>Results will vary based on individual implementation, effort, and circumstances</li>
+                  <li>Plans should be adapted to your specific role, industry, and organizational context</li>
+                  <li>We do not guarantee any specific outcomes from following these action plans</li>
+                </ul>
               </section>
 
               {/* Results and Outcomes */}
@@ -88,7 +120,7 @@ export default function DisclaimerPage() {
                 <h2 className="text-xl font-bold text-white mb-4">Third-Party Links</h2>
                 <p className="text-gray-300 leading-relaxed">
                   This website may contain links to third-party websites or services that are not
-                  owned or controlled by Animal Selling or C2 Unlimited LLC. We have no control
+                  owned or controlled by Animal Selling™ or C2 Unlimited LLC. We have no control
                   over, and assume no responsibility for, the content, privacy policies, or
                   practices of any third-party websites or services. We strongly advise you to
                   read the terms and conditions and privacy policies of any third-party websites
@@ -111,12 +143,18 @@ export default function DisclaimerPage() {
               {/* Intellectual Property */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Intellectual Property</h2>
-                <p className="text-gray-300 leading-relaxed">
-                  The Animal Selling framework, including but not limited to the four animal
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  The Animal Selling™ framework, including but not limited to the four animal
                   archetypes (Lion, Penguin, Retriever, Beaver), assessment methodology, content,
                   graphics, and website design are the property of C2 Unlimited LLC and are
                   protected by intellectual property laws. Unauthorized use, reproduction, or
                   distribution of these materials is prohibited.
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  <strong className="text-white">Downloaded Content:</strong> PDF reports and other downloadable
+                  materials are provided for your personal or internal business use only. You may not
+                  redistribute, resell, publish, or share these materials publicly without explicit
+                  written permission from C2 Unlimited LLC.
                 </p>
               </section>
 

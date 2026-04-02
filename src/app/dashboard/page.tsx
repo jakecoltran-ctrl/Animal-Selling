@@ -501,7 +501,7 @@ export default function DashboardPage() {
             {userTeams.length > 0 && (
               <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-gray-900 animate-fade-in delay-300 hover-lift">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-gray-900 dark:text-white text-lg">Your Team Safaris</CardTitle>
+                  <CardTitle className="text-gray-900 dark:text-white text-lg">Your Team Safari™s</CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-400">
                     {userTeams.length} team{userTeams.length !== 1 ? "s" : ""}
                   </CardDescription>
@@ -547,7 +547,7 @@ export default function DashboardPage() {
               </Card>
             )}
 
-            {/* Team Safari - Create or Join */}
+            {/* Team Safari™ - Create or Join */}
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 animate-fade-in delay-300 hover-lift">
               <CardHeader className="pb-2">
                 <TeamSafariBubble />
@@ -569,7 +569,7 @@ export default function DashboardPage() {
                       background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)"
                     }}
                   >
-                    {userTeams.length > 0 ? "Create or Join Team" : "Explore Team Safari"}
+                    {userTeams.length > 0 ? "Create or Join Team" : "Explore Team Safari™"}
                   </Button>
                 </Link>
               </CardContent>

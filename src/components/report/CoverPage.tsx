@@ -46,10 +46,10 @@ export function CoverPage({
         {/* Logo/Title */}
         <div className="mb-12">
           <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">
-            Animal Selling
+            Animal Selling™
           </h2>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-            Animal Selling Assessment
+            Animal Selling™ Assessment
           </h1>
         </div>
 

@@ -3,12 +3,12 @@ import Link from "next/link";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Animal Selling",
-  description: "Terms and conditions for using the Animal Selling platform and services.",
+  title: "Terms of Service | Animal Selling™",
+  description: "Terms and conditions for using the Animal Selling™ platform and services.",
 };
 
 export default function TermsOfServicePage() {
-  const lastUpdated = "March 26, 2025";
+  const lastUpdated = "April 2, 2025";
 
   return (
     <div className="min-h-screen bg-gray-950 py-16 relative overflow-hidden">
@@ -33,7 +33,7 @@ export default function TermsOfServicePage() {
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
                 <p className="text-gray-300 leading-relaxed">
-                  By accessing or using Animal Selling ("the Service"), you agree to be bound
+                  By accessing or using Animal Selling™ ("the Service"), you agree to be bound
                   by these Terms of Service ("Terms"). If you do not agree to these Terms,
                   please do not use the Service. We reserve the right to modify these Terms
                   at any time, and such modifications will be effective immediately upon
@@ -45,14 +45,18 @@ export default function TermsOfServicePage() {
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">2. Description of Service</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  Animal Selling is a sales training platform that provides:
+                  Animal Selling™ is a sales training platform that provides:
                 </p>
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
                   <li>A personality assessment to identify your sales style</li>
                   <li>Personalized insights and recommendations based on your results</li>
-                  <li>Team collaboration features ("Team Safari")</li>
+                  <li>Team collaboration features ("Team Safari™")</li>
                   <li>Educational content about different selling styles</li>
                   <li>Optional premium reports and features</li>
+                  <li>Downloadable PDF reports of your assessment results</li>
+                  <li>Gift code redemption system for team access</li>
+                  <li>Industry-specific selling strategies and tips</li>
+                  <li>Personalized 30-day action plans based on your animal type</li>
                 </ul>
               </section>
 
@@ -94,15 +98,21 @@ export default function TermsOfServicePage() {
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">5. Intellectual Property</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  The Animal Selling framework, including the four animal archetypes (Lion,
+                  The Animal Selling™ framework, including the four animal archetypes (Lion,
                   Penguin, Retriever, Beaver), assessment questions, scoring methodology,
-                  and all associated content, graphics, and code are owned by Animal Selling
+                  and all associated content, graphics, and code are owned by Animal Selling™
                   and protected by intellectual property laws.
                 </p>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed mb-4">
                   You may not reproduce, distribute, modify, or create derivative works from
                   our content without explicit written permission. Your quiz results are yours
                   to use personally and share, but the underlying framework remains our property.
+                </p>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  <strong className="text-white">Content Protection:</strong> Text selection has been disabled
+                  on this website to protect our proprietary content. PDF reports downloaded from our
+                  platform are for your personal or internal business use only and may not be
+                  redistributed, resold, or published without explicit written permission.
                 </p>
               </section>
 
@@ -120,11 +130,28 @@ export default function TermsOfServicePage() {
                 </ul>
               </section>
 
+              {/* Gift Codes */}
+              <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
+                <h2 className="text-xl font-bold text-white mb-4">7. Gift Codes</h2>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  Team leaders may purchase gift codes to provide team members access to premium features.
+                  By using gift codes, you agree to the following terms:
+                </p>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                  <li>Gift codes are single-use and non-transferable once redeemed</li>
+                  <li>Gift codes may expire after a specified period if not redeemed</li>
+                  <li>Gift codes cannot be exchanged for cash or monetary value</li>
+                  <li>One gift code may be used per assessment/account</li>
+                  <li>Gift codes are subject to the same usage terms as regular purchases</li>
+                  <li>We reserve the right to invalidate codes obtained through fraud or abuse</li>
+                </ul>
+              </section>
+
               {/* Assessment Disclaimer */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">7. Assessment Disclaimer</h2>
+                <h2 className="text-xl font-bold text-white mb-4">8. Assessment Disclaimer</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  The Animal Selling assessment is designed for educational and professional
+                  The Animal Selling™ assessment is designed for educational and professional
                   development purposes. Please understand that:
                 </p>
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
@@ -137,7 +164,7 @@ export default function TermsOfServicePage() {
 
               {/* Disclaimers */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">8. Disclaimers</h2>
+                <h2 className="text-xl font-bold text-white mb-4">9. Disclaimers</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF
                   ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:
@@ -151,7 +178,7 @@ export default function TermsOfServicePage() {
 
               {/* Limitation of Liability */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">9. Limitation of Liability</h2>
+                <h2 className="text-xl font-bold text-white mb-4">10. Limitation of Liability</h2>
                 <p className="text-gray-300 leading-relaxed">
                   TO THE MAXIMUM EXTENT PERMITTED BY LAW, ANIMAL SELLING SHALL NOT BE LIABLE
                   FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES,
@@ -163,9 +190,9 @@ export default function TermsOfServicePage() {
 
               {/* Indemnification */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">10. Indemnification</h2>
+                <h2 className="text-xl font-bold text-white mb-4">11. Indemnification</h2>
                 <p className="text-gray-300 leading-relaxed">
-                  You agree to indemnify and hold harmless Animal Selling and its officers,
+                  You agree to indemnify and hold harmless Animal Selling™ and its officers,
                   directors, employees, and agents from any claims, damages, losses, or
                   expenses (including reasonable attorney fees) arising from your use of
                   the Service or violation of these Terms.
@@ -174,7 +201,7 @@ export default function TermsOfServicePage() {
 
               {/* Termination */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">11. Termination</h2>
+                <h2 className="text-xl font-bold text-white mb-4">12. Termination</h2>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   We may terminate or suspend your access to the Service immediately, without
                   prior notice, for any reason, including breach of these Terms. Upon
@@ -189,7 +216,7 @@ export default function TermsOfServicePage() {
 
               {/* Governing Law */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">12. Governing Law</h2>
+                <h2 className="text-xl font-bold text-white mb-4">13. Governing Law</h2>
                 <p className="text-gray-300 leading-relaxed">
                   These Terms shall be governed by and construed in accordance with the laws
                   of the United States, without regard to its conflict of law provisions.
@@ -200,7 +227,7 @@ export default function TermsOfServicePage() {
 
               {/* Changes to Terms */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">13. Changes to Terms</h2>
+                <h2 className="text-xl font-bold text-white mb-4">14. Changes to Terms</h2>
                 <p className="text-gray-300 leading-relaxed">
                   We reserve the right to modify these Terms at any time. We will provide
                   notice of significant changes by posting the updated Terms on this page
@@ -211,7 +238,7 @@ export default function TermsOfServicePage() {
 
               {/* Contact */}
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
-                <h2 className="text-xl font-bold text-white mb-4">14. Contact Us</h2>
+                <h2 className="text-xl font-bold text-white mb-4">15. Contact Us</h2>
                 <p className="text-gray-300 leading-relaxed">
                   If you have any questions about these Terms of Service, please contact us at:
                 </p>

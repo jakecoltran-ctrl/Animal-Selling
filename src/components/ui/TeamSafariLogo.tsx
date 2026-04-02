@@ -125,7 +125,7 @@ export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
             filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.1))"
           }}
         >
-          TEAM SAFARI
+          TEAM SAFARI™
         </span>
       </div>
     </div>
@@ -144,7 +144,7 @@ export function TeamSafariText({ className = "" }: TeamSafariBubbleProps) {
         backgroundClip: "text",
       }}
     >
-      Team Safari
+      Team Safari™
     </span>
   );
 }
@@ -180,7 +180,7 @@ export function TeamSafariWithJeep({ className = "" }: TeamSafariBubbleProps) {
           backgroundClip: "text",
         }}
       >
-        Team Safari
+        Team Safari™
       </span>
     </div>
   );

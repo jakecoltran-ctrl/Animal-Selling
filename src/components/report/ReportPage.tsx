@@ -33,7 +33,7 @@ export function ReportPage({
         {/* Page Footer */}
         <div className="px-8 md:px-10 pb-6">
           <div className="flex justify-between items-center text-sm text-gray-400 dark:text-gray-500 border-t dark:border-gray-700 pt-4">
-            <span>Animal Selling Assessment</span>
+            <span>Animal Selling™ Assessment</span>
             <span>
               Page {pageNumber} of {totalPages}
             </span>

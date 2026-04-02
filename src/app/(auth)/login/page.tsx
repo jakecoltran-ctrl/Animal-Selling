@@ -111,7 +111,7 @@ function LoginForm() {
             <div className="text-4xl mb-2">🦁🐧🐕🦫</div>
             <CardTitle>Welcome Back</CardTitle>
             <CardDescription>
-              Sign in to access your Animal Selling profile
+              Sign in to access your Animal Selling™ profile
             </CardDescription>
           </CardHeader>
           <CardContent>

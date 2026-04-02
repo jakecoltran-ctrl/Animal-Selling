@@ -9,7 +9,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl">🦁🐧🐕🦫</span>
-              <span className="font-bold text-lg">Animal Selling</span>
+              <span className="font-bold text-lg">Animal Selling™</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Discover your sales animal and connect better with every customer.
@@ -54,7 +54,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/dashboard/team" className="hover:text-primary transition-colors">
-                  Team Safari
+                  Team Safari™
                 </Link>
               </li>
               <li>

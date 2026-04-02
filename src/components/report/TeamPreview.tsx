@@ -18,7 +18,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       <div className="text-center mb-10">
         <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-          Team Safari: Better Together
+          Team Safari™: Better Together
         </h2>
         <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
           Great sales teams have a mix of styles. Understanding your team's
@@ -75,7 +75,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       >
         <div className="text-6xl mb-4">🦁🐧🐕🦫</div>
         <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-          Start Your Team Safari
+          Start Your Team Safari™
         </h3>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto">
           Create your team and invite teammates to discover your collective
@@ -87,7 +87,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
             className="text-white text-lg px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-all press-effect hover-glow"
             style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }}
           >
-            Create Your Team Safari
+            Create Your Team Safari™
           </Button>
         </Link>
       </div>

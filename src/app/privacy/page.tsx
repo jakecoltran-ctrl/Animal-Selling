@@ -3,12 +3,12 @@ import Link from "next/link";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Animal Selling",
-  description: "Learn how Animal Selling collects, uses, and protects your personal information.",
+  title: "Privacy Policy | Animal Selling™",
+  description: "Learn how Animal Selling™ collects, uses, and protects your personal information.",
 };
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = "March 26, 2025";
+  const lastUpdated = "April 2, 2025";
 
   return (
     <div className="min-h-screen bg-gray-950 py-16 relative overflow-hidden">
@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
               <section className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01]">
                 <h2 className="text-xl font-bold text-white mb-4">Introduction</h2>
                 <p className="text-gray-300 leading-relaxed">
-                  Animal Selling ("we," "our," or "us") respects your privacy and is committed
+                  Animal Selling™ ("we," "our," or "us") respects your privacy and is committed
                   to protecting your personal information. This Privacy Policy explains how we
                   collect, use, disclose, and safeguard your information when you use our
                   website and services.
@@ -48,7 +48,9 @@ export default function PrivacyPolicyPage() {
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
                   <li><strong>Account Information:</strong> When you create an account, we collect your email address and name.</li>
                   <li><strong>Quiz Responses:</strong> Your answers to our sales personality assessment questions.</li>
-                  <li><strong>Team Information:</strong> Team names and member information when you use Team Safari.</li>
+                  <li><strong>Sales Context Information:</strong> Optional information about your sales environment, including product/service type, B2B/B2C context, and inside/outside sales designation.</li>
+                  <li><strong>Industry Preference:</strong> Your industry selection for personalized selling tips (Tech, Financial, Real Estate, Professional Services).</li>
+                  <li><strong>Team Information:</strong> Team names and member information when you use Team Safari™.</li>
                   <li><strong>Payment Information:</strong> If you purchase premium features, payment is processed by our third-party payment processor. We do not store your full payment card details.</li>
                 </ul>
 
@@ -66,7 +68,10 @@ export default function PrivacyPolicyPage() {
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
                   <li>To provide and maintain our services</li>
                   <li>To generate your personalized sales animal results</li>
+                  <li>To create industry-specific selling recommendations based on your preferences</li>
+                  <li>To generate personalized 30-day action plans tailored to your animal type</li>
                   <li>To enable team features and collaboration</li>
+                  <li>To generate downloadable PDF reports of your assessment results</li>
                   <li>To process transactions and send related information</li>
                   <li>To send you updates about our services (with your consent)</li>
                   <li>To improve and optimize our website and services</li>
@@ -99,6 +104,7 @@ export default function PrivacyPolicyPage() {
                   <li><strong>Supabase:</strong> Authentication and database services</li>
                   <li><strong>Vercel:</strong> Website hosting and deployment</li>
                   <li><strong>Stripe:</strong> Payment processing (if applicable)</li>
+                  <li><strong>PDF Generation:</strong> PDF reports are generated client-side in your browser. No report data is sent to external PDF services.</li>
                 </ul>
                 <p className="text-gray-300 leading-relaxed mt-4">
                   These services have their own privacy policies governing their use of your data.

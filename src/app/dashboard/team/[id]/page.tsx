@@ -289,7 +289,7 @@ export default function TeamDetailPage() {
     if (!team) return;
     const inviteUrl = `${window.location.origin}/dashboard/team?code=${team.inviteCode}`;
     await navigator.clipboard.writeText(
-      `Join my Animal Selling team "${team.name}"! Click here to join: ${inviteUrl}`
+      `Join my Animal Selling™ team "${team.name}"! Click here to join: ${inviteUrl}`
     );
     setInviteCopied(true);
     setTimeout(() => setInviteCopied(false), 2000);
@@ -452,7 +452,7 @@ export default function TeamDetailPage() {
             </div>
             <div className="text-center md:text-left flex-1">
               <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
-                Team Safari
+                Team Safari™
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-2">
                 {team.name}

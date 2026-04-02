@@ -370,7 +370,7 @@ export default function Home() {
 
             {/* How it works */}
             <div className="bg-white/5 border border-white/10 rounded-xl p-8 mb-10">
-              <h3 className="text-xl font-bold text-white mb-6 text-center">How Team Safari Works</h3>
+              <h3 className="text-xl font-bold text-white mb-6 text-center">How Team Safari™ Works</h3>
               <div className="grid sm:grid-cols-3 gap-6">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-amber-500 flex items-center justify-center text-white font-bold">1</div>
@@ -464,7 +464,7 @@ export default function Home() {
               Adapt to Any Customer
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              The real power of Animal Selling is reading your customer's type and adjusting your approach
+              The real power of Animal Selling™ is reading your customer's type and adjusting your approach
             </p>
           </div>
 

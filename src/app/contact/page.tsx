@@ -82,7 +82,7 @@ export default function ContactPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-cyan-400">→</span>
-                    Team Safari setup help
+                    Team Safari™ setup help
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-cyan-400">→</span>
@@ -194,7 +194,7 @@ export default function ContactPage() {
                         <option value="" className="bg-gray-900">Select a topic...</option>
                         <option value="general" className="bg-gray-900">General Question</option>
                         <option value="quiz" className="bg-gray-900">Quiz / Results Help</option>
-                        <option value="team" className="bg-gray-900">Team Safari Support</option>
+                        <option value="team" className="bg-gray-900">Team Safari™ Support</option>
                         <option value="premium" className="bg-gray-900">Premium Report Issue</option>
                         <option value="partnership" className="bg-gray-900">Partnership Inquiry</option>
                         <option value="feedback" className="bg-gray-900">Feedback / Suggestion</option>

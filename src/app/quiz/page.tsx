@@ -286,7 +286,7 @@ export default function QuizPage() {
                 <span className="inline-block">🦫</span>
               </div>
               <h1 className="text-3xl font-bold mb-4">
-                Animal Selling Assessment
+                Animal Selling™ Assessment
               </h1>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 Discover your natural sales animal in under 5 minutes. Answer 24

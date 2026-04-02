@@ -215,14 +215,14 @@ export default function ResultsPage() {
   };
 
   const handleShare = async () => {
-    const shareText = `I just discovered I'm a ${primaryAnimal.emoji} ${primaryAnimal.name} (${primaryAnimal.title}) with Animal Selling! Take the quiz to find your sales animal.`;
+    const shareText = `I just discovered I'm a ${primaryAnimal.emoji} ${primaryAnimal.name} (${primaryAnimal.title}) with Animal Selling™! Take the quiz to find your sales animal.`;
     // Share link to the animal page, not personal results
     const shareUrl = `${window.location.origin}/animals/${result.primaryType}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "My Animal Selling Results",
+          title: "My Animal Selling™ Results",
           text: shareText,
           url: shareUrl,
         });
@@ -917,7 +917,7 @@ export default function ResultsPage() {
             </p>
             <Link href="/dashboard/team">
               <Button variant="outline">
-                Explore Team Safari →
+                Explore Team Safari™ →
               </Button>
             </Link>
           </div>

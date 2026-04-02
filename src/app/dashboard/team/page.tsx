@@ -497,13 +497,13 @@ function TeamSafariPageContent() {
             </Card>
           )}
 
-          {/* What is Team Safari - Explainer Section */}
+          {/* What is Team Safari™ - Explainer Section */}
           <div className="mt-10 bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-6 md:p-8">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span>🌍</span> What is Team Safari?
+              <span>🌍</span> What is Team Safari™?
             </h2>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Team Safari helps you understand your sales team&apos;s collective personality.
+              Team Safari™ helps you understand your sales team&apos;s collective personality.
               By mapping each member&apos;s animal type, you can see how your team&apos;s strengths
               complement each other and identify potential gaps.
             </p>
