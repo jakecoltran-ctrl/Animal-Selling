@@ -680,14 +680,14 @@ export default function UpgradePage() {
 
             <div className="mb-6">
               <div className="flex items-center justify-center gap-3">
-                <span className="text-3xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">$40</span>
+                <span className="text-3xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">$25</span>
                 <span className="text-5xl font-black" style={{ color: primaryAnimal.color }}>
-                  $19
+                  $10.99
                 </span>
               </div>
               <div className="mt-2">
                 <span className="text-sm font-semibold text-green-500 bg-green-500/10 px-3 py-1 rounded-full">
-                  Save 52% — Limited Time Offer
+                  Save 56% — Limited Time Offer
                 </span>
               </div>
             </div>
