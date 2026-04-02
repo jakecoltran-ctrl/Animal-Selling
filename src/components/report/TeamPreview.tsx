@@ -67,7 +67,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* Main CTA - Start or Join Team */}
       <div
-        className="rounded-2xl p-10 text-center border-4 mb-6 relative overflow-hidden"
+        className="rounded-2xl p-10 text-center border-4 mb-6 relative overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-xl"
         style={{
           background: "linear-gradient(135deg, rgba(220,38,38,0.1) 0%, rgba(217,119,6,0.1) 25%, rgba(8,145,178,0.1) 50%, rgba(5,150,105,0.1) 100%)",
           borderImage: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669) 1",
@@ -93,7 +93,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       </div>
 
       {/* Secondary CTA - Join Existing Team */}
-      <div className="rounded-xl p-6 text-center bg-white dark:bg-white/10 border-2 border-dashed border-gray-300 dark:border-gray-500">
+      <div className="rounded-xl p-6 text-center bg-white dark:bg-white/10 border-2 border-dashed border-gray-300 dark:border-gray-500 transition-all duration-300 hover:scale-[1.01]">
         <p className="text-gray-700 dark:text-gray-300 mb-4">
           <span className="font-semibold">Already have a team?</span> If your manager or teammate sent you an invite link, use it to join your team.
         </p>
@@ -104,7 +104,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* How Your Type Fits */}
       <div
-        className="mt-8 p-6 rounded-xl border-2"
+        className="mt-8 p-6 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           backgroundColor: `${primaryAnimal.color}08`,
           borderColor: `${primaryAnimal.color}40`,

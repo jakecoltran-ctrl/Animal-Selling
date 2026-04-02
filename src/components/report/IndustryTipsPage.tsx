@@ -38,7 +38,7 @@ export function IndustryTipsPage({ primaryType }: IndustryTipsPageProps) {
           return (
             <div
               key={industry.id}
-              className="rounded-xl border-2 overflow-hidden"
+              className="rounded-xl border-2 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               style={{ borderColor: industry.color }}
             >
               {/* Card Header */}
@@ -128,7 +128,7 @@ export function IndustryTipsPage({ primaryType }: IndustryTipsPageProps) {
 
       {/* Pro Tip */}
       <div
-        className="mt-6 p-4 rounded-xl"
+        className="mt-6 p-4 rounded-xl transition-all duration-300 hover:scale-[1.01]"
         style={{ backgroundColor: `${primaryAnimal.color}10` }}
       >
         <p className="text-sm text-gray-700 dark:text-gray-200">

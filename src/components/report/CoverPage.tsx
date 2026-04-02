@@ -55,7 +55,7 @@ export function CoverPage({
 
         {/* Animal Icon */}
         <div
-          className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 flex items-center justify-center shadow-xl"
+          className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110"
           style={{ backgroundColor: `${primaryAnimal.color}15` }}
         >
           <span className="text-7xl md:text-8xl">{primaryAnimal.emoji}</span>
@@ -76,7 +76,7 @@ export function CoverPage({
         </div>
 
         {/* Secondary Type Badge */}
-        <div className="inline-flex items-center gap-3 bg-white dark:bg-gray-800 rounded-full px-6 py-3 shadow-md mb-12">
+        <div className="inline-flex items-center gap-3 bg-white dark:bg-gray-800 rounded-full px-6 py-3 shadow-md mb-12 transition-all duration-300 hover:scale-105 hover:shadow-lg">
           <span className="text-sm text-gray-500 dark:text-gray-400">Secondary Type:</span>
           <span className="text-2xl">{secondaryAnimal.emoji}</span>
           <span
@@ -89,13 +89,13 @@ export function CoverPage({
 
         {/* Context Tags */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+          <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110">
             {contextLabels.sellType}
           </span>
-          <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+          <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110">
             {contextLabels.customerType}
           </span>
-          <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+          <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110">
             {contextLabels.salesChannel}
           </span>
         </div>

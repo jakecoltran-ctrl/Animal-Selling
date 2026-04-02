@@ -40,7 +40,7 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
           return (
             <div
               key={targetType}
-              className="rounded-xl border-2 overflow-hidden"
+              className="rounded-xl border-2 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               style={{ borderColor: targetAnimal.color }}
             >
               {/* Card Header */}
@@ -155,7 +155,7 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
 
       {/* Pro Tip */}
       <div
-        className="mt-6 p-4 rounded-xl"
+        className="mt-6 p-4 rounded-xl transition-all duration-300 hover:scale-[1.01]"
         style={{ backgroundColor: `${animalData[primaryType].color}10` }}
       >
         <p className="text-sm text-gray-700 dark:text-gray-200">

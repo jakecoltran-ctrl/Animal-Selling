@@ -43,12 +43,12 @@ export function UniqueProfilePage({
       </div>
 
       {/* Visual Score Display */}
-      <div className="mb-8 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700">
+      <div className="mb-8 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
         <div className="flex justify-center items-end gap-3 mb-6">
           {sortedScores.map(({ type, score, animal }, i) => (
-            <div key={type} className="text-center">
+            <div key={type} className="text-center transition-all duration-300 hover:scale-105">
               <div
-                className="w-20 rounded-t-lg flex items-end justify-center transition-all"
+                className="w-20 rounded-t-lg flex items-end justify-center"
                 style={{
                   height: `${score * 1.5}px`,
                   backgroundColor: animal.color,
@@ -90,7 +90,7 @@ export function UniqueProfilePage({
 
       {/* Personalized Narrative */}
       <div
-        className="rounded-2xl p-8 mb-8"
+        className="rounded-2xl p-8 mb-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           background: `linear-gradient(135deg, ${primaryAnimal.color}08 0%, ${secondaryAnimal.color}08 100%)`,
           borderLeft: `4px solid ${primaryAnimal.color}`,
@@ -105,22 +105,22 @@ export function UniqueProfilePage({
       </div>
 
       {/* Context Reminder */}
-      <div className="bg-slate-100 dark:bg-gray-800 rounded-xl p-5 border border-slate-200 dark:border-gray-700">
+      <div className="bg-slate-100 dark:bg-gray-800 rounded-xl p-5 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.01]">
         <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Your Sales Context</h3>
         <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm">
+          <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm transition-all duration-300 hover:scale-105">
             <p className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">What You Sell</p>
             <p className="font-semibold text-gray-900 dark:text-white">
               {salesContext.sellType === "product" ? "Products" : "Services"}
             </p>
           </div>
-          <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm">
+          <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm transition-all duration-300 hover:scale-105">
             <p className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">Who You Sell To</p>
             <p className="font-semibold text-gray-900 dark:text-white">
               {salesContext.customerType === "b2b" ? "Businesses (B2B)" : "Consumers (B2C)"}
             </p>
           </div>
-          <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm">
+          <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm transition-all duration-300 hover:scale-105">
             <p className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">How You Sell</p>
             <p className="font-semibold text-gray-900 dark:text-white">
               {salesContext.salesChannel === "inside" ? "Virtual/Inside" : "In-Person/Outside"}
@@ -139,7 +139,7 @@ export function UniqueProfilePage({
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div
-            className="p-4 rounded-xl"
+            className="p-4 rounded-xl transition-all duration-300 hover:scale-[1.02]"
             style={{ backgroundColor: `${primaryAnimal.color}10` }}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -154,7 +154,7 @@ export function UniqueProfilePage({
             </p>
           </div>
           <div
-            className="p-4 rounded-xl"
+            className="p-4 rounded-xl transition-all duration-300 hover:scale-[1.02]"
             style={{ backgroundColor: `${secondaryAnimal.color}10` }}
           >
             <div className="flex items-center gap-2 mb-2">

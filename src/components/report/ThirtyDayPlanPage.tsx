@@ -46,7 +46,7 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
 
       {/* Daily Habit */}
       <div
-        className="mb-6 p-4 rounded-xl border-2"
+        className="mb-6 p-4 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
         style={{ borderColor: primaryAnimal.color, backgroundColor: `${primaryAnimal.color}08` }}
       >
         <div className="flex items-start gap-3">
@@ -66,7 +66,7 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
       {/* Weekly Plans */}
       <div className="space-y-6">
         {plan.weeks.map((week, i) => (
-          <div key={i} className="rounded-xl border overflow-hidden">
+          <div key={i} className="rounded-xl border overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
             {/* Week Header */}
             <div
               className="px-4 py-3 text-white"
@@ -122,7 +122,7 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
 
       {/* Bottom Note */}
       <div
-        className="mt-6 p-4 rounded-xl"
+        className="mt-6 p-4 rounded-xl transition-all duration-300 hover:scale-[1.01]"
         style={{ backgroundColor: `${primaryAnimal.color}10` }}
       >
         <p className="text-sm text-gray-700 dark:text-gray-200">
