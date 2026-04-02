@@ -41,7 +41,7 @@ export function SecondaryInfluence({
 
       {/* Blend Description */}
       <div
-        className="rounded-2xl p-8 mb-8"
+        className="rounded-2xl p-8 mb-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           background: `linear-gradient(135deg, ${primaryAnimal.color}15 0%, ${secondaryAnimal.color}15 100%)`,
         }}
@@ -60,7 +60,7 @@ export function SecondaryInfluence({
           {blendProfile.howSecondaryModifies.map((item, i) => (
             <div
               key={i}
-              className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700"
+              className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
             >
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
@@ -88,7 +88,7 @@ export function SecondaryInfluence({
             {blendProfile.uniqueStrengths.map((strength, i) => (
               <div
                 key={i}
-                className="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800"
+                className="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800 transition-all duration-300 hover:scale-[1.02]"
               >
                 <p className="text-gray-700 dark:text-gray-200">{strength}</p>
               </div>
@@ -108,7 +108,7 @@ export function SecondaryInfluence({
             {blendProfile.watchFor.map((item, i) => (
               <div
                 key={i}
-                className="p-4 bg-amber-100 dark:bg-amber-900/30 rounded-lg border border-amber-200 dark:border-amber-800"
+                className="p-4 bg-amber-100 dark:bg-amber-900/30 rounded-lg border border-amber-200 dark:border-amber-800 transition-all duration-300 hover:scale-[1.02]"
               >
                 <p className="text-gray-700 dark:text-gray-200">{item}</p>
               </div>
@@ -119,7 +119,7 @@ export function SecondaryInfluence({
 
       {/* Blend Insight */}
       <div
-        className="mt-8 p-6 rounded-xl border-2"
+        className="mt-8 p-6 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{ borderColor: primaryAnimal.color }}
       >
         <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">

@@ -25,7 +25,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
       </div>
 
       {/* Intro */}
-      <div className="mb-8 p-5 rounded-xl bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800">
+      <div className="mb-8 p-5 rounded-xl bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 transition-all duration-300 hover:scale-[1.01]">
         <div className="flex items-start gap-3">
           <span className="text-2xl">⚠️</span>
           <p className="text-gray-700 dark:text-gray-200">
@@ -40,7 +40,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
         {scenarios.map((scenario, i) => (
           <div
             key={i}
-            className="rounded-xl border overflow-hidden shadow-sm"
+            className="rounded-xl border overflow-hidden shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
           >
             {/* Trigger */}
             <div className="bg-gray-100 dark:bg-gray-700 px-5 py-4">
@@ -113,7 +113,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
 
       {/* Bottom Tip */}
       <div
-        className="mt-8 p-5 rounded-xl"
+        className="mt-8 p-5 rounded-xl transition-all duration-300 hover:scale-[1.01]"
         style={{ backgroundColor: `${animal.color}10` }}
       >
         <h3 className="font-bold text-gray-900 dark:text-white mb-2">Building Self-Awareness</h3>

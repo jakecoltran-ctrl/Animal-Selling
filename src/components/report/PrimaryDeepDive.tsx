@@ -67,7 +67,7 @@ export function PrimaryDeepDive({
       </div>
 
       {/* Strengths Radar */}
-      <div className="mb-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm">
+      <div className="mb-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-2">
           Your Selling Strengths Profile
         </h3>
@@ -85,7 +85,7 @@ export function PrimaryDeepDive({
           </span>
           How You Sell
         </h3>
-        <div className="bg-slate-100 dark:bg-gray-800 rounded-xl p-6 border border-slate-200 dark:border-gray-700">
+        <div className="bg-slate-100 dark:bg-gray-800 rounded-xl p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.01]">
           <ul className="space-y-3">
             {behaviors.map((behavior, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -110,7 +110,7 @@ export function PrimaryDeepDive({
             </span>
             Your Superpowers
           </h3>
-          <div className="bg-green-100 dark:bg-green-900/30 rounded-xl p-6 border border-green-200 dark:border-green-800">
+          <div className="bg-green-100 dark:bg-green-900/30 rounded-xl p-6 border border-green-200 dark:border-green-800 transition-all duration-300 hover:scale-[1.02]">
             <ul className="space-y-3">
               {superpowers.map((superpower, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -130,7 +130,7 @@ export function PrimaryDeepDive({
             </span>
             Watch Out For
           </h3>
-          <div className="bg-amber-100 dark:bg-amber-900/30 rounded-xl p-6 border border-amber-200 dark:border-amber-800">
+          <div className="bg-amber-100 dark:bg-amber-900/30 rounded-xl p-6 border border-amber-200 dark:border-amber-800 transition-all duration-300 hover:scale-[1.02]">
             <ul className="space-y-3">
               {blindSpots.map((blindSpot, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -155,7 +155,7 @@ export function PrimaryDeepDive({
           Tips for Your Environment
         </h3>
         <div
-          className="rounded-xl p-6"
+          className="rounded-xl p-6 transition-all duration-300 hover:scale-[1.01]"
           style={{ backgroundColor: `${primaryAnimal.color}08` }}
         >
           <ul className="space-y-4">
@@ -189,7 +189,7 @@ export function PrimaryDeepDive({
           {primaryAnimal.idealRoles.map((role, i) => (
             <span
               key={i}
-              className="px-4 py-2 rounded-full text-sm font-medium"
+              className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-110"
               style={{
                 backgroundColor: `${primaryAnimal.color}15`,
                 color: primaryAnimal.color,

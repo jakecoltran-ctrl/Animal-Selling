@@ -72,7 +72,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
               (type) => (
                 <div
                   key={type}
-                  className={`text-xs p-3 rounded-lg ${
+                  className={`text-xs p-3 rounded-lg transition-all duration-300 hover:scale-105 ${
                     type === primaryType
                       ? "bg-slate-200 dark:bg-gray-700 border-2"
                       : "bg-slate-100 dark:bg-gray-800"
@@ -93,7 +93,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
       </div>
 
       {/* Comparison Bar Chart */}
-      <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm">
+      <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
           Key Dimensions at a Glance
         </h3>
@@ -101,7 +101,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
       </div>
 
       {/* Legend */}
-      <div className="mt-8 p-4 bg-slate-100 dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700">
+      <div className="mt-8 p-4 bg-slate-100 dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.01]">
         <h3 className="font-bold text-gray-900 dark:text-white mb-3">Understanding the Grid</h3>
         <div className="grid md:grid-cols-2 gap-4 text-sm">
           <div className="flex items-start gap-3">
@@ -126,7 +126,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
 
       {/* Key Insight */}
       <div
-        className="mt-6 p-4 rounded-xl"
+        className="mt-6 p-4 rounded-xl transition-all duration-300 hover:scale-[1.01]"
         style={{ backgroundColor: `${animalData[primaryType].color}10` }}
       >
         <p className="text-sm text-gray-700 dark:text-gray-200">

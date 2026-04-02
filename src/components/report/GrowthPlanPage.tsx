@@ -52,7 +52,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {/* Lowest Area */}
             <div
-              className="rounded-2xl p-5 border-2"
+              className="rounded-2xl p-5 border-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               style={{ borderColor: lowestAnimal.color, backgroundColor: `${lowestAnimal.color}08` }}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -84,7 +84,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
 
             {/* Second Lowest Area */}
             <div
-              className="rounded-2xl p-5 border-2"
+              className="rounded-2xl p-5 border-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               style={{ borderColor: secondLowestAnimal.color, backgroundColor: `${secondLowestAnimal.color}08` }}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -116,7 +116,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           </div>
 
           {/* Growth Gap Chart */}
-          <div className="mb-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm">
+          <div className="mb-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
               Your Growth Opportunities
             </h3>
@@ -171,7 +171,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
               {growthPlan.actionSteps.map((step, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700"
+                  className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
                 >
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
@@ -193,7 +193,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
             </h3>
             <div className="space-y-3">
               <div
-                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700"
+                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
               >
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
@@ -209,7 +209,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
                 </p>
               </div>
               <div
-                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700"
+                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
               >
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
@@ -225,7 +225,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
                 </p>
               </div>
               <div
-                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700"
+                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
               >
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"

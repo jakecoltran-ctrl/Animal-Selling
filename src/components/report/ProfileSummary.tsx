@@ -59,7 +59,7 @@ export function ProfileSummary({
             return (
               <div
                 key={type}
-                className={`relative rounded-xl overflow-hidden transition-all ${
+                className={`relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.01] ${
                   isPrimary ? "ring-2 ring-offset-2" : ""
                 }`}
                 style={{
@@ -138,7 +138,7 @@ export function ProfileSummary({
       {/* Visual Charts Row */}
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         {/* Radar Chart */}
-        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700">
+        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 text-center mb-3">
             Style Balance
           </h3>
@@ -146,7 +146,7 @@ export function ProfileSummary({
         </div>
 
         {/* Pie Chart */}
-        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700">
+        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 text-center mb-3">
             Type Distribution
           </h3>
@@ -156,7 +156,7 @@ export function ProfileSummary({
 
       {/* Blend Description */}
       <div
-        className="rounded-2xl p-8"
+        className="rounded-2xl p-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           background: `linear-gradient(135deg, ${primaryAnimal.color}10 0%, ${secondaryAnimal.color}10 100%)`,
         }}

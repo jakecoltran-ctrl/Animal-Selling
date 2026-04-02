@@ -55,7 +55,7 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
                 {objections.slice(0, 2).map((item, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border overflow-hidden"
+                    className="rounded-xl border overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
                     style={{ borderColor: `${buyerAnimal.color}40` }}
                   >
                     {/* Objection */}
@@ -92,7 +92,7 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
 
       {/* Bottom Tip */}
       <div
-        className="mt-8 p-4 rounded-xl"
+        className="mt-8 p-4 rounded-xl transition-all duration-300 hover:scale-[1.01]"
         style={{ backgroundColor: `${primaryAnimal.color}10` }}
       >
         <p className="text-sm text-gray-700 dark:text-gray-200">
