@@ -35,8 +35,8 @@ export function ProfileSummary({
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Your Sales Profile Summary
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-3">
@@ -136,9 +136,9 @@ export function ProfileSummary({
       </div>
 
       {/* Visual Charts Row */}
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
         {/* Radar Chart */}
-        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 text-center mb-3">
             Style Balance
           </h3>
@@ -146,7 +146,7 @@ export function ProfileSummary({
         </div>
 
         {/* Pie Chart */}
-        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div className="bg-slate-100 dark:bg-gray-800 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 text-center mb-3">
             Type Distribution
           </h3>
@@ -156,24 +156,24 @@ export function ProfileSummary({
 
       {/* Blend Description */}
       <div
-        className="rounded-2xl p-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
+        className="rounded-2xl p-5 sm:p-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           background: `linear-gradient(135deg, ${primaryAnimal.color}10 0%, ${secondaryAnimal.color}10 100%)`,
         }}
       >
-        <div className="flex items-center gap-4 mb-4">
-          <div className="flex -space-x-4">
+        <div className="flex items-center gap-3 sm:gap-4 mb-4">
+          <div className="flex -space-x-3 sm:-space-x-4">
             <div
-              className="w-14 h-14 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-700 shadow-md"
+              className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-md"
               style={{ backgroundColor: `${primaryAnimal.color}20` }}
             >
-              <span className="text-2xl">{primaryAnimal.emoji}</span>
+              <span className="text-xl sm:text-2xl">{primaryAnimal.emoji}</span>
             </div>
             <div
-              className="w-14 h-14 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-700 shadow-md"
+              className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-md"
               style={{ backgroundColor: `${secondaryAnimal.color}20` }}
             >
-              <span className="text-2xl">{secondaryAnimal.emoji}</span>
+              <span className="text-xl sm:text-2xl">{secondaryAnimal.emoji}</span>
             </div>
           </div>
           <div>

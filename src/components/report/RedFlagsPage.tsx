@@ -15,8 +15,8 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Red Flag Moments for {animal.name}s
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
@@ -25,7 +25,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
       </div>
 
       {/* Intro */}
-      <div className="mb-8 p-5 rounded-xl bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 transition-all duration-300 hover:scale-[1.01]">
+      <div className="mb-6 sm:mb-8 p-4 sm:p-5 rounded-xl bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 transition-all duration-300 hover:scale-[1.01]">
         <div className="flex items-start gap-3">
           <span className="text-2xl">⚠️</span>
           <p className="text-gray-700 dark:text-gray-200">
@@ -36,17 +36,17 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
       </div>
 
       {/* Scenarios */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {scenarios.map((scenario, i) => (
           <div
             key={i}
             className="rounded-xl border overflow-hidden shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
           >
             {/* Trigger */}
-            <div className="bg-gray-100 dark:bg-gray-700 px-5 py-4">
+            <div className="bg-gray-100 dark:bg-gray-700 px-4 py-3 sm:px-5 sm:py-4">
               <div className="flex items-center gap-2 mb-2">
                 <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-white text-xs sm:text-sm font-bold"
                   style={{ backgroundColor: animal.color }}
                 >
                   {i + 1}
@@ -61,9 +61,9 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
             </div>
 
             {/* Body */}
-            <div className="bg-white dark:bg-gray-800 p-5">
+            <div className="bg-white dark:bg-gray-800 p-4 sm:p-5">
               {/* Internal Sign - Red Flag */}
-              <div className="mb-4 p-4 rounded-lg bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
+              <div className="mb-3 sm:mb-4 p-3 sm:p-4 rounded-lg bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
                 <div className="flex items-start gap-3">
                   <span className="text-lg">🚩</span>
                   <div>
@@ -78,7 +78,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
               </div>
 
               {/* Correction - Warning */}
-              <div className="mb-4 p-4 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800">
+              <div className="mb-3 sm:mb-4 p-3 sm:p-4 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800">
                 <div className="flex items-start gap-3">
                   <span className="text-lg">💡</span>
                   <div>
@@ -93,7 +93,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
               </div>
 
               {/* Better Approach - Green */}
-              <div className="p-4 rounded-lg bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
+              <div className="p-3 sm:p-4 rounded-lg bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
                 <div className="flex items-start gap-3">
                   <span className="text-lg">✅</span>
                   <div>

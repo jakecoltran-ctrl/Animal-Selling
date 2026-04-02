@@ -42,45 +42,45 @@ export function CoverPage({
       />
 
       {/* Content */}
-      <div className="relative z-10 px-8">
+      <div className="relative z-10 px-4 sm:px-8">
         {/* Logo/Title */}
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-12">
           <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">
             Animal Selling™
           </h2>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Animal Selling™ Assessment
           </h1>
         </div>
 
         {/* Animal Icon */}
         <div
-          className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110"
+          className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 sm:mb-8 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110"
           style={{ backgroundColor: `${primaryAnimal.color}15` }}
         >
-          <span className="text-7xl md:text-8xl">{primaryAnimal.emoji}</span>
+          <span className="text-5xl sm:text-7xl md:text-8xl">{primaryAnimal.emoji}</span>
         </div>
 
         {/* Primary Result */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
             Your Primary Type
           </p>
           <h2
-            className="text-4xl md:text-5xl font-bold mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"
             style={{ color: primaryAnimal.color }}
           >
             The {primaryAnimal.name}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">{primaryAnimal.title}</p>
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">{primaryAnimal.title}</p>
         </div>
 
         {/* Secondary Type Badge */}
-        <div className="inline-flex items-center gap-3 bg-white dark:bg-gray-800 rounded-full px-6 py-3 shadow-md mb-12 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-          <span className="text-sm text-gray-500 dark:text-gray-400">Secondary Type:</span>
-          <span className="text-2xl">{secondaryAnimal.emoji}</span>
+        <div className="inline-flex items-center gap-2 sm:gap-3 bg-white dark:bg-gray-800 rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-md mb-8 sm:mb-12 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Secondary Type:</span>
+          <span className="text-xl sm:text-2xl">{secondaryAnimal.emoji}</span>
           <span
-            className="font-semibold"
+            className="font-semibold text-sm sm:text-base"
             style={{ color: secondaryAnimal.color }}
           >
             {secondaryAnimal.name}
@@ -88,7 +88,7 @@ export function CoverPage({
         </div>
 
         {/* Context Tags */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
           <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 shadow-sm transition-all duration-300 hover:scale-110">
             {contextLabels.sellType}
           </span>

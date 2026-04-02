@@ -15,81 +15,91 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           All Four Types Compared
         </h2>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
           See where you fit in the bigger picture
         </p>
       </div>
 
-      {/* Animal Headers */}
-      <div className="grid grid-cols-5 gap-2 mb-4">
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Dimension</div>
-        {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map(
-          (type) => (
-            <div
-              key={type}
-              className={`text-center p-2 rounded-lg ${
-                type === primaryType ? "ring-2 ring-offset-2" : ""
-              }`}
-              style={{
-                backgroundColor:
-                  type === primaryType
-                    ? `${animalData[type].color}20`
-                    : "transparent",
-                // @ts-expect-error - CSS custom property for Tailwind ring color
-                "--tw-ring-color": type === primaryType ? animalData[type].color : undefined,
-              }}
-            >
-              <span className="text-2xl">{animalData[type].emoji}</span>
-              <p
-                className="text-xs font-medium mt-1"
-                style={{ color: animalData[type].color }}
-              >
-                {animalData[type].name}
-              </p>
-              {type === primaryType && (
-                <span className="text-[10px] text-gray-500 dark:text-gray-400">(You)</span>
-              )}
-            </div>
-          )
-        )}
-      </div>
+      {/* Mobile scroll hint */}
+      <p className="text-xs text-gray-500 dark:text-gray-400 text-center mb-2 sm:hidden">
+        ← Scroll horizontally to see all types →
+      </p>
 
-      {/* Comparison Rows */}
-      <div className="space-y-3">
-        {typeComparisons.map((comparison, i) => (
-          <div
-            key={i}
-            className="grid grid-cols-5 gap-2 items-start"
-          >
-            <div className="text-sm font-medium text-gray-900 dark:text-white py-3 pr-2">
-              {comparison.dimension}
-            </div>
+      {/* Scrollable comparison table container */}
+      <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="min-w-[500px]">
+          {/* Animal Headers */}
+          <div className="grid grid-cols-5 gap-2 mb-4">
+            <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Dimension</div>
             {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map(
               (type) => (
                 <div
                   key={type}
-                  className={`text-xs p-3 rounded-lg transition-all duration-300 hover:scale-105 ${
-                    type === primaryType
-                      ? "bg-slate-200 dark:bg-gray-700 border-2"
-                      : "bg-slate-100 dark:bg-gray-800"
+                  className={`text-center p-2 rounded-lg ${
+                    type === primaryType ? "ring-2 ring-offset-2" : ""
                   }`}
                   style={{
-                    borderColor:
-                      type === primaryType ? animalData[type].color : undefined,
+                    backgroundColor:
+                      type === primaryType
+                        ? `${animalData[type].color}20`
+                        : "transparent",
+                    // @ts-expect-error - CSS custom property for Tailwind ring color
+                    "--tw-ring-color": type === primaryType ? animalData[type].color : undefined,
                   }}
                 >
-                  <p className="text-gray-700 dark:text-gray-200">
-                    {comparison[type]}
+                  <span className="text-xl sm:text-2xl">{animalData[type].emoji}</span>
+                  <p
+                    className="text-xs font-medium mt-1"
+                    style={{ color: animalData[type].color }}
+                  >
+                    {animalData[type].name}
                   </p>
+                  {type === primaryType && (
+                    <span className="text-[10px] text-gray-500 dark:text-gray-400">(You)</span>
+                  )}
                 </div>
               )
             )}
           </div>
-        ))}
+
+          {/* Comparison Rows */}
+          <div className="space-y-2 sm:space-y-3">
+            {typeComparisons.map((comparison, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-5 gap-2 items-start"
+              >
+                <div className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white py-2 sm:py-3 pr-2">
+                  {comparison.dimension}
+                </div>
+                {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map(
+                  (type) => (
+                    <div
+                      key={type}
+                      className={`text-xs p-2 sm:p-3 rounded-lg transition-all duration-300 hover:scale-105 ${
+                        type === primaryType
+                          ? "bg-slate-200 dark:bg-gray-700 border-2"
+                          : "bg-slate-100 dark:bg-gray-800"
+                      }`}
+                      style={{
+                        borderColor:
+                          type === primaryType ? animalData[type].color : undefined,
+                      }}
+                    >
+                      <p className="text-gray-700 dark:text-gray-200">
+                        {comparison[type]}
+                      </p>
+                    </div>
+                  )
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Comparison Bar Chart */}
@@ -103,7 +113,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
       {/* Legend */}
       <div className="mt-8 p-4 bg-slate-100 dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.01]">
         <h3 className="font-bold text-gray-900 dark:text-white mb-3">Understanding the Grid</h3>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
+        <div className="grid md:grid-cols-2 gap-3 sm:gap-4 text-sm">
           <div className="flex items-start gap-3">
             <div
               className="w-4 h-4 rounded border-2 mt-0.5 flex-shrink-0"

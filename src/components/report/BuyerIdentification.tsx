@@ -141,8 +141,8 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Reading Your {contextLabel} Buyers
         </h2>
         <p className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -157,7 +157,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
       {/* Type Selector - hidden for PDF */}
       {!hideSelector && (
         <>
-          <div className="flex justify-center gap-3 mb-3">
+          <div className="flex justify-center gap-2 sm:gap-3 mb-3">
             {allTypes.map((type) => {
               const animal = animalData[type];
               const isSelected = selectedType === type;
@@ -167,7 +167,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
                 <button
                   key={type}
                   onClick={() => setSelectedType(type)}
-                  className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-300 ${
+                  className={`flex flex-col items-center p-2 sm:p-3 rounded-xl border-2 transition-all duration-300 ${
                     isSelected ? "shadow-lg scale-105" : "hover:shadow-md hover:scale-105 opacity-70"
                   } ${!isSelected ? "bg-white dark:bg-gray-800" : ""}`}
                   style={{
@@ -175,9 +175,9 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
                     backgroundColor: isSelected ? `${animal.color}15` : undefined,
                   }}
                 >
-                  <span className="text-3xl mb-1">{animal.emoji}</span>
+                  <span className="text-2xl sm:text-3xl mb-1">{animal.emoji}</span>
                   <span
-                    className="text-sm font-bold"
+                    className="text-xs sm:text-sm font-bold"
                     style={{ color: animal.color }}
                   >
                     {animal.name}
@@ -245,12 +245,12 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
           </div>
 
           {/* Detailed Signals Grid */}
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
             {/* In Sales Conversations */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
                   💬
@@ -271,10 +271,10 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             </div>
 
             {/* In Sales Meetings/Calls */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
                   {salesContext.salesChannel === "inside" ? "📞" : "🤝"}
@@ -300,10 +300,10 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             </div>
 
             {/* Questions They Ask */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
                   ❓
@@ -324,10 +324,10 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             </div>
 
             {/* How They Buy */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
                   🧠
@@ -348,10 +348,10 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             </div>
 
             {/* Email Behavior */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
                   📧
@@ -372,10 +372,10 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             </div>
 
             {/* Office/Video Cues */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
                   {salesContext.salesChannel === "inside" ? "📹" : "🏢"}

@@ -15,8 +15,8 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Handling Objections by Buyer Animal Types
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
@@ -25,7 +25,7 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
       </div>
 
       {/* Objections by Buyer Type */}
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {buyerTypes.map((buyerType) => {
           const objections = getObjectionHandling(buyerType);
           const buyerAnimal = animals[buyerType];
@@ -33,12 +33,12 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
           return (
             <div key={buyerType}>
               {/* Buyer Type Header */}
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${buyerAnimal.color}20` }}
                 >
-                  <span className="text-xl">{buyerAnimal.emoji}</span>
+                  <span className="text-lg sm:text-xl">{buyerAnimal.emoji}</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 dark:text-white">
@@ -60,16 +60,16 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
                   >
                     {/* Objection */}
                     <div
-                      className="px-4 py-3"
+                      className="px-3 py-2 sm:px-4 sm:py-3"
                       style={{ backgroundColor: `${buyerAnimal.color}10` }}
                     >
-                      <p className="font-medium text-gray-900 dark:text-white">
+                      <p className="font-medium text-sm sm:text-base text-gray-900 dark:text-white">
                         "{item.objection}"
                       </p>
                     </div>
 
                     {/* Response */}
-                    <div className="px-4 py-3 bg-white dark:bg-gray-800">
+                    <div className="px-3 py-2 sm:px-4 sm:py-3 bg-white dark:bg-gray-800">
                       <p className="text-xs font-semibold text-green-600 uppercase mb-1">
                         Your Response:
                       </p>

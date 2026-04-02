@@ -16,22 +16,22 @@ export function SecondaryInfluence({
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-10">
-        <div className="flex justify-center -space-x-4 mb-6">
+      <div className="text-center mb-8 sm:mb-10">
+        <div className="flex justify-center -space-x-3 sm:-space-x-4 mb-4 sm:mb-6">
           <div
-            className="w-28 h-28 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-700 shadow-lg"
+            className="w-20 h-20 sm:w-28 sm:h-28 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg"
             style={{ backgroundColor: `${primaryAnimal.color}20` }}
           >
-            <span className="text-6xl relative z-10">{primaryAnimal.emoji}</span>
+            <span className="text-4xl sm:text-5xl md:text-6xl relative z-10">{primaryAnimal.emoji}</span>
           </div>
           <div
-            className="w-28 h-28 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-700 shadow-lg"
+            className="w-20 h-20 sm:w-28 sm:h-28 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg"
             style={{ backgroundColor: `${secondaryAnimal.color}20` }}
           >
-            <span className="text-6xl relative z-10">{secondaryAnimal.emoji}</span>
+            <span className="text-4xl sm:text-5xl md:text-6xl relative z-10">{secondaryAnimal.emoji}</span>
           </div>
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {blendProfile.title}
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
@@ -41,7 +41,7 @@ export function SecondaryInfluence({
 
       {/* Blend Description */}
       <div
-        className="rounded-2xl p-8 mb-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
+        className="rounded-2xl p-5 sm:p-8 mb-6 sm:mb-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           background: `linear-gradient(135deg, ${primaryAnimal.color}15 0%, ${secondaryAnimal.color}15 100%)`,
         }}
@@ -75,7 +75,7 @@ export function SecondaryInfluence({
       </div>
 
       {/* Two Column: Unique Strengths & Watch For */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
         {/* Unique Strengths */}
         <div>
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">

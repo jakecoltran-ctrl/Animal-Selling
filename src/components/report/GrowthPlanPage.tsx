@@ -39,8 +39,8 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
       {showPart1 && (
         <>
           {/* Header */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Strengthen Your Weakest Animals
             </h2>
             <p className="text-gray-600 dark:text-gray-300">
@@ -49,18 +49,18 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           </div>
 
           {/* Two Lowest Areas */}
-          <div className="grid md:grid-cols-2 gap-4 mb-8">
+          <div className="grid md:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
             {/* Lowest Area */}
             <div
-              className="rounded-2xl p-5 border-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              className="rounded-2xl p-4 sm:p-5 border-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               style={{ borderColor: lowestAnimal.color, backgroundColor: `${lowestAnimal.color}08` }}
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3">
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center"
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${lowestAnimal.color}20` }}
                 >
-                  <span className="text-3xl">{lowestAnimal.emoji}</span>
+                  <span className="text-2xl sm:text-3xl">{lowestAnimal.emoji}</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase" style={{ color: lowestAnimal.color }}>
@@ -84,15 +84,15 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
 
             {/* Second Lowest Area */}
             <div
-              className="rounded-2xl p-5 border-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              className="rounded-2xl p-4 sm:p-5 border-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               style={{ borderColor: secondLowestAnimal.color, backgroundColor: `${secondLowestAnimal.color}08` }}
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3">
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center"
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${secondLowestAnimal.color}20` }}
                 >
-                  <span className="text-3xl">{secondLowestAnimal.emoji}</span>
+                  <span className="text-2xl sm:text-3xl">{secondLowestAnimal.emoji}</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase" style={{ color: secondLowestAnimal.color }}>
@@ -116,7 +116,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           </div>
 
           {/* Growth Gap Chart */}
-          <div className="mb-8 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
+          <div className="mb-6 sm:mb-8 bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
               Your Growth Opportunities
             </h3>
@@ -124,8 +124,8 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           </div>
 
           {/* Why This Matters */}
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               Why Developing These Areas Matters
             </h3>
             <div
@@ -151,8 +151,8 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
         <>
           {/* Part 2 Header */}
           {part === 2 && (
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Growth Action Plan
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
@@ -162,19 +162,19 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           )}
 
           {/* Action Steps for Lowest */}
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="text-2xl">{lowestAnimal.emoji}</span>
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">{lowestAnimal.emoji}</span>
               Action Steps to Develop {lowestAnimal.name} Skills
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {growthPlan.actionSteps.map((step, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
+                  className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
                 >
                   <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-xs sm:text-sm"
                     style={{ backgroundColor: lowestAnimal.color }}
                   >
                     {i + 1}
@@ -186,17 +186,17 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           </div>
 
           {/* Action Steps for Second Lowest */}
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="text-2xl">{secondLowestAnimal.emoji}</span>
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">{secondLowestAnimal.emoji}</span>
               Action Steps to Develop {secondLowestAnimal.name} Skills
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               <div
-                className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
+                className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
               >
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-xs sm:text-sm"
                   style={{ backgroundColor: secondLowestAnimal.color }}
                 >
                   1

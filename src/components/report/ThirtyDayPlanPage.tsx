@@ -24,15 +24,15 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Your 30-Day Action Plan
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-3">
+        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-3">
           {plan.subtitle}
         </p>
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+          className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full"
           style={{ backgroundColor: `${primaryAnimal.color}15` }}
         >
           <span className="text-xl">{primaryAnimal.emoji}</span>
@@ -46,12 +46,12 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
 
       {/* Daily Habit */}
       <div
-        className="mb-6 p-4 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
+        className="mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
         style={{ borderColor: primaryAnimal.color, backgroundColor: `${primaryAnimal.color}08` }}
       >
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-2 sm:gap-3">
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ backgroundColor: primaryAnimal.color }}
           >
             <span className="text-white text-lg">✦</span>
@@ -64,27 +64,27 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
       </div>
 
       {/* Weekly Plans */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {plan.weeks.map((week, i) => (
           <div key={i} className="rounded-xl border overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
             {/* Week Header */}
             <div
-              className="px-4 py-3 text-white"
+              className="px-3 py-2 sm:px-4 sm:py-3 text-white"
               style={{ backgroundColor: weekColors[i] }}
             >
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs opacity-80">Week {week.week}</p>
-                  <h4 className="font-bold">{week.theme}</h4>
+                  <h4 className="font-bold text-sm sm:text-base">{week.theme}</h4>
                 </div>
-                <div className="text-3xl font-bold opacity-30">
+                <div className="text-2xl sm:text-3xl font-bold opacity-30">
                   {week.week}
                 </div>
               </div>
             </div>
 
             {/* Week Content */}
-            <div className="p-4 bg-white dark:bg-gray-800">
+            <div className="p-3 sm:p-4 bg-white dark:bg-gray-800">
               {/* Actions */}
               <div className="mb-4">
                 <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-2">
@@ -107,7 +107,7 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
 
               {/* Success Metric */}
               <div
-                className="p-3 rounded-lg"
+                className="p-2 sm:p-3 rounded-lg"
                 style={{ backgroundColor: `${weekColors[i]}15` }}
               >
                 <p className="text-xs font-semibold uppercase mb-1" style={{ color: weekColors[i] }}>

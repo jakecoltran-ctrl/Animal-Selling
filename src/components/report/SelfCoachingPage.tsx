@@ -38,8 +38,8 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Self-Coaching Questions
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
@@ -49,7 +49,7 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
 
       {/* Intro */}
       <div
-        className="mb-8 p-6 rounded-xl"
+        className="mb-6 sm:mb-8 p-4 sm:p-6 rounded-xl"
         style={{ backgroundColor: `${animal.color}10` }}
       >
         <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
@@ -60,7 +60,7 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
       </div>
 
       {/* Questions */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {questions.map((item, i) => (
           <div
             key={i}
@@ -69,11 +69,11 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
           >
             {/* Category Header */}
             <div
-              className="px-4 py-2 flex items-center gap-2"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 flex items-center gap-2"
               style={{ backgroundColor: `${animal.color}15` }}
             >
               <span
-                className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
                 style={{ backgroundColor: animal.color }}
               >
                 {i + 1}
@@ -84,10 +84,10 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
             </div>
 
             {/* Question Content */}
-            <div className="p-5 bg-white dark:bg-gray-800">
+            <div className="p-4 sm:p-5 bg-white dark:bg-gray-800">
               {/* Main Question */}
-              <div className="mb-4">
-                <p className="text-lg font-medium text-gray-900 dark:text-white leading-relaxed">
+              <div className="mb-3 sm:mb-4">
+                <p className="text-base sm:text-lg font-medium text-gray-900 dark:text-white leading-relaxed">
                   {item.question}
                 </p>
               </div>
@@ -103,9 +103,9 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
               </div>
 
               {/* Journaling Space */}
-              <div className="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700">
+              <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-dashed border-gray-200 dark:border-gray-700">
                 <textarea
-                  className="w-full h-24 p-3 text-sm text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                  className="w-full h-20 sm:h-24 p-2 sm:p-3 text-sm text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-opacity-50"
                   style={{ ["--tw-ring-color" as string]: animal.color } as React.CSSProperties}
                   placeholder="Space for reflection..."
                   value={reflections[i] || ""}
@@ -118,9 +118,9 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
       </div>
 
       {/* How to Use */}
-      <div className="mt-8 bg-slate-100 dark:bg-gray-800 rounded-xl p-6 border border-slate-200 dark:border-gray-700">
+      <div className="mt-6 sm:mt-8 bg-slate-100 dark:bg-gray-800 rounded-xl p-4 sm:p-6 border border-slate-200 dark:border-gray-700">
         <h3 className="font-bold text-gray-900 dark:text-white mb-3">How to Use These Questions</h3>
-        <div className="grid md:grid-cols-3 gap-4 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
           <div className="flex items-start gap-2">
             <span
               className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs flex-shrink-0"

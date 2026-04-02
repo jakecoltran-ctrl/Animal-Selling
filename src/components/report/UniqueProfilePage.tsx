@@ -33,8 +33,8 @@ export function UniqueProfilePage({
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Your Unique Sales Profile
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
@@ -44,21 +44,21 @@ export function UniqueProfilePage({
 
       {/* Visual Score Display */}
       <div className="mb-8 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border dark:border-gray-700 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
-        <div className="flex justify-center items-end gap-3 mb-6">
+        <div className="flex justify-center items-end gap-2 sm:gap-3 mb-6">
           {sortedScores.map(({ type, score, animal }, i) => (
             <div key={type} className="text-center transition-all duration-300 hover:scale-105">
               <div
-                className="w-20 rounded-t-lg flex items-end justify-center"
+                className="w-14 sm:w-20 rounded-t-lg flex items-end justify-center"
                 style={{
                   height: `${score * 1.5}px`,
                   backgroundColor: animal.color,
                   opacity: i === 0 ? 1 : i === 1 ? 0.8 : 0.5,
                 }}
               >
-                <span className="text-2xl mb-2">{animal.emoji}</span>
+                <span className="text-xl sm:text-2xl mb-2">{animal.emoji}</span>
               </div>
               <div
-                className="w-20 py-2 rounded-b-lg"
+                className="w-14 sm:w-20 py-2 rounded-b-lg"
                 style={{ backgroundColor: `${animal.color}20` }}
               >
                 <p className="text-lg font-bold" style={{ color: animal.color }}>
@@ -107,7 +107,7 @@ export function UniqueProfilePage({
       {/* Context Reminder */}
       <div className="bg-slate-100 dark:bg-gray-800 rounded-xl p-5 border border-slate-200 dark:border-gray-700 transition-all duration-300 hover:scale-[1.01]">
         <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Your Sales Context</h3>
-        <div className="grid grid-cols-3 gap-4 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center">
           <div className="bg-white dark:bg-gray-700 rounded-lg p-3 shadow-sm transition-all duration-300 hover:scale-105">
             <p className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-1">What You Sell</p>
             <p className="font-semibold text-gray-900 dark:text-white">

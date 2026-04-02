@@ -15,9 +15,9 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-10">
-        <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-8 sm:mb-10">
+        <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🦁🐧🐕🦫</div>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Team Safari™: Better Together
         </h2>
         <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
@@ -27,8 +27,8 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       </div>
 
       {/* Team Benefits Grid */}
-      <div className="grid md:grid-cols-2 gap-6 mb-10">
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-red-200 dark:border-red-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-10">
+        <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-red-200 dark:border-red-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
           <div className="text-3xl mb-3">📊</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Composition</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -37,8 +37,8 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-amber-200 dark:border-amber-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-3xl mb-3">🤝</div>
+        <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-amber-200 dark:border-amber-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
+          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🤝</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Optimal Pairings</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Discover which team members work best together on deals. Pair
@@ -46,8 +46,8 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-cyan-200 dark:border-cyan-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-3xl mb-3">🎯</div>
+        <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-cyan-200 dark:border-cyan-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
+          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🎯</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Account Assignment</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Match sellers to accounts based on buyer preferences. Lions on
@@ -55,8 +55,8 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           </p>
         </div>
 
-        <div className="p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-emerald-200 dark:border-emerald-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-3xl mb-3">📈</div>
+        <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-emerald-200 dark:border-emerald-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
+          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📈</div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Development</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Identify which skills your team needs to develop collectively.
@@ -67,17 +67,17 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* Main CTA - Start or Join Team */}
       <div
-        className="rounded-2xl p-10 text-center border-4 mb-6 relative overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-xl"
+        className="rounded-2xl p-6 sm:p-10 text-center border-4 mb-4 sm:mb-6 relative overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-xl"
         style={{
           background: "linear-gradient(135deg, rgba(220,38,38,0.1) 0%, rgba(217,119,6,0.1) 25%, rgba(8,145,178,0.1) 50%, rgba(5,150,105,0.1) 100%)",
           borderImage: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669) 1",
         }}
       >
-        <div className="text-6xl mb-4">🦁🐧🐕🦫</div>
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🦁🐧🐕🦫</div>
+        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
           Start Your Team Safari™
         </h3>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-lg mx-auto">
           Create your team and invite teammates to discover your collective
           selling strengths. See how your animal types complement each other.
         </p>
@@ -93,7 +93,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       </div>
 
       {/* Secondary CTA - Join Existing Team */}
-      <div className="rounded-xl p-6 text-center bg-white dark:bg-white/10 border-2 border-dashed border-gray-300 dark:border-gray-500 transition-all duration-300 hover:scale-[1.01]">
+      <div className="rounded-xl p-4 sm:p-6 text-center bg-white dark:bg-white/10 border-2 border-dashed border-gray-300 dark:border-gray-500 transition-all duration-300 hover:scale-[1.01]">
         <p className="text-gray-700 dark:text-gray-300 mb-4">
           <span className="font-semibold">Already have a team?</span> If your manager or teammate sent you an invite link, use it to join your team.
         </p>
@@ -104,18 +104,18 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
 
       {/* How Your Type Fits */}
       <div
-        className="mt-8 p-6 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
+        className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl border-2 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
         style={{
           backgroundColor: `${primaryAnimal.color}08`,
           borderColor: `${primaryAnimal.color}40`,
         }}
       >
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-2 sm:gap-3 mb-3">
           <div
-            className="w-12 h-12 rounded-full flex items-center justify-center"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ backgroundColor: `${primaryAnimal.color}20` }}
           >
-            <span className="text-2xl">{primaryAnimal.emoji}</span>
+            <span className="text-xl sm:text-2xl">{primaryAnimal.emoji}</span>
           </div>
           <h3 className="font-bold text-gray-900 dark:text-white">
             How {primaryAnimal.name}s Contribute to Teams

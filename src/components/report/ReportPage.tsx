@@ -28,7 +28,7 @@ export function ReportPage({
       }}
     >
       <div className="flex flex-col">
-        <div className="flex-1 p-8 md:p-10">{children}</div>
+        <div className="flex-1 p-4 sm:p-6 md:p-10">{children}</div>
 
         {/* Page Footer */}
         <div className="px-8 md:px-10 pb-6">

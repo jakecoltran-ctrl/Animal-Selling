@@ -18,8 +18,8 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           How A {animalData[primaryType].name} {animalData[primaryType].emoji} Sells {contextLabel}s
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-3">
@@ -29,7 +29,7 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
       </div>
 
       {/* Playbook Grid */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
         {targetTypes.map((targetType) => {
           const playbook = getSellingPlaybook(primaryType, targetType);
           if (!playbook) return null;
@@ -45,14 +45,14 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
             >
               {/* Card Header */}
               <div
-                className="p-4 flex items-center gap-3"
+                className="p-3 sm:p-4 flex items-center gap-2 sm:gap-3"
                 style={{ backgroundColor: `${targetAnimal.color}15` }}
               >
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${targetAnimal.color}30` }}
                 >
-                  <span className="text-2xl">{targetAnimal.emoji}</span>
+                  <span className="text-xl sm:text-2xl">{targetAnimal.emoji}</span>
                 </div>
                 <div>
                   <h3
@@ -70,7 +70,7 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
               </div>
 
               {/* Card Content */}
-              <div className="p-4 space-y-4">
+              <div className="p-3 sm:p-4 space-y-3 sm:space-y-4">
                 {/* Approach */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
