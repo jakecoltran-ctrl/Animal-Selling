@@ -166,7 +166,7 @@ export default function Home() {
                 backgroundImage: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)",
               }}
             >
-              they want to buy
+              Customers want to buy
             </span>
           </h1>
 
