@@ -118,7 +118,7 @@ export default function Home() {
     { num: "01", title: "Discover", desc: "Take our 5-minute assessment to uncover your natural selling style" },
     { num: "02", title: "Understand", desc: "Learn your primary and secondary animal types and what drives your approach" },
     { num: "03", title: "Adapt", desc: "Recognize customer types and flex your style to match their preferences" },
-    { num: "04", title: "Excel", desc: "Close more deals by speaking each customer's language" }
+    { num: "04", title: "Close", desc: "Close more deals by speaking each customer's language" }
   ];
 
   return (
