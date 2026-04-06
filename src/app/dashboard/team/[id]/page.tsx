@@ -449,10 +449,10 @@ export default function TeamDetailPage() {
             <div
               className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl gap-1"
             >
-              <AnimalIcon type="lion" size="md" />
-              <AnimalIcon type="penguin" size="md" />
-              <AnimalIcon type="retriever" size="md" />
-              <AnimalIcon type="beaver" size="md" />
+              <AnimalIcon type="lion" size="md" variant="head" />
+              <AnimalIcon type="penguin" size="md" variant="head" />
+              <AnimalIcon type="retriever" size="md" variant="head" />
+              <AnimalIcon type="beaver" size="md" variant="head" />
             </div>
             <div className="text-center md:text-left flex-1">
               <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
@@ -563,7 +563,7 @@ export default function TeamDetailPage() {
                         className="flex items-center justify-center"
                       >
                         {percentage >= 15 && (
-                          <AnimalIcon type={type} size="sm" className="brightness-0 invert" />
+                          <AnimalIcon type={type} size="sm" variant="head" className="brightness-0 invert" />
                         )}
                       </div>
                     );

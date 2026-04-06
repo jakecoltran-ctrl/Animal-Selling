@@ -67,7 +67,7 @@ export function SecondaryInfluence({
                 className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: `${secondaryAnimal.color}20` }}
               >
-                <AnimalIcon type={secondaryAnimal.id} size="md" />
+                <AnimalIcon type={secondaryAnimal.id} size="md" variant="head" />
               </div>
               <p className="text-gray-700 dark:text-gray-200 pt-2">{item}</p>
             </div>
@@ -124,8 +124,8 @@ export function SecondaryInfluence({
         style={{ borderColor: primaryAnimal.color }}
       >
         <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-          <AnimalIcon type={primaryAnimal.id} size="md" />
-          <AnimalIcon type={secondaryAnimal.id} size="md" />
+          <AnimalIcon type={primaryAnimal.id} size="md" variant="head" />
+          <AnimalIcon type={secondaryAnimal.id} size="md" variant="head" />
           Your Blend in Action
         </h3>
         <p className="text-gray-700 dark:text-gray-200">

@@ -667,7 +667,7 @@ export default function DashboardPage() {
                         className="p-3 border rounded-lg text-center hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-105 transition-all duration-300 animate-fade-in"
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
-                        <AnimalIcon type={animal.type} size="md" />
+                        <AnimalIcon type={animal.type} size="md" variant="head" />
                         <p className={`text-xs font-medium ${animal.colorClass} mt-1`}>
                           {animal.name}
                         </p>

@@ -166,13 +166,13 @@ export function ProfileSummary({
               className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-md"
               style={{ backgroundColor: `${primaryAnimal.color}20` }}
             >
-              <AnimalIcon type={primaryAnimal.id} size="lg" />
+              <AnimalIcon type={primaryAnimal.id} size="lg" variant="head" />
             </div>
             <div
               className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-md"
               style={{ backgroundColor: `${secondaryAnimal.color}20` }}
             >
-              <AnimalIcon type={secondaryAnimal.id} size="lg" />
+              <AnimalIcon type={secondaryAnimal.id} size="lg" variant="head" />
             </div>
           </div>
           <div>

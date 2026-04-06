@@ -165,7 +165,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           {/* Action Steps for Lowest */}
           <div className="mb-6 sm:mb-8">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
-              <AnimalIcon type={lowestType} size="lg" />
+              <AnimalIcon type={lowestType} size="lg" variant="head" />
               Action Steps to Develop {lowestAnimal.name} Skills
             </h3>
             <div className="space-y-2 sm:space-y-3">
@@ -189,7 +189,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           {/* Action Steps for Second Lowest */}
           <div className="mb-6 sm:mb-8">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
-              <AnimalIcon type={secondLowestType} size="lg" />
+              <AnimalIcon type={secondLowestType} size="lg" variant="head" />
               Action Steps to Develop {secondLowestAnimal.name} Skills
             </h3>
             <div className="space-y-2 sm:space-y-3">

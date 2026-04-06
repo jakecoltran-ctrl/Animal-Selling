@@ -114,10 +114,10 @@ function SignupForm() {
         <Card className="max-w-md mx-auto">
           <CardHeader className="text-center">
             <div className="flex justify-center gap-1 mb-2">
-              <AnimalIcon type="lion" size="lg" />
-              <AnimalIcon type="penguin" size="lg" />
-              <AnimalIcon type="retriever" size="lg" />
-              <AnimalIcon type="beaver" size="lg" />
+              <AnimalIcon type="lion" size="lg" variant="head" />
+              <AnimalIcon type="penguin" size="lg" variant="head" />
+              <AnimalIcon type="retriever" size="lg" variant="head" />
+              <AnimalIcon type="beaver" size="lg" variant="head" />
             </div>
             <CardTitle>Create Your Account</CardTitle>
             <CardDescription>

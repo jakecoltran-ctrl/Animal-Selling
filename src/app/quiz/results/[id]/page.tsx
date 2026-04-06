@@ -26,7 +26,7 @@ function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { id: AnimalT
         <>
           <div className="text-center pb-3 mb-3 border-b" style={{ borderColor: `${primaryAnimal.color}30` }}>
             <div className="flex justify-center">
-              <AnimalIcon type={primaryAnimal.id} size="lg" />
+              <AnimalIcon type={primaryAnimal.id} size="lg" variant="head" />
             </div>
             <p className="text-xs font-bold mt-1" style={{ color: primaryAnimal.color }}>{primaryAnimal.name}</p>
           </div>
@@ -47,7 +47,7 @@ function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { id: AnimalT
           <div className="space-y-2.5">
             {animalTypes.map((type, i) => (
               <div key={i} className="flex items-center gap-2">
-                <AnimalIcon type={type} size="sm" />
+                <AnimalIcon type={type} size="sm" variant="head" />
                 <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-600 rounded" />
               </div>
             ))}
@@ -301,7 +301,7 @@ export default function ResultsPage() {
             {/* Secondary Type */}
             <div className="inline-flex items-center gap-3 bg-white dark:bg-gray-800 rounded-full px-5 py-2.5 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
               <span className="text-sm text-gray-500 dark:text-gray-400">Secondary:</span>
-              <AnimalIcon type={secondaryAnimal.id} size="md" />
+              <AnimalIcon type={secondaryAnimal.id} size="md" variant="head" />
               <span className="font-semibold" style={{ color: secondaryAnimal.color }}>
                 {secondaryAnimal.name}
               </span>
@@ -405,7 +405,7 @@ export default function ResultsPage() {
                       <div className="space-y-2 animate-fade-in">
                         <div className="flex justify-between items-center">
                           <span className="flex items-center gap-2">
-                            <AnimalIcon type={result.primaryType} size="md" />
+                            <AnimalIcon type={result.primaryType} size="md" variant="head" />
                             <span className="font-medium text-base">{primary.name}</span>
                             <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Primary</span>
                           </span>
@@ -435,7 +435,7 @@ export default function ResultsPage() {
                         <div key={key} className="space-y-2">
                           <div className="flex justify-between items-center">
                             <span className="flex items-center gap-2">
-                              <AnimalIcon type={key as AnimalType} size="md" />
+                              <AnimalIcon type={key as AnimalType} size="md" variant="head" />
                               <span className="font-medium text-base">{animal.name}</span>
                               {isSecondary && (
                                 <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full">Secondary</span>
@@ -663,7 +663,7 @@ export default function ResultsPage() {
                         className="w-10 h-10 rounded-full flex items-center justify-center"
                         style={{ backgroundColor: `${animal.color}20` }}
                       >
-                        <AnimalIcon type={animal.id} size="md" />
+                        <AnimalIcon type={animal.id} size="md" variant="head" />
                       </div>
                       <div>
                         <CardTitle className="text-base" style={{ color: animal.color }}>

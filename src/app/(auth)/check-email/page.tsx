@@ -13,10 +13,10 @@ export default function CheckEmailPage() {
           <CardHeader className="text-center">
             <div className="text-5xl mb-4">📧</div>
             <div className="flex justify-center gap-1 mb-2">
-              <AnimalIcon type="lion" size="lg" />
-              <AnimalIcon type="penguin" size="lg" />
-              <AnimalIcon type="retriever" size="lg" />
-              <AnimalIcon type="beaver" size="lg" />
+              <AnimalIcon type="lion" size="lg" variant="head" />
+              <AnimalIcon type="penguin" size="lg" variant="head" />
+              <AnimalIcon type="retriever" size="lg" variant="head" />
+              <AnimalIcon type="beaver" size="lg" variant="head" />
             </div>
             <CardTitle className="text-white text-2xl">Check Your Email</CardTitle>
             <CardDescription className="text-gray-400">

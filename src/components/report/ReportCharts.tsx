@@ -120,7 +120,7 @@ export function BlendPieChart({ percentages, primaryType }: BlendPieChartProps) 
       <div className="flex justify-center gap-4 mt-1">
         {data.map((item) => (
           <div key={item.name} className="flex items-center gap-1 text-sm">
-            <AnimalIcon type={item.type} size="sm" />
+            <AnimalIcon type={item.type} size="sm" variant="head" />
             <span style={{ color: item.color }} className="font-medium">
               {item.value}%
             </span>
@@ -334,7 +334,7 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
             {/* Only show label if segment is wide enough */}
             {item.score >= 15 && (
               <div className="flex flex-col items-center text-white">
-                <AnimalIcon type={item.type} size="sm" className="brightness-0 invert" />
+                <AnimalIcon type={item.type} size="sm" variant="head" className="brightness-0 invert" />
                 <span className="text-xs font-bold">{item.score}%</span>
               </div>
             )}
@@ -351,7 +351,7 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
               className="flex items-center gap-1 text-xs"
               style={{ width: `${item.score}%` }}
             >
-              <AnimalIcon type={item.type} size={12} />
+              <AnimalIcon type={item.type} size={12} variant="head" />
               <span style={{ color: item.color }} className="font-bold">{item.score}%</span>
             </div>
           )
@@ -362,8 +362,8 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
       <div className="flex justify-between mt-4 px-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
-            <AnimalIcon type={data[0].type} size="md" />
-            <AnimalIcon type={data[1].type} size="md" />
+            <AnimalIcon type={data[0].type} size="md" variant="head" />
+            <AnimalIcon type={data[1].type} size="md" variant="head" />
           </div>
           <span className="text-xs font-semibold text-amber-600 dark:text-amber-400">
             ← Focus Areas (develop these)
@@ -374,8 +374,8 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
             Strengths (leverage these) →
           </span>
           <div className="flex items-center gap-1">
-            <AnimalIcon type={data[2].type} size="md" />
-            <AnimalIcon type={data[3].type} size="md" />
+            <AnimalIcon type={data[2].type} size="md" variant="head" />
+            <AnimalIcon type={data[3].type} size="md" variant="head" />
           </div>
         </div>
       </div>
@@ -396,7 +396,7 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
                 opacity: lowestTwo.includes(item.type) ? 1 : 0.65,
               }}
             />
-            <AnimalIcon type={item.type} size={12} />
+            <AnimalIcon type={item.type} size={12} variant="head" />
             <span>{item.name}</span>
             <span style={{ color: item.color }} className="font-semibold">{item.score}%</span>
             {index < 2 && (

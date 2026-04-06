@@ -79,7 +79,7 @@ export function CoverPage({
         {/* Secondary Type Badge */}
         <div className="inline-flex items-center gap-2 sm:gap-3 bg-white dark:bg-gray-800 rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-md mb-8 sm:mb-12 transition-all duration-300 hover:scale-105 hover:shadow-lg">
           <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Secondary Type:</span>
-          <AnimalIcon type={secondaryAnimal.id} size="lg" />
+          <AnimalIcon type={secondaryAnimal.id} size="lg" variant="head" />
           <span
             className="font-semibold text-sm sm:text-base"
             style={{ color: secondaryAnimal.color }}

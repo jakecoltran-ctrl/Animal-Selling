@@ -10,10 +10,10 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <span className="flex items-center">
-                <AnimalIcon type="lion" size="sm" />
-                <AnimalIcon type="penguin" size="sm" />
-                <AnimalIcon type="retriever" size="sm" />
-                <AnimalIcon type="beaver" size="sm" />
+                <AnimalIcon type="lion" size="sm" variant="head" />
+                <AnimalIcon type="penguin" size="sm" variant="head" />
+                <AnimalIcon type="retriever" size="sm" variant="head" />
+                <AnimalIcon type="beaver" size="sm" variant="head" />
               </span>
               <span className="font-bold text-lg">Animal Selling™</span>
             </Link>
@@ -28,22 +28,22 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/animals/lion" className="hover:text-lion-600 transition-colors flex items-center gap-1">
-                  <AnimalIcon type="lion" size="sm" /> Lion - The Closer
+                  <AnimalIcon type="lion" size="sm" variant="head" /> Lion - The Closer
                 </Link>
               </li>
               <li>
                 <Link href="/animals/penguin" className="hover:text-penguin-600 transition-colors flex items-center gap-1">
-                  <AnimalIcon type="penguin" size="sm" /> Penguin - The Connector
+                  <AnimalIcon type="penguin" size="sm" variant="head" /> Penguin - The Connector
                 </Link>
               </li>
               <li>
                 <Link href="/animals/retriever" className="hover:text-retriever-600 transition-colors flex items-center gap-1">
-                  <AnimalIcon type="retriever" size="sm" /> Retriever - The Trusted Advisor
+                  <AnimalIcon type="retriever" size="sm" variant="head" /> Retriever - The Trusted Advisor
                 </Link>
               </li>
               <li>
                 <Link href="/animals/beaver" className="hover:text-beaver-600 transition-colors flex items-center gap-1">
-                  <AnimalIcon type="beaver" size="sm" /> Beaver - The Specialist
+                  <AnimalIcon type="beaver" size="sm" variant="head" /> Beaver - The Specialist
                 </Link>
               </li>
             </ul>

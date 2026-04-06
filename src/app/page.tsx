@@ -492,7 +492,7 @@ export default function Home() {
                 className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <AnimalIcon type={animal.type} size="lg" />
+                  <AnimalIcon type={animal.type} size="lg" variant="head" />
                   <div>
                     <div className="font-bold text-white">Selling to a {animal.name.replace('The ', '')}</div>
                     <div className="text-sm" style={{ color: animal.color }}>{animal.title}</div>

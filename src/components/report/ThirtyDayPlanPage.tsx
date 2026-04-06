@@ -36,12 +36,12 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
           className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full"
           style={{ backgroundColor: `${primaryAnimal.color}15` }}
         >
-          <AnimalIcon type={primaryType} size="md" />
+          <AnimalIcon type={primaryType} size="md" variant="head" />
           <span className="font-medium" style={{ color: primaryAnimal.color }}>
             {plan.title}
           </span>
           <span className="text-gray-400">+</span>
-          <AnimalIcon type={secondaryType} size="md" />
+          <AnimalIcon type={secondaryType} size="md" variant="head" />
         </div>
       </div>
 
