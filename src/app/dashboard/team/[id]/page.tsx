@@ -491,7 +491,7 @@ export default function TeamDetailPage() {
                 className="w-12 h-12 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: `${userAnimal.color}20` }}
               >
-                <AnimalIcon type={currentMember.animalType} size="md" />
+                <AnimalIcon type={currentMember.animalType} size="md" variant="head" />
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">You</p>
@@ -532,7 +532,7 @@ export default function TeamDetailPage() {
                         style={{ backgroundColor: `${animal.color}15` }}
                       >
                         <div className="flex justify-center mb-2">
-                          <AnimalIcon type={type} size="xl" />
+                          <AnimalIcon type={type} size="xl" variant="head" />
                         </div>
                         <div className="text-2xl font-bold" style={{ color: animal.color }}>
                           {percentage}%
@@ -563,7 +563,7 @@ export default function TeamDetailPage() {
                         className="flex items-center justify-center"
                       >
                         {percentage >= 15 && (
-                          <AnimalIcon type={type} size="sm" className="brightness-0 invert" />
+                          <AnimalIcon type={type} size="sm" variant="head" className="brightness-0 invert" />
                         )}
                       </div>
                     );
@@ -621,7 +621,7 @@ export default function TeamDetailPage() {
                         className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01] gap-3 sm:gap-0"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
-                          <AnimalIcon type={member.animalType} size="md" />
+                          <AnimalIcon type={member.animalType} size="md" variant="head" />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                               <p className="font-medium text-sm sm:text-base">{member.name}</p>

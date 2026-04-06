@@ -436,7 +436,7 @@ export default function DashboardPage() {
                           style={{ animationDelay: `${index * 100}ms` }}
                         >
                           <div className="flex items-center gap-4">
-                            <AnimalIcon type={result.primaryType} size="lg" />
+                            <AnimalIcon type={result.primaryType} size="lg" variant="head" />
                             <div>
                               <p
                                 className="font-medium"
@@ -536,7 +536,7 @@ export default function DashboardPage() {
                                   className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs"
                                   style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
                                 >
-                                  <AnimalIcon type={type} size="sm" />
+                                  <AnimalIcon type={type} size="sm" variant="head" />
                                   <span className="font-medium">{count}</span>
                                 </div>
                               );

@@ -389,7 +389,7 @@ function TeamSafariPageContent() {
                                   className="flex items-center gap-0.5 px-2 py-1 rounded-full text-xs"
                                   style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
                                 >
-                                  <AnimalIcon type={type} size="sm" />
+                                  <AnimalIcon type={type} size="sm" variant="head" />
                                   <span className="font-medium">{count}</span>
                                 </div>
                               );
