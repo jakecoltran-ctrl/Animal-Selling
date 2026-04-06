@@ -45,7 +45,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
           <AnimalPawLogo size="sm" />
-          <span className="font-bold text-xl hidden md:inline-block whitespace-nowrap">Animal Selling™</span>
+          <span className="font-bold text-lg md:text-xl whitespace-nowrap">Animal Selling™</span>
         </Link>
 
         {/* Desktop Navigation - Centered */}
