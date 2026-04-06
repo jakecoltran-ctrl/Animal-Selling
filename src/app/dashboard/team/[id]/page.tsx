@@ -532,7 +532,7 @@ export default function TeamDetailPage() {
                         style={{ backgroundColor: `${animal.color}15` }}
                       >
                         <div className="flex justify-center mb-2">
-                          <AnimalIcon type={type} size="xl" variant="head" />
+                          <AnimalIcon type={type} size="xl" />
                         </div>
                         <div className="text-2xl font-bold" style={{ color: animal.color }}>
                           {percentage}%
@@ -563,7 +563,7 @@ export default function TeamDetailPage() {
                         className="flex items-center justify-center"
                       >
                         {percentage >= 15 && (
-                          <AnimalIcon type={type} size="sm" variant="head" className="brightness-0 invert" />
+                          <AnimalIcon type={type} size="sm" className="brightness-0 invert" />
                         )}
                       </div>
                     );
@@ -710,9 +710,9 @@ export default function TeamDetailPage() {
               <div className="space-y-4">
                 <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
-                    <AnimalIcon type="lion" size="sm" />
+                    <AnimalIcon type="lion" size="sm" variant="head" />
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
-                    <AnimalIcon type="beaver" size="sm" />
+                    <AnimalIcon type="beaver" size="sm" variant="head" />
                     <span className="text-sm font-medium ml-2 text-gray-900 dark:text-white">
                       Closer + Specialist
                     </span>
@@ -723,9 +723,9 @@ export default function TeamDetailPage() {
                 </div>
                 <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
-                    <AnimalIcon type="penguin" size="sm" />
+                    <AnimalIcon type="penguin" size="sm" variant="head" />
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
-                    <AnimalIcon type="retriever" size="sm" />
+                    <AnimalIcon type="retriever" size="sm" variant="head" />
                     <span className="text-sm font-medium ml-2 text-gray-900 dark:text-white">
                       Connector + Advisor
                     </span>
@@ -736,9 +736,9 @@ export default function TeamDetailPage() {
                 </div>
                 <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
-                    <AnimalIcon type="lion" size="sm" />
+                    <AnimalIcon type="lion" size="sm" variant="head" />
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
-                    <AnimalIcon type="penguin" size="sm" />
+                    <AnimalIcon type="penguin" size="sm" variant="head" />
                     <span className="text-sm font-medium ml-2 text-gray-900 dark:text-white">
                       Closer + Connector
                     </span>
