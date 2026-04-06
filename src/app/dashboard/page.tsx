@@ -293,7 +293,7 @@ export default function DashboardPage() {
               <div
                 className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl"
               >
-                <AnimalIcon type={latestResult.primaryType} size="xl" />
+                <AnimalIcon type={latestResult.primaryType} size="xl" variant="head" />
               </div>
               <div className="text-center md:text-left">
                 <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
