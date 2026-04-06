@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
 import { saveQuizResultsToDB, syncQuizResults } from "@/lib/quiz-sync";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 function ConfirmContent() {
   const router = useRouter();
@@ -135,7 +136,12 @@ function ConfirmContent() {
               {status === "success" && "🎉"}
               {status === "error" && "😕"}
             </div>
-            <div className="text-3xl mb-2">🦁🐧🐕🦫</div>
+            <div className="flex justify-center gap-1 mb-2">
+              <AnimalIcon type="lion" size="lg" />
+              <AnimalIcon type="penguin" size="lg" />
+              <AnimalIcon type="retriever" size="lg" />
+              <AnimalIcon type="beaver" size="lg" />
+            </div>
             <CardTitle className="text-white text-2xl">
               {status === "loading" && "Confirming your email..."}
               {status === "success" && "Welcome to the Pack!"}

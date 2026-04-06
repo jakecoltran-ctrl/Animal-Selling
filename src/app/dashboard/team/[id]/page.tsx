@@ -10,6 +10,7 @@ import { animals } from "@/lib/animal-data";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 interface SalesContext {
@@ -440,15 +441,18 @@ export default function TeamDetailPage() {
           }}
         >
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute -right-8 -top-8 text-[200px] opacity-30">
-              🦁
+            <div className="absolute -right-8 -top-8 opacity-30">
+              <AnimalIcon type="lion" size={200} />
             </div>
           </div>
           <div className="relative z-10 px-8 py-10 flex flex-col md:flex-row items-center gap-6">
             <div
-              className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-5xl shadow-xl"
+              className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl gap-1"
             >
-              🦁🐧🐕🦫
+              <AnimalIcon type="lion" size="md" />
+              <AnimalIcon type="penguin" size="md" />
+              <AnimalIcon type="retriever" size="md" />
+              <AnimalIcon type="beaver" size="md" />
             </div>
             <div className="text-center md:text-left flex-1">
               <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
@@ -484,10 +488,10 @@ export default function TeamDetailPage() {
               }}
             >
               <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-2xl"
+                className="w-12 h-12 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: `${userAnimal.color}20` }}
               >
-                {userAnimal.emoji}
+                <AnimalIcon type={currentMember.animalType} size="md" />
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">You</p>
@@ -527,7 +531,9 @@ export default function TeamDetailPage() {
                         className="text-center p-4 rounded-lg"
                         style={{ backgroundColor: `${animal.color}15` }}
                       >
-                        <div className="text-4xl mb-2">{animal.emoji}</div>
+                        <div className="flex justify-center mb-2">
+                          <AnimalIcon type={type} size="xl" />
+                        </div>
                         <div className="text-2xl font-bold" style={{ color: animal.color }}>
                           {percentage}%
                         </div>
@@ -557,7 +563,7 @@ export default function TeamDetailPage() {
                         className="flex items-center justify-center"
                       >
                         {percentage >= 15 && (
-                          <span className="text-white text-sm">{animal.emoji}</span>
+                          <AnimalIcon type={type} size="sm" className="brightness-0 invert" />
                         )}
                       </div>
                     );
@@ -615,7 +621,7 @@ export default function TeamDetailPage() {
                         className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.01] gap-3 sm:gap-0"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
-                          <span className="text-xl sm:text-2xl">{animal.emoji}</span>
+                          <AnimalIcon type={member.animalType} size="md" />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                               <p className="font-medium text-sm sm:text-base">{member.name}</p>
@@ -704,9 +710,9 @@ export default function TeamDetailPage() {
               <div className="space-y-4">
                 <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
-                    <span>🦁</span>
+                    <AnimalIcon type="lion" size="sm" />
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
-                    <span>🦫</span>
+                    <AnimalIcon type="beaver" size="sm" />
                     <span className="text-sm font-medium ml-2 text-gray-900 dark:text-white">
                       Closer + Specialist
                     </span>
@@ -717,9 +723,9 @@ export default function TeamDetailPage() {
                 </div>
                 <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
-                    <span>🐧</span>
+                    <AnimalIcon type="penguin" size="sm" />
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
-                    <span>🐕</span>
+                    <AnimalIcon type="retriever" size="sm" />
                     <span className="text-sm font-medium ml-2 text-gray-900 dark:text-white">
                       Connector + Advisor
                     </span>
@@ -730,9 +736,9 @@ export default function TeamDetailPage() {
                 </div>
                 <div className="p-3 border border-gray-200 dark:border-white/20 rounded-lg bg-gray-50 dark:bg-white/5 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
                   <div className="flex items-center gap-2 mb-1">
-                    <span>🦁</span>
+                    <AnimalIcon type="lion" size="sm" />
                     <span className="font-medium text-gray-900 dark:text-white">+</span>
-                    <span>🐧</span>
+                    <AnimalIcon type="penguin" size="sm" />
                     <span className="text-sm font-medium ml-2 text-gray-900 dark:text-white">
                       Closer + Connector
                     </span>

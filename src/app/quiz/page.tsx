@@ -18,10 +18,12 @@ import {
   SellType,
   CustomerType,
   SalesChannel,
+  AnimalType,
 } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { saveQuizResultsToDB } from "@/lib/quiz-sync";
 import { useScrollIntoView } from "@/hooks/useScrollIntoView";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 type QuizStage = "intro" | "setup" | "questions" | "signup" | "calculating";
 
@@ -61,11 +63,11 @@ const ANALYSIS_STEPS = [
   { message: "Discovering your animal...", duration: 2500 },
 ];
 
-const ANIMALS = [
-  { emoji: "🦁", name: "Lion", color: "rgb(220, 38, 38)" },
-  { emoji: "🐧", name: "Penguin", color: "rgb(8, 145, 178)" },
-  { emoji: "🐕", name: "Retriever", color: "rgb(217, 119, 6)" },
-  { emoji: "🦫", name: "Beaver", color: "rgb(5, 150, 105)" },
+const ANIMALS: { type: AnimalType; name: string; color: string }[] = [
+  { type: "lion", name: "Lion", color: "rgb(220, 38, 38)" },
+  { type: "penguin", name: "Penguin", color: "rgb(8, 145, 178)" },
+  { type: "retriever", name: "Retriever", color: "rgb(217, 119, 6)" },
+  { type: "beaver", name: "Beaver", color: "rgb(5, 150, 105)" },
 ];
 
 function CalculatingAnimation() {
@@ -127,14 +129,14 @@ function CalculatingAnimation() {
                   }`}
                 >
                   <div
-                    className={`text-5xl ${
+                    className={`${
                       activeAnimal === index ? "animate-bounce" : ""
                     }`}
                     style={{
                       filter: activeAnimal === index ? `drop-shadow(0 0 10px ${animal.color})` : "none",
                     }}
                   >
-                    {animal.emoji}
+                    <AnimalIcon type={animal.type} size="xl" />
                   </div>
                   {activeAnimal === index && (
                     <div
@@ -279,11 +281,11 @@ export default function QuizPage() {
         <div className="container mx-auto px-4 relative z-10">
           <Card className="max-w-2xl mx-auto">
             <CardContent className="pt-8 pb-8 text-center">
-              <div className="text-5xl mb-6">
-                <span className="inline-block">🦁</span>
-                <span className="inline-block">🐧</span>
-                <span className="inline-block">🐕</span>
-                <span className="inline-block">🦫</span>
+              <div className="flex justify-center gap-2 mb-6">
+                <AnimalIcon type="lion" size="xl" />
+                <AnimalIcon type="penguin" size="xl" />
+                <AnimalIcon type="retriever" size="xl" />
+                <AnimalIcon type="beaver" size="xl" />
               </div>
               <h1 className="text-3xl font-bold mb-4">
                 Animal Selling™ Assessment
@@ -461,7 +463,12 @@ export default function QuizPage() {
         <div className="container mx-auto px-4 relative z-10">
           <Card className="max-w-md mx-auto">
             <CardContent className="pt-8 pb-8 text-center">
-              <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
+              <div className="flex justify-center gap-2 mb-4">
+                <AnimalIcon type="lion" size="xl" />
+                <AnimalIcon type="penguin" size="xl" />
+                <AnimalIcon type="retriever" size="xl" />
+                <AnimalIcon type="beaver" size="xl" />
+              </div>
               <h2 className="text-2xl font-bold mb-2">Your Animal is Ready!</h2>
               <p className="text-muted-foreground mb-6">
                 Sign up for free to discover your sales animal type and unlock

@@ -28,6 +28,7 @@ export interface AnimalInfo {
   name: string;
   title: string;
   emoji: string;
+  icon: string;
   color: string;
   bgColor: string;
   textColor: string;

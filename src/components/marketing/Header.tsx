@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 export function Header() {
   const router = useRouter();
@@ -42,7 +43,12 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-300 dark:border-gray-700 bg-gray-200/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-200/80 dark:supports-[backdrop-filter]:bg-gray-900/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
-          <span className="text-2xl">🦁🐧🐕🦫</span>
+          <span className="flex items-center">
+            <AnimalIcon type="lion" size="sm" />
+            <AnimalIcon type="penguin" size="sm" />
+            <AnimalIcon type="retriever" size="sm" />
+            <AnimalIcon type="beaver" size="sm" />
+          </span>
           <span className="font-bold text-xl hidden md:inline-block whitespace-nowrap">Animal Selling™</span>
         </Link>
 
@@ -119,22 +125,22 @@ export function Header() {
             <div className="grid grid-cols-2 gap-3">
               <Link href="/animals/lion" onClick={() => setMobileMenuOpen(false)}>
                 <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#dc2626" }}>
-                  <span>🦁</span> Lion
+                  <AnimalIcon type="lion" size="sm" /> Lion
                 </div>
               </Link>
               <Link href="/animals/penguin" onClick={() => setMobileMenuOpen(false)}>
                 <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#0891b2" }}>
-                  <span>🐧</span> Penguin
+                  <AnimalIcon type="penguin" size="sm" /> Penguin
                 </div>
               </Link>
               <Link href="/animals/retriever" onClick={() => setMobileMenuOpen(false)}>
                 <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#d97706" }}>
-                  <span>🐕</span> Retriever
+                  <AnimalIcon type="retriever" size="sm" /> Retriever
                 </div>
               </Link>
               <Link href="/animals/beaver" onClick={() => setMobileMenuOpen(false)}>
                 <div className="flex items-center justify-center gap-2 p-3 rounded-lg text-white font-medium text-sm" style={{ backgroundColor: "#059669" }}>
-                  <span>🦫</span> Beaver
+                  <AnimalIcon type="beaver" size="sm" /> Beaver
                 </div>
               </Link>
             </div>

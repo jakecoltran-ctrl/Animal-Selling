@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
 import { saveQuizResultsToDB, syncQuizResults } from "@/lib/quiz-sync";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 function LoginForm() {
   const router = useRouter();
@@ -108,7 +109,12 @@ function LoginForm() {
       <div className="container mx-auto px-4">
         <Card className="max-w-md mx-auto">
           <CardHeader className="text-center">
-            <div className="text-4xl mb-2">🦁🐧🐕🦫</div>
+            <div className="flex justify-center gap-1 mb-2">
+              <AnimalIcon type="lion" size="lg" />
+              <AnimalIcon type="penguin" size="lg" />
+              <AnimalIcon type="retriever" size="lg" />
+              <AnimalIcon type="beaver" size="lg" />
+            </div>
             <CardTitle>Welcome Back</CardTitle>
             <CardDescription>
               Sign in to access your Animal Selling™ profile

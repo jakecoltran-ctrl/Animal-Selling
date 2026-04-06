@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 function SignupForm() {
   const router = useRouter();
@@ -112,7 +113,12 @@ function SignupForm() {
       <div className="container mx-auto px-4">
         <Card className="max-w-md mx-auto">
           <CardHeader className="text-center">
-            <div className="text-4xl mb-2">🦁🐧🐕🦫</div>
+            <div className="flex justify-center gap-1 mb-2">
+              <AnimalIcon type="lion" size="lg" />
+              <AnimalIcon type="penguin" size="lg" />
+              <AnimalIcon type="retriever" size="lg" />
+              <AnimalIcon type="beaver" size="lg" />
+            </div>
             <CardTitle>Create Your Account</CardTitle>
             <CardDescription>
               Start discovering your sales animal today

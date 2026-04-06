@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 export default function CheckEmailPage() {
   return (
@@ -11,7 +12,12 @@ export default function CheckEmailPage() {
         <Card className="max-w-md mx-auto border-2 border-white/20 bg-white/10 backdrop-blur">
           <CardHeader className="text-center">
             <div className="text-5xl mb-4">📧</div>
-            <div className="text-3xl mb-2">🦁🐧🐕🦫</div>
+            <div className="flex justify-center gap-1 mb-2">
+              <AnimalIcon type="lion" size="lg" />
+              <AnimalIcon type="penguin" size="lg" />
+              <AnimalIcon type="retriever" size="lg" />
+              <AnimalIcon type="beaver" size="lg" />
+            </div>
             <CardTitle className="text-white text-2xl">Check Your Email</CardTitle>
             <CardDescription className="text-gray-400">
               We&apos;ve sent you a confirmation link

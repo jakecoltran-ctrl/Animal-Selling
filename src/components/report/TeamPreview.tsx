@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AnimalType } from "@/types";
 import { animals } from "@/lib/animal-data";
 import { Button } from "@/components/ui/button";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface TeamPreviewProps {
   primaryType: AnimalType;
@@ -16,7 +17,12 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
     <div>
       {/* Header */}
       <div className="text-center mb-8 sm:mb-10">
-        <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🦁🐧🐕🦫</div>
+        <div className="flex justify-center gap-2 mb-3 sm:mb-4">
+          <AnimalIcon type="lion" size="xl" />
+          <AnimalIcon type="penguin" size="xl" />
+          <AnimalIcon type="retriever" size="xl" />
+          <AnimalIcon type="beaver" size="xl" />
+        </div>
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Team Safari™: Better Together
         </h2>
@@ -73,7 +79,12 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
           borderImage: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669) 1",
         }}
       >
-        <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🦁🐧🐕🦫</div>
+        <div className="flex justify-center gap-2 mb-3 sm:mb-4">
+          <AnimalIcon type="lion" size="2xl" />
+          <AnimalIcon type="penguin" size="2xl" />
+          <AnimalIcon type="retriever" size="2xl" />
+          <AnimalIcon type="beaver" size="2xl" />
+        </div>
         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
           Start Your Team Safari™
         </h3>
@@ -115,7 +126,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ backgroundColor: `${primaryAnimal.color}20` }}
           >
-            <span className="text-xl sm:text-2xl">{primaryAnimal.emoji}</span>
+            <AnimalIcon type={primaryType} size="lg" />
           </div>
           <h3 className="font-bold text-gray-900 dark:text-white">
             How {primaryAnimal.name}s Contribute to Teams

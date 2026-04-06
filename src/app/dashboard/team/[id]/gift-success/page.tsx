@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 function GiftSuccessContent() {
   const params = useParams();
@@ -73,7 +74,12 @@ function GiftSuccessContent() {
               {status === "success" && "🎁"}
               {status === "error" && "😕"}
             </div>
-            <div className="text-3xl mb-2">🦁🐧🐕🦫</div>
+            <div className="flex justify-center gap-1 mb-2">
+              <AnimalIcon type="lion" size="lg" />
+              <AnimalIcon type="penguin" size="lg" />
+              <AnimalIcon type="retriever" size="lg" />
+              <AnimalIcon type="beaver" size="lg" />
+            </div>
             <CardTitle className="text-white text-2xl">
               {status === "verifying" && "Verifying Payment..."}
               {status === "success" && "Gift Codes Generated!"}

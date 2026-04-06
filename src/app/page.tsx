@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef } from "react";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { AnimalType } from "@/types";
 
 // Animated counter hook
 function useCounter(end: number, duration: number = 2000, start: boolean = false) {
@@ -54,10 +57,19 @@ export default function Home() {
   const stat2 = useCounter(92, 2000, statsSection.inView);
   const stat3 = useCounter(24, 1800, statsSection.inView);
 
-  const animals = [
+  const animals: {
+    type: AnimalType;
+    name: string;
+    title: string;
+    color: string;
+    traits: string[];
+    motto: string;
+    description: string;
+    strength: string;
+    challenge: string;
+  }[] = [
     {
       type: "lion",
-      emoji: "🦁",
       name: "The Lion",
       title: "The Closer",
       color: "#dc2626",
@@ -69,7 +81,6 @@ export default function Home() {
     },
     {
       type: "penguin",
-      emoji: "🐧",
       name: "The Penguin",
       title: "The Connector",
       color: "#0891b2",
@@ -81,7 +92,6 @@ export default function Home() {
     },
     {
       type: "retriever",
-      emoji: "🐕",
       name: "The Retriever",
       title: "The Trusted Advisor",
       color: "#d97706",
@@ -93,7 +103,6 @@ export default function Home() {
     },
     {
       type: "beaver",
-      emoji: "🦫",
       name: "The Beaver",
       title: "The Specialist",
       color: "#059669",
@@ -131,12 +140,20 @@ export default function Home() {
           />
         </div>
 
-        {/* Floating emojis */}
+        {/* Floating animal icons */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <span className="absolute text-5xl sm:text-5xl md:text-7xl lg:text-8xl opacity-15 sm:opacity-20 animate-float" style={{ top: '10%', left: '3%', animationDelay: '0s' }}>🦁</span>
-          <span className="absolute text-4xl sm:text-4xl md:text-6xl lg:text-7xl opacity-15 sm:opacity-20 animate-float" style={{ top: '12%', right: '3%', animationDelay: '1s' }}>🐧</span>
-          <span className="absolute text-5xl sm:text-5xl md:text-7xl lg:text-8xl opacity-15 sm:opacity-20 animate-float" style={{ bottom: '18%', left: '5%', animationDelay: '2s' }}>🐕</span>
-          <span className="absolute text-4xl sm:text-4xl md:text-6xl lg:text-7xl opacity-15 sm:opacity-20 animate-float" style={{ bottom: '12%', right: '2%', animationDelay: '0.5s' }}>🦫</span>
+          <div className="absolute w-12 sm:w-12 md:w-20 lg:w-24 opacity-15 sm:opacity-20 animate-float" style={{ top: '10%', left: '3%', animationDelay: '0s' }}>
+            <Image src="/animals/lion.png" alt="" width={96} height={96} unoptimized />
+          </div>
+          <div className="absolute w-10 sm:w-10 md:w-16 lg:w-20 opacity-15 sm:opacity-20 animate-float" style={{ top: '12%', right: '3%', animationDelay: '1s' }}>
+            <Image src="/animals/penguin.png" alt="" width={80} height={80} unoptimized />
+          </div>
+          <div className="absolute w-12 sm:w-12 md:w-20 lg:w-24 opacity-15 sm:opacity-20 animate-float" style={{ bottom: '18%', left: '5%', animationDelay: '2s' }}>
+            <Image src="/animals/retriever.png" alt="" width={96} height={96} unoptimized />
+          </div>
+          <div className="absolute w-10 sm:w-10 md:w-16 lg:w-20 opacity-15 sm:opacity-20 animate-float" style={{ bottom: '12%', right: '2%', animationDelay: '0.5s' }}>
+            <Image src="/animals/beaver.png" alt="" width={80} height={80} unoptimized />
+          </div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
@@ -279,7 +296,7 @@ export default function Home() {
                       {/* Header */}
                       <div className="flex items-start justify-between mb-6">
                         <div>
-                          <span className="text-6xl mb-4 block">{animal.emoji}</span>
+                          <AnimalIcon type={animal.type} size="xl" className="mb-4" />
                           <h3 className="text-2xl font-black text-white">{animal.name}</h3>
                           <p className="text-lg font-medium" style={{ color: animal.color }}>{animal.title}</p>
                         </div>
@@ -475,7 +492,7 @@ export default function Home() {
                 className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{animal.emoji}</span>
+                  <AnimalIcon type={animal.type} size="lg" />
                   <div>
                     <div className="font-bold text-white">Selling to a {animal.name.replace('The ', '')}</div>
                     <div className="text-sm" style={{ color: animal.color }}>{animal.title}</div>
@@ -529,7 +546,12 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="text-4xl sm:text-5xl md:text-6xl mb-6">🦁🐧🐕🦫</div>
+            <div className="flex justify-center gap-2 mb-6">
+              <AnimalIcon type="lion" size="2xl" />
+              <AnimalIcon type="penguin" size="2xl" />
+              <AnimalIcon type="retriever" size="2xl" />
+              <AnimalIcon type="beaver" size="2xl" />
+            </div>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
               Ready to discover your animal?
             </h2>

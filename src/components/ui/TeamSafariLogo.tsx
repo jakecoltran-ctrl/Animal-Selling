@@ -84,9 +84,9 @@ export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
         <circle cx="55" cy="40" r="4" fill="#57534e" />
 
         {/* Animal passengers - just heads peeking out */}
-        <text x="73" y="29" fontSize="8">🦁</text>
-        <text x="85" y="29" fontSize="8">🐧</text>
-        <text x="97" y="29" fontSize="8">🐕</text>
+        <image href="/animals/lion.png" x="69" y="21" width="12" height="12" />
+        <image href="/animals/penguin.png" x="81" y="21" width="12" height="12" />
+        <image href="/animals/retriever.png" x="93" y="21" width="12" height="12" />
 
         {/* Second smaller tree on far right */}
         {/* Trunk */}

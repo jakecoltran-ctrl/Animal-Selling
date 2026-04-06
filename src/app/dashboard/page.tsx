@@ -9,6 +9,7 @@ import { ScoreBars } from "@/components/results/RadarChart";
 import { getAnimal, animals } from "@/lib/animal-data";
 import { QuizResult, AnimalType, TeamMember } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -284,15 +285,15 @@ export default function DashboardPage() {
             }}
           >
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -right-8 -top-8 text-[200px] opacity-30">
-                {primaryAnimal.emoji}
+              <div className="absolute -right-8 -top-8 opacity-30">
+                <AnimalIcon type={latestResult.primaryType} size={200} />
               </div>
             </div>
             <div className="relative z-10 px-8 py-10 flex flex-col md:flex-row items-center gap-6">
               <div
-                className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-6xl shadow-xl"
+                className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl"
               >
-                {primaryAnimal.emoji}
+                <AnimalIcon type={latestResult.primaryType} size="xl" />
               </div>
               <div className="text-center md:text-left">
                 <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
@@ -323,7 +324,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center gap-6 mb-4">
-                    <div className="text-6xl">{primaryAnimal.emoji}</div>
+                    <AnimalIcon type={latestResult.primaryType} size="xl" />
                     <div>
                       <h2
                         className="text-2xl font-bold"
@@ -397,7 +398,12 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center py-8">
-                    <div className="text-5xl mb-4">🦁🐧🐕🦫</div>
+                    <div className="flex justify-center gap-2 mb-4">
+                      <AnimalIcon type="lion" size="xl" />
+                      <AnimalIcon type="penguin" size="xl" />
+                      <AnimalIcon type="retriever" size="xl" />
+                      <AnimalIcon type="beaver" size="xl" />
+                    </div>
                     <p className="text-muted-foreground mb-6">
                       You haven't taken the quiz yet. Discover your natural
                       selling style in under 5 minutes.
@@ -430,7 +436,7 @@ export default function DashboardPage() {
                           style={{ animationDelay: `${index * 100}ms` }}
                         >
                           <div className="flex items-center gap-4">
-                            <span className="text-3xl">{animal.emoji}</span>
+                            <AnimalIcon type={result.primaryType} size="lg" />
                             <div>
                               <p
                                 className="font-medium"
@@ -530,7 +536,7 @@ export default function DashboardPage() {
                                   className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-xs"
                                   style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
                                 >
-                                  <span>{animal.emoji}</span>
+                                  <AnimalIcon type={type} size="sm" />
                                   <span className="font-medium">{count}</span>
                                 </div>
                               );
@@ -650,18 +656,18 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { href: "/animals/lion", emoji: "🦁", name: "Lion", colorClass: "text-lion-600" },
-                    { href: "/animals/penguin", emoji: "🐧", name: "Penguin", colorClass: "text-penguin-600" },
-                    { href: "/animals/retriever", emoji: "🐕", name: "Retriever", colorClass: "text-retriever-600" },
-                    { href: "/animals/beaver", emoji: "🦫", name: "Beaver", colorClass: "text-beaver-600" },
-                  ].map((animal, index) => (
+                  {([
+                    { href: "/animals/lion", type: "lion" as AnimalType, name: "Lion", colorClass: "text-lion-600" },
+                    { href: "/animals/penguin", type: "penguin" as AnimalType, name: "Penguin", colorClass: "text-penguin-600" },
+                    { href: "/animals/retriever", type: "retriever" as AnimalType, name: "Retriever", colorClass: "text-retriever-600" },
+                    { href: "/animals/beaver", type: "beaver" as AnimalType, name: "Beaver", colorClass: "text-beaver-600" },
+                  ]).map((animal, index) => (
                     <Link key={animal.name} href={animal.href}>
                       <div
                         className="p-3 border rounded-lg text-center hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-105 transition-all duration-300 animate-fade-in"
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
-                        <span className="text-2xl">{animal.emoji}</span>
+                        <AnimalIcon type={animal.type} size="md" />
                         <p className={`text-xs font-medium ${animal.colorClass} mt-1`}>
                           {animal.name}
                         </p>
