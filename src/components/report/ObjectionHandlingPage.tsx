@@ -39,7 +39,7 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
                   className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${buyerAnimal.color}20` }}
                 >
-                  <AnimalIcon type={buyerType} size="md" />
+                  <AnimalIcon type={buyerType} size="md" variant="head" />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 dark:text-white">

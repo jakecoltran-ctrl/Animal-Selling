@@ -90,7 +90,7 @@ export function ProfileSummary({
 
                   {/* Animal Info */}
                   <div className="flex items-center gap-3 flex-1">
-                    <AnimalIcon type={type} size={isPrimary ? "xl" : isSecondary ? "lg" : "md"} />
+                    <AnimalIcon type={type} size={isPrimary ? "xl" : isSecondary ? "lg" : "md"} variant="head" />
                     <div>
                       <div className="flex items-center gap-2">
                         <span

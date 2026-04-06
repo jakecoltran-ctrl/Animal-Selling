@@ -17,16 +17,18 @@ const sizeMap = {
 interface AnimalIconProps {
   type: AnimalType;
   size?: keyof typeof sizeMap | number;
+  variant?: "full" | "head";
   className?: string;
 }
 
-export function AnimalIcon({ type, size = "md", className }: AnimalIconProps) {
+export function AnimalIcon({ type, size = "md", variant = "full", className }: AnimalIconProps) {
   const animal = animals[type];
   const pixelSize = typeof size === "number" ? size : sizeMap[size];
+  const iconSrc = variant === "head" ? animal.iconHead : animal.icon;
 
   return (
     <Image
-      src={animal.icon}
+      src={iconSrc}
       alt={`${animal.name} ${animal.emoji}`}
       width={pixelSize}
       height={pixelSize}

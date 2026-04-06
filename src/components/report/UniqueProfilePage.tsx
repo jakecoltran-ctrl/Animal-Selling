@@ -57,7 +57,7 @@ export function UniqueProfilePage({
                 }}
               >
                 <div className="mb-2">
-                  <AnimalIcon type={type} size="lg" />
+                  <AnimalIcon type={type} size="lg" variant="head" />
                 </div>
               </div>
               <div
@@ -81,9 +81,9 @@ export function UniqueProfilePage({
               background: `linear-gradient(135deg, ${primaryAnimal.color}20 0%, ${secondaryAnimal.color}20 100%)`,
             }}
           >
-            <AnimalIcon type={primaryType} size="md" />
+            <AnimalIcon type={primaryType} size="md" variant="head" />
             <span className="text-gray-400">/</span>
-            <AnimalIcon type={secondaryType} size="md" />
+            <AnimalIcon type={secondaryType} size="md" variant="head" />
             <span className="font-semibold text-gray-700 dark:text-gray-200">
               {primaryAnimal.name}-{secondaryAnimal.name} Blend
             </span>
@@ -146,7 +146,7 @@ export function UniqueProfilePage({
             style={{ backgroundColor: `${primaryAnimal.color}10` }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <AnimalIcon type={primaryType} size="md" />
+              <AnimalIcon type={primaryType} size="md" variant="head" />
               <span className="font-semibold" style={{ color: primaryAnimal.color }}>
                 Primary: {primaryAnimal.name} ({scores[primaryType]}%)
               </span>
@@ -161,7 +161,7 @@ export function UniqueProfilePage({
             style={{ backgroundColor: `${secondaryAnimal.color}10` }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <AnimalIcon type={secondaryType} size="md" />
+              <AnimalIcon type={secondaryType} size="md" variant="head" />
               <span className="font-semibold" style={{ color: secondaryAnimal.color }}>
                 Secondary: {secondaryAnimal.name} ({scores[secondaryType]}%)
               </span>

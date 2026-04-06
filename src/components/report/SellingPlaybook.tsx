@@ -53,7 +53,7 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${targetAnimal.color}30` }}
                 >
-                  <AnimalIcon type={targetType} size="lg" />
+                  <AnimalIcon type={targetType} size="lg" variant="head" />
                 </div>
                 <div>
                   <h3

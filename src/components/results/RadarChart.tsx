@@ -51,7 +51,7 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores, primaryTyp
   return (
     <g transform={`translate(${x + offsetX}, ${y + offsetY})`}>
       <image
-        href={animal.icon}
+        href={animal.iconHead}
         x={-15}
         y={-15}
         width={30}
@@ -170,7 +170,7 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
                 return (
                   <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
                     <div className="flex items-center gap-2">
-                      <AnimalIcon type={type} size="sm" />
+                      <AnimalIcon type={type} size="sm" variant="head" />
                       <span className="font-bold" style={{ color: animal.color }}>
                         {animal.name}
                       </span>
@@ -183,7 +183,7 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
               return (
                 <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
                   <div className="flex items-center gap-2">
-                    <AnimalIcon type={type} size="sm" />
+                    <AnimalIcon type={type} size="sm" variant="head" />
                     <span className="font-bold" style={{ color: animal.color }}>
                       {animal.name}
                     </span>
@@ -219,7 +219,7 @@ function ScoreBar({ label, animalType, score, color, delay = 0, locked = false, 
     >
       <div className="flex justify-between items-center">
         <span className="flex items-center gap-2">
-          <AnimalIcon type={animalType} size="md" />
+          <AnimalIcon type={animalType} size="md" variant="head" />
           <span className="font-medium text-base">{label}</span>
           {isPrimary && (
             <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Primary</span>

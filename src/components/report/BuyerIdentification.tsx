@@ -177,7 +177,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
                   }}
                 >
                   <div className="mb-1">
-                    <AnimalIcon type={type} size="lg" />
+                    <AnimalIcon type={type} size="lg" variant="head" />
                   </div>
                   <span
                     className="text-xs sm:text-sm font-bold"
@@ -207,7 +207,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             style={{ backgroundColor: `${myAnimal.color}10` }}
           >
             <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <AnimalIcon type={primaryType} size="md" />
+              <AnimalIcon type={primaryType} size="md" variant="head" />
               Your {myAnimal.name} Selling Style vs {selectedAnimal.name} Buyers
             </h3>
             <ul className="space-y-2">

@@ -164,7 +164,7 @@ export default function AnimalTypePage({ params }: Props) {
               >
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <AnimalIcon type={other.id} size="md" />
+                    <AnimalIcon type={other.id} size="md" variant="head" />
                     <span style={{ color: other.color }}>
                       Selling to {other.name}s
                     </span>
@@ -190,7 +190,7 @@ export default function AnimalTypePage({ params }: Props) {
             {otherAnimals.map((other) => (
               <Link key={other.id} href={`/animals/${other.id}`}>
                 <Card className="text-center p-4 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
-                  <div className="flex justify-center mb-2"><AnimalIcon type={other.id} size="lg" /></div>
+                  <div className="flex justify-center mb-2"><AnimalIcon type={other.id} size="lg" variant="head" /></div>
                   <p className="font-medium" style={{ color: other.color }}>
                     {other.name}
                   </p>

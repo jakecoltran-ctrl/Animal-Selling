@@ -52,7 +52,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
                     "--tw-ring-color": type === primaryType ? animalData[type].color : undefined,
                   }}
                 >
-                  <AnimalIcon type={type} size="lg" />
+                  <AnimalIcon type={type} size="lg" variant="head" />
                   <p
                     className="text-xs font-medium mt-1"
                     style={{ color: animalData[type].color }}
