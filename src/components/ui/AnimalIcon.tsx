@@ -6,12 +6,12 @@ import { animals } from "@/lib/animal-data";
 import { cn } from "@/lib/utils";
 
 const sizeMap = {
-  sm: 16,
-  md: 24,
-  lg: 40,
-  xl: 64,
-  "2xl": 96,
-  "3xl": 128,
+  sm: 24,
+  md: 36,
+  lg: 56,
+  xl: 96,
+  "2xl": 128,
+  "3xl": 160,
 } as const;
 
 interface AnimalIconProps {
