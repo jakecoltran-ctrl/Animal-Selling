@@ -166,7 +166,16 @@ export default function Home() {
                 backgroundImage: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)",
               }}
             >
-              Customers want to buy
+              Customers
+            </span>
+            <br />
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #dc2626, #d97706, #0891b2, #059669)",
+              }}
+            >
+              want to buy
             </span>
           </h1>
 
