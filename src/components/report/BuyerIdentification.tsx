@@ -5,6 +5,7 @@ import { AnimalType, SalesContext } from "@/types";
 import { buyerIdentificationSignals } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
 import { ContextBadge } from "@/components/report/ContextBadge";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface BuyerIdentificationProps {
   primaryType: AnimalType;
@@ -175,7 +176,9 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
                     backgroundColor: isSelected ? `${animal.color}15` : undefined,
                   }}
                 >
-                  <span className="text-2xl sm:text-3xl mb-1">{animal.emoji}</span>
+                  <div className="mb-1">
+                    <AnimalIcon type={type} size="lg" />
+                  </div>
                   <span
                     className="text-xs sm:text-sm font-bold"
                     style={{ color: animal.color }}
@@ -204,7 +207,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             style={{ backgroundColor: `${myAnimal.color}10` }}
           >
             <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <span className="text-xl">{myAnimal.emoji}</span>
+              <AnimalIcon type={primaryType} size="md" />
               Your {myAnimal.name} Selling Style vs {selectedAnimal.name} Buyers
             </h3>
             <ul className="space-y-2">

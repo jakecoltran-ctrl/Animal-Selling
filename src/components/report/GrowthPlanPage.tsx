@@ -4,6 +4,7 @@ import { AnimalType, GrowthPlanContent, SalesContext } from "@/types";
 import { getContextualGrowthPlan } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
 import { GrowthGapChart } from "@/components/report/ReportCharts";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface GrowthPlanPageProps {
   primaryType: AnimalType;
@@ -60,7 +61,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
                   className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${lowestAnimal.color}20` }}
                 >
-                  <span className="text-2xl sm:text-3xl">{lowestAnimal.emoji}</span>
+                  <AnimalIcon type={lowestType} size="xl" />
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase" style={{ color: lowestAnimal.color }}>
@@ -92,7 +93,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
                   className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${secondLowestAnimal.color}20` }}
                 >
-                  <span className="text-2xl sm:text-3xl">{secondLowestAnimal.emoji}</span>
+                  <AnimalIcon type={secondLowestType} size="xl" />
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase" style={{ color: secondLowestAnimal.color }}>
@@ -164,7 +165,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           {/* Action Steps for Lowest */}
           <div className="mb-6 sm:mb-8">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
-              <span className="text-xl sm:text-2xl">{lowestAnimal.emoji}</span>
+              <AnimalIcon type={lowestType} size="lg" />
               Action Steps to Develop {lowestAnimal.name} Skills
             </h3>
             <div className="space-y-2 sm:space-y-3">
@@ -188,7 +189,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           {/* Action Steps for Second Lowest */}
           <div className="mb-6 sm:mb-8">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
-              <span className="text-xl sm:text-2xl">{secondLowestAnimal.emoji}</span>
+              <AnimalIcon type={secondLowestType} size="lg" />
               Action Steps to Develop {secondLowestAnimal.name} Skills
             </h3>
             <div className="space-y-2 sm:space-y-3">

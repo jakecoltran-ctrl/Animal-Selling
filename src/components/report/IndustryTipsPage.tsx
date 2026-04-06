@@ -3,6 +3,7 @@
 import { AnimalType, Industry } from "@/types";
 import { getIndustryTips, industryLabels } from "@/lib/industry-tips";
 import { animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface IndustryTipsPageProps {
   primaryType: AnimalType;
@@ -22,8 +23,8 @@ export function IndustryTipsPage({ primaryType }: IndustryTipsPageProps) {
     <div>
       {/* Header */}
       <div className="text-center mb-6 sm:mb-8">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-          How A {primaryAnimal.name} {primaryAnimal.emoji} Sells to Industry Buyers
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+          How A {primaryAnimal.name} <AnimalIcon type={primaryType} size="lg" /> Sells to Industry Buyers
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-3">
           Adapt your {primaryAnimal.name} approach for buyers in different industries

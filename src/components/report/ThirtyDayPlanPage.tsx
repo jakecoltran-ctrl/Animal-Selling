@@ -3,6 +3,7 @@
 import { AnimalType } from "@/types";
 import { getPrimaryMasteryPlan } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface ThirtyDayPlanPageProps {
   primaryType: AnimalType;
@@ -35,12 +36,12 @@ export function ThirtyDayPlanPage({ primaryType, secondaryType }: ThirtyDayPlanP
           className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full"
           style={{ backgroundColor: `${primaryAnimal.color}15` }}
         >
-          <span className="text-xl">{primaryAnimal.emoji}</span>
+          <AnimalIcon type={primaryType} size="md" />
           <span className="font-medium" style={{ color: primaryAnimal.color }}>
             {plan.title}
           </span>
           <span className="text-gray-400">+</span>
-          <span className="text-xl">{secondaryAnimal.emoji}</span>
+          <AnimalIcon type={secondaryType} size="md" />
         </div>
       </div>
 

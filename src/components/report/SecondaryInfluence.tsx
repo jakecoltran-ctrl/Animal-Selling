@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimalInfo, BlendProfile } from "@/types";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface SecondaryInfluenceProps {
   primaryAnimal: AnimalInfo;
@@ -22,13 +23,13 @@ export function SecondaryInfluence({
             className="w-20 h-20 sm:w-28 sm:h-28 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg"
             style={{ backgroundColor: `${primaryAnimal.color}20` }}
           >
-            <span className="text-4xl sm:text-5xl md:text-6xl relative z-10">{primaryAnimal.emoji}</span>
+            <AnimalIcon type={primaryAnimal.id} size="2xl" className="relative z-10" />
           </div>
           <div
             className="w-20 h-20 sm:w-28 sm:h-28 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg"
             style={{ backgroundColor: `${secondaryAnimal.color}20` }}
           >
-            <span className="text-4xl sm:text-5xl md:text-6xl relative z-10">{secondaryAnimal.emoji}</span>
+            <AnimalIcon type={secondaryAnimal.id} size="2xl" className="relative z-10" />
           </div>
         </div>
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -66,7 +67,7 @@ export function SecondaryInfluence({
                 className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: `${secondaryAnimal.color}20` }}
               >
-                <span className="text-xl">{secondaryAnimal.emoji}</span>
+                <AnimalIcon type={secondaryAnimal.id} size="md" />
               </div>
               <p className="text-gray-700 dark:text-gray-200 pt-2">{item}</p>
             </div>
@@ -123,8 +124,8 @@ export function SecondaryInfluence({
         style={{ borderColor: primaryAnimal.color }}
       >
         <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-          <span className="text-xl">{primaryAnimal.emoji}</span>
-          <span className="text-xl">{secondaryAnimal.emoji}</span>
+          <AnimalIcon type={primaryAnimal.id} size="md" />
+          <AnimalIcon type={secondaryAnimal.id} size="md" />
           Your Blend in Action
         </h3>
         <p className="text-gray-700 dark:text-gray-200">

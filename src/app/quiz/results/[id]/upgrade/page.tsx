@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getAnimal, animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { getContextualBlendDescription } from "@/lib/quiz-scoring";
 import { ProfileSummary } from "@/components/report/ProfileSummary";
 import { SellingPlaybookPage } from "@/components/report/SellingPlaybook";
@@ -276,7 +277,7 @@ export default function UpgradePage() {
               className="inline-flex items-center justify-center w-24 h-24 rounded-full mb-6 shadow-xl bg-white dark:bg-gray-800"
               style={{ border: `4px solid ${primaryAnimal.color}` }}
             >
-              <span className="text-5xl">{primaryAnimal.emoji}</span>
+              <AnimalIcon type={primaryAnimal.id} size="2xl" />
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">

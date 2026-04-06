@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
@@ -388,7 +389,7 @@ function TeamSafariPageContent() {
                                   className="flex items-center gap-0.5 px-2 py-1 rounded-full text-xs"
                                   style={{ backgroundColor: `${animal.color}20`, color: animal.color }}
                                 >
-                                  <span>{animal.emoji}</span>
+                                  <AnimalIcon type={type} size="sm" />
                                   <span className="font-medium">{count}</span>
                                 </div>
                               );

@@ -5,6 +5,7 @@ import { RadarChart } from "@/components/results/RadarChart";
 import { BlendPieChart } from "@/components/report/ReportCharts";
 import { ContextBadge } from "@/components/report/ContextBadge";
 import { animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface ProfileSummaryProps {
   primaryAnimal: AnimalInfo;
@@ -89,9 +90,7 @@ export function ProfileSummary({
 
                   {/* Animal Info */}
                   <div className="flex items-center gap-3 flex-1">
-                    <span className={isPrimary ? "text-3xl" : isSecondary ? "text-2xl" : "text-xl"}>
-                      {animal.emoji}
-                    </span>
+                    <AnimalIcon type={type} size={isPrimary ? "xl" : isSecondary ? "lg" : "md"} />
                     <div>
                       <div className="flex items-center gap-2">
                         <span
@@ -167,13 +166,13 @@ export function ProfileSummary({
               className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-md"
               style={{ backgroundColor: `${primaryAnimal.color}20` }}
             >
-              <span className="text-xl sm:text-2xl">{primaryAnimal.emoji}</span>
+              <AnimalIcon type={primaryAnimal.id} size="lg" />
             </div>
             <div
               className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 sm:border-4 border-white dark:border-gray-700 shadow-md"
               style={{ backgroundColor: `${secondaryAnimal.color}20` }}
             >
-              <span className="text-xl sm:text-2xl">{secondaryAnimal.emoji}</span>
+              <AnimalIcon type={secondaryAnimal.id} size="lg" />
             </div>
           </div>
           <div>

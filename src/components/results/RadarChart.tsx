@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { animals } from "@/lib/animal-data";
 import { AnimalType } from "@/types";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface RadarChartProps {
   scores: {
@@ -49,13 +50,13 @@ function CustomAxisLabel({ payload, x, y, cx, cy, scores, hideScores, primaryTyp
 
   return (
     <g transform={`translate(${x + offsetX}, ${y + offsetY})`}>
-      <text
-        textAnchor="middle"
-        dominantBaseline="middle"
-        style={{ fontSize: "20px" }}
-      >
-        {animal.emoji}
-      </text>
+      <image
+        href={animal.icon}
+        x={-15}
+        y={-15}
+        width={30}
+        height={30}
+      />
       <text
         y={22}
         textAnchor="middle"
@@ -169,7 +170,7 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
                 return (
                   <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
                     <div className="flex items-center gap-2">
-                      <span>{animal.emoji}</span>
+                      <AnimalIcon type={type} size="sm" />
                       <span className="font-bold" style={{ color: animal.color }}>
                         {animal.name}
                       </span>
@@ -182,7 +183,7 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
               return (
                 <div className="bg-white px-3 py-2 rounded-lg shadow-lg border">
                   <div className="flex items-center gap-2">
-                    <span>{animal.emoji}</span>
+                    <AnimalIcon type={type} size="sm" />
                     <span className="font-bold" style={{ color: animal.color }}>
                       {animal.name}
                     </span>
@@ -201,7 +202,7 @@ export function RadarChart({ scores, primaryType, hideScores }: RadarChartProps)
 
 interface ScoreBarProps {
   label: string;
-  emoji: string;
+  animalType: AnimalType;
   score: number;
   color: string;
   delay?: number;
@@ -210,7 +211,7 @@ interface ScoreBarProps {
   isSecondary?: boolean;
 }
 
-function ScoreBar({ label, emoji, score, color, delay = 0, locked = false, isPrimary = false, isSecondary = false }: ScoreBarProps) {
+function ScoreBar({ label, animalType, score, color, delay = 0, locked = false, isPrimary = false, isSecondary = false }: ScoreBarProps) {
   return (
     <div
       className="space-y-2 animate-fade-in"
@@ -218,7 +219,7 @@ function ScoreBar({ label, emoji, score, color, delay = 0, locked = false, isPri
     >
       <div className="flex justify-between items-center">
         <span className="flex items-center gap-2">
-          <span className="text-2xl">{emoji}</span>
+          <AnimalIcon type={animalType} size="md" />
           <span className="font-medium text-base">{label}</span>
           {isPrimary && (
             <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Primary</span>
@@ -297,7 +298,7 @@ export function ScoreBars({ scores, lockSecondary = false, primaryType, secondar
         <ScoreBar
           key={item.key}
           label={item.animal.name}
-          emoji={item.animal.emoji}
+          animalType={item.key}
           score={item.score}
           color={item.animal.color}
           delay={index * 150}

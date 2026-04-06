@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAnimal, getAllAnimals, animalTypes } from "@/lib/animal-data";
 import { AnimalType } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface Props {
   params: { type: string };
@@ -37,12 +38,12 @@ export default function AnimalTypePage({ params }: Props) {
       <AnimatedBackground
         opacity={0.2}
         emojiOpacity={0.15}
-        singleAnimal={{ emoji: animal.emoji, color: animal.color }}
+        singleAnimal={{ type: animal.id, color: animal.color }}
       />
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="text-7xl mb-4">{animal.emoji}</div>
+          <div className="flex justify-center mb-4"><AnimalIcon type={animal.id} size="3xl" /></div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2" style={{ color: animal.color }}>
             {animal.name}
           </h1>
@@ -163,7 +164,7 @@ export default function AnimalTypePage({ params }: Props) {
               >
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <span>{other.emoji}</span>
+                    <AnimalIcon type={other.id} size="md" />
                     <span style={{ color: other.color }}>
                       Selling to {other.name}s
                     </span>
@@ -189,7 +190,7 @@ export default function AnimalTypePage({ params }: Props) {
             {otherAnimals.map((other) => (
               <Link key={other.id} href={`/animals/${other.id}`}>
                 <Card className="text-center p-4 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
-                  <div className="text-3xl mb-2">{other.emoji}</div>
+                  <div className="flex justify-center mb-2"><AnimalIcon type={other.id} size="lg" /></div>
                   <p className="font-medium" style={{ color: other.color }}>
                     {other.name}
                   </p>

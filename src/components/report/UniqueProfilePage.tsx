@@ -3,6 +3,7 @@
 import { AnimalType, SalesContext } from "@/types";
 import { generateUniqueProfileNarrative } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface UniqueProfilePageProps {
   scores: Record<AnimalType, number>;
@@ -55,7 +56,9 @@ export function UniqueProfilePage({
                   opacity: i === 0 ? 1 : i === 1 ? 0.8 : 0.5,
                 }}
               >
-                <span className="text-xl sm:text-2xl mb-2">{animal.emoji}</span>
+                <div className="mb-2">
+                  <AnimalIcon type={type} size="lg" />
+                </div>
               </div>
               <div
                 className="w-14 sm:w-20 py-2 rounded-b-lg"
@@ -78,9 +81,9 @@ export function UniqueProfilePage({
               background: `linear-gradient(135deg, ${primaryAnimal.color}20 0%, ${secondaryAnimal.color}20 100%)`,
             }}
           >
-            <span className="text-xl">{primaryAnimal.emoji}</span>
+            <AnimalIcon type={primaryType} size="md" />
             <span className="text-gray-400">/</span>
-            <span className="text-xl">{secondaryAnimal.emoji}</span>
+            <AnimalIcon type={secondaryType} size="md" />
             <span className="font-semibold text-gray-700 dark:text-gray-200">
               {primaryAnimal.name}-{secondaryAnimal.name} Blend
             </span>
@@ -143,7 +146,7 @@ export function UniqueProfilePage({
             style={{ backgroundColor: `${primaryAnimal.color}10` }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">{primaryAnimal.emoji}</span>
+              <AnimalIcon type={primaryType} size="md" />
               <span className="font-semibold" style={{ color: primaryAnimal.color }}>
                 Primary: {primaryAnimal.name} ({scores[primaryType]}%)
               </span>
@@ -158,7 +161,7 @@ export function UniqueProfilePage({
             style={{ backgroundColor: `${secondaryAnimal.color}10` }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">{secondaryAnimal.emoji}</span>
+              <AnimalIcon type={secondaryType} size="md" />
               <span className="font-semibold" style={{ color: secondaryAnimal.color }}>
                 Secondary: {secondaryAnimal.name} ({scores[secondaryType]}%)
               </span>

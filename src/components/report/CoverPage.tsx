@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimalInfo, SalesContext } from "@/types";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface CoverPageProps {
   primaryAnimal: AnimalInfo;
@@ -58,7 +59,7 @@ export function CoverPage({
           className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 sm:mb-8 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110"
           style={{ backgroundColor: `${primaryAnimal.color}15` }}
         >
-          <span className="text-5xl sm:text-7xl md:text-8xl">{primaryAnimal.emoji}</span>
+          <AnimalIcon type={primaryAnimal.id} size="3xl" />
         </div>
 
         {/* Primary Result */}
@@ -78,7 +79,7 @@ export function CoverPage({
         {/* Secondary Type Badge */}
         <div className="inline-flex items-center gap-2 sm:gap-3 bg-white dark:bg-gray-800 rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-md mb-8 sm:mb-12 transition-all duration-300 hover:scale-105 hover:shadow-lg">
           <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Secondary Type:</span>
-          <span className="text-xl sm:text-2xl">{secondaryAnimal.emoji}</span>
+          <AnimalIcon type={secondaryAnimal.id} size="lg" />
           <span
             className="font-semibold text-sm sm:text-base"
             style={{ color: secondaryAnimal.color }}

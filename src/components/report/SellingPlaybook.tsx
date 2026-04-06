@@ -4,6 +4,7 @@ import { AnimalType, SalesContext, SellingPlaybook } from "@/types";
 import { getSellingPlaybook } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
 import { ContextBadge } from "@/components/report/ContextBadge";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface SellingPlaybookPageProps {
   primaryType: AnimalType;
@@ -19,8 +20,8 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
     <div>
       {/* Header */}
       <div className="text-center mb-6 sm:mb-8">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-          How A {animalData[primaryType].name} {animalData[primaryType].emoji} Sells {contextLabel}s
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+          How A {animalData[primaryType].name} <AnimalIcon type={primaryType} size="lg" /> Sells {contextLabel}s
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-3">
           Adapt your {animalData[primaryType].name} style to connect with any buyer
@@ -52,7 +53,7 @@ export function SellingPlaybookPage({ primaryType, salesContext }: SellingPlaybo
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${targetAnimal.color}30` }}
                 >
-                  <span className="text-xl sm:text-2xl">{targetAnimal.emoji}</span>
+                  <AnimalIcon type={targetType} size="lg" />
                 </div>
                 <div>
                   <h3

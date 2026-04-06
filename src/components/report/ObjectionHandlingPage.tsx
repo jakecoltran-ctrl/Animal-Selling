@@ -3,6 +3,7 @@
 import { AnimalType } from "@/types";
 import { getObjectionHandling } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface ObjectionHandlingPageProps {
   primaryType: AnimalType;
@@ -38,7 +39,7 @@ export function ObjectionHandlingPage({ primaryType }: ObjectionHandlingPageProp
                   className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${buyerAnimal.color}20` }}
                 >
-                  <span className="text-lg sm:text-xl">{buyerAnimal.emoji}</span>
+                  <AnimalIcon type={buyerType} size="md" />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 dark:text-white">

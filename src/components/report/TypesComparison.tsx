@@ -4,6 +4,7 @@ import { AnimalType, TypeComparison } from "@/types";
 import { typeComparisons } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
 import { ComparisonBarChart } from "@/components/report/ReportCharts";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface TypesComparisonProps {
   primaryType: AnimalType;
@@ -51,7 +52,7 @@ export function TypesComparison({ primaryType }: TypesComparisonProps) {
                     "--tw-ring-color": type === primaryType ? animalData[type].color : undefined,
                   }}
                 >
-                  <span className="text-xl sm:text-2xl">{animalData[type].emoji}</span>
+                  <AnimalIcon type={type} size="lg" />
                   <p
                     className="text-xs font-medium mt-1"
                     style={{ color: animalData[type].color }}

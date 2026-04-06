@@ -8,6 +8,7 @@ import {
   getContextualTips,
 } from "@/lib/report-data";
 import { StrengthsRadar } from "@/components/report/ReportCharts";
+import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 interface PrimaryDeepDiveProps {
   primaryAnimal: AnimalInfo;
@@ -37,7 +38,7 @@ export function PrimaryDeepDive({
           className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-lg flex-shrink-0"
           style={{ backgroundColor: `${primaryAnimal.color}20` }}
         >
-          <span className="text-3xl sm:text-4xl">{primaryAnimal.emoji}</span>
+          <AnimalIcon type={primaryAnimal.id} size="xl" />
         </div>
         <div>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
