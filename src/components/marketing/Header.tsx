@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { AnimalPawLogo } from "@/components/ui/AnimalPawLogo";
 
 export function Header() {
   const router = useRouter();
@@ -43,12 +44,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-300 dark:border-gray-700 bg-gray-200/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-200/80 dark:supports-[backdrop-filter]:bg-gray-900/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
-          <span className="flex items-center">
-            <AnimalIcon type="lion" size="sm" variant="head" />
-            <AnimalIcon type="penguin" size="sm" variant="head" />
-            <AnimalIcon type="retriever" size="sm" variant="head" />
-            <AnimalIcon type="beaver" size="sm" variant="head" />
-          </span>
+          <AnimalPawLogo size="sm" />
           <span className="font-bold text-xl hidden md:inline-block whitespace-nowrap">Animal Selling™</span>
         </Link>
 
