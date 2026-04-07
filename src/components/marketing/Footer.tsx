@@ -84,6 +84,25 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Copyright Bar */}
+        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+            <div className="text-center md:text-left">
+              <p>© {new Date().getFullYear()} Animal Selling. All rights reserved.</p>
+              <p className="text-xs mt-1">
+                All animal illustrations, characters, and related artwork are original creations and proprietary to Animal Selling.
+              </p>
+            </div>
+            <div className="flex gap-4 text-xs">
+              <Link href="/terms" className="hover:text-primary transition-colors">
+                Terms of Use
+              </Link>
+              <Link href="/privacy" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );
