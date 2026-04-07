@@ -6,10 +6,8 @@ import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
-import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
-import { saveQuizResultsToDB } from "@/lib/quiz-sync";
 
 export default function CheckEmailPage() {
   const router = useRouter();
@@ -34,41 +32,39 @@ export default function CheckEmailPage() {
         const response = await fetch(`/api/check-confirmation?email=${encodeURIComponent(email)}`);
         const data = await response.json();
 
-        if (data.confirmed) {
+        if (data.confirmed && data.userId) {
           setChecking(true);
 
           // Clear the stored email
           sessionStorage.removeItem("pending_confirmation_email");
 
-          // Sign in the user now that email is confirmed
-          const supabase = createClient();
+          // Process pending quiz data if exists (no session required - uses admin API)
+          try {
+            const pendingResponse = await fetch(`/api/pending-quiz?email=${encodeURIComponent(email)}`);
+            if (pendingResponse.ok) {
+              const result = await pendingResponse.json();
+              if (result.data?.quizAnswers && result.data?.salesContext) {
+                const formattedAnswers: QuizAnswer[] = Object.entries(result.data.quizAnswers).map(
+                  ([questionId, value]) => ({
+                    questionId,
+                    value: value as 1 | 2 | 3 | 4 | 5,
+                  })
+                );
 
-          // Try to get the session (might already exist)
-          const { data: { session } } = await supabase.auth.getSession();
+                const quizResult = generateQuizResult(
+                  formattedAnswers,
+                  result.data.salesContext as SalesContext,
+                  email
+                );
 
-          if (session) {
-            // Process pending quiz data if exists
-            try {
-              const pendingResponse = await fetch(`/api/pending-quiz?email=${encodeURIComponent(email)}`);
-              if (pendingResponse.ok) {
-                const result = await pendingResponse.json();
-                if (result.data?.quizAnswers && result.data?.salesContext) {
-                  const formattedAnswers: QuizAnswer[] = Object.entries(result.data.quizAnswers).map(
-                    ([questionId, value]) => ({
-                      questionId,
-                      value: value as 1 | 2 | 3 | 4 | 5,
-                    })
-                  );
+                // Save to database using admin endpoint (no session required)
+                const saveResponse = await fetch("/api/save-quiz-admin", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ userId: data.userId, quizResult }),
+                });
 
-                  const quizResult = generateQuizResult(
-                    formattedAnswers,
-                    result.data.salesContext as SalesContext,
-                    email
-                  );
-
-                  // Save to database
-                  await saveQuizResultsToDB([quizResult]);
-
+                if (saveResponse.ok) {
                   // Delete pending data
                   await fetch(`/api/pending-quiz?email=${encodeURIComponent(email)}`, { method: "DELETE" });
 
@@ -77,12 +73,12 @@ export default function CheckEmailPage() {
                   return;
                 }
               }
-            } catch (err) {
-              console.error("Error processing pending quiz:", err);
             }
+          } catch (err) {
+            console.error("Error processing pending quiz:", err);
           }
 
-          // No pending quiz or no session, go to dashboard
+          // No pending quiz, go to dashboard
           router.push("/dashboard");
         }
       } catch (err) {

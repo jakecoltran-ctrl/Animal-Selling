@@ -3,17 +3,30 @@ import { QuizResult } from "@/types";
 // Fetch a single quiz result by ID from the database
 export async function fetchQuizResultById(resultId: string): Promise<QuizResult | null> {
   try {
+    // First try the authenticated endpoint
     const response = await fetch(`/api/quiz-results?id=${resultId}`, {
       method: "GET",
       credentials: "include",
     });
 
-    if (!response.ok) {
-      return null;
+    if (response.ok) {
+      const data = await response.json();
+      if (data.result) {
+        return data.result;
+      }
     }
 
-    const data = await response.json();
-    return data.result || null;
+    // Fallback to public endpoint (for post-confirmation redirect when no session yet)
+    const publicResponse = await fetch(`/api/quiz-results-public?id=${resultId}`, {
+      method: "GET",
+    });
+
+    if (publicResponse.ok) {
+      const publicData = await publicResponse.json();
+      return publicData.result || null;
+    }
+
+    return null;
   } catch (error) {
     console.error("Error fetching quiz result by ID:", error);
     return null;
