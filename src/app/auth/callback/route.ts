@@ -7,15 +7,34 @@ import { QuizAnswer, SalesContext } from "@/types";
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
+  const token_hash = searchParams.get("token_hash");
+  const type = searchParams.get("type") as "signup" | "recovery" | "email" | null;
   const next = searchParams.get("next") ?? "/dashboard";
 
-  if (code) {
-    const supabase = await createClient();
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+  const supabase = await createClient();
+  let user = null;
 
+  // Handle token_hash (email confirmation)
+  if (token_hash && type) {
+    const { data, error } = await supabase.auth.verifyOtp({
+      token_hash,
+      type,
+    });
     if (!error && data.user) {
-      const userEmail = data.user.email;
-      const userId = data.user.id;
+      user = data.user;
+    }
+  }
+  // Handle code (OAuth)
+  else if (code) {
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+    if (!error && data.user) {
+      user = data.user;
+    }
+  }
+
+  if (user) {
+      const userEmail = user.email;
+      const userId = user.id;
 
       // Check for pending quiz data
       if (userEmail) {
@@ -79,9 +98,8 @@ export async function GET(request: Request) {
         }
       }
 
-      // No pending quiz, redirect to default
-      return NextResponse.redirect(`${origin}${next}`);
-    }
+    // No pending quiz, redirect to default
+    return NextResponse.redirect(`${origin}${next}`);
   }
 
   // Auth error - redirect to error page or home
