@@ -107,14 +107,30 @@ export async function POST(request: Request) {
         created_at: result.createdAt,
       };
 
-      // Upsert to handle both new and existing results
+      // Insert new result (use insert instead of upsert for simplicity)
       const { error } = await supabase
         .from("quiz_results")
-        .upsert(dbRecord, { onConflict: "id,user_id", ignoreDuplicates: false });
+        .insert(dbRecord);
 
       if (error) {
-        console.error(`Error saving result ${result.id}:`, error);
-        errors.push(result.id);
+        // If duplicate, try update instead
+        if (error.code === "23505") {
+          const { error: updateError } = await supabase
+            .from("quiz_results")
+            .update(dbRecord)
+            .eq("id", result.id)
+            .eq("user_id", user.id);
+
+          if (updateError) {
+            console.error(`Error updating result ${result.id}:`, updateError);
+            errors.push(result.id);
+          } else {
+            savedIds.push(result.id);
+          }
+        } else {
+          console.error(`Error saving result ${result.id}:`, error);
+          errors.push(result.id);
+        }
       } else {
         savedIds.push(result.id);
       }

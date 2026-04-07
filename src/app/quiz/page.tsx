@@ -251,8 +251,18 @@ export default function QuizPage() {
         );
         const result = generateQuizResult(formattedAnswers, salesContext, currentUser.email);
 
-        // Save to database
-        await saveQuizResultsToDB([result]);
+        // Save to database and wait for completion
+        try {
+          const saveSuccess = await saveQuizResultsToDB([result]);
+          if (!saveSuccess) {
+            console.error("Failed to save quiz results to database");
+          }
+        } catch (err) {
+          console.error("Error saving quiz results:", err);
+        }
+
+        // Small delay to ensure database write is complete
+        await new Promise(resolve => setTimeout(resolve, 500));
 
         router.push(`/quiz/results/${result.id}`);
       } else {
