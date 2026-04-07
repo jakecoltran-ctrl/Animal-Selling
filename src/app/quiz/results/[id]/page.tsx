@@ -148,8 +148,20 @@ export default function ResultsPage() {
         return;
       }
 
-      // Try localStorage first, then database
-      const quizResult = await getQuizResult(params.id as string);
+      // Try to fetch from database with retries (handles race condition after quiz save)
+      let quizResult = null;
+      let attempts = 0;
+      const maxAttempts = 5;
+
+      while (!quizResult && attempts < maxAttempts) {
+        quizResult = await getQuizResult(params.id as string);
+        if (!quizResult) {
+          attempts++;
+          // Wait 1 second before retrying
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
+
       if (quizResult) {
         setResult(quizResult);
       }
