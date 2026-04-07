@@ -12,7 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
-import { getLocalStorageResults, fetchQuizResultsFromDB } from "@/lib/quiz-sync";
+import { fetchQuizResultsFromDB } from "@/lib/quiz-sync";
 import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 interface SalesContext {
@@ -172,18 +172,12 @@ function TeamSafariPageContent() {
     const userEmail = user.email || "";
 
     // Get user's latest quiz result for their animal type and sales context
-    // Try localStorage first, then database
+    // Get user's quiz results from database
     let userAnimalType: AnimalType = "lion";
     let userSalesContext: SalesContext | null = null;
     let userQuizResultId: string | null = null;
 
-    // Get from localStorage
-    let quizResults = getLocalStorageResults();
-
-    // If no results in localStorage, try database
-    if (quizResults.length === 0) {
-      quizResults = await fetchQuizResultsFromDB();
-    }
+    const quizResults = await fetchQuizResultsFromDB();
 
     if (quizResults.length > 0) {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
@@ -277,19 +271,12 @@ function TeamSafariPageContent() {
     const userName = user.user_metadata?.name || user.email?.split("@")[0] || "Team Member";
     const userEmail = user.email || "";
 
-    // Get user's animal type and sales context
-    // Try localStorage first, then database
+    // Get user's animal type and sales context from database
     let userAnimalType: AnimalType = "lion";
     let userSalesContext: SalesContext | null = null;
     let userQuizResultId: string | null = null;
 
-    // Get from localStorage
-    let quizResults = getLocalStorageResults();
-
-    // If no results in localStorage, try database
-    if (quizResults.length === 0) {
-      quizResults = await fetchQuizResultsFromDB();
-    }
+    const quizResults = await fetchQuizResultsFromDB();
 
     if (quizResults.length > 0) {
       quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
