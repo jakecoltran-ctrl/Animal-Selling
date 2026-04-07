@@ -45,7 +45,11 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
         <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
           <AnimalPawLogo size="sm" />
-          <span className="font-bold text-lg md:text-xl whitespace-nowrap">Animal Selling™</span>
+          <div className="flex flex-col leading-tight">
+            <span className="font-bold text-lg md:text-xl whitespace-nowrap">Animal Selling™</span>
+            <div className="h-px w-full my-0.5" style={{ background: "linear-gradient(to right, #dc2626, #d97706, #0891b2, #059669)" }} />
+            <span className="text-[10px] md:text-xs text-muted-foreground whitespace-nowrap">Discover Your Animal</span>
+          </div>
         </Link>
 
         {/* Desktop Navigation - Centered */}
