@@ -235,16 +235,10 @@ export default function QuizPage() {
   const startCalculating = (quizAnswers: Record<string, 1 | 2 | 3 | 4 | 5>) => {
     setStage("calculating");
 
-    // Store quiz data for later processing
-    localStorage.setItem(
-      "pending_quiz_data",
-      JSON.stringify({ answers: quizAnswers, salesContext })
-    );
-
     // After 10 second animation, check if logged in
     setTimeout(async () => {
       if (user) {
-        // User is logged in, process results and go to results page
+        // User is logged in, process results and save to database
         const formattedAnswers: QuizAnswer[] = Object.entries(quizAnswers).map(
           ([questionId, value]) => ({
             questionId,
@@ -252,15 +246,22 @@ export default function QuizPage() {
           })
         );
         const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
-        localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-        localStorage.removeItem("pending_quiz_data");
 
-        // Save to database for cross-device sync
+        // Save to database
         await saveQuizResultsToDB([result]);
 
         router.push(`/quiz/results/${result.id}`);
       } else {
-        // User needs to create account
+        // User needs to create account - save pending data to database via API
+        try {
+          await fetch("/api/pending-quiz", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ answers: quizAnswers, salesContext }),
+          });
+        } catch (error) {
+          console.error("Error saving pending quiz data:", error);
+        }
         setStage("signup");
       }
     }, 10000);

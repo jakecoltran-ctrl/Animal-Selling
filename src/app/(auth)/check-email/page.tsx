@@ -27,17 +27,9 @@ export default function CheckEmailPage() {
         }
 
         if (session?.user?.email_confirmed_at) {
-          // Email confirmed! Redirect to dashboard or pending quiz results
+          // Email confirmed! Redirect to dashboard
           setChecking(true);
-
-          // Check for pending quiz data
-          const pendingRedirect = localStorage.getItem("pending_quiz_redirect");
-          if (pendingRedirect) {
-            localStorage.removeItem("pending_quiz_redirect");
-            router.push("/dashboard");
-          } else {
-            router.push("/dashboard");
-          }
+          router.push("/dashboard");
         }
       } catch (err) {
         console.error("Error checking confirmation:", err);

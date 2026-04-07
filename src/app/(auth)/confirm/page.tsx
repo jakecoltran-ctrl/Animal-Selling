@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
-import { saveQuizResultsToDB, syncQuizResults } from "@/lib/quiz-sync";
+import { saveQuizResultsToDB } from "@/lib/quiz-sync";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 
 function ConfirmContent() {
@@ -36,81 +36,41 @@ function ConfirmContent() {
           setStatus("success");
           setMessage("Your email has been confirmed!");
 
-          // Check for pending quiz data - first localStorage, then database
-          let pendingQuizData = localStorage.getItem("pending_quiz_data");
-          let answers: Record<string, 1 | 2 | 3 | 4 | 5> | null = null;
-          let salesContext: SalesContext | null = null;
-          let fromDatabase = false;
-
-          // Try localStorage first
-          if (pendingQuizData) {
-            try {
-              const parsed = JSON.parse(pendingQuizData);
-              answers = parsed.answers;
-              salesContext = parsed.salesContext;
-            } catch (err) {
-              console.error("Error parsing localStorage quiz data:", err);
-            }
-          }
-
-          // If not in localStorage, check database (for cross-device support)
-          if (!answers && data.user?.email) {
-            try {
-              const response = await fetch(`/api/pending-quiz?email=${encodeURIComponent(data.user.email)}`);
+          // Check for pending quiz data in database
+          try {
+            const response = await fetch("/api/pending-quiz");
+            if (response.ok) {
               const result = await response.json();
-              if (result.data) {
-                answers = result.data.quizAnswers;
-                salesContext = result.data.salesContext;
-                fromDatabase = true;
+              if (result.data?.answers && result.data?.salesContext) {
+                const formattedAnswers: QuizAnswer[] = Object.entries(result.data.answers).map(
+                  ([questionId, value]) => ({
+                    questionId,
+                    value: value as 1 | 2 | 3 | 4 | 5,
+                  })
+                );
+
+                const quizResult = generateQuizResult(
+                  formattedAnswers,
+                  result.data.salesContext as SalesContext,
+                  data.user?.email || ""
+                );
+
+                // Save to database
+                await saveQuizResultsToDB([quizResult]);
+
+                // Delete pending data
+                await fetch("/api/pending-quiz", { method: "DELETE" });
+
+                // Redirect to quiz results
+                setTimeout(() => {
+                  router.push(`/quiz/results/${quizResult.id}`);
+                }, 2000);
+                return;
               }
-            } catch (err) {
-              console.error("Error fetching pending quiz from DB:", err);
             }
+          } catch (err) {
+            console.error("Error processing pending quiz data:", err);
           }
-
-          // Process pending quiz data if found
-          if (answers && salesContext && data.user) {
-            try {
-              const formattedAnswers: QuizAnswer[] = Object.entries(answers).map(
-                ([questionId, value]) => ({
-                  questionId,
-                  value,
-                })
-              );
-
-              const result = generateQuizResult(formattedAnswers, salesContext, data.user.email || "");
-              localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-              localStorage.removeItem("pending_quiz_data");
-              localStorage.removeItem("pending_quiz_redirect");
-
-              // Save to database for cross-device sync
-              await saveQuizResultsToDB([result]);
-
-              // Delete pending data from database
-              if (data.user.email) {
-                try {
-                  await fetch(`/api/pending-quiz?email=${encodeURIComponent(data.user.email)}`, {
-                    method: "DELETE",
-                  });
-                } catch (err) {
-                  console.error("Error deleting pending quiz from DB:", err);
-                }
-              }
-
-              // Redirect to quiz results
-              setTimeout(() => {
-                router.push(`/quiz/results/${result.id}`);
-              }, 2000);
-              return;
-            } catch (err) {
-              console.error("Error processing quiz data:", err);
-              localStorage.removeItem("pending_quiz_data");
-              localStorage.removeItem("pending_quiz_redirect");
-            }
-          }
-
-          // Sync any localStorage results to database
-          await syncQuizResults();
 
           // Redirect to dashboard after 3 seconds
           setTimeout(() => {

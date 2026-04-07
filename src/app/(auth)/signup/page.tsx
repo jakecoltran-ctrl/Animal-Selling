@@ -66,30 +66,8 @@ function SignupForm() {
           // Continue anyway - user is created
         }
 
-        // Store pending quiz data to process after email confirmation
-        if (redirectTo === "quiz") {
-          const pendingQuizData = localStorage.getItem("pending_quiz_data");
-          if (pendingQuizData) {
-            // Keep the pending quiz data - it will be processed after email confirmation
-            localStorage.setItem("pending_quiz_redirect", "true");
-
-            // Also save to database for cross-device access
-            try {
-              const { answers, salesContext } = JSON.parse(pendingQuizData);
-              await fetch("/api/pending-quiz", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  email,
-                  quizAnswers: answers,
-                  salesContext,
-                }),
-              });
-            } catch (err) {
-              console.error("Error saving pending quiz to DB:", err);
-            }
-          }
-        }
+        // Pending quiz data is already saved in database from quiz page
+        // It will be processed after email confirmation
 
         // Check if email confirmation is required (no session means confirmation needed)
         // If session exists, user was auto-confirmed - still send to check-email as fallback

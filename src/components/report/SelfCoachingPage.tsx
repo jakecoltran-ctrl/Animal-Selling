@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { AnimalType } from "@/types";
 import { getSelfCoachingQuestions } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
@@ -15,24 +15,55 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
   const animal = animals[primaryType];
 
   const [reflections, setReflections] = useState<Record<number, string>>({});
+  const [saving, setSaving] = useState(false);
 
-  // Load saved reflections on mount
+  // Load saved reflections from database on mount
   useEffect(() => {
     if (resultId) {
-      const saved = localStorage.getItem(`reflections_${resultId}`);
-      if (saved) {
-        setReflections(JSON.parse(saved));
-      }
+      fetch(`/api/reflections?resultId=${resultId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.reflections) {
+            setReflections(data.reflections);
+          }
+        })
+        .catch((err) => {
+          console.error("Error loading reflections:", err);
+        });
     }
   }, [resultId]);
 
-  // Save reflection when it changes
+  // Debounced save to database
+  const saveReflections = useCallback(
+    async (updated: Record<number, string>) => {
+      if (!resultId) return;
+      setSaving(true);
+      try {
+        await fetch("/api/reflections", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ resultId, reflections: updated }),
+        });
+      } catch (err) {
+        console.error("Error saving reflections:", err);
+      } finally {
+        setSaving(false);
+      }
+    },
+    [resultId]
+  );
+
+  // Save reflection when it changes (with debounce)
   const handleReflectionChange = (index: number, value: string) => {
     const updated = { ...reflections, [index]: value };
     setReflections(updated);
-    if (resultId) {
-      localStorage.setItem(`reflections_${resultId}`, JSON.stringify(updated));
-    }
+
+    // Debounce the save - wait 1 second after typing stops
+    const timeoutId = setTimeout(() => {
+      saveReflections(updated);
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
   };
 
   return (
@@ -45,6 +76,9 @@ export function SelfCoachingPage({ primaryType, resultId }: SelfCoachingPageProp
         <p className="text-gray-600 dark:text-gray-300">
           Reflection prompts to accelerate your growth as a {animal.name}
         </p>
+        {saving && (
+          <p className="text-xs text-gray-400 mt-1">Saving...</p>
+        )}
       </div>
 
       {/* Intro */}

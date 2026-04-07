@@ -20,32 +20,12 @@ export async function fetchQuizResultById(resultId: string): Promise<QuizResult 
   }
 }
 
-// Get a quiz result - checks localStorage first, then database
+// Get a quiz result from the database
 export async function getQuizResult(resultId: string): Promise<QuizResult | null> {
-  // Try localStorage first
-  if (typeof window !== "undefined") {
-    const stored = localStorage.getItem(`quiz_result_${resultId}`);
-    if (stored) {
-      try {
-        return JSON.parse(stored);
-      } catch (e) {
-        console.error("Error parsing localStorage result:", e);
-      }
-    }
-  }
-
-  // If not in localStorage, try database
-  const dbResult = await fetchQuizResultById(resultId);
-
-  // If found in database, save to localStorage for future use
-  if (dbResult && typeof window !== "undefined") {
-    localStorage.setItem(`quiz_result_${resultId}`, JSON.stringify(dbResult));
-  }
-
-  return dbResult;
+  return fetchQuizResultById(resultId);
 }
 
-// Fetch quiz results from the database
+// Fetch all quiz results for the current user from the database
 export async function fetchQuizResultsFromDB(): Promise<QuizResult[]> {
   try {
     const response = await fetch("/api/quiz-results", {
@@ -88,75 +68,7 @@ export async function saveQuizResultsToDB(results: QuizResult[]): Promise<boolea
   }
 }
 
-// Get all quiz results from localStorage
-export function getLocalStorageResults(): QuizResult[] {
-  if (typeof window === "undefined") return [];
-
-  const results: QuizResult[] = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key?.startsWith("quiz_result_")) {
-      const result = localStorage.getItem(key);
-      if (result) {
-        try {
-          results.push(JSON.parse(result));
-        } catch (e) {
-          console.error("Error parsing localStorage result:", e);
-        }
-      }
-    }
-  }
-  return results;
-}
-
-// Save a single result to localStorage
-export function saveToLocalStorage(result: QuizResult): void {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(`quiz_result_${result.id}`, JSON.stringify(result));
-}
-
-// Merge database and localStorage results (DB takes precedence for duplicates)
-export function mergeResults(dbResults: QuizResult[], localResults: QuizResult[]): QuizResult[] {
-  const resultMap = new Map<string, QuizResult>();
-
-  // Add local results first
-  for (const result of localResults) {
-    resultMap.set(result.id, result);
-  }
-
-  // DB results overwrite local (they're authoritative)
-  for (const result of dbResults) {
-    resultMap.set(result.id, result);
-  }
-
-  // Convert to array and sort by date (newest first)
-  return Array.from(resultMap.values()).sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
-}
-
-// Sync localStorage results to database and return merged results
+// Get all quiz results from database (replaces sync function)
 export async function syncQuizResults(): Promise<QuizResult[]> {
-  // Get results from both sources
-  const [dbResults, localResults] = await Promise.all([
-    fetchQuizResultsFromDB(),
-    Promise.resolve(getLocalStorageResults()),
-  ]);
-
-  // Find results that exist locally but not in DB
-  const dbIds = new Set(dbResults.map(r => r.id));
-  const resultsToSync = localResults.filter(r => !dbIds.has(r.id));
-
-  // Sync local-only results to database
-  if (resultsToSync.length > 0) {
-    await saveQuizResultsToDB(resultsToSync);
-  }
-
-  // Also save DB results to localStorage for offline access
-  for (const result of dbResults) {
-    saveToLocalStorage(result);
-  }
-
-  // Return merged results
-  return mergeResults(dbResults, localResults);
+  return fetchQuizResultsFromDB();
 }
