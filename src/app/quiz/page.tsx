@@ -237,7 +237,11 @@ export default function QuizPage() {
 
     // After 10 second animation, check if logged in
     setTimeout(async () => {
-      if (user) {
+      // Re-check auth state to ensure we have the latest
+      const supabase = createClient();
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+
+      if (currentUser) {
         // User is logged in, process results and save to database
         const formattedAnswers: QuizAnswer[] = Object.entries(quizAnswers).map(
           ([questionId, value]) => ({
@@ -245,7 +249,7 @@ export default function QuizPage() {
             value,
           })
         );
-        const result = generateQuizResult(formattedAnswers, salesContext, user?.email);
+        const result = generateQuizResult(formattedAnswers, salesContext, currentUser.email);
 
         // Save to database
         await saveQuizResultsToDB([result]);
