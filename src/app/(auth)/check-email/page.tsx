@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { createClient } from "@/lib/supabase/client";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
 
@@ -37,6 +38,10 @@ export default function CheckEmailPage() {
 
           // Clear the stored email
           sessionStorage.removeItem("pending_confirmation_email");
+
+          // Refresh the session so user is logged in
+          const supabase = createClient();
+          await supabase.auth.refreshSession();
 
           // Process pending quiz data if exists (no session required - uses admin API)
           try {
