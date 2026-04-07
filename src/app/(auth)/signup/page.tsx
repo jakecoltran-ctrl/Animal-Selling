@@ -66,12 +66,30 @@ function SignupForm() {
           // Continue anyway - user is created
         }
 
-        // Pending quiz data is already saved in database from quiz page
-        // It will be processed after email confirmation
+        // Save pending quiz data to database with email
+        const pendingQuizData = sessionStorage.getItem("pending_quiz_data");
+        if (pendingQuizData) {
+          try {
+            const { quizAnswers, salesContext } = JSON.parse(pendingQuizData);
+            await fetch("/api/pending-quiz", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, quizAnswers, salesContext }),
+            });
+            // Clear sessionStorage after saving to database
+            sessionStorage.removeItem("pending_quiz_data");
+          } catch (err) {
+            console.error("Error saving pending quiz to database:", err);
+          }
+        }
 
         // Check if email confirmation is required (no session means confirmation needed)
         // If session exists, user was auto-confirmed - still send to check-email as fallback
         if (!data.session || !data.user.email_confirmed_at) {
+          // Store email for check-email page to poll confirmation status
+          if (typeof window !== "undefined") {
+            sessionStorage.setItem("pending_confirmation_email", email);
+          }
           router.push("/check-email");
         } else {
           // Email was auto-confirmed (Supabase setting disabled), go to dashboard

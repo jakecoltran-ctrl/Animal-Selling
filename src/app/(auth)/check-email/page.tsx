@@ -7,44 +7,82 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { createClient } from "@/lib/supabase/client";
+import { generateQuizResult } from "@/lib/quiz-scoring";
+import { QuizAnswer, SalesContext } from "@/types";
+import { saveQuizResultsToDB } from "@/lib/quiz-sync";
 
 export default function CheckEmailPage() {
   const router = useRouter();
   const [checking, setChecking] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    const supabase = createClient();
+    // Get the email from sessionStorage (set during signup)
+    const storedEmail = sessionStorage.getItem("pending_confirmation_email");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!email) return;
 
     // Poll every 3 seconds to check if email has been confirmed
     const checkConfirmation = async () => {
       try {
-        // Get the latest user data from database (not just refresh token)
-        const { data: { user }, error } = await supabase.auth.getUser();
+        // Call our API to check if email is confirmed
+        const response = await fetch(`/api/check-confirmation?email=${encodeURIComponent(email)}`);
+        const data = await response.json();
 
-        if (error || !user) {
-          // No user or error - might need to log in manually
-          return;
-        }
-
-        if (user.email_confirmed_at) {
-          // Email confirmed! Redirect to dashboard or process pending quiz
+        if (data.confirmed) {
           setChecking(true);
 
-          // Check for pending quiz data
-          try {
-            const response = await fetch("/api/pending-quiz");
-            if (response.ok) {
-              const result = await response.json();
-              if (result.data?.answers) {
-                // Has pending quiz - go to dashboard which will show results
-                router.push("/dashboard");
-                return;
+          // Clear the stored email
+          sessionStorage.removeItem("pending_confirmation_email");
+
+          // Sign in the user now that email is confirmed
+          const supabase = createClient();
+
+          // Try to get the session (might already exist)
+          const { data: { session } } = await supabase.auth.getSession();
+
+          if (session) {
+            // Process pending quiz data if exists
+            try {
+              const pendingResponse = await fetch(`/api/pending-quiz?email=${encodeURIComponent(email)}`);
+              if (pendingResponse.ok) {
+                const result = await pendingResponse.json();
+                if (result.data?.quizAnswers && result.data?.salesContext) {
+                  const formattedAnswers: QuizAnswer[] = Object.entries(result.data.quizAnswers).map(
+                    ([questionId, value]) => ({
+                      questionId,
+                      value: value as 1 | 2 | 3 | 4 | 5,
+                    })
+                  );
+
+                  const quizResult = generateQuizResult(
+                    formattedAnswers,
+                    result.data.salesContext as SalesContext,
+                    email
+                  );
+
+                  // Save to database
+                  await saveQuizResultsToDB([quizResult]);
+
+                  // Delete pending data
+                  await fetch(`/api/pending-quiz?email=${encodeURIComponent(email)}`, { method: "DELETE" });
+
+                  // Redirect to quiz results
+                  router.push(`/quiz/results/${quizResult.id}`);
+                  return;
+                }
               }
+            } catch (err) {
+              console.error("Error processing pending quiz:", err);
             }
-          } catch (err) {
-            console.error("Error checking pending quiz:", err);
           }
 
+          // No pending quiz or no session, go to dashboard
           router.push("/dashboard");
         }
       } catch (err) {
@@ -52,14 +90,14 @@ export default function CheckEmailPage() {
       }
     };
 
-    // Check immediately on mount
+    // Check immediately
     checkConfirmation();
 
     // Then poll every 3 seconds
     const interval = setInterval(checkConfirmation, 3000);
 
     return () => clearInterval(interval);
-  }, [router]);
+  }, [email, router]);
 
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center py-12">

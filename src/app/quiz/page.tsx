@@ -266,15 +266,13 @@ export default function QuizPage() {
 
         router.push(`/quiz/results/${result.id}`);
       } else {
-        // User needs to create account - save pending data to database via API
-        try {
-          await fetch("/api/pending-quiz", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ answers: quizAnswers, salesContext }),
-          });
-        } catch (error) {
-          console.error("Error saving pending quiz data:", error);
+        // User needs to create account - save pending data to sessionStorage
+        // It will be saved to database with email during signup
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("pending_quiz_data", JSON.stringify({
+            quizAnswers,
+            salesContext,
+          }));
         }
         setStage("signup");
       }
