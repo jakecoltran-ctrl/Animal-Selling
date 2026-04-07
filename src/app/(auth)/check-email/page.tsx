@@ -18,17 +18,33 @@ export default function CheckEmailPage() {
     // Poll every 3 seconds to check if email has been confirmed
     const checkConfirmation = async () => {
       try {
-        // Refresh the session to get latest user data
-        const { data: { session }, error } = await supabase.auth.refreshSession();
+        // Get the latest user data from database (not just refresh token)
+        const { data: { user }, error } = await supabase.auth.getUser();
 
-        if (error) {
-          // No session or error - user might need to log in manually
+        if (error || !user) {
+          // No user or error - might need to log in manually
           return;
         }
 
-        if (session?.user?.email_confirmed_at) {
-          // Email confirmed! Redirect to dashboard
+        if (user.email_confirmed_at) {
+          // Email confirmed! Redirect to dashboard or process pending quiz
           setChecking(true);
+
+          // Check for pending quiz data
+          try {
+            const response = await fetch("/api/pending-quiz");
+            if (response.ok) {
+              const result = await response.json();
+              if (result.data?.answers) {
+                // Has pending quiz - go to dashboard which will show results
+                router.push("/dashboard");
+                return;
+              }
+            }
+          } catch (err) {
+            console.error("Error checking pending quiz:", err);
+          }
+
           router.push("/dashboard");
         }
       } catch (err) {
