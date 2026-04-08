@@ -11,6 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import { AnimalType } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { AnimalPawLogo } from "@/components/ui/AnimalPawLogo";
 import { useScrollIntoView } from "@/hooks/useScrollIntoView";
 
 interface SalesContext {
@@ -449,12 +450,7 @@ export default function TeamDetailPage() {
             <div
               className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl"
             >
-              <div className="grid grid-cols-2 gap-1">
-                <AnimalIcon type="lion" size="sm" variant="head" />
-                <AnimalIcon type="penguin" size="sm" variant="head" />
-                <AnimalIcon type="retriever" size="sm" variant="head" />
-                <AnimalIcon type="beaver" size="sm" variant="head" />
-              </div>
+              <AnimalPawLogo size="lg" />
             </div>
             <div className="text-center md:text-left flex-1">
               <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
