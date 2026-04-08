@@ -61,8 +61,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if code is already used
-    if (giftCode.used_at || giftCode.used_by) {
+    // Check if code is already used (skip for unlimited promo codes)
+    const unlimitedCodes = ["FREETRY1"];
+    const isUnlimitedCode = unlimitedCodes.includes(giftCode.code);
+
+    if (!isUnlimitedCode && (giftCode.used_at || giftCode.used_by)) {
       return NextResponse.json(
         { error: "This code has already been used" },
         { status: 400 }
