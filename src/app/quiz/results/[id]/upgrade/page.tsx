@@ -369,16 +369,16 @@ export default function UpgradePage() {
               <div ref={giftCodeRef1} className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2 mb-3">
                   <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                   </svg>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">Redeem a Team Gift Code</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">Unlock Your Full Report with Code</h3>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  If your team leader gave you a code, enter it below to unlock your full report.
+                  Have a code? Enter it below.
                 </p>
                 <div className="flex gap-2">
                   <Input
-                    placeholder="Enter your 8-character code"
+                    placeholder="Enter code"
                     value={giftCode}
                     onChange={(e) => {
                       setGiftCode(e.target.value.toUpperCase());
@@ -393,7 +393,7 @@ export default function UpgradePage() {
                     variant="outline"
                     className="flex-shrink-0"
                   >
-                    {redeeming ? "..." : "Redeem"}
+                    {redeeming ? "..." : "Unlock"}
                   </Button>
                 </div>
                 {codeError && (
@@ -744,16 +744,16 @@ export default function UpgradePage() {
           <div ref={giftCodeRef2} className="mt-4 rounded-xl p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-2 mb-3">
               <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
               </svg>
-              <h3 className="font-semibold text-gray-900 dark:text-white">Redeem a Team Gift Code</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Unlock Your Full Report with Code</h3>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              If your team leader gave you a code, enter it below to unlock your full report.
+              Have a code? Enter it below.
             </p>
             <div className="flex gap-2">
               <Input
-                placeholder="Enter your 8-character code"
+                placeholder="Enter code"
                 value={giftCode}
                 onChange={(e) => {
                   setGiftCode(e.target.value.toUpperCase());
@@ -768,7 +768,7 @@ export default function UpgradePage() {
                 variant="outline"
                 className="flex-shrink-0"
               >
-                {redeeming ? "..." : "Redeem"}
+                {redeeming ? "..." : "Unlock"}
               </Button>
             </div>
             {codeError && (
