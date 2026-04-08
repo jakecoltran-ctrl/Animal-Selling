@@ -268,8 +268,22 @@ export default function Home() {
       </section>
 
       {/* The Four Types - Infographic Grid */}
-      <section ref={typesSection.ref} className="py-24" id="types">
-        <div className="container mx-auto px-4">
+      <section ref={typesSection.ref} className="py-24 relative" id="types">
+        {/* Gradient background like hero */}
+        <div className="absolute inset-0 opacity-30">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `
+                radial-gradient(ellipse at 20% 20%, #dc262640 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, #0891b240 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, #d9770640 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, #05966940 0%, transparent 50%)
+              `
+            }}
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
               The Four Animal Types
