@@ -48,59 +48,59 @@ export function AnimatedBackground({
       {showEmojis && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {singleAnimal && 'type' in singleAnimal ? (
-            // Single animal page - show same animal 4 times
+            // Single animal page - show same animal head 4 times
             <>
               <div
                 className="absolute w-12 sm:w-12 md:w-20 lg:w-24 animate-float"
                 style={{ top: "10%", left: "3%", animationDelay: "0s", opacity: emojiOpacity }}
               >
-                <Image src={animals[singleAnimal.type].icon} alt="" width={96} height={96} unoptimized />
+                <Image src={animals[singleAnimal.type].iconHead} alt="" width={96} height={96} unoptimized />
               </div>
               <div
                 className="absolute w-10 sm:w-10 md:w-16 lg:w-20 animate-float"
                 style={{ top: "12%", right: "3%", animationDelay: "1s", opacity: emojiOpacity }}
               >
-                <Image src={animals[singleAnimal.type].icon} alt="" width={80} height={80} unoptimized />
+                <Image src={animals[singleAnimal.type].iconHead} alt="" width={80} height={80} unoptimized />
               </div>
               <div
                 className="absolute w-12 sm:w-12 md:w-20 lg:w-24 animate-float"
                 style={{ bottom: "18%", left: "5%", animationDelay: "2s", opacity: emojiOpacity }}
               >
-                <Image src={animals[singleAnimal.type].icon} alt="" width={96} height={96} unoptimized />
+                <Image src={animals[singleAnimal.type].iconHead} alt="" width={96} height={96} unoptimized />
               </div>
               <div
                 className="absolute w-10 sm:w-10 md:w-16 lg:w-20 animate-float"
                 style={{ bottom: "12%", right: "2%", animationDelay: "0.5s", opacity: emojiOpacity }}
               >
-                <Image src={animals[singleAnimal.type].icon} alt="" width={80} height={80} unoptimized />
+                <Image src={animals[singleAnimal.type].iconHead} alt="" width={80} height={80} unoptimized />
               </div>
             </>
           ) : (
-            // Default - show all 4 animals
+            // Default - show all 4 animal heads
             <>
               <div
                 className="absolute w-12 sm:w-12 md:w-20 lg:w-24 animate-float"
                 style={{ top: "10%", left: "3%", animationDelay: "0s", opacity: emojiOpacity }}
               >
-                <Image src="/animals/lion.png" alt="" width={96} height={96} unoptimized />
+                <Image src="/animals/lion-head.png" alt="" width={96} height={96} unoptimized />
               </div>
               <div
                 className="absolute w-10 sm:w-10 md:w-16 lg:w-20 animate-float"
                 style={{ top: "12%", right: "3%", animationDelay: "1s", opacity: emojiOpacity }}
               >
-                <Image src="/animals/penguin.png" alt="" width={80} height={80} unoptimized />
+                <Image src="/animals/penguin-head.png" alt="" width={80} height={80} unoptimized />
               </div>
               <div
                 className="absolute w-12 sm:w-12 md:w-20 lg:w-24 animate-float"
                 style={{ bottom: "18%", left: "5%", animationDelay: "2s", opacity: emojiOpacity }}
               >
-                <Image src="/animals/retriever.png" alt="" width={96} height={96} unoptimized />
+                <Image src="/animals/retriever-head.png" alt="" width={96} height={96} unoptimized />
               </div>
               <div
                 className="absolute w-10 sm:w-10 md:w-16 lg:w-20 animate-float"
                 style={{ bottom: "12%", right: "2%", animationDelay: "0.5s", opacity: emojiOpacity }}
               >
-                <Image src="/animals/beaver.png" alt="" width={80} height={80} unoptimized />
+                <Image src="/animals/beaver-head.png" alt="" width={80} height={80} unoptimized />
               </div>
             </>
           )}
