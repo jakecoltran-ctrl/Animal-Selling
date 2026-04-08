@@ -447,12 +447,14 @@ export default function TeamDetailPage() {
           </div>
           <div className="relative z-10 px-8 py-10 flex flex-col md:flex-row items-center gap-6">
             <div
-              className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl gap-1"
+              className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center shadow-xl"
             >
-              <AnimalIcon type="lion" size="md" variant="head" />
-              <AnimalIcon type="penguin" size="md" variant="head" />
-              <AnimalIcon type="retriever" size="md" variant="head" />
-              <AnimalIcon type="beaver" size="md" variant="head" />
+              <div className="grid grid-cols-2 gap-1">
+                <AnimalIcon type="lion" size="sm" variant="head" />
+                <AnimalIcon type="penguin" size="sm" variant="head" />
+                <AnimalIcon type="retriever" size="sm" variant="head" />
+                <AnimalIcon type="beaver" size="sm" variant="head" />
+              </div>
             </div>
             <div className="text-center md:text-left flex-1">
               <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-1">
