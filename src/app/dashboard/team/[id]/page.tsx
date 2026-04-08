@@ -563,7 +563,9 @@ export default function TeamDetailPage() {
                         className="flex items-center justify-center"
                       >
                         {percentage >= 15 && (
-                          <AnimalIcon type={type} size="sm" variant="head" className="brightness-0 invert" />
+                          <div className="bg-white/90 rounded-full p-0.5">
+                            <AnimalIcon type={type} size="sm" variant="head" />
+                          </div>
                         )}
                       </div>
                     );
