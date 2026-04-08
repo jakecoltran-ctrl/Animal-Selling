@@ -242,15 +242,25 @@ export function ComparisonBarChart({ primaryType }: ComparisonBarChartProps) {
             width={75}
           />
           <Tooltip
-            formatter={(value: number) => [`${value}%`, ""]}
-            contentStyle={{
-              backgroundColor: "#1f2937",
-              border: "1px solid #374151",
-              borderRadius: "8px",
-              color: "#f9fafb",
+            content={({ active, payload, label }) => {
+              if (!active || !payload) return null;
+              return (
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-3 shadow-lg">
+                  <p className="text-gray-200 font-medium mb-2">{label}</p>
+                  {payload.map((entry, index) => (
+                    <div key={index} className="flex items-center gap-2 text-sm">
+                      <div
+                        className="w-3 h-3 rounded"
+                        style={{ backgroundColor: entry.color }}
+                      />
+                      <span style={{ color: entry.color }} className="font-semibold">
+                        {entry.name}: {entry.value}%
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              );
             }}
-            labelStyle={{ color: "#f9fafb" }}
-            itemStyle={{ color: "#f9fafb" }}
           />
           <Bar
             dataKey="lion"
