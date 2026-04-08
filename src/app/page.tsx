@@ -115,10 +115,10 @@ export default function Home() {
   ];
 
   const steps = [
-    { num: "01", title: "Discover", desc: "Take our 5-minute assessment to uncover your natural selling style" },
-    { num: "02", title: "Understand", desc: "Learn your primary and secondary animal types and what drives your approach" },
-    { num: "03", title: "Adapt", desc: "Recognize customer types and flex your style to match their preferences" },
-    { num: "04", title: "Close", desc: "Close more deals by speaking each customer's language" }
+    { num: "01", title: "Know Your Animal", desc: "Discover your natural selling style and tendencies through our 5-minute assessment" },
+    { num: "02", title: "Spot Their Animal", desc: "Learn to quickly identify your customer's buying style from behavioral cues" },
+    { num: "03", title: "Adapt Your Approach", desc: "Flex your communication to match their preferences, not yours" },
+    { num: "04", title: "Close Their Way", desc: "Use the right close for each animal type and win more deals" }
   ];
 
   return (
@@ -221,7 +221,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* It's Not About You Section */}
+      {/* It's Not About You Section - Customer Preference Principle */}
       <section ref={notAboutYouSection.ref} className="py-24 relative">
         {/* Subtle gradient background */}
         <div className="absolute inset-0 opacity-20">
@@ -237,6 +237,11 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          {/* Principle Badge */}
+          <div className={`inline-block mb-6 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 transition-all duration-700 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">The Customer Preference Principle</span>
+          </div>
+
           <h2 className={`text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight transition-all duration-700 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="text-white">It's Not About You,</span>
             <br />
@@ -250,10 +255,14 @@ export default function Home() {
             </span>
           </h2>
 
-          <p className={`text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <p className={`text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8 transition-all duration-700 delay-200 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Most salespeople focus on what matters to them—but customers buy based on what matters to <span className="text-white">them</span>.
             That's why understanding your animal and recognizing your customer's is key to building
             <span className="text-white"> trust</span>, <span className="text-white">connection</span>, and <span className="text-white">closing more sales</span>.
+          </p>
+
+          <p className={`text-lg text-gray-500 max-w-2xl mx-auto italic transition-all duration-700 delay-300 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            "Sell to people the way THEY want to buy—not the way you want to sell."
           </p>
         </div>
       </section>

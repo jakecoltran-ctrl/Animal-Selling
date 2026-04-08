@@ -73,35 +73,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Influences */}
+      {/* The Philosophy */}
       <section className="py-20 border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-black text-white mb-8">The Influences</h2>
+            <h2 className="text-3xl font-black text-white mb-8">The Philosophy</h2>
+
+            {/* Customer Preference Principle Callout */}
+            <div className="mb-10 p-6 rounded-xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-cyan-500/10 border border-white/10">
+              <div className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-2">
+                The Customer Preference Principle
+              </div>
+              <p className="text-2xl font-bold text-white mb-3">
+                Sell to people the way THEY want to buy—not the way you want to sell.
+              </p>
+              <p className="text-gray-400">
+                The Golden Rule says treat others how you want to be treated. Animal Selling™ says
+                treat customers how THEY want to be treated. That's the difference between good
+                intentions and closed deals.
+              </p>
+            </div>
 
             <div className="space-y-6 text-gray-300 leading-relaxed">
               <p>
-                Animal Selling™ is influenced by both DISC and The Five Love Languages, bringing
-                together the power of understanding how people communicate and how they prefer to
-                be treated. Most people naturally interact with others the way they want to be
-                treated—communicating in their own style, emphasizing what matters to them, and
-                moving at a pace that feels comfortable.
+                Most salespeople naturally communicate the way they want to be communicated with—emphasizing
+                what matters to them, moving at their own pace, and closing deals the way they'd want
+                to be sold. It feels natural. It's also why so many deals fall through.
               </p>
 
               <p>
-                But just like The Five Love Languages teaches us to give love in the way the other
-                person wants to receive it, Animal Selling™ reinforces that customers need to be
-                communicated with in a way that fits them. While DISC helps us understand general
-                communication tendencies, your sales animal is not the same as your DISC profile—they
-                are different. DISC reflects broader behavioral traits, while your sales animal
-                represents how you naturally show up in a sales conversation and how you tend to sell.
+                The truth is, customers buy based on what matters to <span className="text-white font-medium">them</span>.
+                A data-driven buyer doesn't care about your enthusiasm. A relationship-focused customer
+                won't respond to pressure tactics. And a decisive executive doesn't want to wade through
+                every detail.
               </p>
 
               <p>
-                Animal Selling™ simplifies these concepts into an easy-to-use framework that helps
-                salespeople slow down, get to know the customer, build genuine rapport, and adjust
-                their approach to match how that customer thinks, feels, and makes decisions—before
-                ever trying to make the sale.
+                Animal Selling™ is a behavior-based sales system that helps you identify how your
+                customer wants to be treated—and adapt in real time. It teaches you to slow down,
+                recognize how your customer thinks and makes decisions, and adjust your approach
+                before ever trying to make the sale.
+              </p>
+
+              <p>
+                When you serve customers the way they want to be served, you build trust faster,
+                reduce friction, and close more deals—not through pressure, but through alignment.
               </p>
             </div>
           </div>
@@ -119,8 +135,8 @@ export default function AboutPage() {
                 <div className="text-2xl mb-3">🧠</div>
                 <h3 className="text-xl font-bold text-white mb-3">Behavioral Psychology</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Our framework is rooted in established personality research and behavioral
-                  psychology. We've distilled complex theories into practical, memorable categories.
+                  Our framework is built on decades of research into how people communicate,
+                  make decisions, and respond to different interaction styles in buying situations.
                 </p>
               </div>
 
@@ -128,9 +144,9 @@ export default function AboutPage() {
                 <div className="text-2xl mb-3">📊</div>
                 <h3 className="text-xl font-bold text-white mb-3">Two Key Dimensions</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Research shows communication preferences cluster around two axes:
-                  task-oriented vs. people-oriented, and fast-paced vs. methodical.
-                  Our four animals map to these quadrants.
+                  Buying behavior clusters around two axes: task-oriented vs. people-oriented,
+                  and fast-paced vs. methodical. Our four animals represent these distinct
+                  buying and communication styles.
                 </p>
               </div>
 
@@ -138,8 +154,8 @@ export default function AboutPage() {
                 <div className="text-2xl mb-3">🎯</div>
                 <h3 className="text-xl font-bold text-white mb-3">Sales-Specific Design</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Unlike generic personality tests, every aspect of Animal Selling™ is
-                  designed for sales contexts—from the questions we ask to the advice we give.
+                  Unlike generic behavioral assessments, every aspect of Animal Selling™ is
+                  designed for sales contexts—from how we measure style to the actionable advice we provide.
                 </p>
               </div>
 
