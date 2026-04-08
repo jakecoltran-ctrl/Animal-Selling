@@ -4,7 +4,7 @@
  */
 
 export const CORE_PRINCIPLE = {
-  name: "The Customer Preference Principle",
+  name: "The Customer Preference Principle™",
   tagline: "Sell to people the way THEY want to buy",
   shortTagline: "Sell Their Way",
   description:

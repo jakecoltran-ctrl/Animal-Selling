@@ -82,7 +82,7 @@ export default function AboutPage() {
             {/* Customer Preference Principle Callout */}
             <div className="mb-10 p-6 rounded-xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-cyan-500/10 border border-white/10">
               <div className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-2">
-                The Customer Preference Principle
+                The Customer Preference Principle™
               </div>
               <p className="text-2xl font-bold text-white mb-3">
                 Sell to people the way THEY want to buy—not the way you want to sell.

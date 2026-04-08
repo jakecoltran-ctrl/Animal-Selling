@@ -239,7 +239,7 @@ export default function Home() {
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           {/* Principle Badge */}
           <div className={`inline-block mb-6 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 transition-all duration-700 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">The Customer Preference Principle</span>
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">The Customer Preference Principle™</span>
           </div>
 
           <h2 className={`text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight transition-all duration-700 ${notAboutYouSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
