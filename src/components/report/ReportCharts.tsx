@@ -241,7 +241,17 @@ export function ComparisonBarChart({ primaryType }: ComparisonBarChartProps) {
             tick={{ fontSize: 11 }}
             width={75}
           />
-          <Tooltip formatter={(value: number) => [`${value}%`, ""]} />
+          <Tooltip
+            formatter={(value: number) => [`${value}%`, ""]}
+            contentStyle={{
+              backgroundColor: "#1f2937",
+              border: "1px solid #374151",
+              borderRadius: "8px",
+              color: "#f9fafb",
+            }}
+            labelStyle={{ color: "#f9fafb" }}
+            itemStyle={{ color: "#f9fafb" }}
+          />
           <Bar
             dataKey="lion"
             fill={COLORS.lion}
