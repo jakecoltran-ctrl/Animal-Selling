@@ -177,8 +177,8 @@ export default function DisclaimerPage() {
                 </p>
                 <p className="text-gray-300 mt-4">
                   <strong className="text-white">Email:</strong>{" "}
-                  <a href="mailto:info@animalselling.com" className="text-cyan-400 hover:underline">
-                    info@animalselling.com
+                  <a href="mailto:animalselling2026@gmail.com" className="text-cyan-400 hover:underline">
+                    animalselling2026@gmail.com
                   </a>
                 </p>
               </section>

@@ -61,10 +61,10 @@ export default function ContactPage() {
                 <div className="text-2xl mb-3">📧</div>
                 <h3 className="text-lg font-bold text-white mb-2">Email Us</h3>
                 <a
-                  href="mailto:info@animalselling.com"
+                  href="mailto:animalselling2026@gmail.com"
                   className="text-cyan-400 hover:underline text-sm"
                 >
-                  info@animalselling.com
+                  animalselling2026@gmail.com
                 </a>
                 <p className="text-gray-500 text-xs mt-2">
                   We typically respond within 24 hours
