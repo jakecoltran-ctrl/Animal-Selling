@@ -373,7 +373,7 @@ export default function UpgradePage() {
                   </svg>
                   <h3 className="font-semibold text-gray-900 dark:text-white">Unlock Your Full Report with Code</h3>
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 text-left">
                   Have a code? Enter it below.
                 </p>
                 <div className="flex gap-2">
