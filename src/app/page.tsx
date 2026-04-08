@@ -267,51 +267,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section ref={howItWorksSection.ref} className="py-24" id="how-it-works">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              How It Works
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Four simple steps to transform your sales approach
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8">
-              {steps.map((step, index) => (
-                <div
-                  key={step.num}
-                  className={`relative transition-all duration-700 ${howItWorksSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
-                >
-                  {/* Connector line */}
-                  {index < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-[60%] w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
-                  )}
-
-                  <div className="text-center p-4 rounded-xl transition-all duration-300 hover:bg-white/5 hover:scale-[1.03]">
-                    <div
-                      className="inline-flex items-center justify-center w-16 h-16 rounded-2xl text-2xl font-black mb-4 text-white"
-                      style={{
-                        background: `linear-gradient(135deg, ${animals[index].color}40, ${animals[index].color}20)`,
-                        border: `2px solid ${animals[index].color}50`
-                      }}
-                    >
-                      {step.num}
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* The Four Types - Infographic Grid */}
       <section ref={typesSection.ref} className="py-24" id="types">
         <div className="container mx-auto px-4">
@@ -399,6 +354,51 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section ref={howItWorksSection.ref} className="py-24" id="how-it-works">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Four simple steps to transform your sales approach
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8">
+              {steps.map((step, index) => (
+                <div
+                  key={step.num}
+                  className={`relative transition-all duration-700 ${howItWorksSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
+                  {/* Connector line */}
+                  {index < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-8 left-[60%] w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                  )}
+
+                  <div className="text-center p-4 rounded-xl transition-all duration-300 hover:bg-white/5 hover:scale-[1.03]">
+                    <div
+                      className="inline-flex items-center justify-center w-16 h-16 rounded-2xl text-2xl font-black mb-4 text-white"
+                      style={{
+                        background: `linear-gradient(135deg, ${animals[index].color}40, ${animals[index].color}20)`,
+                        border: `2px solid ${animals[index].color}50`
+                      }}
+                    >
+                      {step.num}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
