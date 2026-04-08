@@ -353,9 +353,11 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
           >
             {/* Only show label if segment is wide enough */}
             {item.score >= 15 && (
-              <div className="flex flex-col items-center text-white">
-                <AnimalIcon type={item.type} size="sm" variant="head" className="brightness-0 invert" />
-                <span className="text-xs font-bold">{item.score}%</span>
+              <div className="flex flex-col items-center">
+                <div className="bg-white/90 rounded-full p-0.5">
+                  <AnimalIcon type={item.type} size="sm" variant="head" />
+                </div>
+                <span className="text-xs font-bold text-white drop-shadow-md">{item.score}%</span>
               </div>
             )}
           </div>
