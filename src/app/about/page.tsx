@@ -60,14 +60,13 @@ export default function AboutPage() {
               </div>
 
               {/* C2 Unlimited Image */}
-              <div className="mb-8 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+              <div className="mb-6 ml-13 max-w-md rounded-xl overflow-hidden border border-white/10 shadow-lg">
                 <Image
                   src="/images/animal-selling-c2.png"
                   alt="Animal Selling - C2 Coaching & Training by C2 Unlimited, LLC"
-                  width={1200}
-                  height={675}
+                  width={600}
+                  height={338}
                   className="w-full h-auto"
-                  priority
                 />
               </div>
 
