@@ -76,7 +76,7 @@ export default function AboutPage() {
                 </div>
 
                 <p>
-                  Built around our <span className="text-amber-500 font-semibold">Customer Preference Principle™</span>:
+                  Built around our <Link href="/resources/customer-preference-principle" className="text-amber-500 font-semibold hover:underline">Customer Preference Principle™</Link>:
                 </p>
 
                 <div className="p-4 bg-white/5 rounded-lg border border-white/10">
