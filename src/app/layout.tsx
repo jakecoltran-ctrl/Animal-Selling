@@ -15,6 +15,16 @@ export const metadata: Metadata = {
     default: "Animal Selling™ - Discover Your Sales Animal",
     template: "%s | Animal Selling™",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   description:
     "Discover your unique sales personality with Animal Selling™. Take our free quiz to find out if you're a Lion, Penguin, Retriever, or Beaver - and learn how to sell more effectively.",
   keywords: [
