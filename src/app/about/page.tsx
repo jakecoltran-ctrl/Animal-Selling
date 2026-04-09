@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
@@ -56,6 +57,18 @@ export default function AboutPage() {
                   1
                 </div>
                 <h3 className="text-2xl font-bold text-white">The Evolution of Animal Selling</h3>
+              </div>
+
+              {/* C2 Unlimited Image */}
+              <div className="mb-8 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                <Image
+                  src="/images/animal-selling-c2.png"
+                  alt="Animal Selling - C2 Coaching & Training by C2 Unlimited, LLC"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                  priority
+                />
               </div>
 
               <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
