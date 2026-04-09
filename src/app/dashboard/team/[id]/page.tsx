@@ -669,25 +669,23 @@ export default function TeamDetailPage() {
                           </div>
                           {/* Management buttons */}
                           {(canManage || canPromote) && (
-                            <div className="flex items-center gap-1 ml-auto sm:ml-2">
+                            <div className="flex items-center gap-2 ml-auto sm:ml-2">
                               {canPromote && (
                                 <Button
-                                  variant="ghost"
+                                  variant="outline"
                                   size="sm"
                                   onClick={() => handlePromoteToCoLeader(member.userId, member.name)}
-                                  className={`text-xs px-2 ${isMemberCoLeader ? "text-cyan-600 hover:text-cyan-700" : "text-gray-500 hover:text-cyan-600"}`}
-                                  title={isMemberCoLeader ? "Remove Co-Leader" : "Promote to Co-Leader"}
+                                  className={`text-xs px-3 py-2 min-w-[44px] min-h-[44px] ${isMemberCoLeader ? "text-cyan-600 border-cyan-600" : "text-gray-500 hover:text-cyan-600 hover:border-cyan-600"}`}
                                 >
                                   {isMemberCoLeader ? "👑" : "⬆️"}
                                 </Button>
                               )}
                               {canManage && (
                                 <Button
-                                  variant="ghost"
+                                  variant="outline"
                                   size="sm"
                                   onClick={() => handleKickMember(member.id, member.name)}
-                                  className="text-xs px-2 text-gray-500 hover:text-red-600"
-                                  title="Remove from team"
+                                  className="text-xs px-3 py-2 min-w-[44px] min-h-[44px] text-gray-500 hover:text-red-600 hover:border-red-600"
                                 >
                                   ✕
                                 </Button>
@@ -1009,11 +1007,11 @@ export default function TeamDetailPage() {
         )}
 
         {/* Leave Team */}
-        <div className="mt-8 max-w-md mx-auto text-center">
+        <div className="mt-8 max-w-md mx-auto text-center pb-8">
           <Button
-            variant="ghost"
+            variant="outline"
             onClick={handleLeaveTeam}
-            className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
+            className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950 border-red-300 hover:border-red-500 min-h-[44px] px-6"
           >
             {team.ownerId === userId ? "Delete Team" : "Leave Team"}
           </Button>
