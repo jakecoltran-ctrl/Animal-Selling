@@ -60,34 +60,61 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
-                {/* Text with floating image */}
+                <p>
+                  Animal Selling™ was developed by C2 Unlimited, LLC as a simple, relatable framework
+                  designed to help sales professionals quickly understand one of the most important
+                  truths in selling:
+                </p>
+
+                <div className="p-5 rounded-xl bg-gradient-to-r from-amber-500/10 to-red-500/10 border border-amber-500/20">
+                  <p className="text-xl font-bold text-white text-center">
+                    Sell to people the way THEY want to buy—not the way you want to sell.
+                  </p>
+                </div>
+
+                <p>
+                  Built around our <span className="text-amber-500 font-semibold">Customer Preference Principle™</span>:
+                </p>
+
+                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                  <p className="text-white font-medium text-center">
+                    Know your animal. Spot their animal. Adapt your approach. Close their way.
+                  </p>
+                </div>
+
+                {/* Text with image to the right */}
                 <div className="sm:flex sm:gap-6">
                   <div className="sm:flex-1">
-                    <p className="mb-5">
-                      Animal Selling™ was developed by C2 Unlimited, LLC as a simple, relatable framework
-                      designed to help sales professionals quickly understand one of the most important
-                      truths in selling:
+                    <p className="mb-4">This framework gives sales professionals a practical way to:</p>
+
+                    <ul className="space-y-2 ml-4 mb-5">
+                      <li className="flex items-start gap-2">
+                        <span className="text-amber-500 mt-1">•</span>
+                        <span>Identify their own natural selling style</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-amber-500 mt-1">•</span>
+                        <span>Recognize the behavioral tendencies of their customers</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-amber-500 mt-1">•</span>
+                        <span>Adjust in real-time to create connection and trust</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-amber-500 mt-1">•</span>
+                        <span>Close more effectively by aligning with how the customer prefers to make decisions</span>
+                      </li>
+                    </ul>
+
+                    <p>
+                      Backed by years of real-world application, C2 has built a reputation for creating
+                      training that is simple, fast to implement, and results-driven—and Animal Selling™
+                      is a direct reflection of that philosophy.
                     </p>
-
-                    <div className="p-5 rounded-xl bg-gradient-to-r from-amber-500/10 to-red-500/10 border border-amber-500/20 mb-5">
-                      <p className="text-xl font-bold text-white text-center">
-                        Sell to people the way THEY want to buy—not the way you want to sell.
-                      </p>
-                    </div>
-
-                    <p className="mb-5">
-                      Built around our <span className="text-amber-500 font-semibold">Customer Preference Principle™</span>:
-                    </p>
-
-                    <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                      <p className="text-white font-medium text-center">
-                        Know your animal. Spot their animal. Adapt your approach. Close their way.
-                      </p>
-                    </div>
                   </div>
 
-                  {/* C2 Unlimited Image - floated right */}
-                  <div className="mt-5 sm:mt-0 sm:w-72 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start">
+                  {/* C2 Unlimited Image */}
+                  <div className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start">
                     <Image
                       src="/images/animal-selling-c2.png"
                       alt="Animal Selling - C2 Coaching & Training by C2 Unlimited, LLC"
@@ -97,33 +124,6 @@ export default function AboutPage() {
                     />
                   </div>
                 </div>
-
-                <p>This framework gives sales professionals a practical way to:</p>
-
-                <ul className="space-y-2 ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">•</span>
-                    <span>Identify their own natural selling style</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">•</span>
-                    <span>Recognize the behavioral tendencies of their customers</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">•</span>
-                    <span>Adjust in real-time to create connection and trust</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">•</span>
-                    <span>Close more effectively by aligning with how the customer prefers to make decisions</span>
-                  </li>
-                </ul>
-
-                <p>
-                  Backed by years of real-world application, C2 has built a reputation for creating
-                  training that is simple, fast to implement, and results-driven—and Animal Selling™
-                  is a direct reflection of that philosophy.
-                </p>
               </div>
             </div>
 
