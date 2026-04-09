@@ -53,7 +53,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation - Centered */}
-        <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+        <nav className="hidden lg:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2 whitespace-nowrap">
           <Link href="/animals/lion" className="text-sm font-medium text-muted-foreground hover:text-lion-600 transition-colors nav-underline">
             Lion
           </Link>
@@ -69,7 +69,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center space-x-4 flex-shrink-0">
-          <Link href="/dashboard/team" className="hidden md:block">
+          <Link href="/dashboard/team" className="hidden lg:block">
             <Button
               className="text-sm text-white press-effect hover-glow whitespace-nowrap"
               style={{
@@ -79,16 +79,16 @@ export function Header() {
               Team Safari™
             </Button>
           </Link>
-          <Link href="/quiz" className="hidden md:block">
+          <Link href="/quiz" className="hidden lg:block">
             <Button className="press-effect hover-glow whitespace-nowrap">Take the Quiz</Button>
           </Link>
           {!loading && (
             user ? (
-              <Link href="/dashboard" className="hidden md:block">
+              <Link href="/dashboard" className="hidden lg:block">
                 <Button variant="ghost" className="press-effect hover-glow whitespace-nowrap">My Dashboard</Button>
               </Link>
             ) : (
-              <Link href="/login" className="hidden md:block">
+              <Link href="/login" className="hidden lg:block">
                 <Button variant="ghost" className="press-effect hover-glow whitespace-nowrap">Sign In</Button>
               </Link>
             )
@@ -96,7 +96,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 flex-shrink-0"
+            className="lg:hidden p-2 flex-shrink-0"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -118,7 +118,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 px-4 py-4">
+        <div className="lg:hidden border-t border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 px-4 py-4">
           <nav className="flex flex-col space-y-3">
             {/* Animal Type Buttons */}
             <p className="text-xs text-center text-muted-foreground">Discover the Sales Animals</p>
