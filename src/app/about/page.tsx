@@ -117,7 +117,10 @@ export default function AboutPage() {
                   </div>
 
                   {/* C2 Unlimited Image */}
-                  <div className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start">
+                  <div
+                    className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => setLightboxImage("/images/animal-selling-c2.png")}
+                  >
                     <Image
                       src="/images/animal-selling-c2.png"
                       alt="Animal Selling - C2 Coaching & Training by C2 Unlimited, LLC"
