@@ -174,16 +174,16 @@ export default function AboutPage() {
                     </ul>
                   </div>
 
-                  {/* Sales Training Worksheet Image */}
+                  {/* Training Session Image */}
                   <div
                     className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
-                    onClick={() => setLightboxImage("/images/sales-training-worksheet.png")}
+                    onClick={() => setLightboxImage("/images/training-session.png")}
                   >
                     <Image
-                      src="/images/sales-training-worksheet.png"
-                      alt="D-23 Sales Training - Sales Pitch Exercise with Flooring worksheet"
+                      src="/images/training-session.png"
+                      alt="Live sales training session with professionals"
                       width={400}
-                      height={533}
+                      height={300}
                       className="w-full h-auto"
                     />
                   </div>
@@ -221,16 +221,16 @@ export default function AboutPage() {
                     </ul>
                   </div>
 
-                  {/* Training Session Image */}
+                  {/* Sales Training Worksheet Image */}
                   <div
                     className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
-                    onClick={() => setLightboxImage("/images/training-session.png")}
+                    onClick={() => setLightboxImage("/images/sales-training-worksheet.png")}
                   >
                     <Image
-                      src="/images/training-session.png"
-                      alt="Live sales training session with professionals"
+                      src="/images/sales-training-worksheet.png"
+                      alt="D-23 Sales Training - Sales Pitch Exercise with Flooring worksheet"
                       width={400}
-                      height={300}
+                      height={533}
                       className="w-full h-auto"
                     />
                   </div>
