@@ -112,16 +112,22 @@ export default function TeamDetailPage() {
         .map((m: { quiz_result_id?: string }) => m.quiz_result_id)
         .filter((id: string | undefined): id is string => !!id);
 
-      // Fetch purchase status for team members' specific quiz results
+      // Fetch purchase status for team members via API (bypasses RLS)
       let purchasedQuizResultIds = new Set<string>();
       if (memberQuizResultIds.length > 0) {
-        const { data: purchases } = await supabase
-          .from("purchases")
-          .select("quiz_result_id")
-          .in("quiz_result_id", memberQuizResultIds)
-          .eq("status", "completed");
-
-        purchasedQuizResultIds = new Set(purchases?.map(p => p.quiz_result_id).filter((id): id is string => !!id) || []);
+        try {
+          const response = await fetch("/api/purchases/check", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ quizResultIds: memberQuizResultIds }),
+          });
+          if (response.ok) {
+            const { purchasedIds } = await response.json();
+            purchasedQuizResultIds = new Set(purchasedIds || []);
+          }
+        } catch (err) {
+          console.error("Failed to check purchase status:", err);
+        }
       }
 
       setTeam({
