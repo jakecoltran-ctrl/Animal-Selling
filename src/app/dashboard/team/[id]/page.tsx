@@ -311,6 +311,11 @@ export default function TeamDetailPage() {
     const supabase = createClient();
 
     if (isOwner) {
+      // Delete related records first (foreign key constraints)
+      await supabase.from("gift_codes").delete().eq("team_id", team.id);
+      await supabase.from("team_members").delete().eq("team_id", team.id);
+
+      // Now delete the team
       const { error } = await supabase
         .from("teams")
         .delete()
