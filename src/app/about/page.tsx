@@ -295,14 +295,14 @@ export default function AboutPage() {
 
                   {/* Quiz Screenshot Image */}
                   <div
-                    className="mt-5 sm:mt-0 sm:w-48 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                    className="mt-5 sm:mt-0 sm:w-32 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
                     onClick={() => setLightboxImage("/images/quiz-screenshot.png")}
                   >
                     <Image
                       src="/images/quiz-screenshot.png"
                       alt="Animal Selling quiz interface on mobile"
-                      width={300}
-                      height={650}
+                      width={200}
+                      height={433}
                       className="w-full h-auto"
                     />
                   </div>
