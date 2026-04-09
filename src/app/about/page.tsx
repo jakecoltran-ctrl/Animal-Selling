@@ -43,32 +43,246 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Origin Story */}
+      {/* Origin Story - 4 Parts */}
       <section className="py-20 border-t border-white/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-black text-white mb-8">The Origin Story</h2>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-black text-white mb-12 text-center">The Origin Story</h2>
 
-            <div className="space-y-6 text-gray-300 leading-relaxed">
-              <p>
-                Animal Selling™ was developed by Chris Coltran, co-founder of C2 Unlimited, LLC.,
-                a coaching and training company, and a multi-book author and professional sales
-                trainer with over 25 years of experience across retail, wholesale, manufacturing,
-                and distribution. Through decades of working directly with thousands of salespeople
-                and leaders, C2 recognized a common challenge of salespeople naturally communicating
-                and selling based on their own preferences rather than adapting to the customer.
-              </p>
+            {/* Part 1: The Evolution of Animal Selling */}
+            <div className="mb-16">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-red-500 to-amber-500 flex items-center justify-center text-white font-bold">
+                  1
+                </div>
+                <h3 className="text-2xl font-bold text-white">The Evolution of Animal Selling</h3>
+              </div>
 
-              <p>
-                Building on his earlier work, including the Grandmother Philosophy, Animal Selling™
-                was created as a simple, relatable framework to help sales professionals quickly
-                identify behavioral styles of their own and their customer's, and adjust their
-                approach to better connect, build trust, and close more sales. These concepts have
-                been implemented at scale, including training initiatives with The Home Depot, one
-                of the largest retailers in the world, where the Animal Selling™ framework has helped
-                associates better understand customers and improve the overall buying experience.
-              </p>
+              <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
+                <p>
+                  Animal Selling™ was developed by C2 Unlimited, LLC as a simple, relatable framework
+                  designed to help sales professionals quickly understand one of the most important
+                  truths in selling:
+                </p>
+
+                <div className="p-5 rounded-xl bg-gradient-to-r from-amber-500/10 to-red-500/10 border border-amber-500/20">
+                  <p className="text-xl font-bold text-white text-center">
+                    Sell to people the way THEY want to buy—not the way you want to sell.
+                  </p>
+                </div>
+
+                <p>
+                  Built around our <span className="text-amber-500 font-semibold">Customer Preference Principle™</span>:
+                </p>
+
+                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                  <p className="text-white font-medium text-center">
+                    Know your animal. Spot their animal. Adapt your approach. Close their way.
+                  </p>
+                </div>
+
+                <p>This framework gives sales professionals a practical way to:</p>
+
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">•</span>
+                    <span>Identify their own natural selling style</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">•</span>
+                    <span>Recognize the behavioral tendencies of their customers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">•</span>
+                    <span>Adjust in real-time to create connection and trust</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">•</span>
+                    <span>Close more effectively by aligning with how the customer prefers to make decisions</span>
+                  </li>
+                </ul>
+
+                <p>
+                  Backed by years of real-world application, C2 has built a reputation for creating
+                  training that is simple, fast to implement, and results-driven—and Animal Selling™
+                  is a direct reflection of that philosophy.
+                </p>
+              </div>
             </div>
+
+            {/* Part 2: Proven in the Field */}
+            <div className="mb-16">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                  2
+                </div>
+                <h3 className="text-2xl font-bold text-white">Proven in the Field</h3>
+              </div>
+
+              <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
+                <p>
+                  Since 2008, these concepts have been implemented at scale with over{" "}
+                  <span className="text-white font-semibold">10,000 sales professionals</span> across
+                  North America through programs developed and delivered by C2 Unlimited, LLC.
+                </p>
+
+                <p>Animal Selling™ has been taught in:</p>
+
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Live workshops</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>In-store retail trainings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>In-home sales environments</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Corporate leadership sessions</span>
+                  </li>
+                </ul>
+
+                <div className="p-5 rounded-xl bg-gradient-to-r from-orange-500/10 to-cyan-500/10 border border-orange-500/20">
+                  <p className="text-gray-300">
+                    Including training initiatives with <span className="text-white font-semibold">The Home Depot</span>,
+                    one of the largest retailers in the world.
+                  </p>
+                </div>
+
+                <p>In these environments, the framework has helped associates:</p>
+
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span>Better understand customer behavior in real time</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span>Improve confidence in conversations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span>Create stronger connections on the sales floor</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span>Enhance the overall buying experience</span>
+                  </li>
+                </ul>
+
+                <p className="text-white font-medium">
+                  This isn't theory—it's been built, tested, and refined by a company that specializes
+                  in training thousands of sales professionals across multiple industries.
+                </p>
+              </div>
+            </div>
+
+            {/* Part 3: 2026 and Beyond */}
+            <div className="mb-16">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-green-500 flex items-center justify-center text-white font-bold">
+                  3
+                </div>
+                <h3 className="text-2xl font-bold text-white">2026 and Beyond</h3>
+              </div>
+
+              <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
+                <p>
+                  Today, Animal Selling™ has evolved—continuing the innovation driven by C2 Unlimited, LLC.
+                </p>
+
+                <p className="text-gray-400 italic">
+                  What once required a live training session, role plays, and in-person coaching…
+                </p>
+
+                <p className="text-2xl font-bold text-white text-center py-2">
+                  can now happen instantly.
+                </p>
+
+                <p>
+                  In 2026, we've transformed the program into a digital experience where sales professionals can:
+                </p>
+
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Take a quick online quiz</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Immediately discover their primary and secondary animal</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Learn how to spot their customer's animal in real time</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Get simple, actionable strategies to adapt their approach</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-500 mt-1">•</span>
+                    <span>Apply it instantly to real conversations</span>
+                  </li>
+                </ul>
+
+                <div className="p-5 rounded-xl bg-gradient-to-r from-cyan-500/10 to-green-500/10 border border-cyan-500/20">
+                  <p className="text-gray-300">
+                    This allows organizations to scale what C2 has been doing for years—
+                    <span className="text-white font-semibold"> but now faster, more consistently, and with immediate impact.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Part 4: Why It Works */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-red-500 flex items-center justify-center text-white font-bold">
+                  4
+                </div>
+                <h3 className="text-2xl font-bold text-white">Why It Works</h3>
+              </div>
+
+              <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
+                <p>
+                  Animal Selling™ is a behavior-based sales system that teaches professionals how to
+                  identify a customer's preferred buying style—and adapt their approach in real time to match it.
+                </p>
+
+                <p>Because in the real world:</p>
+
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>Salespeople don't have time for complex theory</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>Customers don't announce how they want to be sold</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>And connection has to happen fast</span>
+                  </li>
+                </ul>
+
+                <div className="p-6 rounded-xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-green-500/10 border border-white/10 text-center space-y-3">
+                  <p className="text-xl font-bold text-white">Animal Selling™ bridges that gap.</p>
+                  <p className="text-lg text-gray-300">It turns awareness into action.</p>
+                  <p className="text-lg text-gray-300">It turns theory into behavior.</p>
+                  <p className="text-lg text-white font-medium">
+                    And most importantly… it helps sales professionals meet customers where they are.
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
