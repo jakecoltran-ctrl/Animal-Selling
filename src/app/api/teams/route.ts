@@ -12,7 +12,7 @@ function getSupabaseAdmin() {
 // DELETE - Delete a team (owner only)
 export async function DELETE(request: NextRequest) {
   try {
-    const supabase = await createServerClient();
+    const supabase = createServerClient();
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
