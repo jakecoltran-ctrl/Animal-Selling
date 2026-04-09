@@ -262,32 +262,51 @@ export default function AboutPage() {
                   can now happen instantly.
                 </p>
 
-                <p>
-                  In 2026, we've transformed the program into a digital experience where sales professionals can:
-                </p>
+                {/* Text with quiz screenshot to the right */}
+                <div className="sm:flex sm:gap-6">
+                  <div className="sm:flex-1">
+                    <p className="mb-4">
+                      In 2026, we've transformed the program into a digital experience where sales professionals can:
+                    </p>
 
-                <ul className="space-y-2 ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Take a quick online quiz</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Immediately discover their primary and secondary animal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Learn how to spot their customer's animal in real time</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Get simple, actionable strategies to adapt their approach</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Apply it instantly to real conversations</span>
-                  </li>
-                </ul>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Take a quick online quiz</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Immediately discover their primary and secondary animal</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Learn how to spot their customer's animal in real time</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Get simple, actionable strategies to adapt their approach</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Apply it instantly to real conversations</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Quiz Screenshot Image */}
+                  <div
+                    className="mt-5 sm:mt-0 sm:w-48 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => setLightboxImage("/images/quiz-screenshot.png")}
+                  >
+                    <Image
+                      src="/images/quiz-screenshot.png"
+                      alt="Animal Selling quiz interface on mobile"
+                      width={300}
+                      height={650}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
 
                 <div className="p-5 rounded-xl bg-gradient-to-r from-cyan-500/10 to-green-500/10 border border-cyan-500/20">
                   <p className="text-gray-300">
