@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScoreBars } from "@/components/results/RadarChart";
 import { getAnimal, animals } from "@/lib/animal-data";
@@ -11,7 +12,7 @@ import { QuizResult, AnimalType, TeamMember } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getPurchasedResultIds } from "@/lib/purchases";
 import { syncQuizResults } from "@/lib/quiz-sync";
@@ -132,6 +133,14 @@ export default function DashboardPage() {
   const tipRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const { scrollIntoViewOnMobile } = useScrollIntoView();
 
+  // Edit profile state
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editError, setEditError] = useState("");
+  const [editSuccess, setEditSuccess] = useState("");
+  const [editLoading, setEditLoading] = useState(false);
+
   useEffect(() => {
     const loadUserData = async () => {
       const supabase = createClient();
@@ -245,6 +254,50 @@ export default function DashboardPage() {
     router.refresh();
   };
 
+  const openEditProfile = () => {
+    setEditName(user?.name || "");
+    setEditEmail(user?.email || "");
+    setEditError("");
+    setEditSuccess("");
+    setShowEditProfile(true);
+  };
+
+  const handleUpdateProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setEditError("");
+    setEditSuccess("");
+    setEditLoading(true);
+
+    try {
+      const response = await fetch("/api/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: editName, email: editEmail }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setEditError(data.error || "Failed to update profile");
+        return;
+      }
+
+      setEditSuccess(data.message);
+      setUser({ name: editName, email: editEmail });
+
+      // Close modal after short delay if successful
+      if (!data.emailChanged) {
+        setTimeout(() => {
+          setShowEditProfile(false);
+        }, 1500);
+      }
+    } catch {
+      setEditError("Failed to update profile. Please try again.");
+    } finally {
+      setEditLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
@@ -271,9 +324,14 @@ export default function DashboardPage() {
               Welcome back, {user?.name || "there"}!
             </p>
           </div>
-          <Button variant="outline" onClick={handleLogout} className="press-effect">
-            Sign Out
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={openEditProfile} className="press-effect">
+              Edit Profile
+            </Button>
+            <Button variant="outline" onClick={handleLogout} className="press-effect">
+              Sign Out
+            </Button>
+          </div>
         </div>
 
         {/* Hero Banner */}
@@ -680,6 +738,81 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Edit Profile Modal */}
+      {showEditProfile && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl max-w-md w-full p-6 relative animate-fade-in">
+            <button
+              onClick={() => setShowEditProfile(false)}
+              className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <h2 className="text-xl font-bold mb-4">Edit Profile</h2>
+
+            <form onSubmit={handleUpdateProfile} className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="editName" className="text-sm font-medium">
+                  Name
+                </label>
+                <Input
+                  id="editName"
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="editEmail" className="text-sm font-medium">
+                  Email
+                </label>
+                <Input
+                  id="editEmail"
+                  type="email"
+                  value={editEmail}
+                  onChange={(e) => setEditEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                />
+                <p className="text-xs text-muted-foreground">
+                  Changing your email will require verification.
+                </p>
+              </div>
+
+              {editError && (
+                <p className="text-red-500 text-sm">{editError}</p>
+              )}
+
+              {editSuccess && (
+                <p className="text-green-600 text-sm">{editSuccess}</p>
+              )}
+
+              <div className="flex gap-3 pt-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setShowEditProfile(false)}
+                  className="flex-1"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={editLoading}
+                  className="flex-1"
+                >
+                  {editLoading ? "Saving..." : "Save Changes"}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
