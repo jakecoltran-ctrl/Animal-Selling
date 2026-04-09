@@ -59,38 +59,43 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-bold text-white">The Evolution of Animal Selling</h3>
               </div>
 
-              {/* C2 Unlimited Image */}
-              <div className="mb-6 ml-13 max-w-md rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                <Image
-                  src="/images/animal-selling-c2.png"
-                  alt="Animal Selling - C2 Coaching & Training by C2 Unlimited, LLC"
-                  width={600}
-                  height={338}
-                  className="w-full h-auto"
-                />
-              </div>
-
               <div className="space-y-5 text-gray-300 leading-relaxed pl-13">
-                <p>
-                  Animal Selling™ was developed by C2 Unlimited, LLC as a simple, relatable framework
-                  designed to help sales professionals quickly understand one of the most important
-                  truths in selling:
-                </p>
+                {/* Text with floating image */}
+                <div className="sm:flex sm:gap-6">
+                  <div className="sm:flex-1">
+                    <p className="mb-5">
+                      Animal Selling™ was developed by C2 Unlimited, LLC as a simple, relatable framework
+                      designed to help sales professionals quickly understand one of the most important
+                      truths in selling:
+                    </p>
 
-                <div className="p-5 rounded-xl bg-gradient-to-r from-amber-500/10 to-red-500/10 border border-amber-500/20">
-                  <p className="text-xl font-bold text-white text-center">
-                    Sell to people the way THEY want to buy—not the way you want to sell.
-                  </p>
-                </div>
+                    <div className="p-5 rounded-xl bg-gradient-to-r from-amber-500/10 to-red-500/10 border border-amber-500/20 mb-5">
+                      <p className="text-xl font-bold text-white text-center">
+                        Sell to people the way THEY want to buy—not the way you want to sell.
+                      </p>
+                    </div>
 
-                <p>
-                  Built around our <span className="text-amber-500 font-semibold">Customer Preference Principle™</span>:
-                </p>
+                    <p className="mb-5">
+                      Built around our <span className="text-amber-500 font-semibold">Customer Preference Principle™</span>:
+                    </p>
 
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <p className="text-white font-medium text-center">
-                    Know your animal. Spot their animal. Adapt your approach. Close their way.
-                  </p>
+                    <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                      <p className="text-white font-medium text-center">
+                        Know your animal. Spot their animal. Adapt your approach. Close their way.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* C2 Unlimited Image - floated right */}
+                  <div className="mt-5 sm:mt-0 sm:w-72 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start">
+                    <Image
+                      src="/images/animal-selling-c2.png"
+                      alt="Animal Selling - C2 Coaching & Training by C2 Unlimited, LLC"
+                      width={400}
+                      height={225}
+                      className="w-full h-auto"
+                    />
+                  </div>
                 </div>
 
                 <p>This framework gives sales professionals a practical way to:</p>
