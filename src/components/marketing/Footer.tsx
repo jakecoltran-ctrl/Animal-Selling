@@ -64,6 +64,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/resources/customer-preference-principle" className="hover:text-primary transition-colors">
+                  Customer Preference Principle™
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="hover:text-primary transition-colors">
                   About
                 </Link>
