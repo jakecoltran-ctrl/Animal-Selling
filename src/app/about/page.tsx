@@ -355,7 +355,7 @@ export default function AboutPage() {
 
                   {/* Lion Training Materials Image */}
                   <div
-                    className="mt-5 sm:mt-0 sm:w-48 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                    className="mt-5 sm:mt-0 sm:w-36 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
                     onClick={() => setLightboxImage("/images/lion-training-materials.png")}
                   >
                     <Image
