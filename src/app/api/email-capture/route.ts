@@ -1,10 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+import { checkRateLimit, getRateLimitKey } from "@/lib/rate-limit";
 
-// In-memory storage for demo (would use Supabase in production)
-const emailCaptures: Array<{ email: string; source: string; createdAt: string }> = [];
+function getSupabaseAdmin() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 3 requests per minute per IP
+    const rateLimitKey = getRateLimitKey(request, "email-capture");
+    const rateLimit = checkRateLimit(rateLimitKey, { windowMs: 60000, maxRequests: 3 });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests" },
+        { status: 429 }
+      );
+    }
+
     const { email, source } = await request.json();
 
     if (!email || typeof email !== "string") {
@@ -23,25 +40,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = getSupabaseAdmin();
+
     // Check for duplicate
-    const exists = emailCaptures.some((e) => e.email.toLowerCase() === email.toLowerCase());
-    if (exists) {
+    const { data: existing } = await supabase
+      .from("email_captures")
+      .select("id")
+      .eq("email", email.toLowerCase())
+      .single();
+
+    if (existing) {
       return NextResponse.json(
         { message: "Email already registered" },
         { status: 200 }
       );
     }
 
-    // Store the email
-    emailCaptures.push({
+    // Insert new email capture
+    const { error } = await supabase.from("email_captures").insert({
       email: email.toLowerCase(),
       source: source || "unknown",
-      createdAt: new Date().toISOString(),
     });
 
-    // In production, you would save to Supabase here:
-    // const supabase = createClient();
-    // await supabase.from('email_captures').insert({ email, source });
+    if (error) {
+      // Handle duplicate key error gracefully
+      if (error.code === "23505") {
+        return NextResponse.json(
+          { message: "Email already registered" },
+          { status: 200 }
+        );
+      }
+      console.error("Error capturing email:", error);
+      return NextResponse.json(
+        { error: "Failed to capture email" },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { message: "Email captured successfully" },

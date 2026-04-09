@@ -1,72 +1,10 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-export async function POST(request: Request) {
-  try {
-    const supabase = createClient();
-
-    // Get authenticated user
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const body = await request.json();
-    const { quizResultId, stripePaymentId } = body;
-
-    if (!quizResultId) {
-      return NextResponse.json(
-        { error: "Quiz result ID is required" },
-        { status: 400 }
-      );
-    }
-
-    // Check if already purchased
-    const { data: existingPurchase } = await supabase
-      .from("purchases")
-      .select("id")
-      .eq("user_id", user.id)
-      .eq("quiz_result_id", quizResultId)
-      .eq("status", "completed")
-      .single();
-
-    if (existingPurchase) {
-      return NextResponse.json(
-        { message: "Already purchased", alreadyPurchased: true },
-        { status: 200 }
-      );
-    }
-
-    // Record the purchase
-    const { error } = await supabase.from("purchases").insert({
-      user_id: user.id,
-      quiz_result_id: quizResultId,
-      product_type: "full_report",
-      amount_cents: 499,
-      stripe_payment_id: stripePaymentId || null,
-      status: "completed",
-    });
-
-    if (error) {
-      console.error("Error recording purchase:", error);
-      return NextResponse.json(
-        { error: "Failed to record purchase" },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
-    console.error("Purchase API error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
-  }
-}
+// POST endpoint removed - purchases should only be created through:
+// 1. /api/stripe/verify (after Stripe checkout)
+// 2. /api/redeem-code (with valid gift code)
+// Direct POST to /api/purchases is not allowed to prevent payment bypass
 
 export async function GET() {
   try {

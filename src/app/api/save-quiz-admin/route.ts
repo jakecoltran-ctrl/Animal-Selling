@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 // Admin endpoint to save quiz result after email confirmation
-// Uses service role - doesn't require user session
+// Validates that the user's email has pending quiz data before saving
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -20,6 +20,39 @@ export async function POST(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!,
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
+
+    // Verify the userId exists and get the user's email
+    const { data: userData, error: userError } = await supabaseAdmin.auth.admin.getUserById(userId);
+
+    if (userError || !userData?.user) {
+      return NextResponse.json({ error: "Invalid user" }, { status: 400 });
+    }
+
+    // Verify user was confirmed recently (within last 10 minutes)
+    const confirmedAt = userData.user.email_confirmed_at;
+    if (!confirmedAt) {
+      return NextResponse.json({ error: "User not confirmed" }, { status: 400 });
+    }
+
+    const confirmedTime = new Date(confirmedAt).getTime();
+    const tenMinutesAgo = Date.now() - 10 * 60 * 1000;
+
+    // For existing users who confirmed long ago, verify they have pending data
+    if (confirmedTime < tenMinutesAgo) {
+      // Check if there's pending quiz data for this user's email
+      const { data: pendingData } = await supabaseAdmin
+        .from("pending_quiz_data")
+        .select("email")
+        .eq("email", userData.user.email?.toLowerCase())
+        .single();
+
+      if (!pendingData) {
+        return NextResponse.json(
+          { error: "No pending quiz data found" },
+          { status: 400 }
+        );
+      }
+    }
 
     // Transform app format to database format
     const dbRecord = {

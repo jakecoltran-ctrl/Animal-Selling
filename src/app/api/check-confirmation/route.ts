@@ -1,14 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { checkRateLimit, getRateLimitKey } from "@/lib/rate-limit";
 
-// Public API to check if an email has been confirmed
-// This doesn't require authentication - just checks the database
+// API to check if an email has been confirmed
+// Used during email confirmation flow
 export async function GET(request: NextRequest) {
   try {
+    // Rate limit: 20 requests per minute per IP (polling endpoint)
+    const rateLimitKey = getRateLimitKey(request, "check-confirmation");
+    const rateLimit = checkRateLimit(rateLimitKey, { windowMs: 60000, maxRequests: 20 });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json({ confirmed: false });
+    }
+
     const email = request.nextUrl.searchParams.get("email");
 
     if (!email) {
       return NextResponse.json({ error: "Email required" }, { status: 400 });
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ confirmed: false });
     }
 
     // Use service role to check user confirmation status
@@ -18,17 +33,17 @@ export async function GET(request: NextRequest) {
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 
-    // Check if user exists and is confirmed
+    // Query users to find by email
+    // Note: Supabase admin API requires listing users - we search through them
     const { data, error } = await supabaseAdmin.auth.admin.listUsers();
 
     if (error) {
-      console.error("Error checking confirmation:", error);
       return NextResponse.json({ confirmed: false });
     }
 
-    const user = data.users.find(u => u.email === email);
+    const user = data.users.find(u => u.email?.toLowerCase() === email.toLowerCase());
 
-    if (user && user.email_confirmed_at) {
+    if (user?.email_confirmed_at) {
       return NextResponse.json({ confirmed: true, userId: user.id });
     }
 

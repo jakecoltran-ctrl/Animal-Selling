@@ -1,21 +1,46 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { checkRateLimit, getRateLimitKey } from "@/lib/rate-limit";
 
 // Use service role for pending data (user doesn't exist yet)
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabaseAdmin() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 // POST - Save pending quiz data (before account creation)
-export async function POST(request: Request) {
+// Rate limited to prevent abuse
+export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 5 requests per minute per IP
+    const rateLimitKey = getRateLimitKey(request, "pending-quiz-post");
+    const rateLimit = checkRateLimit(rateLimitKey, { windowMs: 60000, maxRequests: 5 });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
+    const supabase = getSupabaseAdmin();
     const body = await request.json();
     const { email, quizAnswers, salesContext } = body;
 
     if (!email || !quizAnswers || !salesContext) {
       return NextResponse.json(
         { error: "Email, quizAnswers, and salesContext are required" },
+        { status: 400 }
+      );
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email format" },
         { status: 400 }
       );
     }
@@ -51,8 +76,10 @@ export async function POST(request: Request) {
 }
 
 // GET - Fetch pending quiz data by email
-export async function GET(request: Request) {
+// Only returns data, doesn't expose sensitive info
+export async function GET(request: NextRequest) {
   try {
+    const supabase = getSupabaseAdmin();
     const { searchParams } = new URL(request.url);
     const email = searchParams.get("email");
 
@@ -89,8 +116,9 @@ export async function GET(request: Request) {
 }
 
 // DELETE - Remove pending quiz data after processing
-export async function DELETE(request: Request) {
+export async function DELETE(request: NextRequest) {
   try {
+    const supabase = getSupabaseAdmin();
     const { searchParams } = new URL(request.url);
     const email = searchParams.get("email");
 

@@ -22,7 +22,6 @@ export default function ContactPage() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // TODO: Integrate with email service (e.g., Resend, SendGrid, etc.)
-    console.log("Form submitted:", formData);
 
     setStatus("sent");
     setFormData({ name: "", email: "", subject: "", message: "" });
