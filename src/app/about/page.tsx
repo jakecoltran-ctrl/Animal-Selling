@@ -393,19 +393,25 @@ export default function AboutPage() {
             <h2 className="text-3xl font-black text-white mb-8">The Philosophy</h2>
 
             {/* Customer Preference Principle Callout */}
-            <div className="mb-10 p-6 rounded-xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-cyan-500/10 border border-white/10">
+            <Link
+              href="/resources/customer-preference-principle"
+              className="block mb-10 p-6 rounded-xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-cyan-500/10 border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-[1.01] group"
+            >
               <div className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-2">
                 The Customer Preference Principle™
               </div>
               <p className="text-2xl font-bold text-white mb-3">
                 Sell to people the way THEY want to buy—not the way you want to sell.
               </p>
-              <p className="text-gray-400">
+              <p className="text-gray-400 mb-3">
                 The Golden Rule says treat others how you want to be treated. Animal Selling™ says
                 treat customers how THEY want to be treated. That's the difference between good
                 intentions and closed deals.
               </p>
-            </div>
+              <span className="text-amber-500 font-medium group-hover:underline">
+                Learn more →
+              </span>
+            </Link>
 
             <div className="space-y-6 text-gray-300 leading-relaxed">
               <p>
