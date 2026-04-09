@@ -661,15 +661,9 @@ export default function TeamDetailPage() {
                           </div>
                         </div>
                         <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 pl-8 sm:pl-0">
-                          <div className="text-left sm:text-right">
-                            <p className="font-medium text-sm sm:text-base" style={{ color: animal.color }}>
-                              {animal.name}
-                            </p>
-                            <p className="text-xs text-muted-foreground">{animal.title}</p>
-                          </div>
-                          {/* Management buttons */}
+                          {/* Management buttons - now on the left */}
                           {(canManage || canPromote) && (
-                            <div className="flex items-center gap-1 ml-auto sm:ml-2">
+                            <div className="flex items-center gap-1">
                               {canPromote && (
                                 <Button
                                   variant="ghost"
@@ -692,6 +686,12 @@ export default function TeamDetailPage() {
                               )}
                             </div>
                           )}
+                          <div className="text-left sm:text-right">
+                            <p className="font-medium text-sm sm:text-base" style={{ color: animal.color }}>
+                              {animal.name}
+                            </p>
+                            <p className="text-xs text-muted-foreground">{animal.title}</p>
+                          </div>
                         </div>
                       </div>
                     );
