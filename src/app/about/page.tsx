@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export default function AboutPage() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
   const faqs = [
     {
       q: "How long does the quiz take?",
@@ -169,7 +172,10 @@ export default function AboutPage() {
                   </div>
 
                   {/* Sales Training Worksheet Image */}
-                  <div className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start">
+                  <div
+                    className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => setLightboxOpen(true)}
+                  >
                     <Image
                       src="/images/sales-training-worksheet.png"
                       alt="D-23 Sales Training - Sales Pitch Exercise with Flooring worksheet"
@@ -461,6 +467,29 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-pointer"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white text-4xl font-light hover:text-gray-300 transition-colors"
+            onClick={() => setLightboxOpen(false)}
+          >
+            ×
+          </button>
+          <Image
+            src="/images/sales-training-worksheet.png"
+            alt="D-23 Sales Training - Sales Pitch Exercise with Flooring worksheet"
+            width={800}
+            height={1066}
+            className="max-h-[90vh] w-auto object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }
