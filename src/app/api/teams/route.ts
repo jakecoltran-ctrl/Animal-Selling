@@ -43,7 +43,22 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "Only team owner can delete" }, { status: 403 });
     }
 
-    // Delete all related records first
+    // Get gift codes for this team
+    const { data: giftCodes } = await supabaseAdmin
+      .from("gift_codes")
+      .select("id")
+      .eq("team_id", teamId);
+
+    // Clear gift_code_id from purchases that reference these codes
+    if (giftCodes && giftCodes.length > 0) {
+      const giftCodeIds = giftCodes.map(gc => gc.id);
+      await supabaseAdmin
+        .from("purchases")
+        .update({ gift_code_id: null })
+        .in("gift_code_id", giftCodeIds);
+    }
+
+    // Delete all related records
     await supabaseAdmin.from("gift_codes").delete().eq("team_id", teamId);
     await supabaseAdmin.from("team_members").delete().eq("team_id", teamId);
 
