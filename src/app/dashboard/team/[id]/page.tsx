@@ -311,18 +311,14 @@ export default function TeamDetailPage() {
     const supabase = createClient();
 
     if (isOwner) {
-      // Delete related records first (foreign key constraints)
-      await supabase.from("gift_codes").delete().eq("team_id", team.id);
-      await supabase.from("team_members").delete().eq("team_id", team.id);
+      // Use API route to delete team (handles RLS properly)
+      const response = await fetch(`/api/teams?teamId=${team.id}`, {
+        method: "DELETE",
+      });
 
-      // Now delete the team
-      const { error } = await supabase
-        .from("teams")
-        .delete()
-        .eq("id", team.id);
-
-      if (error) {
-        console.error("Failed to delete team:", error);
+      if (!response.ok) {
+        const data = await response.json();
+        console.error("Failed to delete team:", data.error);
         alert("Failed to delete team. Please try again.");
         return;
       }
