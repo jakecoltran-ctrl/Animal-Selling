@@ -143,26 +143,42 @@ export default function AboutPage() {
                   North America through programs developed and delivered by C2 Unlimited, LLC.
                 </p>
 
-                <p>Animal Selling™ has been taught in:</p>
+                {/* Text with training worksheet image to the right */}
+                <div className="sm:flex sm:gap-6">
+                  <div className="sm:flex-1">
+                    <p className="mb-4">Animal Selling™ has been taught in:</p>
 
-                <ul className="space-y-2 ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Live workshops</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>In-store retail trainings</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>In-home sales environments</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-cyan-500 mt-1">•</span>
-                    <span>Corporate leadership sessions</span>
-                  </li>
-                </ul>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Live workshops</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>In-store retail trainings</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>In-home sales environments</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-500 mt-1">•</span>
+                        <span>Corporate leadership sessions</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Sales Training Worksheet Image */}
+                  <div className="mt-5 sm:mt-0 sm:w-64 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start">
+                    <Image
+                      src="/images/sales-training-worksheet.png"
+                      alt="D-23 Sales Training - Sales Pitch Exercise with Flooring worksheet"
+                      width={400}
+                      height={533}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
 
                 <div className="p-5 rounded-xl bg-gradient-to-r from-orange-500/10 to-cyan-500/10 border border-orange-500/20">
                   <p className="text-gray-300">
