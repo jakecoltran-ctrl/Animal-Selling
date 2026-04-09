@@ -332,22 +332,41 @@ export default function AboutPage() {
                   identify a customer's preferred buying style—and adapt their approach in real time to match it.
                 </p>
 
-                <p>Because in the real world:</p>
+                {/* Text with lion training image to the right */}
+                <div className="sm:flex sm:gap-6">
+                  <div className="sm:flex-1">
+                    <p className="mb-4">Because in the real world:</p>
 
-                <ul className="space-y-2 ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>Salespeople don't have time for complex theory</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>Customers don't announce how they want to be sold</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>And connection has to happen fast</span>
-                  </li>
-                </ul>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <span className="text-red-500 mt-1">•</span>
+                        <span>Salespeople don't have time for complex theory</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-red-500 mt-1">•</span>
+                        <span>Customers don't announce how they want to be sold</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-red-500 mt-1">•</span>
+                        <span>And connection has to happen fast</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Lion Training Materials Image */}
+                  <div
+                    className="mt-5 sm:mt-0 sm:w-48 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-lg self-start cursor-pointer hover:border-white/30 transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => setLightboxImage("/images/lion-training-materials.png")}
+                  >
+                    <Image
+                      src="/images/lion-training-materials.png"
+                      alt="Lion mascot with Animal Selling training materials"
+                      width={300}
+                      height={300}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
 
                 <div className="p-6 rounded-xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-green-500/10 border border-white/10 text-center space-y-3">
                   <p className="text-xl font-bold text-white">Animal Selling™ bridges that gap.</p>
