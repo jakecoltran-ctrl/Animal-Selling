@@ -8,14 +8,14 @@ interface TeamSafariBubbleProps {
 
 export function TeamSafariBubble({ className = "" }: TeamSafariBubbleProps) {
   return (
-    <div className={`flex flex-col items-center w-full max-w-xs mx-auto ${className}`}>
+    <div className={`flex flex-col items-center w-full max-w-sm mx-auto ${className}`}>
       {/* Safari Scene - Logo Image */}
       <Image
         src="/team-safari-logo.png"
         alt="Team Safari - Animals in a safari jeep"
-        width={240}
-        height={140}
-        className="mb-3 w-full h-auto max-w-[240px]"
+        width={360}
+        height={210}
+        className="mb-3 w-full h-auto max-w-[360px]"
         priority
       />
 
@@ -63,9 +63,9 @@ export function TeamSafariWithJeep({ className = "" }: TeamSafariBubbleProps) {
       <Image
         src="/team-safari-logo.png"
         alt="Team Safari"
-        width={40}
-        height={24}
-        className="h-6 w-auto"
+        width={56}
+        height={32}
+        className="h-8 w-auto"
       />
       <span
         className="text-xl font-black tracking-tight whitespace-nowrap"
