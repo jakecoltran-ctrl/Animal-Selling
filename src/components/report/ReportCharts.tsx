@@ -112,7 +112,23 @@ export function BlendPieChart({ percentages, primaryType }: BlendPieChartProps) 
             ))}
           </Pie>
           <Tooltip
-            formatter={(value: number, name: string) => [`${value}%`, name]}
+            content={({ active, payload }) => {
+              if (!active || !payload || !payload.length) return null;
+              const item = payload[0].payload;
+              return (
+                <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 shadow-lg">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-3 h-3 rounded"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <p className="text-gray-200 font-medium">
+                      {item.name}: <span className="text-white">{item.value}%</span>
+                    </p>
+                  </div>
+                </div>
+              );
+            }}
           />
         </PieChart>
       </ResponsiveContainer>
@@ -175,7 +191,18 @@ export function StrengthsRadar({ primaryType }: StrengthsRadarProps) {
             fillOpacity={0.4}
             strokeWidth={2}
           />
-          <Tooltip formatter={(value: number) => [`${value}/100`, "Score"]} />
+          <Tooltip
+            content={({ active, payload }) => {
+              if (!active || !payload || !payload.length) return null;
+              return (
+                <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 shadow-lg">
+                  <p className="text-gray-200 font-medium">
+                    {payload[0].payload.dimension}: <span className="text-white">{payload[0].value}/100</span>
+                  </p>
+                </div>
+              );
+            }}
+          />
         </RechartsRadarChart>
       </ResponsiveContainer>
       <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
@@ -481,7 +508,17 @@ export function ScoreDistribution({ percentages }: ScoreDistributionProps) {
           />
           <YAxis domain={[0, 50]} tick={{ fontSize: 11 }} />
           <Tooltip
-            formatter={(value: number) => [`${value}%`, "Score"]}
+            content={({ active, payload }) => {
+              if (!active || !payload || !payload.length) return null;
+              const item = payload[0].payload;
+              return (
+                <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 shadow-lg">
+                  <p className="text-gray-200 font-medium">
+                    {item.name}: <span className="text-white">{item.score}%</span>
+                  </p>
+                </div>
+              );
+            }}
           />
           <Bar dataKey="score" radius={[4, 4, 0, 0]}>
             {data.map((entry, index) => (
