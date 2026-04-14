@@ -98,6 +98,7 @@ export async function POST(request: Request) {
       const dbRecord = {
         id: result.id,
         user_id: user.id,
+        email: user.email,
         sales_context: result.salesContext,
         scores: result.scores,
         percentages: result.percentages,

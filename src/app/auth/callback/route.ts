@@ -73,6 +73,7 @@ export async function GET(request: Request) {
               .insert({
                 id: quizResult.id,
                 user_id: userId,
+                email: userEmail,
                 sales_context: quizResult.salesContext,
                 scores: quizResult.scores,
                 percentages: quizResult.percentages,
