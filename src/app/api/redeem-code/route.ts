@@ -61,9 +61,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if code is already used (skip for unlimited promo codes)
-    const unlimitedCodes = ["FREETRY1"];
-    const isUnlimitedCode = unlimitedCodes.includes(giftCode.code);
+    // Check if code is already used (skip for unlimited promo codes from env)
+    const unlimitedCodes = (process.env.UNLIMITED_PROMO_CODES || "")
+      .split(",")
+      .map((c) => c.trim().toUpperCase())
+      .filter(Boolean);
+    const isUnlimitedCode = unlimitedCodes.includes(giftCode.code.toUpperCase());
 
     if (!isUnlimitedCode && (giftCode.used_at || giftCode.used_by)) {
       return NextResponse.json(
