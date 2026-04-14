@@ -339,9 +339,33 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
         Your animal blend totals 100% — focus on developing the left side
       </p>
 
+      {/* Animal icons positioned above bar - always visible */}
+      <div className="flex mb-2">
+        {data.map((item) => {
+          // Calculate position to center icon over its segment
+          return (
+            <div
+              key={`icon-${item.type}`}
+              className="flex flex-col items-center"
+              style={{ width: `${item.score}%`, minWidth: '40px' }}
+            >
+              <div
+                className="rounded-full p-1 shadow-md border-2"
+                style={{
+                  backgroundColor: 'white',
+                  borderColor: item.color,
+                }}
+              >
+                <AnimalIcon type={item.type} size="sm" variant="head" />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
       {/* Stacked Horizontal Bar */}
-      <div className="relative h-16 rounded-xl overflow-hidden flex shadow-inner">
-        {data.map((item, index) => (
+      <div className="relative h-12 rounded-xl overflow-hidden flex shadow-inner">
+        {data.map((item) => (
           <div
             key={item.type}
             className="h-full flex items-center justify-center relative transition-all"
@@ -351,32 +375,26 @@ export function GrowthGapChart({ scores, primaryType }: GrowthGapChartProps) {
               opacity: lowestTwo.includes(item.type) ? 1 : 0.65,
             }}
           >
-            {/* Only show label if segment is wide enough */}
-            {item.score >= 15 && (
-              <div className="flex flex-col items-center">
-                <div className="bg-white/90 rounded-full p-0.5">
-                  <AnimalIcon type={item.type} size="sm" variant="head" />
-                </div>
-                <span className="text-xs font-bold text-white drop-shadow-md">{item.score}%</span>
-              </div>
+            {/* Show percentage inside bar if wide enough */}
+            {item.score >= 12 && (
+              <span className="text-xs font-bold text-white drop-shadow-md">{item.score}%</span>
             )}
           </div>
         ))}
       </div>
 
-      {/* Labels for small segments (shown below bar) */}
-      <div className="flex mt-2 gap-1">
+      {/* Percentages below bar for small segments */}
+      <div className="flex mt-1">
         {data.map((item) => (
-          item.score < 15 && (
-            <div
-              key={item.type}
-              className="flex items-center gap-1 text-xs"
-              style={{ width: `${item.score}%` }}
-            >
-              <AnimalIcon type={item.type} size={12} variant="head" />
+          <div
+            key={`label-${item.type}`}
+            className="flex items-center justify-center text-xs"
+            style={{ width: `${item.score}%`, minWidth: '40px' }}
+          >
+            {item.score < 12 && (
               <span style={{ color: item.color }} className="font-bold">{item.score}%</span>
-            </div>
-          )
+            )}
+          </div>
         ))}
       </div>
 
