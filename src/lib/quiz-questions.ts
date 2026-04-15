@@ -629,27 +629,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q22",
-    baseText: "In team meetings, I ensure everyone's voice is heard before pushing for decisions.",
+    baseText: "In team meetings, I typically drive for decisions and action items rather than ensuring everyone's voice is heard.",
     variants: [
       {
         sellType: "product",
-        text: "In sales team meetings, I make sure everyone shares their perspective before pushing for decisions and next steps.",
+        text: "In sales team meetings, I push for decisions and next steps rather than making sure everyone shares their perspective.",
       },
       {
         sellType: "service",
-        text: "In team discussions, I facilitate input from every team member before driving toward action items.",
+        text: "In team discussions, I drive toward action items rather than facilitating input from every team member.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Retriever (inclusive) + Penguin (voices) | Disagree: Lion (decisive) + Beaver (efficient)
-      5: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
-      4: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
+      // Agree: Lion (decisive) + Beaver (efficient) | Disagree: Retriever (inclusive) + Penguin (voices)
+      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
+      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
-      1: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
+      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
+      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
     },
-    primaryType: "retriever",
+    primaryType: "lion",
     salesStage: "presenting",
   },
 
