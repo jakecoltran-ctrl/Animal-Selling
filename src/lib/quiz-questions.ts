@@ -531,33 +531,33 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q20",
-    baseText: "My ideal client relationship is efficient and results-focused rather than warm and personally connected.",
+    baseText: "I prefer to dive into client meetings with energy and enthusiasm rather than preparing extensively beforehand.",
     variants: [
       {
         sellType: "product",
         customerType: "b2b",
-        text: "With corporate accounts, I prefer efficient, results-focused interactions over building personal friendships.",
+        text: "With corporate accounts, I bring energy and think on my feet rather than preparing detailed agendas.",
       },
       {
         sellType: "product",
         customerType: "b2c",
-        text: "With customers, I prefer helpful, efficient service over becoming personally invested in their lives.",
+        text: "With customers, I rely on my enthusiasm and presence rather than scripted approaches.",
       },
       {
         sellType: "service",
-        text: "With clients, I prefer professional, results-oriented partnerships over becoming close personal friends.",
+        text: "With clients, I lead with energy and adapt in the moment rather than following a detailed preparation plan.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Beaver (efficient) + Lion (results) | Disagree: Retriever (warm) + Penguin (connected)
-      5: { lion: 2, penguin: 0, retriever: 0, beaver: 4 },
-      4: { lion: 1, penguin: 0, retriever: 0, beaver: 2 },
+      // Agree: Lion (action) + Penguin (energy) | Disagree: Beaver (prepare) + Retriever (careful)
+      5: { lion: 4, penguin: 2, retriever: 0, beaver: 0 },
+      4: { lion: 2, penguin: 1, retriever: 0, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
-      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      2: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
+      1: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
     },
-    primaryType: "beaver",
+    primaryType: "lion",
     salesStage: "retention",
   },
 
