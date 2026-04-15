@@ -164,6 +164,26 @@ function TeamSafariPageContent() {
 
     const supabase = createClient();
 
+    // First, check if user has completed a quiz
+    const quizResults = await fetchQuizResultsFromDB();
+
+    if (quizResults.length === 0) {
+      alert("You need to complete the Animal Selling quiz before creating a team. Let's take you there now!");
+      router.push("/quiz");
+      return;
+    }
+
+    // Sort by date and get the most recent result
+    quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const latestResult = quizResults[0];
+
+    // Verify the quiz result has required data
+    if (!latestResult.primaryType || !latestResult.salesContext) {
+      alert("Your quiz results appear incomplete. Please retake the quiz to create a team.");
+      router.push("/quiz");
+      return;
+    }
+
     // Get user info
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
@@ -171,20 +191,10 @@ function TeamSafariPageContent() {
     const userName = user.user_metadata?.name || user.email?.split("@")[0] || "Team Member";
     const userEmail = user.email || "";
 
-    // Get user's latest quiz result for their animal type and sales context
-    // Get user's quiz results from database
-    let userAnimalType: AnimalType = "lion";
-    let userSalesContext: SalesContext | null = null;
-    let userQuizResultId: string | null = null;
-
-    const quizResults = await fetchQuizResultsFromDB();
-
-    if (quizResults.length > 0) {
-      quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      userAnimalType = quizResults[0].primaryType;
-      userSalesContext = quizResults[0].salesContext || null;
-      userQuizResultId = quizResults[0].id;
-    }
+    // Use validated quiz data
+    const userAnimalType = latestResult.primaryType;
+    const userSalesContext = latestResult.salesContext;
+    const userQuizResultId = latestResult.id;
 
     const newInviteCode = Math.random().toString(36).substring(2, 10).toUpperCase();
 
@@ -213,9 +223,9 @@ function TeamSafariPageContent() {
         name: userName,
         email: userEmail,
         animal_type: userAnimalType,
-        sell_type: userSalesContext?.sellType || null,
-        customer_type: userSalesContext?.customerType || null,
-        sales_channel: userSalesContext?.salesChannel || null,
+        sell_type: userSalesContext.sellType,
+        customer_type: userSalesContext.customerType,
+        sales_channel: userSalesContext.salesChannel,
         quiz_result_id: userQuizResultId,
       });
 
@@ -232,6 +242,28 @@ function TeamSafariPageContent() {
 
     setJoining(true);
     const supabase = createClient();
+
+    // First, check if user has completed a quiz
+    const quizResults = await fetchQuizResultsFromDB();
+
+    if (quizResults.length === 0) {
+      alert("You need to complete the Animal Selling quiz before joining a team. Let's take you there now!");
+      setJoining(false);
+      router.push("/quiz");
+      return;
+    }
+
+    // Sort by date and get the most recent result
+    quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const latestResult = quizResults[0];
+
+    // Verify the quiz result has required data
+    if (!latestResult.primaryType || !latestResult.salesContext) {
+      alert("Your quiz results appear incomplete. Please retake the quiz to join a team.");
+      setJoining(false);
+      router.push("/quiz");
+      return;
+    }
 
     // Find team by invite code
     const { data: teamData, error: teamError } = await supabase
@@ -271,19 +303,10 @@ function TeamSafariPageContent() {
     const userName = user.user_metadata?.name || user.email?.split("@")[0] || "Team Member";
     const userEmail = user.email || "";
 
-    // Get user's animal type and sales context from database
-    let userAnimalType: AnimalType = "lion";
-    let userSalesContext: SalesContext | null = null;
-    let userQuizResultId: string | null = null;
-
-    const quizResults = await fetchQuizResultsFromDB();
-
-    if (quizResults.length > 0) {
-      quizResults.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      userAnimalType = quizResults[0].primaryType;
-      userSalesContext = quizResults[0].salesContext || null;
-      userQuizResultId = quizResults[0].id;
-    }
+    // Use validated quiz data
+    const userAnimalType = latestResult.primaryType;
+    const userSalesContext = latestResult.salesContext;
+    const userQuizResultId = latestResult.id;
 
     // Join team
     const { error: joinError } = await supabase
@@ -294,9 +317,9 @@ function TeamSafariPageContent() {
         name: userName,
         email: userEmail,
         animal_type: userAnimalType,
-        sell_type: userSalesContext?.sellType || null,
-        customer_type: userSalesContext?.customerType || null,
-        sales_channel: userSalesContext?.salesChannel || null,
+        sell_type: userSalesContext.sellType,
+        customer_type: userSalesContext.customerType,
+        sales_channel: userSalesContext.salesChannel,
         quiz_result_id: userQuizResultId,
       });
 
