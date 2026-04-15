@@ -507,11 +507,11 @@ export const quizQuestions: QuizQuestion[] = [
     questionType: "quadrant",
     scoring: {
       // Agree: Beaver (thorough) + Retriever (careful) | Disagree: Penguin (energy) + Lion (compelling)
-      5: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
-      4: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
+      5: { lion: 0, penguin: 0, retriever: 3, beaver: 3 },
+      4: { lion: 0, penguin: 0, retriever: 2, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
-      1: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
+      2: { lion: 2, penguin: 2, retriever: 0, beaver: 0 },
+      1: { lion: 3, penguin: 3, retriever: 0, beaver: 0 },
     },
     primaryType: "beaver",
     salesStage: "presenting",
@@ -558,12 +558,12 @@ export const quizQuestions: QuizQuestion[] = [
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Penguin (celebrate) + Retriever (team) | Disagree: Lion (next deal) + Beaver (efficient)
+      // Agree: Penguin (celebrate) + Retriever (team) | Disagree: Beaver (efficient) + Lion (next deal)
       5: { lion: 0, penguin: 4, retriever: 2, beaver: 0 },
       4: { lion: 0, penguin: 2, retriever: 1, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
-      1: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
+      2: { lion: 1, penguin: 0, retriever: 0, beaver: 2 },
+      1: { lion: 2, penguin: 0, retriever: 0, beaver: 4 },
     },
     primaryType: "penguin",
     salesStage: "closing",
@@ -591,11 +591,11 @@ export const quizQuestions: QuizQuestion[] = [
     questionType: "quadrant",
     scoring: {
       // Agree: Lion (action) + Penguin (energy) | Disagree: Beaver (prepare) + Retriever (careful)
-      5: { lion: 4, penguin: 2, retriever: 0, beaver: 0 },
-      4: { lion: 2, penguin: 1, retriever: 0, beaver: 0 },
+      5: { lion: 3, penguin: 3, retriever: 0, beaver: 0 },
+      4: { lion: 2, penguin: 2, retriever: 0, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
-      1: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      2: { lion: 0, penguin: 0, retriever: 2, beaver: 2 },
+      1: { lion: 0, penguin: 0, retriever: 3, beaver: 3 },
     },
     primaryType: "lion",
     salesStage: "retention",
@@ -617,11 +617,11 @@ export const quizQuestions: QuizQuestion[] = [
     questionType: "quadrant",
     scoring: {
       // Agree: Beaver (study) + Lion (master) | Disagree: Penguin (jump in) + Retriever (learn socially)
-      5: { lion: 2, penguin: 0, retriever: 0, beaver: 4 },
-      4: { lion: 1, penguin: 0, retriever: 0, beaver: 2 },
+      5: { lion: 3, penguin: 0, retriever: 0, beaver: 3 },
+      4: { lion: 2, penguin: 0, retriever: 0, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 2, retriever: 1, beaver: 0 },
-      1: { lion: 0, penguin: 4, retriever: 2, beaver: 0 },
+      2: { lion: 0, penguin: 2, retriever: 2, beaver: 0 },
+      1: { lion: 0, penguin: 3, retriever: 3, beaver: 0 },
     },
     primaryType: "beaver",
     salesStage: "presenting",
@@ -643,11 +643,11 @@ export const quizQuestions: QuizQuestion[] = [
     questionType: "quadrant",
     scoring: {
       // Agree: Lion (decisive) + Beaver (efficient) | Disagree: Retriever (inclusive) + Penguin (voices)
-      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
-      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      5: { lion: 3, penguin: 0, retriever: 0, beaver: 3 },
+      4: { lion: 2, penguin: 0, retriever: 0, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
-      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      2: { lion: 0, penguin: 2, retriever: 2, beaver: 0 },
+      1: { lion: 0, penguin: 3, retriever: 3, beaver: 0 },
     },
     primaryType: "lion",
     salesStage: "presenting",
