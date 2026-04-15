@@ -238,8 +238,28 @@ export const quizQuestions: QuizQuestion[] = [
     salesStage: "presenting",
   },
 
+  {
+    id: "q7b",
+    baseText: "When a deal stalls, I push to restart momentum rather than waiting for the prospect to re-engage.",
+    variants: [
+      {
+        sellType: "product",
+        text: "When a deal goes quiet, I proactively push to get things moving rather than waiting for the buyer to come back.",
+      },
+      {
+        sellType: "service",
+        text: "When a client goes silent, I reach out assertively to restart the conversation rather than giving them space.",
+      },
+    ],
+    questionType: "spectrum",
+    spectrumPair: ["lion", "retriever"],
+    scoring: lionRetrieverScoring,
+    primaryType: "lion",
+    salesStage: "closing",
+  },
+
   // ============================================
-  // Penguin ↔ Beaver Axis (7 questions)
+  // Penguin ↔ Beaver Axis (8 questions)
   // ============================================
 
   {
@@ -394,6 +414,26 @@ export const quizQuestions: QuizQuestion[] = [
     salesStage: "presenting",
   },
 
+  {
+    id: "q14b",
+    baseText: "I build excitement and momentum in conversations rather than focusing on covering all the details.",
+    variants: [
+      {
+        sellType: "product",
+        text: "In product discussions, I focus on generating excitement rather than ensuring every specification is covered.",
+      },
+      {
+        sellType: "service",
+        text: "In client meetings, I prioritize building enthusiasm rather than methodically reviewing all deliverables.",
+      },
+    ],
+    questionType: "spectrum",
+    spectrumPair: ["penguin", "beaver"],
+    scoring: penguinBeaverScoring,
+    primaryType: "penguin",
+    salesStage: "presenting",
+  },
+
   // ============================================
   // TYPE B: QUADRANT QUESTIONS (10 total)
   // All four types score based on answer position
@@ -427,27 +467,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q16",
-    baseText: "In discovery meetings, I'm most satisfied when I uncover the key pain point quickly rather than building deep personal rapport.",
+    baseText: "In discovery meetings, I focus on building deep personal rapport before diving into their pain points.",
     variants: [
       {
         sellType: "product",
-        text: "In discovery calls, I feel successful when I identify the core need fast rather than when I build a personal connection.",
+        text: "In discovery calls, I prioritize building a personal connection before identifying their core needs.",
       },
       {
         sellType: "service",
-        text: "In initial consultations, I prioritize finding the problem to solve over establishing a personal relationship first.",
+        text: "In initial consultations, I establish a personal relationship first before focusing on the problem to solve.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Lion (results) + Beaver (analytical) | Disagree: Retriever (relationship) + Penguin (rapport)
-      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
-      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      // Agree: Retriever (relationship) + Penguin (rapport) | Disagree: Lion (results) + Beaver (analytical)
+      5: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      4: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
-      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      2: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      1: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
     },
-    primaryType: "lion",
+    primaryType: "retriever",
     salesStage: "discovery",
   },
 
@@ -492,12 +532,12 @@ export const quizQuestions: QuizQuestion[] = [
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Lion (challenge) + Penguin (confident) | Disagree: Beaver (analyze) + Retriever (understand)
-      5: { lion: 4, penguin: 2, retriever: 0, beaver: 0 },
-      4: { lion: 2, penguin: 1, retriever: 0, beaver: 0 },
+      // Agree: Lion (challenge) + Beaver (logic) | Disagree: Retriever (understand) + Penguin (empathy)
+      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
+      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
-      1: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
+      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
     },
     primaryType: "lion",
     salesStage: "objections",
@@ -576,12 +616,12 @@ export const quizQuestions: QuizQuestion[] = [
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Beaver (study) + Retriever (careful) | Disagree: Penguin (jump in) + Lion (action)
-      5: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
-      4: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
+      // Agree: Beaver (study) + Lion (master) | Disagree: Penguin (jump in) + Retriever (learn socially)
+      5: { lion: 2, penguin: 0, retriever: 0, beaver: 4 },
+      4: { lion: 1, penguin: 0, retriever: 0, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
-      1: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
+      2: { lion: 0, penguin: 2, retriever: 1, beaver: 0 },
+      1: { lion: 0, penguin: 4, retriever: 2, beaver: 0 },
     },
     primaryType: "beaver",
     salesStage: "presenting",
@@ -589,27 +629,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q22",
-    baseText: "In team meetings, I typically drive for decisions and action items rather than ensuring everyone's voice is heard.",
+    baseText: "In team meetings, I ensure everyone's voice is heard before pushing for decisions.",
     variants: [
       {
         sellType: "product",
-        text: "In sales team meetings, I push for decisions and next steps rather than making sure everyone shares their perspective.",
+        text: "In sales team meetings, I make sure everyone shares their perspective before pushing for decisions and next steps.",
       },
       {
         sellType: "service",
-        text: "In team discussions, I drive toward action items rather than facilitating input from every team member.",
+        text: "In team discussions, I facilitate input from every team member before driving toward action items.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Lion (decisive) + Beaver (efficient) | Disagree: Retriever (inclusive) + Penguin (voices)
-      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
-      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      // Agree: Retriever (inclusive) + Penguin (voices) | Disagree: Lion (decisive) + Beaver (efficient)
+      5: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      4: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
-      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      2: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      1: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
     },
-    primaryType: "lion",
+    primaryType: "retriever",
     salesStage: "presenting",
   },
 
