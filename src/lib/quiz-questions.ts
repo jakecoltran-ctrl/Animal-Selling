@@ -32,6 +32,24 @@ const penguinBeaverScoring: QuizQuestion["scoring"] = {
   1: { lion: 0, penguin: -1, retriever: 0, beaver: 7 },
 };
 
+// Retriever ↔ Lion spectrum scoring (inverse - for flipped questions where agree = Retriever)
+const retrieverLionScoring: QuizQuestion["scoring"] = {
+  5: { lion: -1, penguin: 0, retriever: 7, beaver: 0 },
+  4: { lion: 0, penguin: 0, retriever: 4, beaver: 0 },
+  3: { lion: 1, penguin: 0, retriever: 1, beaver: 0 },
+  2: { lion: 4, penguin: 0, retriever: 0, beaver: 0 },
+  1: { lion: 7, penguin: 0, retriever: -1, beaver: 0 },
+};
+
+// Beaver ↔ Penguin spectrum scoring (inverse - for flipped questions where agree = Beaver)
+const beaverPenguinScoring: QuizQuestion["scoring"] = {
+  5: { lion: 0, penguin: -1, retriever: 0, beaver: 7 },
+  4: { lion: 0, penguin: 0, retriever: 0, beaver: 4 },
+  3: { lion: 0, penguin: 1, retriever: 0, beaver: 1 },
+  2: { lion: 0, penguin: 4, retriever: 0, beaver: 0 },
+  1: { lion: 0, penguin: 7, retriever: 0, beaver: -1 },
+};
+
 export const quizQuestions: QuizQuestion[] = [
   // ============================================
   // TYPE A: SPECTRUM QUESTIONS (14 total)
@@ -72,59 +90,59 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q2",
-    baseText: "I'd rather qualify a prospect quickly and move on than invest extra time understanding their full situation.",
+    baseText: "I invest extra time understanding a prospect's full situation rather than quickly qualifying and moving on.",
     variants: [
       {
         sellType: "product",
         customerType: "b2b",
-        text: "In discovery with a corporate buyer, I focus on determining fit quickly rather than exploring their entire business context.",
+        text: "In discovery with a corporate buyer, I explore their entire business context rather than just determining fit quickly.",
       },
       {
         sellType: "product",
         customerType: "b2c",
-        text: "When a customer is browsing, I quickly assess if they're ready to buy rather than learning everything about their situation.",
+        text: "When a customer is browsing, I take time to learn about their situation rather than quickly assessing if they're ready to buy.",
       },
       {
         sellType: "service",
         customerType: "b2b",
-        text: "On discovery calls, I qualify budget and timeline early rather than spending extensive time understanding their challenges.",
+        text: "On discovery calls, I spend time understanding their challenges rather than qualifying budget and timeline early.",
       },
       {
         sellType: "service",
         customerType: "b2c",
-        text: "In consultations, I determine if someone is a fit quickly rather than diving deep into their full background.",
+        text: "In consultations, I dive deep into their full background rather than quickly determining if someone is a fit.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["lion", "retriever"],
-    scoring: lionRetrieverScoring,
-    primaryType: "lion",
+    scoring: retrieverLionScoring,
+    primaryType: "retriever",
     salesStage: "discovery",
   },
 
   {
     id: "q3",
-    baseText: "During presentations, I focus on driving toward a decision rather than ensuring everyone feels completely comfortable.",
+    baseText: "During presentations, I ensure everyone feels completely comfortable before pushing toward a decision.",
     variants: [
       {
         sellType: "product",
         customerType: "b2b",
-        text: "In product demos, I keep pushing toward next steps rather than pausing to make sure every stakeholder is fully comfortable.",
+        text: "In product demos, I pause to make sure every stakeholder is fully comfortable rather than pushing toward next steps.",
       },
       {
         sellType: "product",
         customerType: "b2c",
-        text: "When showing products, I guide customers toward a purchase decision rather than letting them take unlimited time.",
+        text: "When showing products, I let customers take the time they need rather than guiding them toward a quick purchase decision.",
       },
       {
         sellType: "service",
-        text: "In pitch meetings, I drive toward commitment rather than extending discussions to ensure everyone is completely at ease.",
+        text: "In pitch meetings, I extend discussions to ensure everyone is at ease rather than driving toward immediate commitment.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["lion", "retriever"],
-    scoring: lionRetrieverScoring,
-    primaryType: "lion",
+    scoring: retrieverLionScoring,
+    primaryType: "retriever",
     salesStage: "presenting",
   },
 
@@ -150,27 +168,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q5",
-    baseText: "I ask for the business as soon as buying signals appear rather than waiting until the prospect initiates.",
+    baseText: "I wait for the prospect to be fully ready before asking for the business rather than jumping on early buying signals.",
     variants: [
       {
         sellType: "product",
         customerType: "b2b",
-        text: "When a corporate buyer shows interest, I propose next steps immediately rather than waiting for them to ask.",
+        text: "When a corporate buyer shows interest, I wait for them to ask about next steps rather than proposing immediately.",
       },
       {
         sellType: "product",
         customerType: "b2c",
-        text: "When a customer seems interested, I move to close the sale rather than waiting for them to decide on their own.",
+        text: "When a customer seems interested, I let them decide on their own rather than moving to close the sale.",
       },
       {
         sellType: "service",
-        text: "When a prospect shows enthusiasm, I ask for the engagement rather than waiting for them to bring up next steps.",
+        text: "When a prospect shows enthusiasm, I wait for them to bring up next steps rather than asking for the engagement.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["lion", "retriever"],
-    scoring: lionRetrieverScoring,
-    primaryType: "lion",
+    scoring: retrieverLionScoring,
+    primaryType: "retriever",
     salesStage: "closing",
   },
 
@@ -202,21 +220,21 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q7",
-    baseText: "In competitive situations, I energize from the challenge of winning rather than finding collaborative solutions.",
+    baseText: "In competitive situations, I prefer finding collaborative solutions rather than focusing on winning.",
     variants: [
       {
         sellType: "product",
-        text: "In competitive bids, I'm motivated by beating the competition rather than finding win-win outcomes.",
+        text: "In competitive bids, I look for win-win outcomes rather than focusing on beating the competition.",
       },
       {
         sellType: "service",
-        text: "In RFP situations, I focus on winning against competitors rather than exploring collaborative approaches.",
+        text: "In RFP situations, I explore collaborative approaches rather than focusing on winning against competitors.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["lion", "retriever"],
-    scoring: lionRetrieverScoring,
-    primaryType: "lion",
+    scoring: retrieverLionScoring,
+    primaryType: "retriever",
     salesStage: "presenting",
   },
 
@@ -252,21 +270,21 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q9",
-    baseText: "I prefer conversational, free-flowing discovery calls over following a structured question framework.",
+    baseText: "I prefer following a structured question framework over free-flowing, conversational discovery calls.",
     variants: [
       {
         sellType: "product",
-        text: "In discovery meetings, I let the conversation flow naturally rather than following a structured list of questions.",
+        text: "In discovery meetings, I follow a structured list of questions rather than letting the conversation flow naturally.",
       },
       {
         sellType: "service",
-        text: "On discovery calls, I prefer organic conversation over methodically working through a question framework.",
+        text: "On discovery calls, I methodically work through a question framework rather than having organic conversation.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["penguin", "beaver"],
-    scoring: penguinBeaverScoring,
-    primaryType: "penguin",
+    scoring: beaverPenguinScoring,
+    primaryType: "beaver",
     salesStage: "discovery",
   },
 
@@ -292,41 +310,41 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q11",
-    baseText: "I handle objections by redirecting with enthusiasm rather than responding with detailed evidence.",
+    baseText: "I handle objections with detailed evidence rather than redirecting with enthusiasm.",
     variants: [
       {
         sellType: "product",
-        text: "When buyers raise concerns, I redirect with energy and positive framing rather than countering with detailed data.",
+        text: "When buyers raise concerns, I counter with detailed data rather than redirecting with energy and positive framing.",
       },
       {
         sellType: "service",
-        text: "When clients object, I address it with enthusiasm and reframing rather than detailed evidence and documentation.",
+        text: "When clients object, I provide detailed evidence and documentation rather than addressing it with enthusiasm and reframing.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["penguin", "beaver"],
-    scoring: penguinBeaverScoring,
-    primaryType: "penguin",
+    scoring: beaverPenguinScoring,
+    primaryType: "beaver",
     salesStage: "objections",
   },
 
   {
     id: "q12",
-    baseText: "I close deals by making it feel like a natural next step in our relationship rather than presenting a thorough summary.",
+    baseText: "I close deals by presenting a thorough summary rather than just making it feel like a natural next step.",
     variants: [
       {
         sellType: "product",
-        text: "I close by making the purchase feel like a natural extension of our conversation rather than presenting a detailed recap.",
+        text: "I close by presenting a detailed recap rather than just making the purchase feel like a natural extension of our conversation.",
       },
       {
         sellType: "service",
-        text: "I close engagements by building on our relationship momentum rather than presenting a comprehensive summary.",
+        text: "I close engagements by presenting a comprehensive summary rather than just building on relationship momentum.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["penguin", "beaver"],
-    scoring: penguinBeaverScoring,
-    primaryType: "penguin",
+    scoring: beaverPenguinScoring,
+    primaryType: "beaver",
     salesStage: "closing",
   },
 
@@ -358,21 +376,21 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q14",
-    baseText: "I trust my instincts and adapt on the fly rather than following a detailed plan.",
+    baseText: "I follow a detailed plan rather than trusting my instincts and adapting on the fly.",
     variants: [
       {
         sellType: "product",
-        text: "In sales situations, I trust my gut and improvise rather than sticking to a detailed script or plan.",
+        text: "In sales situations, I stick to a detailed script or plan rather than trusting my gut and improvising.",
       },
       {
         sellType: "service",
-        text: "In client interactions, I adapt based on feel rather than following a predetermined approach.",
+        text: "In client interactions, I follow a predetermined approach rather than adapting based on feel.",
       },
     ],
     questionType: "spectrum",
     spectrumPair: ["penguin", "beaver"],
-    scoring: penguinBeaverScoring,
-    primaryType: "penguin",
+    scoring: beaverPenguinScoring,
+    primaryType: "beaver",
     salesStage: "presenting",
   },
 
