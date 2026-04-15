@@ -401,27 +401,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q15",
-    baseText: "When I identify a promising lead, my first instinct is to reach out immediately rather than research them thoroughly first.",
+    baseText: "When I identify a promising lead, I prefer to research them thoroughly before reaching out.",
     variants: [
       {
         sellType: "product",
-        text: "When I find a promising prospect, I reach out immediately rather than spending time researching their company first.",
+        text: "When I find a promising prospect, I spend time researching their company before reaching out.",
       },
       {
         sellType: "service",
-        text: "When I identify a potential client, I connect quickly rather than thoroughly researching them beforehand.",
+        text: "When I identify a potential client, I thoroughly research them before making contact.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Penguin (energy) + Lion (action) | Disagree: Beaver (research) + Retriever (thoughtful)
-      5: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
-      4: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
+      // Agree: Beaver (research) + Retriever (thoughtful) | Disagree: Penguin (energy) + Lion (action)
+      5: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      4: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
-      1: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      2: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
+      1: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
     },
-    primaryType: "penguin",
+    primaryType: "beaver",
     salesStage: "prospecting",
   },
 
@@ -453,27 +453,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q17",
-    baseText: "The best compliment I could receive after a presentation is 'That was compelling and energizing' rather than 'That was thorough and well-prepared.'",
+    baseText: "The best compliment I could receive after a presentation is 'That was thorough and well-prepared' rather than 'That was compelling and energizing.'",
     variants: [
       {
         sellType: "product",
-        text: "After a product demo, I'd rather hear 'That was exciting!' than 'That covered everything in detail.'",
+        text: "After a product demo, I'd rather hear 'That covered everything in detail' than 'That was exciting!'",
       },
       {
         sellType: "service",
-        text: "After pitching, I'd rather hear 'That was inspiring!' than 'That was comprehensive and well-documented.'",
+        text: "After pitching, I'd rather hear 'That was comprehensive and well-documented' than 'That was inspiring!'",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Penguin (energy) + Lion (compelling) | Disagree: Beaver (thorough) + Retriever (careful)
-      5: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
-      4: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
+      // Agree: Beaver (thorough) + Retriever (careful) | Disagree: Penguin (energy) + Lion (compelling)
+      5: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      4: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
-      1: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      2: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
+      1: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
     },
-    primaryType: "penguin",
+    primaryType: "beaver",
     salesStage: "presenting",
   },
 
@@ -505,27 +505,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q19",
-    baseText: "After closing a big deal, I immediately think about the next opportunity rather than celebrating with the team and client.",
+    baseText: "After closing a big deal, I take time to celebrate with the team and client before thinking about the next opportunity.",
     variants: [
       {
         sellType: "product",
-        text: "After a big sale, my mind goes to the next deal rather than celebrating the win with colleagues and the customer.",
+        text: "After a big sale, I celebrate the win with colleagues and the customer before moving to the next deal.",
       },
       {
         sellType: "service",
-        text: "After landing a major client, I shift focus to new opportunities rather than taking time to celebrate with the team.",
+        text: "After landing a major client, I take time to celebrate with the team before shifting focus to new opportunities.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Lion (next deal) + Beaver (efficient) | Disagree: Penguin (celebrate) + Retriever (team)
-      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
-      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      // Agree: Penguin (celebrate) + Retriever (team) | Disagree: Lion (next deal) + Beaver (efficient)
+      5: { lion: 0, penguin: 4, retriever: 2, beaver: 0 },
+      4: { lion: 0, penguin: 2, retriever: 1, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 2, retriever: 1, beaver: 0 },
-      1: { lion: 0, penguin: 4, retriever: 2, beaver: 0 },
+      2: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      1: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
     },
-    primaryType: "lion",
+    primaryType: "penguin",
     salesStage: "closing",
   },
 
@@ -563,27 +563,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q21",
-    baseText: "When learning a new product or service to sell, I jump in and learn by doing rather than studying all documentation first.",
+    baseText: "When learning a new product or service to sell, I study all documentation first rather than jumping in to learn by doing.",
     variants: [
       {
         sellType: "product",
-        text: "When learning a new product, I start selling and learn as I go rather than studying every specification first.",
+        text: "When learning a new product, I study every specification first rather than starting to sell and learning as I go.",
       },
       {
         sellType: "service",
-        text: "When learning a new service offering, I start conversations with prospects rather than mastering all the details first.",
+        text: "When learning a new service offering, I master all the details first rather than starting conversations with prospects.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Penguin (jump in) + Lion (action) | Disagree: Beaver (study) + Retriever (careful)
-      5: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
-      4: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
+      // Agree: Beaver (study) + Retriever (careful) | Disagree: Penguin (jump in) + Lion (action)
+      5: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      4: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 0, retriever: 1, beaver: 2 },
-      1: { lion: 0, penguin: 0, retriever: 2, beaver: 4 },
+      2: { lion: 1, penguin: 2, retriever: 0, beaver: 0 },
+      1: { lion: 2, penguin: 4, retriever: 0, beaver: 0 },
     },
-    primaryType: "penguin",
+    primaryType: "beaver",
     salesStage: "presenting",
   },
 
@@ -641,27 +641,27 @@ export const quizQuestions: QuizQuestion[] = [
 
   {
     id: "q24",
-    baseText: "I measure my success more by revenue and wins this quarter rather than relationships and reputation built over time.",
+    baseText: "I measure my success more by relationships and reputation built over time rather than revenue and wins this quarter.",
     variants: [
       {
         sellType: "product",
-        text: "I judge my performance by sales numbers this quarter rather than by customer relationships cultivated.",
+        text: "I judge my performance by customer relationships cultivated rather than by sales numbers this quarter.",
       },
       {
         sellType: "service",
-        text: "I measure success by revenue closed rather than by the depth of client relationships I've built.",
+        text: "I measure success by the depth of client relationships I've built rather than by revenue closed.",
       },
     ],
     questionType: "quadrant",
     scoring: {
-      // Agree: Lion (revenue) + Beaver (metrics) | Disagree: Retriever (relationships) + Penguin (people)
-      5: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
-      4: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      // Agree: Retriever (relationships) + Penguin (people) | Disagree: Lion (revenue) + Beaver (metrics)
+      5: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      4: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
       3: { lion: 1, penguin: 1, retriever: 1, beaver: 1 },
-      2: { lion: 0, penguin: 1, retriever: 2, beaver: 0 },
-      1: { lion: 0, penguin: 2, retriever: 4, beaver: 0 },
+      2: { lion: 2, penguin: 0, retriever: 0, beaver: 1 },
+      1: { lion: 4, penguin: 0, retriever: 0, beaver: 2 },
     },
-    primaryType: "lion",
+    primaryType: "retriever",
     salesStage: "retention",
   },
 ];
