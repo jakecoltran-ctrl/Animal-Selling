@@ -6,6 +6,7 @@ import { buyerIdentificationSignals } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
 import { ContextBadge } from "@/components/report/ContextBadge";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Zap, Phone, Users } from "lucide-react";
 
 interface BuyerIdentificationProps {
   primaryType: AnimalType;
@@ -231,7 +232,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
             style={{ borderColor: selectedAnimal.color, backgroundColor: `${selectedAnimal.color}08` }}
           >
             <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <span className="text-xl">⚡</span>
+              <Zap className="w-5 h-5" />
               Quick Signs You're Talking to a {selectedAnimal.name}
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -280,7 +281,7 @@ export function BuyerIdentification({ primaryType, salesContext, showBuyerType, 
                   className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white text-sm"
                   style={{ backgroundColor: selectedAnimal.color }}
                 >
-                  {salesContext.salesChannel === "inside" ? "📞" : "🤝"}
+                  {salesContext.salesChannel === "inside" ? <Phone className="w-4 h-4" /> : <Users className="w-4 h-4" />}
                 </span>
                 {salesContext.salesChannel === "inside"
                   ? "What You'll Notice on Calls"

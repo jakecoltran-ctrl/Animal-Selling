@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { Check, BarChart3, Target, RefreshCw } from "lucide-react";
 
 export default function AboutPage() {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -203,19 +204,19 @@ export default function AboutPage() {
 
                     <ul className="space-y-2 ml-4">
                       <li className="flex items-start gap-2">
-                        <span className="text-green-500 mt-1">✓</span>
+                        <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                         <span>Better understand customer behavior in real time</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-green-500 mt-1">✓</span>
+                        <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                         <span>Improve confidence in conversations</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-green-500 mt-1">✓</span>
+                        <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                         <span>Create stronger connections on the sales floor</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-green-500 mt-1">✓</span>
+                        <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                         <span>Enhance the overall buying experience</span>
                       </li>
                     </ul>
@@ -460,7 +461,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-3">📊</div>
+                <BarChart3 className="w-7 h-7 mb-3 text-cyan-400" />
                 <h3 className="text-xl font-bold text-white mb-3">Two Key Dimensions</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Buying behavior clusters around two axes: task-oriented vs. people-oriented,
@@ -470,7 +471,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-3">🎯</div>
+                <Target className="w-7 h-7 mb-3 text-cyan-400" />
                 <h3 className="text-xl font-bold text-white mb-3">Sales-Specific Design</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Unlike generic behavioral assessments, every aspect of Animal Selling™ is
@@ -479,7 +480,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-3">🔄</div>
+                <RefreshCw className="w-7 h-7 mb-3 text-cyan-400" />
                 <h3 className="text-xl font-bold text-white mb-3">Adaptive Selling</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Studies show that salespeople who adapt their style to match customer

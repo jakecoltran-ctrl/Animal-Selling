@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Check } from "lucide-react";
 
 export default function CustomerPreferencePrinciplePage() {
   return (
@@ -77,19 +78,19 @@ export default function CustomerPreferencePrinciplePage() {
                   <p className="text-gray-400 mb-3">"Treat customers how THEY want to be treated"</p>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                       <span>Recognizes different buying styles</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                       <span>Adapts to customer needs</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                       <span>Builds trust faster</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                       <span>Closes more deals through alignment</span>
                     </li>
                   </ul>

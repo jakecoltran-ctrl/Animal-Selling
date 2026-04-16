@@ -12,7 +12,7 @@ import { QuizResult, AnimalType, TeamMember } from "@/types";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
-import { ChevronDown, ChevronUp, X } from "lucide-react";
+import { ChevronDown, ChevronUp, X, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getPurchasedResultIds } from "@/lib/purchases";
 import { syncQuizResults } from "@/lib/quiz-sync";
@@ -302,7 +302,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <Loader2 className="w-10 h-10 animate-spin mb-4 text-cyan-500 mx-auto" />
           <p className="text-muted-foreground">Loading your profile...</p>
         </div>
       </div>

@@ -29,7 +29,7 @@ export function AnimalIcon({ type, size = "md", variant = "full", className }: A
   return (
     <Image
       src={iconSrc}
-      alt={`${animal.name} ${animal.emoji}`}
+      alt={animal.name}
       width={pixelSize}
       height={pixelSize}
       className={cn("inline-block", className)}

@@ -5,6 +5,7 @@ import { getContextualGrowthPlan } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
 import { GrowthGapChart } from "@/components/report/ReportCharts";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Check, Target } from "lucide-react";
 
 interface GrowthPlanPageProps {
   primaryType: AnimalType;
@@ -261,7 +262,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
                     className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: lowestAnimal.color }}
                   >
-                    <span className="text-white text-xs">✓</span>
+                    <Check className="w-3 h-3 text-white" />
                   </div>
                   <p className="text-gray-700 dark:text-gray-200">{win}</p>
                 </div>
@@ -272,7 +273,7 @@ export function GrowthPlanPage({ primaryType, scores, salesContext, part }: Grow
           {/* Context-Specific Tips */}
           <div className="mt-8">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="text-2xl">🎯</span>
+              <Target className="w-6 h-6" />
               Tips for Your Sales Environment
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">

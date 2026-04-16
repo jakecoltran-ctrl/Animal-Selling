@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { AnimalType } from "@/types";
+import { BarChart3, Users, Target } from "lucide-react";
 
 // Animated counter hook
 function useCounter(end: number, duration: number = 2000, start: boolean = false) {
@@ -434,21 +435,21 @@ export default function Home() {
             {/* What is Team Safari */}
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 hover:scale-[1.02] transition-all duration-300">
-                <div className="text-4xl mb-4">📊</div>
+                <BarChart3 className="w-10 h-10 mb-4 text-cyan-400" />
                 <h3 className="text-lg font-bold text-white mb-2">Team Composition</h3>
                 <p className="text-gray-400 text-sm">
                   See the distribution of Lions, Penguins, Retrievers, and Beavers across your sales team at a glance.
                 </p>
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 hover:scale-[1.02] transition-all duration-300">
-                <div className="text-4xl mb-4">🤝</div>
+                <Users className="w-10 h-10 mb-4 text-cyan-400" />
                 <h3 className="text-lg font-bold text-white mb-2">Better Collaboration</h3>
                 <p className="text-gray-400 text-sm">
                   Understand how different styles complement each other and where friction might occur in deals.
                 </p>
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 hover:scale-[1.02] transition-all duration-300">
-                <div className="text-4xl mb-4">🎯</div>
+                <Target className="w-10 h-10 mb-4 text-cyan-400" />
                 <h3 className="text-lg font-bold text-white mb-2">Strategic Pairing</h3>
                 <p className="text-gray-400 text-sm">
                   Pair team members strategically for different sales scenarios based on their animal strengths.

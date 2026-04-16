@@ -13,6 +13,7 @@ import { createClient } from "@/lib/supabase/client";
 import { checkPurchaseStatus } from "@/lib/purchases";
 import { getQuizResult } from "@/lib/quiz-sync";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Target, Check, Loader2 } from "lucide-react";
 
 // Report Preview Carousel Component
 function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { id: AnimalType; name: string; color: string } }) {
@@ -184,7 +185,7 @@ export default function ResultsPage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <Loader2 className="w-10 h-10 animate-spin mb-4 text-cyan-500 mx-auto" />
           <p className="text-muted-foreground">Loading your results...</p>
         </div>
       </div>
@@ -200,7 +201,7 @@ export default function ResultsPage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center py-12">
         <div className="container mx-auto px-4 text-center">
-          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <Loader2 className="w-10 h-10 animate-spin mb-4 text-cyan-500 mx-auto" />
           <p className="text-muted-foreground">Redirecting...</p>
         </div>
       </div>
@@ -231,7 +232,7 @@ export default function ResultsPage() {
   };
 
   const handleShare = async () => {
-    const shareText = `I just discovered I'm a ${primaryAnimal.emoji} ${primaryAnimal.name} (${primaryAnimal.title}) with Animal Selling™! Take the quiz to find your sales animal.`;
+    const shareText = `I just discovered I'm a ${primaryAnimal.name} (${primaryAnimal.title}) with Animal Selling™! Take the quiz to find your sales animal.`;
     // Share link to the animal page, not personal results
     const shareUrl = `${window.location.origin}/animals/${result.primaryType}`;
 
@@ -522,7 +523,7 @@ export default function ResultsPage() {
                   className="w-10 h-10 rounded-full flex items-center justify-center"
                   style={{ backgroundColor: primaryAnimal.color }}
                 >
-                  <span className="text-white text-lg">🎯</span>
+                  <Target className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">Tips for Your Context</h2>
@@ -588,7 +589,7 @@ export default function ResultsPage() {
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <span className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
-                    <span className="text-green-600 text-sm">✓</span>
+                    <Check className="w-4 h-4 text-green-600" />
                   </span>
                   Your Strengths
                 </CardTitle>

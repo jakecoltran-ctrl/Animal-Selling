@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Loader2, PartyPopper, AlertCircle } from "lucide-react";
 
 function SuccessContent() {
   const params = useParams();
@@ -58,10 +59,10 @@ function SuccessContent() {
       <div className="container mx-auto px-4">
         <Card className="max-w-md mx-auto border-2 border-white/20 bg-white/10 backdrop-blur">
           <CardHeader className="text-center">
-            <div className="text-5xl mb-4">
-              {status === "verifying" && "⏳"}
-              {status === "success" && "🎉"}
-              {status === "error" && "😕"}
+            <div className="flex justify-center mb-4">
+              {status === "verifying" && <Loader2 className="w-12 h-12 animate-spin text-cyan-500" />}
+              {status === "success" && <PartyPopper className="w-12 h-12 text-green-500" />}
+              {status === "error" && <AlertCircle className="w-12 h-12 text-red-500" />}
             </div>
             <div className="flex justify-center gap-1 mb-2">
               <AnimalIcon type="lion" size="lg" variant="head" />

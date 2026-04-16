@@ -6,6 +6,7 @@ import { getAnimal, getAllAnimals, animalTypes } from "@/lib/animal-data";
 import { AnimalType } from "@/types";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Check } from "lucide-react";
 
 interface Props {
   params: { type: string };
@@ -63,7 +64,7 @@ export default function AnimalTypePage({ params }: Props) {
           <Card className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <span className="text-green-500">✓</span> Sales Strengths
+                <Check className="w-5 h-5 text-green-500" /> Sales Strengths
               </CardTitle>
             </CardHeader>
             <CardContent>

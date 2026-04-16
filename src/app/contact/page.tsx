@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { Lightbulb, Clock, CheckCircle2 } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -72,7 +73,7 @@ export default function ContactPage() {
 
               {/* Common Topics */}
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-3">💡</div>
+                <Lightbulb className="w-7 h-7 mb-3 text-amber-400" />
                 <h3 className="text-lg font-bold text-white mb-3">Common Topics</h3>
                 <ul className="space-y-2 text-sm text-gray-400">
                   <li className="flex items-center gap-2">
@@ -100,7 +101,7 @@ export default function ContactPage() {
 
               {/* Response Time */}
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-3">⏱️</div>
+                <Clock className="w-7 h-7 mb-3 text-cyan-400" />
                 <h3 className="text-lg font-bold text-white mb-2">Quick Support</h3>
                 <p className="text-gray-400 text-sm">
                   For immediate help, check out our{" "}
@@ -117,7 +118,7 @@ export default function ContactPage() {
               <div className="bg-white/5 border border-white/10 rounded-xl p-8">
                 {status === "sent" ? (
                   <div className="text-center py-12">
-                    <div className="text-5xl mb-4">✅</div>
+                    <CheckCircle2 className="w-12 h-12 mb-4 text-green-500 mx-auto" />
                     <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
                     <p className="text-gray-400 mb-6">
                       Thanks for reaching out. We'll get back to you soon.

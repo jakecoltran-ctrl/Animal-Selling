@@ -11,6 +11,7 @@ import { getShuffledQuestions, getQuestionText } from "@/lib/quiz-questions";
 import { generateQuizResult } from "@/lib/quiz-scoring";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { Check, Package, Target, Briefcase, Building2, User as UserIcon, Monitor, Car, Bell } from "lucide-react";
 import {
   QuizAnswer,
   QuizQuestion,
@@ -315,7 +316,7 @@ export default function QuizPage() {
                   "Get tips tailored to your specific sales context"
                 ].map((text, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="text-green-500 mt-1">✓</span>
+                    <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">{text}</span>
                   </div>
                 ))}
@@ -354,7 +355,7 @@ export default function QuizPage() {
                 {/* What do you sell? */}
                 <div>
                   <h3 className="font-medium mb-3 flex items-center gap-2">
-                    <span className="text-xl">📦</span>
+                    <Package className="w-5 h-5" />
                     What do you sell?
                   </h3>
                   <ToggleButton
@@ -385,7 +386,7 @@ export default function QuizPage() {
                 {/* Who do you sell to? */}
                 <div>
                   <h3 className="font-medium mb-3 flex items-center gap-2">
-                    <span className="text-xl">🎯</span>
+                    <Target className="w-5 h-5" />
                     Who do you sell to?
                   </h3>
                   <ToggleButton
@@ -414,7 +415,7 @@ export default function QuizPage() {
                 {/* How do you sell? */}
                 <div>
                   <h3 className="font-medium mb-3 flex items-center gap-2">
-                    <span className="text-xl">💼</span>
+                    <Briefcase className="w-5 h-5" />
                     How do you sell?
                   </h3>
                   <ToggleButton
@@ -518,16 +519,16 @@ export default function QuizPage() {
         <div className="max-w-2xl mx-auto">
           {/* Context Badge - Hidden on mobile for compactness */}
           <div className="hidden sm:flex flex-wrap justify-center gap-2 mb-6">
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground">
-              {salesContext.sellType === "product" ? "📦 Product" : "🛎️ Service"}
+            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground flex items-center gap-1.5">
+              {salesContext.sellType === "product" ? <><Package className="w-3.5 h-3.5" /> Product</> : <><Bell className="w-3.5 h-3.5" /> Service</>}
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground">
-              {salesContext.customerType === "b2b" ? "🏢 B2B" : "👤 B2C"}
+            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground flex items-center gap-1.5">
+              {salesContext.customerType === "b2b" ? <><Building2 className="w-3.5 h-3.5" /> B2B</> : <><UserIcon className="w-3.5 h-3.5" /> B2C</>}
             </span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground">
+            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-muted-foreground flex items-center gap-1.5">
               {salesContext.salesChannel === "inside"
-                ? "💻 Inside"
-                : "🚗 Outside"}
+                ? <><Monitor className="w-3.5 h-3.5" /> Inside</>
+                : <><Car className="w-3.5 h-3.5" /> Outside</>}
             </span>
           </div>
 

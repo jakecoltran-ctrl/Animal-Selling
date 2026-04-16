@@ -10,6 +10,7 @@ import { generateQuizResult } from "@/lib/quiz-scoring";
 import { QuizAnswer, SalesContext } from "@/types";
 import { saveQuizResultsToDB } from "@/lib/quiz-sync";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { Loader2, PartyPopper, AlertCircle } from "lucide-react";
 
 function ConfirmContent() {
   const router = useRouter();
@@ -91,10 +92,10 @@ function ConfirmContent() {
       <div className="container mx-auto px-4">
         <Card className="max-w-md mx-auto border-2 border-white/20 bg-white/10 backdrop-blur">
           <CardHeader className="text-center">
-            <div className="text-5xl mb-4">
-              {status === "loading" && "⏳"}
-              {status === "success" && "🎉"}
-              {status === "error" && "😕"}
+            <div className="flex justify-center mb-4">
+              {status === "loading" && <Loader2 className="w-12 h-12 animate-spin text-cyan-500" />}
+              {status === "success" && <PartyPopper className="w-12 h-12 text-green-500" />}
+              {status === "error" && <AlertCircle className="w-12 h-12 text-red-500" />}
             </div>
             <div className="flex justify-center gap-1 mb-2">
               <AnimalIcon type="lion" size="lg" variant="head" />

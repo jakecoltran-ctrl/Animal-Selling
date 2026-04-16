@@ -14,6 +14,7 @@ import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { fetchQuizResultsFromDB } from "@/lib/quiz-sync";
 import { useScrollIntoView } from "@/hooks/useScrollIntoView";
+import { BarChart3, Users, Target, Zap, Loader2, Ticket } from "lucide-react";
 
 interface SalesContext {
   sellType: "product" | "service";
@@ -339,7 +340,7 @@ function TeamSafariPageContent() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <Loader2 className="w-10 h-10 animate-spin mb-4 text-cyan-500 mx-auto" />
           <p className="text-muted-foreground">Loading teams...</p>
         </div>
       </div>
@@ -419,7 +420,7 @@ function TeamSafariPageContent() {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-amber-500 to-emerald-500" />
             <CardContent className="p-6">
               <div className="text-center mb-4">
-                <div className="text-4xl mb-3">🎟️</div>
+                <Ticket className="w-10 h-10 mb-3 text-cyan-400 mx-auto" />
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Join an Existing Team</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
                   Got an invite code? Enter it below to join your team&apos;s safari adventure!
@@ -521,21 +522,21 @@ function TeamSafariPageContent() {
 
             <div className="grid sm:grid-cols-3 gap-4 mb-6">
               <div className="bg-white/5 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-2">📊</div>
+                <BarChart3 className="w-6 h-6 mb-2 text-cyan-400" />
                 <h3 className="font-semibold text-white text-sm mb-1">Team Composition</h3>
                 <p className="text-gray-400 text-xs">
                   See the distribution of Lions, Penguins, Retrievers, and Beavers on your team.
                 </p>
               </div>
               <div className="bg-white/5 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-2">🤝</div>
+                <Users className="w-6 h-6 mb-2 text-cyan-400" />
                 <h3 className="font-semibold text-white text-sm mb-1">Better Collaboration</h3>
                 <p className="text-gray-400 text-xs">
                   Understand how different styles work together and where friction might occur.
                 </p>
               </div>
               <div className="bg-white/5 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
-                <div className="text-2xl mb-2">🎯</div>
+                <Target className="w-6 h-6 mb-2 text-cyan-400" />
                 <h3 className="font-semibold text-white text-sm mb-1">Strategic Pairing</h3>
                 <p className="text-gray-400 text-xs">
                   Get recommendations on which team members pair well for different sales scenarios.
@@ -545,7 +546,7 @@ function TeamSafariPageContent() {
 
             <div className="bg-white/5 rounded-xl p-4">
               <h3 className="font-semibold text-white text-sm mb-3 flex items-center gap-2">
-                <span>⚡</span> How it works
+                <Zap className="w-4 h-4" /> How it works
               </h3>
               <ol className="space-y-2 text-sm text-gray-300">
                 <li className="flex items-start gap-3">
@@ -574,7 +575,7 @@ export default function TeamSafariPage() {
     <Suspense fallback={
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <Loader2 className="w-10 h-10 animate-spin mb-4 text-cyan-500 mx-auto" />
           <p className="text-muted-foreground">Loading teams...</p>
         </div>
       </div>

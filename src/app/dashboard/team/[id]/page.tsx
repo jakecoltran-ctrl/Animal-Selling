@@ -13,6 +13,7 @@ import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { AnimalPawLogo } from "@/components/ui/AnimalPawLogo";
 import { useScrollIntoView } from "@/hooks/useScrollIntoView";
+import { Loader2, Lightbulb, Check, Gift, Crown, Briefcase, Ticket } from "lucide-react";
 
 interface SalesContext {
   sellType: "product" | "service";
@@ -403,7 +404,7 @@ export default function TeamDetailPage() {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl animate-spin mb-4">🎯</div>
+          <Loader2 className="w-10 h-10 animate-spin mb-4 text-cyan-500 mx-auto" />
           <p className="text-muted-foreground">Loading team...</p>
         </div>
       </div>
@@ -593,7 +594,7 @@ export default function TeamDetailPage() {
                       key={i}
                       className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
                     >
-                      <span className="mt-1">💡</span>
+                      <Lightbulb className="w-4 h-4 mt-1 flex-shrink-0 text-amber-500" />
                       <span>{insight}</span>
                     </li>
                   ))}
@@ -644,7 +645,7 @@ export default function TeamDetailPage() {
                               )}
                               {member.hasPurchasedReport ? (
                                 <span className="text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 font-medium" title="Has full report access">
-                                  ✓ Report
+                                  Report
                                 </span>
                               ) : (
                                 <span className="text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-medium" title="Has not purchased full report">
@@ -789,7 +790,7 @@ export default function TeamDetailPage() {
             <Card className="border-2 border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
               <CardHeader className="text-center">
                 <CardTitle className="text-gray-900 dark:text-white flex items-center justify-center gap-2">
-                  <span>👑</span> Leader Privileges
+                  <Crown className="w-4 h-4" /> Leader Privileges
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-400">
                   What you can do as a team leader
@@ -798,19 +799,19 @@ export default function TeamDetailPage() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">✓</span>
+                    <Check className="w-4 h-4 text-amber-500 flex-shrink-0" />
                     <span>View member email addresses</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">✓</span>
+                    <Check className="w-4 h-4 text-amber-500 flex-shrink-0" />
                     <span>Remove members from the team</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">✓</span>
+                    <Check className="w-4 h-4 text-amber-500 flex-shrink-0" />
                     <span>Promote members to Co-Leader</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">✓</span>
+                    <Check className="w-4 h-4 text-amber-500 flex-shrink-0" />
                     <span>Purchase & manage gift codes</span>
                   </li>
                 </ul>
@@ -823,7 +824,7 @@ export default function TeamDetailPage() {
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
               <CardHeader className="text-center">
                 <CardTitle className="text-gray-900 dark:text-white flex items-center justify-center gap-2">
-                  <span>🎁</span> Onboard Your Team
+                  <Gift className="w-5 h-5" /> Onboard Your Team
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-400">
                   Give your team free report access
@@ -832,15 +833,15 @@ export default function TeamDetailPage() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                   <li className="flex items-start gap-2">
-                    <span className="mt-0.5">💡</span>
+                    <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-500" />
                     <span>Buy in bulk to share with your team</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-0.5">💡</span>
+                    <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-500" />
                     <span>Codes never expire until used</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-0.5">💡</span>
+                    <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-500" />
                     <span>Purchase options below</span>
                   </li>
                 </ul>
@@ -854,33 +855,33 @@ export default function TeamDetailPage() {
           <div className="mt-8 max-w-4xl mx-auto">
             {/* Leader-only notice */}
             <div className="mb-4 flex items-center justify-center gap-2 text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg px-4 py-2">
-              <span>👑</span>
+              <Crown className="w-4 h-4" />
               <span>Only team leaders can view and purchase gift codes for team members</span>
             </div>
             <Card className="border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
-                  <span>🎁</span> Unlock Full Report Codes for Your Team
+                  <Gift className="w-5 h-5" /> Unlock Full Report Codes for Your Team
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {/* Value Proposition */}
                 <div className="mb-8 p-5 rounded-xl bg-gradient-to-r from-cyan-500/10 to-green-500/10 border border-cyan-500/20">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <span>💼</span> Invest in Your Team's Success
+                    <Briefcase className="w-5 h-5" /> Invest in Your Team's Success
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
                     Purchase report codes in bulk and distribute them to your team members — they unlock their full personalized reports at no cost to them.
                   </p>
                   <div className="grid sm:grid-cols-3 gap-3 text-sm">
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                      <span className="text-green-500">✓</span> Save with bulk pricing
+                      <Check className="w-4 h-4 text-green-500" /> Save with bulk pricing
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                      <span className="text-green-500">✓</span> Codes never expire
+                      <Check className="w-4 h-4 text-green-500" /> Codes never expire
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                      <span className="text-green-500">✓</span> Easy to distribute
+                      <Check className="w-4 h-4 text-green-500" /> Easy to distribute
                     </div>
                   </div>
                 </div>
@@ -940,12 +941,12 @@ export default function TeamDetailPage() {
 
                   {loadingCodes ? (
                     <div className="text-center py-8">
-                      <div className="text-2xl animate-spin mb-2">🎁</div>
+                      <Loader2 className="w-6 h-6 animate-spin mb-2 text-cyan-500 mx-auto" />
                       <p className="text-sm text-gray-500 dark:text-gray-400">Loading codes...</p>
                     </div>
                   ) : giftCodes.length === 0 ? (
                     <div className="text-center py-8 border border-dashed border-gray-300 dark:border-white/20 rounded-xl">
-                      <div className="text-3xl mb-2">🎟️</div>
+                      <Ticket className="w-8 h-8 mb-2 text-gray-400 mx-auto" />
                       <p className="text-gray-500 dark:text-gray-400 text-sm">
                         No gift codes yet. Purchase a package above to get started.
                       </p>
@@ -963,7 +964,7 @@ export default function TeamDetailPage() {
                         >
                           <div className="flex items-center gap-3">
                             <span className={code.usedAt ? "text-gray-400" : "text-green-500"}>
-                              {code.usedAt ? "✓" : "🎁"}
+                              {code.usedAt ? <Check className="w-4 h-4" /> : <Gift className="w-4 h-4" />}
                             </span>
                             <code className={`font-mono font-bold ${code.usedAt ? "text-gray-400 line-through" : "text-gray-900 dark:text-white"}`}>
                               {code.code}

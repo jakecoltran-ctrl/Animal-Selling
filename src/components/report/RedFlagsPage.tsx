@@ -3,6 +3,7 @@
 import { AnimalType } from "@/types";
 import { getRedFlagScenarios } from "@/lib/report-data";
 import { animals } from "@/lib/animal-data";
+import { Lightbulb, CheckCircle2, AlertTriangle } from "lucide-react";
 
 interface RedFlagsPageProps {
   primaryType: AnimalType;
@@ -27,7 +28,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
       {/* Intro */}
       <div className="mb-6 sm:mb-8 p-4 sm:p-5 rounded-xl bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 transition-all duration-300 hover:scale-[1.01]">
         <div className="flex items-start gap-3">
-          <span className="text-2xl">⚠️</span>
+          <AlertTriangle className="w-6 h-6 text-amber-500" />
           <p className="text-gray-700 dark:text-gray-200">
             Your {animal.name} strengths become weaknesses when overused. These scenarios describe
             moments where your natural instincts might lead you astray - and what to do instead.
@@ -80,7 +81,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
               {/* Correction - Warning */}
               <div className="mb-3 sm:mb-4 p-3 sm:p-4 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800">
                 <div className="flex items-start gap-3">
-                  <span className="text-lg">💡</span>
+                  <Lightbulb className="w-5 h-5 text-amber-600" />
                   <div>
                     <p className="text-xs font-semibold text-amber-600 uppercase mb-1">
                       Why It's a Problem
@@ -95,7 +96,7 @@ export function RedFlagsPage({ primaryType }: RedFlagsPageProps) {
               {/* Better Approach - Green */}
               <div className="p-3 sm:p-4 rounded-lg bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
                 <div className="flex items-start gap-3">
-                  <span className="text-lg">✅</span>
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
                   <div>
                     <p className="text-xs font-semibold text-green-600 uppercase mb-1">
                       Better Approach

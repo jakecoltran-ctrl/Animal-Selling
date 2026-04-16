@@ -5,6 +5,7 @@ import { AnimalType } from "@/types";
 import { animals } from "@/lib/animal-data";
 import { Button } from "@/components/ui/button";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
+import { BarChart3, Target, TrendingUp, Users } from "lucide-react";
 
 interface TeamPreviewProps {
   primaryType: AnimalType;
@@ -35,7 +36,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
       {/* Team Benefits Grid */}
       <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-10">
         <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-red-200 dark:border-red-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-3xl mb-3">📊</div>
+          <BarChart3 className="w-8 h-8 mb-3 text-red-500" />
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Composition</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             See how your team's animal types are distributed. Identify gaps
@@ -44,7 +45,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
         </div>
 
         <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-amber-200 dark:border-amber-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🤝</div>
+          <Users className="w-7 h-7 sm:w-8 sm:h-8 mb-2 sm:mb-3 text-amber-500" />
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Optimal Pairings</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Discover which team members work best together on deals. Pair
@@ -53,7 +54,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
         </div>
 
         <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-cyan-200 dark:border-cyan-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🎯</div>
+          <Target className="w-7 h-7 sm:w-8 sm:h-8 mb-2 sm:mb-3 text-cyan-500" />
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Account Assignment</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Match sellers to accounts based on buyer preferences. Lions on
@@ -62,7 +63,7 @@ export function TeamPreview({ primaryType }: TeamPreviewProps) {
         </div>
 
         <div className="p-4 sm:p-6 bg-white dark:bg-white/10 rounded-xl border-2 border-emerald-200 dark:border-emerald-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg">
-          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📈</div>
+          <TrendingUp className="w-7 h-7 sm:w-8 sm:h-8 mb-2 sm:mb-3 text-emerald-500" />
           <h3 className="font-bold text-gray-900 dark:text-white mb-2">Team Development</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Identify which skills your team needs to develop collectively.
