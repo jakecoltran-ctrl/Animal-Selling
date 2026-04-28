@@ -50,7 +50,7 @@ export default function RetrieverGamePage() {
   const [userId, setUserId] = useState<string | null>(null);
 
   const meta = gameMetadata.retriever;
-  const traits = retrieverPairs;
+  const [traits, setTraits] = useState(retrieverPairs);
 
   useEffect(() => {
     async function checkAuth() {
@@ -65,7 +65,17 @@ export default function RetrieverGamePage() {
     checkAuth();
   }, [router]);
 
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
   const startGame = () => {
+    setTraits(shuffleArray(retrieverPairs));
     setGameState("playing");
     setStartTime(Date.now());
     setCurrentIndex(0);
