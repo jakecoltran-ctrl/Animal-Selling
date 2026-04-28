@@ -245,10 +245,12 @@ export default function CertificationPage() {
                   key={badge.type}
                   className={`flex flex-col items-center p-4 rounded-xl transition-all ${
                     earned
-                      ? "bg-gradient-to-br from-gray-800 to-gray-900 ring-2"
+                      ? "bg-gradient-to-br from-gray-800 to-gray-900"
                       : "bg-gray-900/50 opacity-40"
                   }`}
-                  style={{ ringColor: earned ? badge.color : undefined }}
+                  style={{
+                    boxShadow: earned ? `0 0 0 2px ${badge.color}` : undefined
+                  }}
                   title={badge.description}
                 >
                   <div className="text-3xl mb-2">{badge.icon}</div>
