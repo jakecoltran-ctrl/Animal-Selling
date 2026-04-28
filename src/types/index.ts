@@ -173,3 +173,136 @@ export interface GrowthPlanContent {
   actionSteps: string[];
   quickWins: string[];
 }
+
+// ============================================
+// CERTIFICATION & GAMES TYPES
+// ============================================
+
+export type GameType = AnimalType; // 'lion' | 'penguin' | 'retriever' | 'beaver'
+
+export type BadgeType =
+  | "lion_master"
+  | "penguin_master"
+  | "retriever_master"
+  | "beaver_master"
+  | "perfect_lion"
+  | "perfect_penguin"
+  | "perfect_retriever"
+  | "perfect_beaver"
+  | "perfection"
+  | "speed_demon"
+  | "certified";
+
+export interface GameProgress {
+  id: string;
+  userId: string;
+  gameType: GameType;
+  attempts: number;
+  bestScore: number;
+  totalQuestions: number;
+  bestAccuracy: number;
+  passed: boolean;
+  completedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GameAttempt {
+  id: string;
+  userId: string;
+  gameType: GameType;
+  score: number;
+  totalQuestions: number;
+  accuracy: number;
+  timeTakenSeconds: number | null;
+  answers: Record<string, string | number>;
+  passed: boolean;
+  createdAt: string;
+}
+
+export interface Badge {
+  id: string;
+  userId: string;
+  badgeType: BadgeType;
+  earnedAt: string;
+}
+
+export interface Certificate {
+  id: string;
+  userId: string;
+  certificateNumber: string;
+  userName: string;
+  primaryAnimalType: AnimalType | null;
+  averageAccuracy: number;
+  completedAt: string;
+}
+
+export interface BadgeInfo {
+  type: BadgeType;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+// Game Question Types
+export interface ScenarioQuestion {
+  id: string;
+  scenario: string;
+  options: {
+    id: string;
+    text: string;
+    isCorrect: boolean;
+    explanation?: string;
+  }[];
+}
+
+export interface BuyerProfile {
+  id: string;
+  description: string;
+  correctType: AnimalType;
+  explanation: string;
+}
+
+export interface MatchingPair {
+  id: string;
+  trait: string;
+  animalType: AnimalType;
+  category: "strength" | "blindspot";
+}
+
+export interface ComprehensiveQuestion {
+  id: string;
+  type: "true_false" | "multiple_choice" | "identification";
+  question: string;
+  options?: string[];
+  correctAnswer: string | boolean;
+  explanation: string;
+}
+
+export interface GameContent {
+  lion: {
+    name: string;
+    title: string;
+    description: string;
+    questions: ScenarioQuestion[];
+  };
+  penguin: {
+    name: string;
+    title: string;
+    description: string;
+    profiles: BuyerProfile[];
+  };
+  retriever: {
+    name: string;
+    title: string;
+    description: string;
+    pairs: MatchingPair[];
+  };
+  beaver: {
+    name: string;
+    title: string;
+    description: string;
+    questions: ComprehensiveQuestion[];
+  };
+}
