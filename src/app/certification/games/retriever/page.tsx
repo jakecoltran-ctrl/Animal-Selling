@@ -9,7 +9,7 @@ import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { createClient } from "@/lib/supabase/client";
 import { updateGameProgress } from "@/lib/certification";
 import { retrieverPairs, gameMetadata, badges } from "@/lib/game-content";
-import { BadgeType, AnimalType, MatchingPair } from "@/types";
+import { BadgeType, AnimalType } from "@/types";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -18,27 +18,27 @@ import {
   RotateCcw,
   Home,
   Loader2,
-  Shuffle,
+  Zap,
 } from "lucide-react";
 
 type GameState = "intro" | "playing" | "results";
 
-interface CardState {
-  id: string;
-  content: string;
-  type: "trait" | "animal";
-  animalType: AnimalType;
-  isFlipped: boolean;
-  isMatched: boolean;
+interface Answer {
+  traitId: string;
+  selectedType: AnimalType;
+  correctType: AnimalType;
+  isCorrect: boolean;
 }
+
+const animalTypes: AnimalType[] = ["lion", "penguin", "retriever", "beaver"];
 
 export default function RetrieverGamePage() {
   const router = useRouter();
   const [gameState, setGameState] = useState<GameState>("intro");
-  const [cards, setCards] = useState<CardState[]>([]);
-  const [selectedCards, setSelectedCards] = useState<string[]>([]);
-  const [matchedPairs, setMatchedPairs] = useState<number>(0);
-  const [moves, setMoves] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [lastAnswer, setLastAnswer] = useState<{ selected: AnimalType; correct: AnimalType } | null>(null);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [results, setResults] = useState<{
@@ -50,7 +50,7 @@ export default function RetrieverGamePage() {
   const [userId, setUserId] = useState<string | null>(null);
 
   const meta = gameMetadata.retriever;
-  const totalPairs = retrieverPairs.length;
+  const traits = retrieverPairs;
 
   useEffect(() => {
     async function checkAuth() {
@@ -65,141 +65,68 @@ export default function RetrieverGamePage() {
     checkAuth();
   }, [router]);
 
-  const shuffleArray = <T,>(array: T[]): T[] => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
-  const initializeCards = useCallback(() => {
-    const cardPairs: CardState[] = [];
-
-    retrieverPairs.forEach((pair) => {
-      // Trait card
-      cardPairs.push({
-        id: `trait-${pair.id}`,
-        content: pair.trait,
-        type: "trait",
-        animalType: pair.animalType,
-        isFlipped: false,
-        isMatched: false,
-      });
-      // Animal card
-      cardPairs.push({
-        id: `animal-${pair.id}`,
-        content: pair.animalType,
-        type: "animal",
-        animalType: pair.animalType,
-        isFlipped: false,
-        isMatched: false,
-      });
-    });
-
-    setCards(shuffleArray(cardPairs));
-  }, []);
-
   const startGame = () => {
-    initializeCards();
     setGameState("playing");
     setStartTime(Date.now());
-    setMatchedPairs(0);
-    setMoves(0);
-    setSelectedCards([]);
+    setCurrentIndex(0);
+    setAnswers([]);
+    setShowFeedback(false);
+    setLastAnswer(null);
   };
 
-  const handleCardClick = (cardId: string) => {
-    const card = cards.find((c) => c.id === cardId);
-    if (!card || card.isFlipped || card.isMatched || selectedCards.length >= 2) return;
+  const handleTypeSelect = (selectedType: AnimalType) => {
+    if (showFeedback) return;
 
-    // Flip the card
-    setCards((prev) =>
-      prev.map((c) => (c.id === cardId ? { ...c, isFlipped: true } : c))
-    );
+    const trait = traits[currentIndex];
+    const isCorrect = selectedType === trait.animalType;
 
-    const newSelected = [...selectedCards, cardId];
-    setSelectedCards(newSelected);
+    const answer: Answer = {
+      traitId: trait.id,
+      selectedType,
+      correctType: trait.animalType,
+      isCorrect,
+    };
 
-    // Check for match when 2 cards are selected
-    if (newSelected.length === 2) {
-      setMoves((prev) => prev + 1);
+    setAnswers((prev) => [...prev, answer]);
+    setLastAnswer({ selected: selectedType, correct: trait.animalType });
+    setShowFeedback(true);
 
-      const [firstId, secondId] = newSelected;
-      const firstCard = cards.find((c) => c.id === firstId)!;
-      const secondCard = cards.find((c) => c.id === secondId)!;
-
-      // Cards match if they have the same animalType and different types (trait vs animal)
-      const isMatch =
-        firstCard.animalType === secondCard.animalType &&
-        firstCard.type !== secondCard.type;
-
-      if (isMatch) {
-        // Mark as matched
-        setTimeout(() => {
-          setCards((prev) =>
-            prev.map((c) =>
-              c.id === firstId || c.id === secondId ? { ...c, isMatched: true } : c
-            )
-          );
-          setMatchedPairs((prev) => prev + 1);
-          setSelectedCards([]);
-        }, 500);
+    // Auto-advance after brief feedback
+    setTimeout(() => {
+      if (currentIndex < traits.length - 1) {
+        setCurrentIndex((prev) => prev + 1);
+        setShowFeedback(false);
+        setLastAnswer(null);
       } else {
-        // Flip back after delay
-        setTimeout(() => {
-          setCards((prev) =>
-            prev.map((c) =>
-              c.id === firstId || c.id === secondId ? { ...c, isFlipped: false } : c
-            )
-          );
-          setSelectedCards([]);
-        }, 1000);
+        finishGame([...answers, answer]);
       }
-    }
+    }, 1000);
   };
 
-  // Check for game completion
-  useEffect(() => {
-    if (gameState === "playing" && matchedPairs === totalPairs) {
-      finishGame();
-    }
-  }, [matchedPairs, totalPairs, gameState]);
-
-  const finishGame = useCallback(async () => {
+  const finishGame = useCallback(async (finalAnswers: Answer[]) => {
     if (!startTime) return;
 
     setSubmitting(true);
     const endTime = Date.now();
     const timeTaken = Math.floor((endTime - startTime) / 1000);
-
-    // Calculate score based on efficiency (fewer moves = better)
-    // Perfect game = totalPairs moves (each move finds a match)
-    // Passing threshold is finding all matches with reasonable efficiency
-    const perfectMoves = totalPairs;
-    const maxReasonableMoves = totalPairs * 3; // Allow 3x perfect as maximum
-    const efficiency = Math.max(0, 1 - (moves - perfectMoves) / (maxReasonableMoves - perfectMoves));
-    const score = matchedPairs; // Score is just number of matches found
-    const accuracy = (matchedPairs / totalPairs) * 100; // Did they find all matches?
-    const passed = matchedPairs === totalPairs; // Pass if all matches found
+    const score = finalAnswers.filter((a) => a.isCorrect).length;
+    const accuracy = (score / traits.length) * 100;
+    const passed = accuracy >= 80;
 
     let badgesAwarded: BadgeType[] = [];
 
-    // Try to save progress, but show results even if it fails
     if (userId) {
       try {
-        const answersMap: Record<string, number> = {
-          matchedPairs,
-          moves,
-          efficiency: Math.round(efficiency * 100),
-        };
+        const answersMap: Record<string, string> = {};
+        finalAnswers.forEach((a) => {
+          answersMap[a.traitId] = a.selectedType;
+        });
 
         const result = await updateGameProgress(
           userId,
           "retriever",
           score,
-          totalPairs,
+          traits.length,
           timeTaken,
           answersMap
         );
@@ -217,11 +144,23 @@ export default function RetrieverGamePage() {
     });
     setGameState("results");
     setSubmitting(false);
-  }, [userId, startTime, matchedPairs, moves, totalPairs]);
+  }, [userId, startTime, traits.length]);
 
   const getAnimalName = (type: AnimalType) => {
     return type === "retriever" ? "Golden Retriever" : type.charAt(0).toUpperCase() + type.slice(1);
   };
+
+  const getAnimalColor = (type: AnimalType) => {
+    const colors: Record<AnimalType, string> = {
+      lion: "#dc2626",
+      penguin: "#0891b2",
+      retriever: "#d97706",
+      beaver: "#059669",
+    };
+    return colors[type];
+  };
+
+  const trait = traits[currentIndex];
 
   // Intro Screen
   if (gameState === "intro") {
@@ -261,11 +200,11 @@ export default function RetrieverGamePage() {
               <CardContent className="p-6">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold">{totalPairs}</div>
-                    <div className="text-sm text-muted-foreground">Pairs</div>
+                    <div className="text-2xl font-bold">{traits.length}</div>
+                    <div className="text-sm text-muted-foreground">Traits</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">100%</div>
+                    <div className="text-2xl font-bold">{meta.passingScore}%</div>
                     <div className="text-sm text-muted-foreground">To Pass</div>
                   </div>
                   <div>
@@ -277,8 +216,8 @@ export default function RetrieverGamePage() {
             </Card>
 
             <p className="text-muted-foreground mb-8">
-              Match each sales trait or characteristic to its correct animal type.
-              Click two cards to flip them - if they match, they stay revealed!
+              You&apos;ll see traits and characteristics one at a time. Quickly categorize each one
+              by clicking the animal type it belongs to. Fast-paced and fun!
             </p>
 
             <Button
@@ -287,7 +226,7 @@ export default function RetrieverGamePage() {
               style={{ backgroundColor: meta.color }}
               onClick={startGame}
             >
-              <Shuffle className="w-4 h-4 mr-2" />
+              <Zap className="w-4 h-4 mr-2" />
               Start Game
             </Button>
           </div>
@@ -297,7 +236,7 @@ export default function RetrieverGamePage() {
   }
 
   // Playing Screen
-  if (gameState === "playing") {
+  if (gameState === "playing" && trait) {
     return (
       <div className="py-12 relative overflow-hidden min-h-screen">
         <AnimatedBackground
@@ -306,82 +245,89 @@ export default function RetrieverGamePage() {
           singleAnimal={{ type: "retriever", color: meta.color }}
         />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             {/* Progress */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-muted-foreground">
-                  {matchedPairs} of {totalPairs} pairs matched
+                  Trait {currentIndex + 1} of {traits.length}
                 </span>
                 <span className="text-sm font-medium" style={{ color: meta.color }}>
-                  {moves} moves
+                  {answers.filter((a) => a.isCorrect).length} correct
                 </span>
               </div>
               <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
                 <div
                   className="h-full transition-all duration-300"
                   style={{
-                    width: `${(matchedPairs / totalPairs) * 100}%`,
+                    width: `${((currentIndex + 1) / traits.length) * 100}%`,
                     backgroundColor: meta.color,
                   }}
                 />
               </div>
             </div>
 
-            {/* Card Grid */}
-            <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
-              {cards.map((card) => {
-                const isSelected = selectedCards.includes(card.id);
-                const cardColor = gameMetadata[card.animalType]?.color || meta.color;
+            {/* Trait Card */}
+            <Card className={`mb-8 transition-all duration-300 ${showFeedback ? (lastAnswer?.selected === lastAnswer?.correct ? 'border-green-500 border-2' : 'border-red-500 border-2') : ''}`}>
+              <CardContent className="p-8">
+                <div className="text-center">
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                    {trait.category === "strength" ? "💪 Strength" : "👁️ Blind Spot"}
+                  </div>
+                  <p className="text-2xl font-medium mb-2">{trait.trait}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Which animal type does this describe?
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Feedback */}
+            {showFeedback && lastAnswer && (
+              <div className={`text-center mb-6 py-3 px-4 rounded-lg ${lastAnswer.selected === lastAnswer.correct ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                {lastAnswer.selected === lastAnswer.correct ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <CheckCircle2 className="w-5 h-5" /> Correct!
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    <XCircle className="w-5 h-5" /> It&apos;s {getAnimalName(lastAnswer.correct)}
+                  </span>
+                )}
+              </div>
+            )}
+
+            {/* Animal Type Buttons */}
+            <div className="grid grid-cols-2 gap-4">
+              {animalTypes.map((type) => {
+                const color = getAnimalColor(type);
+                const isSelected = showFeedback && lastAnswer?.selected === type;
+                const isCorrect = showFeedback && lastAnswer?.correct === type;
 
                 return (
                   <button
-                    key={card.id}
-                    onClick={() => handleCardClick(card.id)}
-                    disabled={card.isFlipped || card.isMatched}
-                    className={`aspect-square rounded-xl border-2 transition-all duration-300 transform ${
-                      card.isMatched
-                        ? "border-green-500 bg-green-500/10 scale-95"
-                        : card.isFlipped
-                        ? "border-amber-500 bg-gray-800"
-                        : "border-gray-700 bg-gray-800/80 hover:border-gray-600 hover:scale-105 cursor-pointer"
+                    key={type}
+                    onClick={() => handleTypeSelect(type)}
+                    disabled={showFeedback}
+                    className={`p-6 rounded-xl border-2 transition-all flex flex-col items-center gap-3 ${
+                      isCorrect
+                        ? "border-green-500 bg-green-500/20 scale-105"
+                        : isSelected && !isCorrect
+                        ? "border-red-500 bg-red-500/20"
+                        : "border-gray-700 bg-gray-800/50 hover:border-gray-500 hover:scale-105"
                     }`}
+                    style={!showFeedback ? {
+                      '--hover-border': color,
+                    } as React.CSSProperties : undefined}
                   >
-                    {card.isFlipped || card.isMatched ? (
-                      <div className="w-full h-full flex flex-col items-center justify-center p-2">
-                        {card.type === "animal" ? (
-                          <>
-                            <AnimalIcon type={card.animalType} size="md" />
-                            <span
-                              className="text-xs font-medium mt-1 text-center"
-                              style={{ color: cardColor }}
-                            >
-                              {getAnimalName(card.animalType)}
-                            </span>
-                          </>
-                        ) : (
-                          <span className="text-xs text-center text-muted-foreground leading-tight px-1">
-                            {card.content}
-                          </span>
-                        )}
-                        {card.isMatched && (
-                          <CheckCircle2 className="w-4 h-4 text-green-500 absolute top-1 right-1" />
-                        )}
-                      </div>
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-2xl">❓</span>
-                      </div>
-                    )}
+                    <AnimalIcon type={type} size="lg" />
+                    <span className="font-medium" style={{ color: showFeedback ? undefined : color }}>
+                      {getAnimalName(type)}
+                    </span>
                   </button>
                 );
               })}
             </div>
-
-            {/* Instructions */}
-            <p className="text-center text-sm text-muted-foreground mt-6">
-              Click cards to flip them. Match traits to their animal types!
-            </p>
           </div>
         </div>
       </div>
@@ -416,12 +362,12 @@ export default function RetrieverGamePage() {
             </div>
 
             <h1 className="text-4xl font-bold mb-2">
-              {results.passed ? "Well Done!" : "Almost There!"}
+              {results.passed ? "Well Done!" : "Keep Practicing!"}
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               {results.passed
-                ? "You matched all the traits correctly!"
-                : "Keep trying to match all the pairs!"}
+                ? "You know your animal traits!"
+                : "You need 80% to pass. Try again!"}
             </p>
 
             <Card className="mb-8">
@@ -429,13 +375,19 @@ export default function RetrieverGamePage() {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <div className="text-3xl font-bold" style={{ color: meta.color }}>
-                      {matchedPairs}/{totalPairs}
+                      {results.score}/{traits.length}
                     </div>
-                    <div className="text-sm text-muted-foreground">Pairs Matched</div>
+                    <div className="text-sm text-muted-foreground">Correct</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold">{moves}</div>
-                    <div className="text-sm text-muted-foreground">Moves</div>
+                    <div
+                      className={`text-3xl font-bold ${
+                        results.passed ? "text-green-500" : "text-amber-500"
+                      }`}
+                    >
+                      {results.accuracy.toFixed(0)}%
+                    </div>
+                    <div className="text-sm text-muted-foreground">Accuracy</div>
                   </div>
                   <div>
                     <div className="text-3xl font-bold">
