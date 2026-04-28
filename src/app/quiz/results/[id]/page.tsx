@@ -13,7 +13,7 @@ import { createClient } from "@/lib/supabase/client";
 import { checkPurchaseStatus } from "@/lib/purchases";
 import { getQuizResult } from "@/lib/quiz-sync";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
-import { Target, Check, Loader2 } from "lucide-react";
+import { Target, Check, Loader2, Trophy } from "lucide-react";
 
 // Report Preview Carousel Component
 function ReportPreviewCarousel({ primaryAnimal }: { primaryAnimal: { id: AnimalType; name: string; color: string } }) {
@@ -935,6 +935,37 @@ export default function ResultsPage() {
             <Link href="/dashboard/team">
               <Button variant="outline">
                 Explore Team Safari™ →
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Certification CTA */}
+        <div className="max-w-xl mx-auto mb-16">
+          <div
+            className="p-6 rounded-xl text-center transition-all duration-300 hover:shadow-lg hover:scale-[1.01]"
+            style={{
+              background: `linear-gradient(135deg, #f59e0b10 0%, #ea580c10 100%)`,
+              border: '2px solid #f59e0b30',
+            }}
+          >
+            <div className="flex justify-center mb-3">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                <Trophy className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              Get Certified
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+              Test your Animal Selling knowledge and earn your official certificate
+            </p>
+            <Link href="/certification">
+              <Button
+                className="text-white font-semibold"
+                style={{ background: 'linear-gradient(90deg, #f59e0b, #ea580c)' }}
+              >
+                Start Certification →
               </Button>
             </Link>
           </div>

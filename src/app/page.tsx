@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { TeamSafariBubble } from "@/components/ui/TeamSafariLogo";
 import { AnimalIcon } from "@/components/ui/AnimalIcon";
 import { AnimalType } from "@/types";
-import { BarChart3, Users, Target } from "lucide-react";
+import { BarChart3, Users, Target, Award, Trophy } from "lucide-react";
 
 // Animated counter hook
 function useCounter(end: number, duration: number = 2000, start: boolean = false) {
@@ -557,6 +557,86 @@ export default function Home() {
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certification Section */}
+      <section className="py-24 relative">
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at 50% 50%, #f59e0b30 0%, transparent 60%)`
+            }}
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 mb-6">
+                <Trophy className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Get <span className="text-amber-500">Certified</span>
+              </h2>
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                Prove your Animal Selling expertise with our free certification program
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Left - What you get */}
+              <div className="space-y-6">
+                <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-all">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-5 h-5 text-amber-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white mb-1">4 Interactive Games</h3>
+                    <p className="text-gray-400 text-sm">Test your knowledge with scenario challenges, buyer identification, and more</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-all">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl">🏅</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white mb-1">Earn Badges</h3>
+                    <p className="text-gray-400 text-sm">Collect achievement badges as you master each animal type</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-all">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl">📜</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white mb-1">Official Certificate</h3>
+                    <p className="text-gray-400 text-sm">Download your PDF certificate to share with employers and colleagues</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right - CTA */}
+              <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border-2 border-amber-500/30 rounded-2xl p-8 text-center">
+                <div className="flex justify-center gap-1 mb-4">
+                  {(["lion", "penguin", "retriever", "beaver"] as AnimalType[]).map((type) => (
+                    <AnimalIcon key={type} type={type} size="lg" />
+                  ))}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">100% Free</h3>
+                <p className="text-gray-400 mb-6">Complete all 4 games with 80% accuracy to earn your certificate</p>
+                <Link href="/certification">
+                  <Button
+                    size="lg"
+                    className="w-full text-lg font-bold text-white hover:scale-105 transition-transform"
+                    style={{ background: "linear-gradient(90deg, #f59e0b, #ea580c)" }}
+                  >
+                    Start Certification
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
