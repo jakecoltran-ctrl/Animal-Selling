@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
-import { GameProgress, GameAttempt, Badge, Certificate, BadgeType, GameType } from "@/types";
+import { GameProgress, GameAttempt, Badge, Certificate, BadgeType, GameType, AnimalType } from "@/types";
 import { gameMetadata, generateCertificateNumber } from "./game-content";
 
 const PASSING_ACCURACY = 80;
@@ -359,7 +359,7 @@ function transformCertificate(data: Record<string, unknown>): Certificate {
     userId: data.user_id as string,
     certificateNumber: data.certificate_number as string,
     userName: data.user_name as string,
-    primaryAnimalType: data.primary_animal_type as string | null,
+    primaryAnimalType: data.primary_animal_type as AnimalType | null,
     averageAccuracy: data.average_accuracy as number,
     completedAt: data.completed_at as string,
   };
