@@ -59,6 +59,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/certification" className="hover:text-amber-500 transition-colors">
+                  Certification
+                </Link>
+              </li>
+              <li>
                 <Link href="/dashboard/team" className="hover:text-primary transition-colors">
                   Team Safari™
                 </Link>

@@ -69,14 +69,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center space-x-4 flex-shrink-0">
-          <Link href="/certification" className="hidden lg:block">
-            <Button
-              variant="outline"
-              className="text-sm press-effect hover-glow whitespace-nowrap border-amber-500/50 text-amber-500 hover:bg-amber-500/10"
-            >
-              Certification
-            </Button>
-          </Link>
           <Link href="/dashboard/team" className="hidden lg:block">
             <Button
               className="text-sm text-white press-effect hover-glow whitespace-nowrap"
@@ -153,14 +145,6 @@ export function Header() {
               </Link>
             </div>
             <hr className="my-1 border-gray-300 dark:border-gray-700" />
-            <Link href="/certification" onClick={() => setMobileMenuOpen(false)}>
-              <Button
-                variant="outline"
-                className="w-full text-sm border-amber-500/50 text-amber-500 hover:bg-amber-500/10"
-              >
-                Certification
-              </Button>
-            </Link>
             <Link href="/dashboard/team" onClick={() => setMobileMenuOpen(false)}>
               <Button
                 className="w-full text-sm text-white"

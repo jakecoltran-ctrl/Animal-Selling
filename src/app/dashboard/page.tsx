@@ -639,6 +639,33 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
+            {/* Certification */}
+            <Card className="border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5 animate-fade-in delay-350 hover-lift">
+              <CardHeader className="pb-2">
+                <div className="flex justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                    <span className="text-2xl">🏆</span>
+                  </div>
+                </div>
+                <CardTitle className="text-center text-amber-500 mt-2">Certification</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300 text-center">
+                  Test your sales knowledge
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">
+                  Complete 4 games to earn your Animal Selling certificate and prove your expertise.
+                </p>
+                <Link href="/certification">
+                  <Button
+                    className="w-full press-effect whitespace-nowrap bg-amber-600 hover:bg-amber-700 text-white"
+                  >
+                    Start Certification
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
             {/* Recommended Training */}
             {latestResult && primaryAnimal && (
               <Card className="animate-fade-in delay-400 border-2 border-gray-200 dark:border-white/20">
