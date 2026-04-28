@@ -104,7 +104,7 @@ export default function BeaverGamePage() {
   };
 
   const finishGame = useCallback(async () => {
-    if (!userId || !startTime) return;
+    if (!startTime) return;
 
     setSubmitting(true);
     const endTime = Date.now();
@@ -113,33 +113,38 @@ export default function BeaverGamePage() {
     const accuracy = (score / questions.length) * 100;
     const passed = accuracy >= 80;
 
-    try {
-      const answersMap: Record<string, string | boolean> = {};
-      answers.forEach((a) => {
-        answersMap[a.questionId] = a.selectedAnswer;
-      });
+    let badgesAwarded: BadgeType[] = [];
 
-      const { badgesAwarded } = await updateGameProgress(
-        userId,
-        "beaver",
-        score,
-        questions.length,
-        timeTaken,
-        answersMap as Record<string, string | number>
-      );
+    // Try to save progress, but show results even if it fails
+    if (userId) {
+      try {
+        const answersMap: Record<string, string | boolean> = {};
+        answers.forEach((a) => {
+          answersMap[a.questionId] = a.selectedAnswer;
+        });
 
-      setResults({
-        score,
-        accuracy,
-        passed,
-        badgesAwarded,
-      });
-      setGameState("results");
-    } catch (error) {
-      console.error("Error saving game progress:", error);
-    } finally {
-      setSubmitting(false);
+        const result = await updateGameProgress(
+          userId,
+          "beaver",
+          score,
+          questions.length,
+          timeTaken,
+          answersMap as Record<string, string | number>
+        );
+        badgesAwarded = result.badgesAwarded;
+      } catch (error) {
+        console.error("Error saving game progress:", error);
+      }
     }
+
+    setResults({
+      score,
+      accuracy,
+      passed,
+      badgesAwarded,
+    });
+    setGameState("results");
+    setSubmitting(false);
   }, [userId, startTime, answers, selectedAnswer, currentQuestion, questions]);
 
   const question = questions[currentQuestion];

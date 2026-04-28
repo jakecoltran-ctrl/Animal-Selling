@@ -107,7 +107,7 @@ export default function PenguinGamePage() {
   };
 
   const finishGame = useCallback(async () => {
-    if (!userId || !startTime) return;
+    if (!startTime) return;
 
     setSubmitting(true);
     const endTime = Date.now();
@@ -116,33 +116,38 @@ export default function PenguinGamePage() {
     const accuracy = (score / profiles.length) * 100;
     const passed = accuracy >= 80;
 
-    try {
-      const answersMap: Record<string, string> = {};
-      answers.forEach((a) => {
-        answersMap[a.profileId] = a.selectedType;
-      });
+    let badgesAwarded: BadgeType[] = [];
 
-      const { badgesAwarded } = await updateGameProgress(
-        userId,
-        "penguin",
-        score,
-        profiles.length,
-        timeTaken,
-        answersMap
-      );
+    // Try to save progress, but show results even if it fails
+    if (userId) {
+      try {
+        const answersMap: Record<string, string> = {};
+        answers.forEach((a) => {
+          answersMap[a.profileId] = a.selectedType;
+        });
 
-      setResults({
-        score,
-        accuracy,
-        passed,
-        badgesAwarded,
-      });
-      setGameState("results");
-    } catch (error) {
-      console.error("Error saving game progress:", error);
-    } finally {
-      setSubmitting(false);
+        const result = await updateGameProgress(
+          userId,
+          "penguin",
+          score,
+          profiles.length,
+          timeTaken,
+          answersMap
+        );
+        badgesAwarded = result.badgesAwarded;
+      } catch (error) {
+        console.error("Error saving game progress:", error);
+      }
     }
+
+    setResults({
+      score,
+      accuracy,
+      passed,
+      badgesAwarded,
+    });
+    setGameState("results");
+    setSubmitting(false);
   }, [userId, startTime, answers, selectedType, currentProfile, profiles]);
 
   const profile = profiles[currentProfile];

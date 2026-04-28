@@ -168,7 +168,7 @@ export default function RetrieverGamePage() {
   }, [matchedPairs, totalPairs, gameState]);
 
   const finishGame = useCallback(async () => {
-    if (!userId || !startTime) return;
+    if (!startTime) return;
 
     setSubmitting(true);
     const endTime = Date.now();
@@ -184,34 +184,39 @@ export default function RetrieverGamePage() {
     const accuracy = (matchedPairs / totalPairs) * 100; // Did they find all matches?
     const passed = matchedPairs === totalPairs; // Pass if all matches found
 
-    try {
-      const answersMap: Record<string, number> = {
-        matchedPairs,
-        moves,
-        efficiency: Math.round(efficiency * 100),
-      };
+    let badgesAwarded: BadgeType[] = [];
 
-      const { badgesAwarded } = await updateGameProgress(
-        userId,
-        "retriever",
-        score,
-        totalPairs,
-        timeTaken,
-        answersMap
-      );
+    // Try to save progress, but show results even if it fails
+    if (userId) {
+      try {
+        const answersMap: Record<string, number> = {
+          matchedPairs,
+          moves,
+          efficiency: Math.round(efficiency * 100),
+        };
 
-      setResults({
-        score,
-        accuracy,
-        passed,
-        badgesAwarded,
-      });
-      setGameState("results");
-    } catch (error) {
-      console.error("Error saving game progress:", error);
-    } finally {
-      setSubmitting(false);
+        const result = await updateGameProgress(
+          userId,
+          "retriever",
+          score,
+          totalPairs,
+          timeTaken,
+          answersMap
+        );
+        badgesAwarded = result.badgesAwarded;
+      } catch (error) {
+        console.error("Error saving game progress:", error);
+      }
     }
+
+    setResults({
+      score,
+      accuracy,
+      passed,
+      badgesAwarded,
+    });
+    setGameState("results");
+    setSubmitting(false);
   }, [userId, startTime, matchedPairs, moves, totalPairs]);
 
   const getAnimalName = (type: AnimalType) => {

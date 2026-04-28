@@ -104,7 +104,7 @@ export default function LionGamePage() {
   };
 
   const finishGame = useCallback(async () => {
-    if (!userId || !startTime) return;
+    if (!startTime) return;
 
     setSubmitting(true);
     const endTime = Date.now();
@@ -113,33 +113,38 @@ export default function LionGamePage() {
     const accuracy = (score / questions.length) * 100;
     const passed = accuracy >= 80;
 
-    try {
-      const answersMap: Record<string, string> = {};
-      answers.forEach((a) => {
-        answersMap[a.questionId] = a.selectedId;
-      });
+    let badgesAwarded: BadgeType[] = [];
 
-      const { badgesAwarded } = await updateGameProgress(
-        userId,
-        "lion",
-        score,
-        questions.length,
-        timeTaken,
-        answersMap
-      );
+    // Try to save progress, but show results even if it fails
+    if (userId) {
+      try {
+        const answersMap: Record<string, string> = {};
+        answers.forEach((a) => {
+          answersMap[a.questionId] = a.selectedId;
+        });
 
-      setResults({
-        score,
-        accuracy,
-        passed,
-        badgesAwarded,
-      });
-      setGameState("results");
-    } catch (error) {
-      console.error("Error saving game progress:", error);
-    } finally {
-      setSubmitting(false);
+        const result = await updateGameProgress(
+          userId,
+          "lion",
+          score,
+          questions.length,
+          timeTaken,
+          answersMap
+        );
+        badgesAwarded = result.badgesAwarded;
+      } catch (error) {
+        console.error("Error saving game progress:", error);
+      }
     }
+
+    setResults({
+      score,
+      accuracy,
+      passed,
+      badgesAwarded,
+    });
+    setGameState("results");
+    setSubmitting(false);
   }, [userId, startTime, answers, selectedOption, currentQuestion, questions]);
 
   const question = questions[currentQuestion];
