@@ -324,10 +324,13 @@ export default function DashboardPage() {
               Welcome back, {user?.name || "there"}!
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <Link href="/certification">
-              <Button className="press-effect bg-amber-600 hover:bg-amber-700 text-white">
-                🏆 Certification
+              <Button
+                size="lg"
+                className="press-effect bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold shadow-lg shadow-amber-500/30 animate-pulse hover:animate-none"
+              >
+                🏆 Get Certified
               </Button>
             </Link>
             <Button variant="outline" onClick={openEditProfile} className="press-effect">
