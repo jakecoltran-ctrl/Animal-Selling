@@ -957,9 +957,14 @@ export default function ResultsPage() {
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
               Get Certified
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
               Test your Animal Selling knowledge and earn your official certificate
             </p>
+            {!isPurchased && (
+              <p className="text-xs text-amber-600 dark:text-amber-400 mb-4">
+                💡 The full report makes passing the certification games easier
+              </p>
+            )}
             <Link href="/certification">
               <Button
                 className="text-white font-semibold"

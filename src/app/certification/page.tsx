@@ -83,9 +83,13 @@ export default function CertificationPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Animal Selling <span className="text-amber-500">Certification</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
             Complete all four games with 80% accuracy to earn your certification.
             Test your knowledge of sales personalities, buyer types, and adaptive selling.
+          </p>
+          <p className="text-sm text-amber-500/80 flex items-center justify-center gap-2">
+            <span className="text-lg">💡</span>
+            Pro tip: Your full premium report contains all the answers you need to pass
           </p>
         </div>
 
