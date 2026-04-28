@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lion - The Closer | Animal Selling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #1a1a1a;
+      padding: 20px;
+    }
+
+    .instagram-post {
+      width: 1080px;
+      height: 1080px;
+      background: #0a0a0f;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Dramatic background effects */
+    .bg-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(220, 38, 38, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 30% 70%, rgba(220, 38, 38, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0a0f 0%, #0f0f15 100%);
+    }
+
+    /* Subtle grid pattern */
+    .bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(rgba(220, 38, 38, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(220, 38, 38, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Diagonal accent lines */
+    .accent-line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.4), transparent);
+      height: 2px;
+      width: 400px;
+    }
+
+    .accent-line-1 {
+      top: 180px;
+      right: -100px;
+      transform: rotate(-15deg);
+    }
+
+    .accent-line-2 {
+      bottom: 280px;
+      left: -100px;
+      transform: rotate(-15deg);
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 60px;
+    }
+
+    /* Header with branding */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .brand-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+
+    .brand-text span {
+      color: #dc2626;
+    }
+
+    .type-badge {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #dc2626;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Main hero section */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-top: -20px;
+    }
+
+    .lion-icon {
+      font-size: 140px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 60px rgba(220, 38, 38, 0.5));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 160px;
+      color: #dc2626;
+      letter-spacing: 20px;
+      line-height: 0.85;
+      text-shadow:
+        0 0 80px rgba(220, 38, 38, 0.5),
+        0 4px 0 #7f1d1d;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .tagline {
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+      font-style: italic;
+      max-width: 600px;
+    }
+
+    /* Strengths section */
+    .strengths {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .strength {
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid rgba(220, 38, 38, 0.2);
+      padding: 14px 24px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .strength-icon {
+      color: #dc2626;
+      font-size: 18px;
+    }
+
+    .strength-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.5px;
+    }
+
+    /* Footer CTA */
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(220, 38, 38, 0.15);
+    }
+
+    .cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cta-text {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 400;
+    }
+
+    .cta-url {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: #ffffff;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Corner accents */
+    .corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 2px solid rgba(220, 38, 38, 0.2);
+    }
+
+    .corner-tl {
+      top: 30px;
+      left: 30px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-tr {
+      top: 30px;
+      right: 30px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-bl {
+      bottom: 30px;
+      left: 30px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .corner-br {
+      bottom: 30px;
+      right: 30px;
+      border-left: none;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="instagram-post">
+    <!-- Background layers -->
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    <div class="accent-line accent-line-1"></div>
+    <div class="accent-line accent-line-2"></div>
+
+    <!-- Corner decorations -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="content">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <div class="brand-icon">🐾</div>
+          <div class="brand-text">ANIMAL <span>SELLING</span>™</div>
+        </div>
+        <div class="type-badge">Sales Type</div>
+      </header>
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="lion-icon">🦁</div>
+        <h1 class="title">LION</h1>
+        <p class="subtitle">The Closer</p>
+        <p class="tagline">"Drive results. Close deals. Lead from the front."</p>
+
+        <!-- Strengths -->
+        <div class="strengths">
+          <div class="strength">
+            <span class="strength-icon">⚡</span>
+            <span class="strength-text">Decisive Under Pressure</span>
+          </div>
+          <div class="strength">
+            <span class="strength-icon">🎯</span>
+            <span class="strength-text">Results-Driven</span>
+          </div>
+          <div class="strength">
+            <span class="strength-icon">💬</span>
+            <span class="strength-text">Direct Communicator</span>
+          </div>
+          <div class="strength">
+            <span class="strength-icon">👑</span>
+            <span class="strength-text">Natural Leader</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="cta">
+          <span class="cta-text">Discover your sales animal at</span>
+          <span class="cta-url">ANIMALSELLING.COM</span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

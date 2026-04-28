@@ -93,327 +93,328 @@ export const badges: Record<BadgeType, BadgeInfo> = {
 
 // ============================================
 // LION GAME - SCENARIO QUIZ (10 questions)
-// "The Closer Challenge"
+// "Sales Scenario Challenge"
+// Tests knowledge of when to use each animal's approach
 // ============================================
 
 export const lionQuestions: ScenarioQuestion[] = [
   {
     id: "lion-1",
     scenario:
-      "A prospect says, 'I need to think about it and discuss with my team.' What's the most effective Lion response?",
+      "You're meeting a new prospect who spent 10 minutes asking about your family and hobbies before discussing business. What approach works best here?",
     options: [
       {
         id: "a",
-        text: "Absolutely, I'll schedule a follow-up call for next Tuesday to address any questions that come up.",
+        text: "Politely redirect: 'I appreciate the conversation, but let's dive into how we can help your business.'",
         isCorrect: false,
-        explanation: "While proactive, this accepts the delay rather than addressing concerns now.",
+        explanation: "This Lion approach may feel abrupt to a relationship-focused buyer.",
       },
       {
         id: "b",
-        text: "What specifically do you need to think about? Let's address those concerns now.",
+        text: "Engage warmly, share stories, and let the relationship develop before discussing business.",
         isCorrect: true,
         explanation:
-          "Lions get to the root of objections directly and keep the conversation moving.",
+          "This buyer shows Penguin traits - they value connection first. Match their energy to build trust.",
       },
       {
         id: "c",
-        text: "I'll prepare a detailed comparison document your team can review together.",
+        text: "Prepare detailed documentation about your solution to share when the conversation turns to business.",
         isCorrect: false,
-        explanation: "Helpful, but delays the decision without uncovering the real concern.",
+        explanation: "Beaver preparation is good, but this buyer wants connection, not data.",
       },
       {
         id: "d",
-        text: "Would it help if I joined the discussion with your team to answer questions directly?",
+        text: "Ask thoughtful questions about their team and how changes typically happen in their organization.",
         isCorrect: false,
-        explanation: "Collaborative approach, but doesn't address the underlying hesitation first.",
+        explanation: "Retriever approach is relationship-focused but misses this buyer's social energy.",
       },
     ],
   },
   {
     id: "lion-2",
     scenario:
-      "Your competitor just dropped their price by 20%. Your prospect brings this up. How should a Lion respond?",
+      "A prospect asks for your security certifications, API documentation, SLA details, and wants to understand your pricing formula. What type of buyer is this?",
     options: [
       {
         id: "a",
-        text: "We can be flexible on pricing for the right partnership. Let me see what I can do.",
+        text: "Lion - they want to make a fast, confident decision",
         isCorrect: false,
-        explanation: "Opens the door to discounting without establishing value first.",
+        explanation: "Lions want results and bottom-line impact, not detailed documentation.",
       },
       {
         id: "b",
-        text: "That's a significant discount. What's driving their price reduction right now?",
+        text: "Penguin - they're building rapport through questions",
         isCorrect: false,
-        explanation: "Deflects but doesn't redirect to your value proposition.",
+        explanation: "Penguins focus on relationships, not technical specifications.",
       },
       {
         id: "c",
-        text: "Price matters, but so does the cost of choosing wrong. What would a failed implementation cost your team?",
-        isCorrect: true,
-        explanation:
-          "Lions redirect to value and outcomes, not price wars.",
+        text: "Retriever - they're being thorough to protect their team",
+        isCorrect: false,
+        explanation: "Retrievers care about team impact, but these are technical/analytical questions.",
       },
       {
         id: "d",
-        text: "Our pricing reflects the premium support and features included. Let me walk you through what you get.",
-        isCorrect: false,
-        explanation: "Defensive approach that doesn't tie back to their specific needs.",
+        text: "Beaver - they need comprehensive data before deciding",
+        isCorrect: true,
+        explanation:
+          "This is classic Beaver behavior - analytical, detail-oriented, and needs thorough documentation.",
       },
     ],
   },
   {
     id: "lion-3",
     scenario:
-      "You've been in a 45-minute call with no clear next steps emerging. What does a Lion do?",
+      "Your prospect says, 'I want to make sure everyone on my team feels good about this decision before we move forward.' How should you adapt?",
     options: [
       {
         id: "a",
-        text: "This has been valuable. I'll send a summary and we can pick this up when you're ready.",
+        text: "Push for a decision: 'The team will feel good once they see the results. Let's get started.'",
         isCorrect: false,
-        explanation: "Polite but ends without commitment or clear direction.",
+        explanation: "Lion directness will feel dismissive of their team-focused values.",
       },
       {
         id: "b",
-        text: "Before we wrap up, what other stakeholders should I connect with to move this forward?",
-        isCorrect: false,
-        explanation: "Good question, but doesn't propose a specific commitment.",
+        text: "Offer to present to different team members and provide materials for internal discussions.",
+        isCorrect: true,
+        explanation:
+          "This is a Retriever buyer who values consensus. Support their process with patience and resources.",
       },
       {
         id: "c",
-        text: "Based on what we've discussed, I'd recommend we schedule a demo for next Tuesday. Does 2pm work?",
-        isCorrect: true,
-        explanation:
-          "Lions take charge and propose specific next steps with a concrete time.",
+        text: "Send detailed comparison documents so the team can analyze the options together.",
+        isCorrect: false,
+        explanation: "Helpful, but this buyer needs relationship support, not just data.",
       },
       {
         id: "d",
-        text: "What information would be most helpful for me to send over after this call?",
+        text: "Suggest a team lunch or event where you can meet everyone in a relaxed setting.",
         isCorrect: false,
-        explanation: "Puts the burden on the prospect instead of leading the process.",
+        explanation: "Penguin approach, but this buyer wants process support, not social events.",
       },
     ],
   },
   {
     id: "lion-4",
     scenario:
-      "A decision-maker keeps delegating your calls to a junior team member. How does a Lion handle this?",
+      "A buyer interrupts your demo saying, 'Skip the features - just tell me the ROI and when we can start.' What animal type is this?",
     options: [
       {
         id: "a",
-        text: "Empower the junior person with everything they need to make a strong internal case.",
-        isCorrect: false,
-        explanation: "Useful tactic, but doesn't address the access-to-power problem.",
+        text: "Lion - results-focused and ready to move fast",
+        isCorrect: true,
+        explanation:
+          "Classic Lion behavior: direct, impatient with details, focused on outcomes and action.",
       },
       {
         id: "b",
-        text: "Email the decision-maker directly: 'I've identified 3 outcomes at risk without 15 minutes of your time.'",
-        isCorrect: true,
-        explanation:
-          "Lions go direct to power and create urgency with concrete business impact.",
+        text: "Penguin - enthusiastic and eager to get going",
+        isCorrect: false,
+        explanation: "Penguins are enthusiastic but would engage more with the relationship aspect.",
       },
       {
         id: "c",
-        text: "Ask the junior person what would make the decision-maker want to join a call.",
+        text: "Retriever - wanting to quickly help their team",
         isCorrect: false,
-        explanation: "Indirect approach that relies on the junior person's willingness to advocate.",
+        explanation: "Retrievers would ask about team impact, not just ROI.",
       },
       {
         id: "d",
-        text: "Continue building value with the junior person - they'll escalate when they're convinced.",
+        text: "Beaver - efficiently gathering the key data points",
         isCorrect: false,
-        explanation: "Patient approach, but accepts being blocked from the real decision-maker.",
+        explanation: "Beavers want MORE details, not fewer. They wouldn't skip the demo.",
       },
     ],
   },
   {
     id: "lion-5",
     scenario:
-      "Your prospect says, 'We've already invested heavily in a competitor's solution.' What's the Lion play?",
+      "You're selling to someone who keeps mentioning other departments that 'might find this interesting' and offers to introduce you to their CEO. What approach should you take?",
     options: [
       {
         id: "a",
-        text: "I hear that often. Would it be helpful to see how other companies made the transition?",
+        text: "Focus the conversation on closing this deal first, then explore expansions later.",
         isCorrect: false,
-        explanation: "Opens the door but doesn't probe their current pain points.",
+        explanation: "Lion focus is good, but you'd miss this buyer's natural networking strength.",
       },
       {
         id: "b",
-        text: "That's exactly why companies switch to us. What's the #1 thing that solution isn't delivering?",
+        text: "Embrace their connector energy - take the introductions and explore partnership opportunities.",
         isCorrect: true,
         explanation:
-          "Lions find the gap and position switching as the smart move, not a loss.",
+          "This Penguin buyer expands deals through relationships. Leverage their enthusiasm for connections.",
       },
       {
         id: "c",
-        text: "Understood. If we can demonstrate 2x the value, would that change the equation?",
+        text: "Prepare detailed business cases for each department they mention.",
         isCorrect: false,
-        explanation: "Hypothetical question that doesn't uncover their actual pain.",
+        explanation: "Beaver preparation, but this buyer wants to connect people, not review documents.",
       },
       {
         id: "d",
-        text: "What would need to change for you to consider alternatives?",
+        text: "Ask how each department's adoption would affect their team's workload.",
         isCorrect: false,
-        explanation: "Good discovery question, but doesn't lead toward action.",
+        explanation: "Retriever concern for team, but doesn't match this buyer's expansive energy.",
       },
     ],
   },
   {
     id: "lion-6",
     scenario:
-      "You're in contract negotiation and the prospect wants to remove the annual commitment. What does a Lion do?",
+      "A long-time customer mentions they've been approached by a competitor. They've been loyal for 5 years. What's the best response?",
     options: [
       {
         id: "a",
-        text: "I can offer a quarterly option, but let me show you the value difference with annual.",
+        text: "Match or beat the competitor's offer immediately to protect the account.",
         isCorrect: false,
-        explanation: "Immediately offers a compromise before understanding their concern.",
+        explanation: "Lion reaction, but devalues the relationship you've built.",
       },
       {
         id: "b",
-        text: "Annual commitment gets you dedicated support, locked-in pricing, and roadmap input. That's why customers choose it.",
+        text: "Ask what attracted them to the competitor - are they feeling undervalued or is something missing?",
         isCorrect: true,
         explanation:
-          "Lions stand firm but tie it to customer benefit, not company policy.",
+          "Retriever approach: acknowledge the relationship, understand their needs, and address gaps with care.",
       },
       {
         id: "c",
-        text: "Help me understand what's driving that request - is it budget timing or flexibility concerns?",
+        text: "Prepare a detailed comparison showing why your solution is technically superior.",
         isCorrect: false,
-        explanation: "Good discovery, but delays demonstrating the value of the commitment.",
+        explanation: "Beaver analysis, but this situation needs relationship repair first.",
       },
       {
         id: "d",
-        text: "Let me talk to my team about what options we might have for you.",
+        text: "Set up a meeting with your leadership to show them how much you value the partnership.",
         isCorrect: false,
-        explanation: "Defers authority and delays the conversation.",
+        explanation: "Penguin relationship move, but you need to understand the problem first.",
       },
     ],
   },
   {
     id: "lion-7",
     scenario:
-      "A prospect goes silent after receiving your proposal. It's been a week. What's the Lion move?",
+      "Which animal type is most likely to win deals through thorough preparation, detailed proposals, and comprehensive business cases?",
     options: [
       {
         id: "a",
-        text: "Send a brief email: 'Wanted to check in on the proposal. Any questions I can address?'",
+        text: "Lion - their confidence comes from preparation",
         isCorrect: false,
-        explanation: "Standard follow-up that doesn't create urgency or add new value.",
+        explanation: "Lions rely on confidence and decisiveness, not detailed documentation.",
       },
       {
         id: "b",
-        text: "Give them space - they'll reach out when ready. Follow up again in a few days.",
+        text: "Penguin - their enthusiasm is backed by research",
         isCorrect: false,
-        explanation: "Passive approach that risks losing momentum entirely.",
+        explanation: "Penguins win through relationships and connections, not paperwork.",
       },
       {
         id: "c",
-        text: "Call directly: 'I have an update on implementation timelines that affects your Q3 launch.'",
-        isCorrect: true,
-        explanation:
-          "Lions create urgency with relevant, timely information that demands attention.",
+        text: "Retriever - their trustworthiness requires proof",
+        isCorrect: false,
+        explanation: "Retrievers build trust through consistency and care, not documentation.",
       },
       {
         id: "d",
-        text: "Send a case study from a similar company showing the results they achieved.",
-        isCorrect: false,
-        explanation: "Adds value but doesn't create the urgency needed to re-engage.",
+        text: "Beaver - their expertise shines in detailed analysis",
+        isCorrect: true,
+        explanation:
+          "Beavers are specialists who excel at preparation, documentation, and thorough business cases.",
       },
     ],
   },
   {
     id: "lion-8",
     scenario:
-      "During a demo, the prospect's CFO joins unexpectedly and immediately asks about ROI. How does a Lion pivot?",
+      "A prospect who normally responds within hours has gone silent for a week after receiving your proposal. They're known to be decisive and results-driven. What happened and what should you do?",
     options: [
       {
         id: "a",
-        text: "Great question! Let me finish this section and then we'll dive deep into ROI.",
+        text: "They're probably busy. Wait another week and send a gentle check-in.",
         isCorrect: false,
-        explanation: "Delays addressing the CFO's priority when they're engaged now.",
+        explanation: "This passive approach doesn't match how Lions operate or expect to be treated.",
       },
       {
         id: "b",
-        text: "Stop the demo. 'Great question. Based on similar companies, here's the 12-month impact...' and pull up ROI data.",
+        text: "A Lion going silent means something's wrong. Call directly with new, relevant information.",
         isCorrect: true,
         explanation:
-          "Lions read the room and immediately address executive priorities.",
+          "Lions are decisive - silence signals a blocker. Re-engage with urgency and value.",
       },
       {
         id: "c",
-        text: "I'd love to share ROI data. What specific metrics does your finance team track most closely?",
+        text: "Send additional case studies and documentation to strengthen the proposal.",
         isCorrect: false,
-        explanation: "Good discovery, but misses the moment to lead with value.",
+        explanation: "Beaver approach, but Lions don't want more data - they want action.",
       },
       {
         id: "d",
-        text: "I can send you our ROI calculator after this call - it's quite detailed.",
+        text: "Reach out to see if there's anything happening personally that's affecting timing.",
         isCorrect: false,
-        explanation: "Defers the conversation when executive attention is at its peak.",
+        explanation: "Retriever care, but Lions separate personal from business decisions.",
       },
     ],
   },
   {
     id: "lion-9",
     scenario:
-      "You've won the deal verbally, but legal is dragging their feet on contract review. It's been 3 weeks. What's the Lion approach?",
+      "You're a Beaver seller (detail-oriented, analytical) meeting with a Lion buyer (decisive, results-focused). What's your biggest challenge?",
     options: [
       {
         id: "a",
-        text: "Ask your champion to check in with legal and let you know if there are sticking points.",
+        text: "Getting enough information to build a thorough proposal",
         isCorrect: false,
-        explanation: "Puts the burden on your champion rather than taking direct action.",
+        explanation: "That's a Beaver concern, but Lions will give you what you need quickly.",
       },
       {
         id: "b",
-        text: "Propose a call where your legal team and theirs can resolve issues in real-time.",
+        text: "Moving fast enough and leading with outcomes instead of details",
         isCorrect: true,
         explanation:
-          "Lions take action to remove blockers directly and efficiently.",
+          "Beavers want to share details; Lions want the bottom line. Beavers must adapt by being concise and action-oriented.",
       },
       {
         id: "c",
-        text: "Send a summary of all the terms we've agreed on to help legal see the alignment.",
+        text: "Building enough personal rapport before discussing business",
         isCorrect: false,
-        explanation: "Helpful documentation, but doesn't accelerate the actual review process.",
+        explanation: "That's a Penguin concern. Lions don't prioritize personal rapport.",
       },
       {
         id: "d",
-        text: "Be patient - pushing legal too hard could damage the relationship.",
+        text: "Making sure the buyer's team is comfortable with the decision",
         isCorrect: false,
-        explanation: "Risk-averse approach that accepts unnecessary delay.",
+        explanation: "That's a Retriever concern. Lions make decisions independently.",
       },
     ],
   },
   {
     id: "lion-10",
     scenario:
-      "Your prospect says, 'We love it, but we need to wait until next quarter's budget.' How does a Lion respond?",
+      "Which blind spot should a Penguin seller be most aware of when managing customer expectations?",
     options: [
       {
         id: "a",
-        text: "I understand. Let me set a reminder to reconnect when the new budget cycle begins.",
+        text: "Being too direct and potentially damaging relationships",
         isCorrect: false,
-        explanation: "Accepts the delay without exploring creative solutions.",
+        explanation: "That's a Lion blind spot. Penguins are rarely too direct.",
       },
       {
         id: "b",
-        text: "What if we structured payment to start next quarter while you begin implementation now?",
+        text: "Over-promising in the heat of enthusiasm and not delivering",
         isCorrect: true,
         explanation:
-          "Lions find creative solutions to close deals faster.",
+          "Penguins' enthusiasm and desire to please can lead to commitments they can't keep.",
       },
       {
         id: "c",
-        text: "Is there any discretionary budget or a different cost center that could cover this?",
+        text: "Spending too much time on analysis instead of taking action",
         isCorrect: false,
-        explanation: "Puts the problem-solving work entirely on the prospect.",
+        explanation: "That's a Beaver blind spot. Penguins act on relationships, not analysis.",
       },
       {
         id: "d",
-        text: "Would a smaller initial deployment work within your current budget?",
+        text: "Avoiding difficult conversations to preserve harmony",
         isCorrect: false,
-        explanation: "Reduces deal size rather than solving the timing problem.",
+        explanation: "That's a Retriever blind spot. Penguins are comfortable with conversations.",
       },
     ],
   },
@@ -696,10 +697,10 @@ export const beaverQuestions: ComprehensiveQuestion[] = [
 
 export const gameMetadata = {
   lion: {
-    name: "The Closer Challenge",
+    name: "Sales Scenario Challenge",
     title: "Lion",
     description:
-      "Test your sales closing skills with 10 real-world objection scenarios. Can you respond like a Lion?",
+      "Real-world sales scenarios where you identify buyer types and choose the best approach for each situation.",
     totalQuestions: 10,
     passingScore: 80,
     estimatedTime: "5 minutes",
@@ -716,20 +717,20 @@ export const gameMetadata = {
     color: "#0891b2",
   },
   retriever: {
-    name: "Trust Builder",
+    name: "Trait Matcher",
     title: "Retriever",
     description:
-      "Match sales traits to their animal types. Test your knowledge of what makes each type unique.",
+      "Match sales traits and characteristics to the correct animal types. Test your knowledge of what makes each type unique.",
     totalQuestions: 12,
     passingScore: 80,
     estimatedTime: "3 minutes",
     color: "#d97706",
   },
   beaver: {
-    name: "The Detail Master",
+    name: "Knowledge Quiz",
     title: "Beaver",
     description:
-      "A comprehensive quiz covering all animal types. True/false, multiple choice, and identification questions.",
+      "Comprehensive quiz covering all animal types - their strengths, blind spots, and how to work with each.",
     totalQuestions: 10,
     passingScore: 80,
     estimatedTime: "5 minutes",

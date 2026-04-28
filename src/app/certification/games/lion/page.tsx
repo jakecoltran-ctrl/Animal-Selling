@@ -205,8 +205,8 @@ export default function LionGamePage() {
             </Card>
 
             <p className="text-muted-foreground mb-8">
-              You&apos;ll face real sales scenarios and choose the best Lion response.
-              Each question has one correct answer. Take your time and think like a closer!
+              Face real sales scenarios and identify buyer types or choose the best approach.
+              Test your knowledge of all four animal types and when to use each strategy!
             </p>
 
             <Button
