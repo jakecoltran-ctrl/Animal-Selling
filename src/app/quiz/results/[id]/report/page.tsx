@@ -30,6 +30,8 @@ import { ThirtyDayPlanPage } from "@/components/report/ThirtyDayPlanPage";
 import { TeamPreview } from "@/components/report/TeamPreview";
 import { PDFDownload } from "@/components/report/PDFDownload";
 import { IndustryTipsPage } from "@/components/report/IndustryTipsPage";
+import { CertificationStudyGuidePage } from "@/components/report/CertificationStudyGuidePage";
+import { DiscoveryQuestionsPage } from "@/components/report/DiscoveryQuestionsPage";
 
 export default function ReportViewPage() {
   const params = useParams();
@@ -39,7 +41,7 @@ export default function ReportViewPage() {
   const [accessGranted, setAccessGranted] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const reportRef = useRef<HTMLDivElement>(null);
-  const totalPages = 15;
+  const totalPages = 17;
 
   useEffect(() => {
     // Check purchase status to gate access
@@ -337,9 +339,23 @@ export default function ReportViewPage() {
           </ReportPage>
         )}
 
-        {/* Page 13: Growth Plan */}
+        {/* Page 13: Certification Study Guide */}
         {currentPage === 13 && (
           <ReportPage pageNumber={13} totalPages={totalPages}>
+            <CertificationStudyGuidePage primaryType={result.primaryType} />
+          </ReportPage>
+        )}
+
+        {/* Page 14: Discovery Questions */}
+        {currentPage === 14 && (
+          <ReportPage pageNumber={14} totalPages={totalPages}>
+            <DiscoveryQuestionsPage primaryType={result.primaryType} />
+          </ReportPage>
+        )}
+
+        {/* Page 15: Growth Plan */}
+        {currentPage === 15 && (
+          <ReportPage pageNumber={15} totalPages={totalPages}>
             <GrowthPlanPage
               primaryType={result.primaryType}
               scores={result.percentages}
@@ -348,9 +364,9 @@ export default function ReportViewPage() {
           </ReportPage>
         )}
 
-        {/* Page 14: 30-Day Action Plan */}
-        {currentPage === 14 && (
-          <ReportPage pageNumber={14} totalPages={totalPages}>
+        {/* Page 16: 30-Day Action Plan */}
+        {currentPage === 16 && (
+          <ReportPage pageNumber={16} totalPages={totalPages}>
             <ThirtyDayPlanPage
               primaryType={result.primaryType}
               secondaryType={result.secondaryType}
@@ -358,9 +374,9 @@ export default function ReportViewPage() {
           </ReportPage>
         )}
 
-        {/* Page 15: Team Preview */}
-        {currentPage === 15 && (
-          <ReportPage pageNumber={15} totalPages={totalPages}>
+        {/* Page 17: Team Preview */}
+        {currentPage === 17 && (
+          <ReportPage pageNumber={17} totalPages={totalPages}>
             <TeamPreview primaryType={result.primaryType} />
           </ReportPage>
         )}
@@ -373,7 +389,7 @@ export default function ReportViewPage() {
         style={{ opacity: 0, zIndex: -9999 }}
         aria-hidden="true"
       >
-        <ReportPage pageNumber={1} totalPages={18} forPdf>
+        <ReportPage pageNumber={1} totalPages={20} forPdf>
           <CoverPage
             primaryAnimal={primaryAnimal}
             secondaryAnimal={secondaryAnimal}
@@ -383,7 +399,7 @@ export default function ReportViewPage() {
           />
         </ReportPage>
 
-        <ReportPage pageNumber={2} totalPages={18} forPdf>
+        <ReportPage pageNumber={2} totalPages={20} forPdf>
           <ProfileSummary
             primaryAnimal={primaryAnimal}
             secondaryAnimal={secondaryAnimal}
@@ -393,7 +409,7 @@ export default function ReportViewPage() {
           />
         </ReportPage>
 
-        <ReportPage pageNumber={3} totalPages={18} forPdf>
+        <ReportPage pageNumber={3} totalPages={20} forPdf>
           <UniqueProfilePage
             scores={result.percentages}
             primaryType={result.primaryType}
@@ -402,7 +418,7 @@ export default function ReportViewPage() {
           />
         </ReportPage>
 
-        <ReportPage pageNumber={4} totalPages={18} forPdf>
+        <ReportPage pageNumber={4} totalPages={20} forPdf>
           <PrimaryDeepDive
             primaryAnimal={primaryAnimal}
             salesContext={salesContext}
@@ -410,7 +426,7 @@ export default function ReportViewPage() {
         </ReportPage>
 
         {blendProfile && (
-          <ReportPage pageNumber={5} totalPages={18} forPdf>
+          <ReportPage pageNumber={5} totalPages={20} forPdf>
             <SecondaryInfluence
               primaryAnimal={primaryAnimal}
               secondaryAnimal={secondaryAnimal}
@@ -419,48 +435,56 @@ export default function ReportViewPage() {
           </ReportPage>
         )}
 
-        <ReportPage pageNumber={6} totalPages={18} forPdf>
+        <ReportPage pageNumber={6} totalPages={20} forPdf>
           <ObjectionHandlingPage primaryType={result.primaryType} />
         </ReportPage>
 
         {/* 4 Buyer Identification pages - one for each animal type */}
-        <ReportPage pageNumber={7} totalPages={18} forPdf>
+        <ReportPage pageNumber={7} totalPages={20} forPdf>
           <BuyerIdentification primaryType={result.primaryType} salesContext={salesContext} showBuyerType="lion" hideSelector />
         </ReportPage>
 
-        <ReportPage pageNumber={8} totalPages={18} forPdf>
+        <ReportPage pageNumber={8} totalPages={20} forPdf>
           <BuyerIdentification primaryType={result.primaryType} salesContext={salesContext} showBuyerType="penguin" hideSelector />
         </ReportPage>
 
-        <ReportPage pageNumber={9} totalPages={18} forPdf>
+        <ReportPage pageNumber={9} totalPages={20} forPdf>
           <BuyerIdentification primaryType={result.primaryType} salesContext={salesContext} showBuyerType="retriever" hideSelector />
         </ReportPage>
 
-        <ReportPage pageNumber={10} totalPages={18} forPdf>
+        <ReportPage pageNumber={10} totalPages={20} forPdf>
           <BuyerIdentification primaryType={result.primaryType} salesContext={salesContext} showBuyerType="beaver" hideSelector />
         </ReportPage>
 
-        <ReportPage pageNumber={11} totalPages={18} forPdf>
+        <ReportPage pageNumber={11} totalPages={20} forPdf>
           <SellingPlaybookPage primaryType={result.primaryType} salesContext={salesContext} />
         </ReportPage>
 
-        <ReportPage pageNumber={12} totalPages={18} forPdf>
+        <ReportPage pageNumber={12} totalPages={20} forPdf>
           <TypesComparison primaryType={result.primaryType} />
         </ReportPage>
 
-        <ReportPage pageNumber={13} totalPages={18} forPdf>
+        <ReportPage pageNumber={13} totalPages={20} forPdf>
           <RedFlagsPage primaryType={result.primaryType} />
         </ReportPage>
 
-        <ReportPage pageNumber={14} totalPages={18} forPdf>
+        <ReportPage pageNumber={14} totalPages={20} forPdf>
           <SelfCoachingPage primaryType={result.primaryType} resultId={result.id} />
         </ReportPage>
 
-        <ReportPage pageNumber={15} totalPages={18} forPdf>
+        <ReportPage pageNumber={15} totalPages={20} forPdf>
           <IndustryTipsPage primaryType={result.primaryType} />
         </ReportPage>
 
-        <ReportPage pageNumber={16} totalPages={18} forPdf>
+        <ReportPage pageNumber={16} totalPages={20} forPdf>
+          <CertificationStudyGuidePage primaryType={result.primaryType} />
+        </ReportPage>
+
+        <ReportPage pageNumber={17} totalPages={20} forPdf>
+          <DiscoveryQuestionsPage primaryType={result.primaryType} />
+        </ReportPage>
+
+        <ReportPage pageNumber={18} totalPages={20} forPdf>
           <GrowthPlanPage
             primaryType={result.primaryType}
             scores={result.percentages}
@@ -468,14 +492,14 @@ export default function ReportViewPage() {
           />
         </ReportPage>
 
-        <ReportPage pageNumber={17} totalPages={18} forPdf>
+        <ReportPage pageNumber={19} totalPages={20} forPdf>
           <ThirtyDayPlanPage
             primaryType={result.primaryType}
             secondaryType={result.secondaryType}
           />
         </ReportPage>
 
-        <ReportPage pageNumber={18} totalPages={18} forPdf>
+        <ReportPage pageNumber={20} totalPages={20} forPdf>
           <TeamPreview primaryType={result.primaryType} />
         </ReportPage>
       </div>

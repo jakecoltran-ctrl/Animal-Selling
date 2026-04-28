@@ -233,7 +233,7 @@ export default function UpgradePage() {
   const faqs = [
     {
       question: "What do I get?",
-      answer: "A 15-page personalized sales profile report viewable in your browser and downloadable as a PDF. It includes your deep dive, power combo analysis, adaptive selling playbook, growth plan, and more.",
+      answer: "A 17-page personalized sales profile report viewable in your browser and downloadable as a PDF. It includes your deep dive, power combo analysis, adaptive selling playbook, certification study guide, discovery questions, growth plan, and more.",
     },
     {
       question: "Is this a subscription?",
@@ -350,7 +350,7 @@ export default function UpgradePage() {
                 </Button>
 
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  Instant access • PDF download included • 15 personalized pages
+                  Instant access • PDF download included • 17 personalized pages
                 </p>
 
                 {/* Stripe Trust Badge */}
@@ -413,7 +413,7 @@ export default function UpgradePage() {
             What&apos;s Inside Your Full Report
           </h2>
           <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
-            15 pages of personalized insights tailored to your unique sales profile
+            17 pages of personalized insights tailored to your unique sales profile
           </p>
 
           <div className="grid md:grid-cols-2 gap-4">
@@ -621,7 +621,7 @@ export default function UpgradePage() {
           </div>
 
           <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
-            These are actual pages from your personalized 15-page report
+            These are actual pages from your personalized 17-page report
           </p>
         </div>
 
@@ -725,7 +725,7 @@ export default function UpgradePage() {
             </Button>
 
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              Instant access • PDF download included • 15 personalized pages
+              Instant access • PDF download included • 17 personalized pages
             </p>
 
             {/* Stripe Trust Badge */}

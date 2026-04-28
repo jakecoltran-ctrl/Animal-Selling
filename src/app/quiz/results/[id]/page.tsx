@@ -345,7 +345,7 @@ export default function ResultsPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
-                    Unlock your full 15-page report
+                    Unlock your full 17-page report
                   </span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
                     <span className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -813,7 +813,7 @@ export default function ResultsPage() {
                     Your Full Premium Report
                   </h2>
                   <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-                    15 pages of personalized insights for your {primaryAnimal.name} style
+                    17 pages of personalized insights for your {primaryAnimal.name} style
                   </p>
 
                   {/* What's Inside Checklist */}
@@ -890,7 +890,7 @@ export default function ResultsPage() {
                 Your Full {primaryAnimal.name} Report is Ready
               </h2>
               <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-                Access your complete 15-page personalized sales report
+                Access your complete 17-page personalized sales report
               </p>
               <Link href={`/quiz/results/${result.id}/report`}>
                 <Button

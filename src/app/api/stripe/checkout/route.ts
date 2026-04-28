@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
               currency: "usd",
               product_data: {
                 name: "Animal Selling™ Full Report",
-                description: "15-page personalized sales profile report",
+                description: "17-page personalized sales profile report",
               },
               unit_amount: PRICES.full_report,
             },
