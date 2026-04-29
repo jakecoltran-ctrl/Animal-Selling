@@ -29,6 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${certificate.user_name}'s Certificate | Animal Selling`,
     description: `Verified Animal Selling Certification for ${certificate.user_name}. Certificate #${certificate.certificate_number}`,
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
